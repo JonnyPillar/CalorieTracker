@@ -43,11 +43,14 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\Program Files (x86)\MySQL\MySQL Connector Net 6.7.4\Assemblies\v4.0\MySql.Data.dll</HintPath>
     </Reference>
+    <Reference Include="MySql.Data.Entity, Version=6.7.4.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL" />
     <Reference Include="MySql.Web, Version=6.7.4.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\Program Files (x86)\MySQL\MySQL Connector Net 6.7.4\Assemblies\v4.0\MySql.Web.dll</HintPath>
     </Reference>
     <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Web.Mvc, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Web.WebPages, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Web.Helpers, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
@@ -71,15 +74,57 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Controllers\HelloWorldController.cs" />
-    <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\MovieController.cs" />
+    <Compile Include="Controllers\HomeController.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Controllers\UserController.cs" />
+    <Compile Include="Controllers\UserInformationController.cs" />
+    <Compile Include="Controllers\UserMetricController.cs" />
+    <Compile Include="Controllers\UserTargerController.cs" />
+    <Compile Include="DAL\CalorieTrackerModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CalorieTrackerModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="DAL\TableModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TableModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DAL\TableModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TableModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DAL\tbl_activity.cs">
+      <DependentUpon>TableModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DAL\tbl_activity_log.cs">
+      <DependentUpon>TableModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DAL\tbl_food.cs">
+      <DependentUpon>TableModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DAL\tbl_food_log.cs">
+      <DependentUpon>TableModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DAL\tbl_user.cs">
+      <DependentUpon>TableModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DAL\tbl_user_information.cs">
+      <DependentUpon>TableModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DAL\tbl_user_metric.cs">
+      <DependentUpon>TableModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DAL\tbl_user_target.cs">
+      <DependentUpon>TableModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\Movie.cs" />
-    <Compile Include="Models\MyObject.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Validators\PrimaryKeyValidator.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
@@ -110,6 +155,9 @@
     <Content Include="Content\themes\base\jquery.ui.tabs.css" />
     <Content Include="Content\themes\base\jquery.ui.theme.css" />
     <Content Include="Global.asax" />
+    <Content Include="MySql.Data.dll" />
+    <Content Include="MySql.Data.Entity.dll" />
+    <Content Include="MySql.Web.dll" />
     <Content Include="Scripts\jquery-1.5.1-vsdoc.js" />
     <Content Include="Scripts\jquery-1.5.1.js" />
     <Content Include="Scripts\jquery-1.5.1.min.js" />
@@ -120,7 +168,9 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\modernizr-1.7.js" />
     <Content Include="Scripts\modernizr-1.7.min.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -152,30 +202,49 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\HelloWorld\Index.cshtml" />
+    <EntityDeploy Include="DAL\CalorieTrackerModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>CalorieTrackerModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\HelloWorld\Welcome.cshtml" />
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\Movie\Index.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Views\Movie\Details.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Views\Movie\Create.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Views\Movie\Edit.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Views\Movie\Delete.cshtml" />
+    <None Include="DAL\TableModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>TableModel.Context.cs</LastGenOutput>
+    </None>
+    <None Include="DAL\TableModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>TableModel.cs</LastGenOutput>
+    </None>
+    <Content Include="Views\User\Index.cshtml" />
+    <Content Include="Views\User\Details.cshtml" />
+    <Content Include="Views\User\Create.cshtml" />
+    <Content Include="Views\User\Edit.cshtml" />
+    <Content Include="Views\User\Delete.cshtml" />
+    <Content Include="Views\UserMetric\Index.cshtml" />
+    <Content Include="Views\UserMetric\Details.cshtml" />
+    <Content Include="Views\UserMetric\Create.cshtml" />
+    <Content Include="Views\UserMetric\Edit.cshtml" />
+    <Content Include="Views\UserMetric\Delete.cshtml" />
+    <Content Include="Views\UserInformation\Index.cshtml" />
+    <Content Include="Views\UserInformation\Details.cshtml" />
+    <Content Include="Views\UserInformation\Create.cshtml" />
+    <Content Include="Views\UserInformation\Edit.cshtml" />
+    <Content Include="Views\UserInformation\Delete.cshtml" />
+    <Content Include="Views\UserTarger\Index.cshtml" />
+    <Content Include="Views\UserTarger\Details.cshtml" />
+    <Content Include="Views\UserTarger\Create.cshtml" />
+    <Content Include="Views\UserTarger\Edit.cshtml" />
+    <Content Include="Views\UserTarger\Delete.cshtml" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />

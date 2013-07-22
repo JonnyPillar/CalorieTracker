@@ -1,0 +1,25 @@
+﻿@model Calorie_Tracker.DAL.tbl_user_metric
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>tbl_user_metric</legend>
+
+    <div class="display-label">user_metric_id</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.user_metric_id)
+    </div>
+
+    <div class="display-label">user_metric_name</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.user_metric_name)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { /* id=Model.PrimaryKey */ }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
