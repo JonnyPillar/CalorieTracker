@@ -46,6 +46,7 @@ namespace Calorie_Tracker.Controllers
         {
             if (ModelState.IsValid)
             {
+                if (string.IsNullOrEmpty(tbl_user.user_id)) tbl_user.user_id = Guid.NewGuid().ToString();
                 db.tbl_user.Add(tbl_user);
                 db.SaveChanges();
                 return RedirectToAction("Index");  

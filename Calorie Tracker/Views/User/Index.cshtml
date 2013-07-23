@@ -12,34 +12,25 @@
 <table>
     <tr>
         <th>
-            user_id
+            @Html.LabelFor(model => model.First().user_email)
         </th>
         <th>
-            user_email
+            @Html.LabelFor(model => model.First().user_first_name)
         </th>
         <th>
-            user_first_name
+            @Html.LabelFor(model => model.First().user_second_name)
         </th>
         <th>
-            user_second_name
+            @Html.LabelFor(model => model.First().user_dob)
         </th>
         <th>
-            user_dob
-        </th>
-        <th>
-            user_password_salt
-        </th>
-        <th>
-            user_creation_date
+            @Html.LabelFor(model => model.First().user_creation_date)
         </th>
         <th></th>
     </tr>
 
 @foreach (var item in Model) {
     <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.user_id)
-        </td>
         <td>
             @Html.DisplayFor(modelItem => item.user_email)
         </td>
@@ -53,10 +44,7 @@
             @Html.DisplayFor(modelItem => item.user_dob)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.user_password_salt)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.user_creation_date)
+            @Html.DisplayFor(modelItem => item.user_creation_date_readable)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |

@@ -16,6 +16,7 @@ namespace Calorie_Tracker.DAL
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Web.Mvc;
     using Calorie_Tracker.Validators;
+    using System.Globalization;
 
     public partial class tbl_user
     {
@@ -27,43 +28,42 @@ namespace Calorie_Tracker.DAL
         }
 
         [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
-        public string user_id { get; private set; }
+        public string user_id { get; set; }
 
         [Display(Name = "Email Address")]
-        //[Required (ErrorMessage="Please Provide A Valid Email Address")]
-        //[DataType(DataType.EmailAddress)]
-        public string user_email { get; private set; }
+        [Required (ErrorMessage="Please Provide A Valid Email Address")]
+        [DataType(DataType.EmailAddress)]
+        [EmailValidator]
+        public string user_email { get; set; }
 
         [Display(Name = "First Name")]
-        //[Required(ErrorMessage = "Please Provide A Valid Name")]
-        public string user_first_name { get; private set; }
+        [Required(ErrorMessage = "Please Provide A Valid Name")]
+        public string user_first_name { get; set; }
 
         [Display(Name = "Second Name")]
-        //[Required(ErrorMessage = "Please Provide A Valid Name")]
-        public string user_second_name { get; private set; }
+        [Required(ErrorMessage = "Please Provide A Valid Name")]
+        public string user_second_name { get; set; }
 
         [Display(Name = "Date Of Birth")]
-        //[Required(ErrorMessage = "Please Provide A Valid Email Address")]
-        public string user_dob { get; private set; }
+        [Required(ErrorMessage = "Please Provide A Valid Date Of Birth")]
+        [DateOfBirthValidator]
+        public string user_dob { get; set; }
 
-        public string user_password_salt { get; private set; }
-        public string user_creation_date { get; private set; }
+        public string user_password_salt { get; set; }
+
+        [Display(Name = "Date Created")]
+        public string user_creation_date { get; set; }
     
+        public string user_creation_date_readable
+        {
+            get
+            {
+                return DateTime.ParseExact(user_creation_date, "ddMMyyyyHHmmss", CultureInfo.CurrentCulture).ToString("dd/MM/yyyy HH:mm tt");
+            }
+        }
+
         public virtual ICollection<tbl_food_log> tbl_food_log { get; set; }
         public virtual ICollection<tbl_user_information> tbl_user_information { get; set; }
         public virtual ICollection<tbl_user_target> tbl_user_target { get; set; }
-
-
-        private tbl_user(string ID, string Email, string firstName, string secondName, string DOB, string Pass)
-        {
-            if (string.IsNullOrEmpty(ID)) user_id = Guid.NewGuid().ToString();
-            else user_id = ID;
-            user_email = Email;
-            user_first_name = firstName;
-            user_second_name = secondName;
-            user_dob = DOB;
-            user_password_salt = Pass;
-        }
     }
 }

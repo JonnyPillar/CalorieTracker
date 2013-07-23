@@ -45,7 +45,6 @@
             @Html.EditorFor(model => model.user_dob)
             @Html.ValidationMessageFor(model => model.user_dob)
         </div>
-
         <div class="editor-label">
             @Html.LabelFor(model => model.user_password_salt)
         </div>
@@ -53,15 +52,7 @@
             @Html.EditorFor(model => model.user_password_salt)
             @Html.ValidationMessageFor(model => model.user_password_salt)
         </div>
-
-        <div class="editor-label">
-            @Html.LabelFor(model => model.user_creation_date)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.user_creation_date)
-            @Html.ValidationMessageFor(model => model.user_creation_date)
-        </div>
-
+            @Html.HiddenFor(model => model.user_creation_date, new { @Value = System.DateTime.Now.ToString("ddMMyyyyHHmmss") })
         <p>
             <input type="submit" value="Create" />
         </p>
