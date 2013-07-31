@@ -6,6 +6,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Calorie_Tracker.DAL;
+using Calorie_Tracker.Utilities;
 
 namespace Calorie_Tracker.Controllers
 { 
@@ -18,7 +19,14 @@ namespace Calorie_Tracker.Controllers
 
         public ViewResult Index()
         {
-            return View(db.tbl_user.ToList());
+            List<tbl_user> userList = new List<tbl_user>();
+            foreach(tbl_user user in db.tbl_user.ToList()) //TODO find a more efficent method of doing this!
+            {
+                user.user_creation_date = DateDisplay.parseDate(user.user_creation_date);
+                user.user_dob = DateDisplay.parseDOB(user.user_dob);
+                userList.Add(user);
+            }
+            return View(userList);
         }
 
         //
@@ -47,6 +55,7 @@ namespace Calorie_Tracker.Controllers
             if (ModelState.IsValid)
             {
                 if (string.IsNullOrEmpty(tbl_user.user_id)) tbl_user.user_id = Guid.NewGuid().ToString();
+                tbl_user.user_password_hash = string.Empty;
                 db.tbl_user.Add(tbl_user);
                 db.SaveChanges();
                 return RedirectToAction("Index");  

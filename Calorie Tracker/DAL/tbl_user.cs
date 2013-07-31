@@ -11,12 +11,10 @@ namespace Calorie_Tracker.DAL
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Web.Mvc;
     using Calorie_Tracker.Validators;
-    using System.Globalization;
 
     public partial class tbl_user
     {
@@ -27,41 +25,28 @@ namespace Calorie_Tracker.DAL
             this.tbl_user_target = new HashSet<tbl_user_target>();
         }
 
-        [Key]
+        [HiddenInput(DisplayValue = false)]
         public string user_id { get; set; }
-
         [Display(Name = "Email Address")]
-        [Required (ErrorMessage="Please Provide A Valid Email Address")]
+        [Required(ErrorMessage = "Please Provide A Valid Email Address")]
         [DataType(DataType.EmailAddress)]
         [EmailValidator]
         public string user_email { get; set; }
-
         [Display(Name = "First Name")]
         [Required(ErrorMessage = "Please Provide A Valid Name")]
         public string user_first_name { get; set; }
-
         [Display(Name = "Second Name")]
         [Required(ErrorMessage = "Please Provide A Valid Name")]
         public string user_second_name { get; set; }
-
         [Display(Name = "Date Of Birth")]
         [Required(ErrorMessage = "Please Provide A Valid Date Of Birth")]
-        [DateOfBirthValidator]
+        //[DateOfBirthValidator]
         public string user_dob { get; set; }
-
         public string user_password_salt { get; set; }
-
-        [Display(Name = "Date Created")]
+        [Display(Name = "Created Date")]
         public string user_creation_date { get; set; }
+        public string user_password_hash { get; set; }
     
-        public string user_creation_date_readable
-        {
-            get
-            {
-                return DateTime.ParseExact(user_creation_date, "ddMMyyyyHHmmss", CultureInfo.CurrentCulture).ToString("dd/MM/yyyy HH:mm tt");
-            }
-        }
-
         public virtual ICollection<tbl_food_log> tbl_food_log { get; set; }
         public virtual ICollection<tbl_user_information> tbl_user_information { get; set; }
         public virtual ICollection<tbl_user_target> tbl_user_target { get; set; }
