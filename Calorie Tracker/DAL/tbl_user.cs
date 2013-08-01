@@ -15,6 +15,8 @@ namespace Calorie_Tracker.DAL
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Web.Mvc;
     using Calorie_Tracker.Validators;
+    using Calorie_Tracker.Connection;
+    using Calorie_Tracker.Utilities;
 
     public partial class tbl_user
     {
@@ -42,6 +44,10 @@ namespace Calorie_Tracker.DAL
         [Required(ErrorMessage = "Please Provide A Valid Date Of Birth")]
         //[DateOfBirthValidator]
         public string user_dob { get; set; }
+
+        public string user_password { get; set; }
+        public string user_passwordConfim { get; set; }
+
         public string user_password_salt { get; set; }
         [Display(Name = "Created Date")]
         public string user_creation_date { get; set; }
@@ -50,5 +56,43 @@ namespace Calorie_Tracker.DAL
         public virtual ICollection<tbl_food_log> tbl_food_log { get; set; }
         public virtual ICollection<tbl_user_information> tbl_user_information { get; set; }
         public virtual ICollection<tbl_user_target> tbl_user_target { get; set; }
+
+        //Valid for Logon
+        public bool IsValid(string _email, string _password)
+        {
+            if (validEmail(_email)) return true;
+            else
+            {
+                DataConnection connection = new DataConnection("SELECT * FROM tbl_user WHERE user_email = ?", typeof(tbl_user));
+                connection.AddParameter(_email);
+                //PasswordHasher pHasher = new PasswordHasher();
+                
+            } 
+            return false;
+        }
+
+        //Valid for Signup
+        public bool IsValid(string _email, string _password, string _firstName, string _secondName, string _dob)
+        {
+            if (validEmail(_email)) return true;
+            else
+            {
+                //Hash Password
+                string hashedPassword = string.Empty;
+                if(string.IsNullOrWhiteSpace(_firstName) || string.IsNullOrWhiteSpace(_secondName)) return true;
+            }
+            return false;
+        }
+
+        public bool validEmail(string _email)
+        {
+            DataConnection connection = new DataConnection("SELECT user_email FROM tbl_user WHERE user_email = ?", typeof(tbl_user));
+            connection.AddParameter(_email);
+            if (connection.Exists) return true;
+            else return false;
+        }
+
+        
+
     }
 }
