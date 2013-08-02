@@ -22,13 +22,13 @@ namespace Calorie_Tracker.Controllers.User.Account
             return View();
         }
 
-        //[HttpPost]
-        //public ActionResult Register(Models.User user)
-        //{
-        //    if (ModelState.IsValid)
-        //    {
+        [HttpPost]
+        public ActionResult Register(Models.User user)
+        {
+            if (ModelState.IsValid)
+            {
 
-        //    }
-        //}
+            }
+        }
     }
 }

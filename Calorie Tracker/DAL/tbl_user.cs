@@ -9,14 +9,12 @@
 
 namespace Calorie_Tracker.DAL
 {
-    using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
-    using System.ComponentModel.DataAnnotations.Schema;
     using System.Web.Mvc;
-    using Calorie_Tracker.Validators;
     using Calorie_Tracker.Connection;
     using Calorie_Tracker.Utilities;
+    using Calorie_Tracker.Validators;
 
     public partial class tbl_user
     {
@@ -58,41 +56,52 @@ namespace Calorie_Tracker.DAL
         public virtual ICollection<tbl_user_target> tbl_user_target { get; set; }
 
         //Valid for Logon
+        /// <summary>
+        /// Is User Object Valid For Logon
+        /// </summary>
+        /// <param name="_email">User Email Address</param>
+        /// <param name="_password">User Password</param>
+        /// <returns>If It Is Valid Or Not</returns>
         public bool IsValid(string _email, string _password)
         {
-            if (validEmail(_email)) return true;
-            else
+            DataConnection connection = new DataConnection("SELECT * FROM tbl_user WHERE user_email = ?", typeof(tbl_user));
+            connection.AddParameter(_email);
+            //Get User Object Back
+            object userObject = new object();
+            if (userObject != null)
             {
-                DataConnection connection = new DataConnection("SELECT * FROM tbl_user WHERE user_email = ?", typeof(tbl_user));
-                connection.AddParameter(_email);
-                //PasswordHasher pHasher = new PasswordHasher();
-                
-            } 
-            return false;
-        }
-
-        //Valid for Signup
-        public bool IsValid(string _email, string _password, string _firstName, string _secondName, string _dob)
-        {
-            if (validEmail(_email)) return true;
-            else
-            {
-                //Hash Password
-                string hashedPassword = string.Empty;
-                if(string.IsNullOrWhiteSpace(_firstName) || string.IsNullOrWhiteSpace(_secondName)) return true;
+                string dbSalt = string.Empty;
+                string dbHash = string.Empty;
+                if (PasswordHasher.IsPasswordValid(dbHash, dbSalt, _password)) return true; //Is Inputed Pass Same As Ours
             }
             return false;
         }
 
-        public bool validEmail(string _email)
+        //Is It Valid for Signup
+        /// <summary>
+        /// Is the User Object Valid For Signup
+        /// </summary>
+        /// <param name="_email">Email Address</param>
+        /// <returns>If Valid Or Not</returns>
+        public bool IsValid(string _email)
         {
             DataConnection connection = new DataConnection("SELECT user_email FROM tbl_user WHERE user_email = ?", typeof(tbl_user));
             connection.AddParameter(_email);
-            if (connection.Exists) return true;
-            else return false;
+            if (connection.Exists) return true; //User Doesnt Exist
+            return false;
         }
 
-        
-
+        /// <summary>
+        /// Does This User Exist By Email Address
+        /// </summary>
+        /// <param name="_email">User Email Address</param>
+        /// <returns>If It Exists Or Not</returns>
+        public bool validEmail(string _email)
+        {
+            //TODO remove if not used
+            DataConnection connection = new DataConnection("SELECT user_email FROM tbl_user WHERE user_email = ?", typeof(tbl_user));
+            connection.AddParameter(_email);
+            return connection.Exists;
+        }
     }
 }

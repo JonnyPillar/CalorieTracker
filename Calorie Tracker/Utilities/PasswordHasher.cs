@@ -57,7 +57,7 @@ namespace Calorie_Tracker.Utilities
         {
             byte[] userCurrentHash = Encoding.UTF8.GetBytes(passwordHash);
             byte[] userAttemptHash = generateHash(userAttempt, passwordSalt);
-            return userCurrentHash.SequenceEqual(userAttemptHash);
+            return userCurrentHash.SequenceEqual(userAttemptHash); //TODO Test!!
         }
 
         /// <summary>
