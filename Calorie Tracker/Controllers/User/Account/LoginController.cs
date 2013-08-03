@@ -22,7 +22,8 @@ namespace Calorie_Tracker.Controllers
         [HttpGet]
         public ActionResult Register()
         {
-            return View("~/Views/Register/Register.cshtml");
+            if (User.Identity.IsAuthenticated) return RedirectToAction("Index", "Home");
+            return View("~/Views/Login/Register.cshtml");
         }
 
         [HttpPost]
@@ -48,6 +49,7 @@ namespace Calorie_Tracker.Controllers
         [HttpGet]
         public ActionResult Login()
         {
+            if (User.Identity.IsAuthenticated) return RedirectToAction("Index", "Home");
             return View();
         }
 
