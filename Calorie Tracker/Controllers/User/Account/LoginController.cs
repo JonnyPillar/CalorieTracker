@@ -14,11 +14,19 @@ namespace Calorie_Tracker.Controllers
         //
         // GET: /Login/
 
+        /// <summary>
+        /// Index View
+        /// </summary>
+        /// <returns>Index View</returns>
         public ActionResult Index()
         {
             return View();
         }
 
+        /// <summary>
+        /// Get Login View
+        /// </summary>
+        /// <returns>Return Register View</returns>
         [HttpGet]
         public ActionResult Register()
         {
@@ -26,6 +34,11 @@ namespace Calorie_Tracker.Controllers
             return View("~/Views/Login/Register.cshtml");
         }
 
+        /// <summary>
+        /// Post Register User
+        /// </summary>
+        /// <param name="user">Register User</param>
+        /// <returns>Action</returns>
         [HttpPost]
         public ActionResult Register(DAL.tbl_user user)
         {
@@ -46,6 +59,10 @@ namespace Calorie_Tracker.Controllers
             return View(user);
         }
 
+        /// <summary>
+        /// Get Login View
+        /// </summary>
+        /// <returns>Login View</returns>
         [HttpGet]
         public ActionResult Login()
         {
@@ -53,6 +70,11 @@ namespace Calorie_Tracker.Controllers
             return View();
         }
 
+        /// <summary>
+        /// Post Login User
+        /// </summary>
+        /// <param name="user">User Details From View</param>
+        /// <returns>Action</returns>
         [HttpPost]
         public ActionResult Login(DAL.tbl_user user)
         {
@@ -70,6 +92,10 @@ namespace Calorie_Tracker.Controllers
             return View(user);
         }
 
+        /// <summary>
+        /// Logout User
+        /// </summary>
+        /// <returns>Actionn</returns>
         public ActionResult Logout()
         {
             FormsAuthentication.SignOut();
