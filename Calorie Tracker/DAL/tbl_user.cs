@@ -44,7 +44,7 @@ namespace Calorie_Tracker.DAL
 
         [Display(Name = "Date Of Birth")]
         [Required(ErrorMessage = "Please Provide A Valid Date Of Birth")]
-        //[DateOfBirthValidator]
+        //[DateOfBirthValidator] Reinstate later
         public string user_dob { get; set; }
 
         public string user_password { get; set; }
@@ -54,7 +54,10 @@ namespace Calorie_Tracker.DAL
 
         [Display(Name = "Created Date")]
         public string user_creation_date { get; set; }
-        
+
+        [Display(Name = "Remember Me")]
+        public bool user_remember_me { get; set; }
+
         public virtual ICollection<tbl_food_log> tbl_food_log { get; set; }
         public virtual ICollection<tbl_user_information> tbl_user_information { get; set; }
         public virtual ICollection<tbl_user_target> tbl_user_target { get; set; }

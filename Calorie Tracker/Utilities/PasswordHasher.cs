@@ -55,9 +55,10 @@ namespace Calorie_Tracker.Utilities
         /// <returns></returns>
         public static bool IsPasswordValid(string passwordHash, string passwordSalt, string userAttempt)
         {
-            byte[] userCurrentHash = Encoding.UTF8.GetBytes(passwordHash);
-            byte[] userAttemptHash = generateHash(userAttempt, passwordSalt);
-            return userCurrentHash.SequenceEqual(userAttemptHash); //TODO Test!!
+            //byte[] userCurrentHash = Encoding.UTF8.GetBytes(passwordHash);
+            //byte[] userAttemptHash = generateHash(userAttempt, passwordSalt);
+            string userAttemptHash = Convert.ToBase64String(generateHash(userAttempt, passwordSalt)); //TODO implement this so it compares it on a byte level
+            return passwordHash.Equals(userAttemptHash); //TODO Test!!
         }
 
         /// <summary>

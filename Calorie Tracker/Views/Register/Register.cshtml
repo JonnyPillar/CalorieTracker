@@ -1,0 +1,55 @@
+﻿@model Calorie_Tracker.DAL.tbl_user
+@{
+    ViewBag.Title = "Register";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@using (Html.BeginForm())
+{
+     @Html.ValidationSummary(true, "Register failed. Check your details.");
+     <div>
+        <fieldset>
+            <legend>Register</legend>
+            <div class="editor-label">
+                @Html.LabelFor(u => u.user_email)
+            </div>
+            <div class="editor-field">
+                @Html.TextBoxFor(u => u.user_email)
+                @Html.ValidationMessageFor(u => u.user_email)
+            </div>
+
+            <div class="editor-label">
+                @Html.LabelFor(u => u.user_first_name)
+            </div>
+            <div class="editor-field">
+                @Html.TextBoxFor(u => u.user_first_name)
+                @Html.ValidationMessageFor(u => u.user_first_name)
+            </div>
+
+            <div class="editor-label">
+                @Html.LabelFor(u => u.user_second_name)
+            </div>
+            <div class="editor-field">
+                @Html.TextBoxFor(u => u.user_second_name)
+                @Html.ValidationMessageFor(u => u.user_second_name)
+            </div>
+
+            <div class="editor-label">
+                @Html.LabelFor(u => u.user_dob)
+            </div>
+            <div class="editor-field">
+                @Html.TextBoxFor(u => u.user_dob)
+                @Html.ValidationMessageFor(u => u.user_dob)
+            </div>
+
+            <div class="editor-label">
+                @Html.LabelFor(u => u.user_password)
+            </div>
+            <div class="editor-field">
+                @Html.PasswordFor(u => u.user_password)
+                @Html.ValidationMessageFor(u => u.user_password)
+            </div>
+            
+            <input type="submit" value="Register" />
+        </fieldset>
+    </div>
+}
