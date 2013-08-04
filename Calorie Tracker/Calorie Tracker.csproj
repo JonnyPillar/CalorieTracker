@@ -80,7 +80,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Controllers\User\Account\LoginController.cs" />
-    <Compile Include="Controllers\UserController.cs" />
+    <Compile Include="Controllers\User\Account\UserController.cs" />
     <Compile Include="Controllers\UserInformationController.cs" />
     <Compile Include="Controllers\UserMetricController.cs" />
     <Compile Include="Controllers\UserTargerController.cs" />

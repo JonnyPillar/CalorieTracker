@@ -37,7 +37,7 @@
                 @Html.LabelFor(u => u.user_dob)
             </div>
             <div class="editor-field">
-                @Html.TextBoxFor(u => u.user_dob)
+                @Html.TextBoxFor(u => u.user_dob, new { value = DateTime.Now.ToString("ddMMyyyy") })
                 @Html.ValidationMessageFor(u => u.user_dob)
             </div>
 
@@ -47,6 +47,14 @@
             <div class="editor-field">
                 @Html.PasswordFor(u => u.user_password)
                 @Html.ValidationMessageFor(u => u.user_password)
+            </div>
+
+            <div class="editor-label">
+                @Html.LabelFor(u => u.user_passwordConfim)
+            </div>
+            <div class="editor-field">
+                @Html.PasswordFor(u => u.user_passwordConfim)
+                @Html.ValidationMessageFor(u => u.user_passwordConfim)
             </div>
             
             <input type="submit" value="Register" />

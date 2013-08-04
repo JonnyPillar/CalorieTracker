@@ -9,6 +9,7 @@
 
 namespace Calorie_Tracker.DAL
 {
+    using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using System.Web.Mvc;
@@ -47,13 +48,43 @@ namespace Calorie_Tracker.DAL
         //[DateOfBirthValidator] Reinstate later
         public string user_dob { get; set; }
 
+        [DisplayFormat(DataFormatString = "{0:d}")]
+        [Required(ErrorMessage = "Please Provide A Valid Date Of Birth")]
+        public DateTime user_dob_datetime
+        {
+            get
+            {
+                if (user_dob == null) return DateTime.Now;
+                else return DateTime.ParseExact(user_dob, "ddMMyyyyHHmmss", null);
+            }
+        }
+
+        [Display(Name = "Password")]
+        [Required(ErrorMessage = "Please Enter A Password")]
         public string user_password { get; set; }
+
+        [Display(Name = "Confirm Password")]
+        [Required(ErrorMessage = "Please Confirm Password")]
         public string user_passwordConfim { get; set; }
+
+        [HiddenInput(DisplayValue = false)]
         public string user_password_salt { get; set; }
+
+        [HiddenInput(DisplayValue = false)]
         public string user_password_hash { get; set; }
 
         [Display(Name = "Created Date")]
         public string user_creation_date { get; set; }
+
+        [DisplayFormat(DataFormatString = "{0:g}")]
+        public DateTime user_created_datetime
+        {
+            get
+            {
+                if (user_creation_date == null) return DateTime.Now;
+                else return DateTime.ParseExact(user_creation_date, "ddMMyyyyHHmmss", null);
+            }
+        }
 
         [Display(Name = "Remember Me")]
         public bool user_remember_me { get; set; }

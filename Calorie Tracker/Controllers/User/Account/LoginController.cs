@@ -42,20 +42,23 @@ namespace Calorie_Tracker.Controllers
         [HttpPost]
         public ActionResult Register(DAL.tbl_user user)
         {
-            tbl_user existingUser = db.tbl_user.FirstOrDefault(tbl_user => tbl_user.user_email == user.user_email);
-            if (existingUser == null)
+            if (ModelState.IsValid)
             {
-                user.user_id = Guid.NewGuid().ToString(); // ID will be null
-                PasswordHasher hasher = new PasswordHasher(user.user_password);
-                user.user_password_hash = hasher.PasswordHash;
-                user.user_password_salt = hasher.PasswordSalt;
-                user.user_creation_date = DateTime.Now.ToString("ddMMyyyyHHmmss");
-                db.tbl_user.Add(user);
-                db.SaveChanges();
-                FormsAuthentication.SetAuthCookie(user.user_email, true); //TODO Does it need to be true?
-                return RedirectToAction("Index", "Home");
+                tbl_user existingUser = db.tbl_user.FirstOrDefault(tbl_user => tbl_user.user_email == user.user_email);
+                if (existingUser == null)
+                {
+                    user.user_id = Guid.NewGuid().ToString(); // ID will be null
+                    PasswordHasher hasher = new PasswordHasher(user.user_password);
+                    user.user_password_hash = hasher.PasswordHash;
+                    user.user_password_salt = hasher.PasswordSalt;
+                    user.user_creation_date = DateTime.Now.ToString("ddMMyyyyHHmmss");
+                    db.tbl_user.Add(user);
+                    db.SaveChanges();
+                    FormsAuthentication.SetAuthCookie(user.user_email, true); //TODO Does it need to be true?
+                    return RedirectToAction("Index", "Home");
+                }
+                ModelState.AddModelError("", "Login data is incorrect!");
             }
-            ModelState.AddModelError("", "Login data is incorrect!");
             return View(user);
         }
 
@@ -78,17 +81,20 @@ namespace Calorie_Tracker.Controllers
         [HttpPost]
         public ActionResult Login(DAL.tbl_user user)
         {
-            tbl_user existingUser = db.tbl_user.FirstOrDefault(tbl_user => tbl_user.user_email == user.user_email);
-            if (existingUser != null)
+            if (ModelState.IsValid)
             {
-                if(PasswordHasher.IsPasswordValid(existingUser.user_password_hash, existingUser.user_password_salt, user.user_password))
+                tbl_user existingUser = db.tbl_user.FirstOrDefault(tbl_user => tbl_user.user_email == user.user_email);
+                if (existingUser != null)
                 {
-                    //Password Valid
-                    FormsAuthentication.SetAuthCookie(user.user_email, true);
-                    return RedirectToAction("Index", "Home");
+                    if (PasswordHasher.IsPasswordValid(existingUser.user_password_hash, existingUser.user_password_salt, user.user_password))
+                    {
+                        //Password Valid
+                        FormsAuthentication.SetAuthCookie(user.user_email, true);
+                        return RedirectToAction("Index", "Home");
+                    }
                 }
+                ModelState.AddModelError("", "User Name Or Password is incorrect!");
             }
-            ModelState.AddModelError("", "User Name Or Password is incorrect!");
             return View(user);
         }
 

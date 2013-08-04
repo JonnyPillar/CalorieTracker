@@ -22,8 +22,8 @@ namespace Calorie_Tracker.Controllers
             List<tbl_user> userList = new List<tbl_user>();
             foreach(tbl_user user in db.tbl_user.ToList()) //TODO find a more efficent method of doing this!
             {
-                user.user_creation_date = DateDisplay.parseDate(user.user_creation_date);
-                user.user_dob = DateDisplay.parseDOB(user.user_dob);
+                //user.user_creation_date = DateDisplay.parseDate(user.user_creation_date);
+                //user.user_dob = DateDisplay.parseDOB(user.user_dob);
                 userList.Add(user);
             }
             return View(userList);
