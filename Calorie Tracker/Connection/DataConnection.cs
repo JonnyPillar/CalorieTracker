@@ -1,10 +1,7 @@
 ﻿using System;
 using System.Collections;
-using System.Linq;
-using System.Web;
-using System.Data.Odbc;
-using MySql.Data.MySqlClient;
 using System.Web.Configuration;
+using MySql.Data.MySqlClient;
 
 namespace Calorie_Tracker.Connection
 {

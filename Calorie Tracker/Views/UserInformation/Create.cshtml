@@ -13,23 +13,6 @@
     @Html.ValidationSummary(true)
     <fieldset>
         <legend>tbl_user_information</legend>
-
-        <div class="editor-label">
-            @Html.LabelFor(model => model.user_information_id)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.user_information_id)
-            @Html.ValidationMessageFor(model => model.user_information_id)
-        </div>
-
-        <div class="editor-label">
-            @Html.LabelFor(model => model.user_information_user_id, "tbl_user")
-        </div>
-        <div class="editor-field">
-            @Html.DropDownList("user_information_user_id", String.Empty)
-            @Html.ValidationMessageFor(model => model.user_information_user_id)
-        </div>
-
         <div class="editor-label">
             @Html.LabelFor(model => model.user_information_metric_id, "tbl_user_metric")
         </div>
@@ -37,7 +20,6 @@
             @Html.DropDownList("user_information_metric_id", String.Empty)
             @Html.ValidationMessageFor(model => model.user_information_metric_id)
         </div>
-
         <div class="editor-label">
             @Html.LabelFor(model => model.user_information_value)
         </div>
@@ -45,13 +27,11 @@
             @Html.EditorFor(model => model.user_information_value)
             @Html.ValidationMessageFor(model => model.user_information_value)
         </div>
-
         <p>
             <input type="submit" value="Create" />
         </p>
     </fieldset>
 }
-
 <div>
     @Html.ActionLink("Back to List", "Index")
 </div>

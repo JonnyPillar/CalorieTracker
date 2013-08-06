@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<Calorie_Tracker.DAL.tbl_user_information>
-
+           
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "User Information";
 }
 
 <h2>Index</h2>
@@ -11,9 +11,6 @@
 </p>
 <table>
     <tr>
-        <th>
-            user_information_id
-        </th>
         <th>
             tbl_user
         </th>
@@ -28,9 +25,6 @@
 
 @foreach (var item in Model) {
     <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.user_information_id)
-        </td>
         <td>
             @Html.DisplayFor(modelItem => item.tbl_user.user_email)
         </td>

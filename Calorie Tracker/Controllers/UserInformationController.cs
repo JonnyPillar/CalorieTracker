@@ -6,6 +6,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Calorie_Tracker.DAL;
+using Calorie_Tracker.Connection;
 
 namespace Calorie_Tracker.Controllers
 { 
@@ -14,11 +15,13 @@ namespace Calorie_Tracker.Controllers
         private calorie_tracker_v1Entities db = new calorie_tracker_v1Entities();
 
         //
-        // GET: /UserInformation/
+        // GET: /UserInformationn/
 
-        public ViewResult Index()
+        public ActionResult Index()
         {
-            var tbl_user_information = db.tbl_user_information.Include(t => t.tbl_user).Include(t => t.tbl_user_metric);
+            if (!User.Identity.IsAuthenticated) return RedirectToAction("Index", "Home"); //Return if user is not logged in
+            tbl_user existingUser = db.tbl_user.First(tbl_user => tbl_user.user_email == User.Identity.Name); //Get Logged In User ID
+            var tbl_user_information = db.tbl_user_information.Include(t => t.tbl_user).Where(t => t.tbl_user.user_id == existingUser.user_id).Include(t => t.tbl_user_metric); //Get Info and Metrics based on User ID
             return View(tbl_user_information.ToList());
         }
 
@@ -36,7 +39,7 @@ namespace Calorie_Tracker.Controllers
 
         public ActionResult Create()
         {
-            ViewBag.user_information_user_id = new SelectList(db.tbl_user, "user_id", "user_email");
+            //ViewBag.user_information_user_id = new SelectList(db.tbl_user, "user_id", "user_email");
             ViewBag.user_information_metric_id = new SelectList(db.tbl_user_metric, "user_metric_id", "user_metric_name");
             return View();
         } 

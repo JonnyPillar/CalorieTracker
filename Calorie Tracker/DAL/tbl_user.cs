@@ -55,7 +55,7 @@ namespace Calorie_Tracker.DAL
             get
             {
                 if (user_dob == null) return DateTime.Now;
-                else return DateTime.ParseExact(user_dob, "ddMMyyyyHHmmss", null);
+                else return DateTime.ParseExact(user_dob, "ddMMyyyy", null);
             }
         }
 
@@ -65,6 +65,7 @@ namespace Calorie_Tracker.DAL
 
         [Display(Name = "Confirm Password")]
         [Required(ErrorMessage = "Please Confirm Password")]
+        [Compare("user_password", ErrorMessage = "Passwords must match")]
         public string user_passwordConfim { get; set; }
 
         [HiddenInput(DisplayValue = false)]
@@ -101,6 +102,7 @@ namespace Calorie_Tracker.DAL
         /// <returns>If It Is Valid Or Not</returns>
         public bool IsValid(string _email, string _password)
         {
+            //TODO remove if not used
             DataConnection connection = new DataConnection("SELECT * FROM tbl_user WHERE user_email = ?", typeof(tbl_user));
             connection.AddParameter(_email);
             tbl_user[] dbItem = (tbl_user[])connection.ExecuteQuery();
@@ -121,6 +123,7 @@ namespace Calorie_Tracker.DAL
         /// <returns>If Valid Or Not</returns>
         public bool IsValid(string _email)
         {
+            //TODO remove if not used
             DataConnection connection = new DataConnection("SELECT user_email FROM tbl_user WHERE user_email = ?", typeof(tbl_user));
             connection.AddParameter(_email);
             if (connection.Exists) return true; //User Doesnt Exist

@@ -1,5 +1,4 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 using System.Web.Mvc;
 using System.Web.Security;
 using Calorie_Tracker.DAL;
@@ -15,59 +14,11 @@ namespace Calorie_Tracker.Controllers
         // GET: /Login/
 
         /// <summary>
-        /// Index View
-        /// </summary>
-        /// <returns>Index View</returns>
-        public ActionResult Index()
-        {
-            return View();
-        }
-
-        /// <summary>
-        /// Get Login View
-        /// </summary>
-        /// <returns>Return Register View</returns>
-        [HttpGet]
-        public ActionResult Register()
-        {
-            if (User.Identity.IsAuthenticated) return RedirectToAction("Index", "Home");
-            return View("~/Views/Login/Register.cshtml");
-        }
-
-        /// <summary>
-        /// Post Register User
-        /// </summary>
-        /// <param name="user">Register User</param>
-        /// <returns>Action</returns>
-        [HttpPost]
-        public ActionResult Register(DAL.tbl_user user)
-        {
-            if (ModelState.IsValid)
-            {
-                tbl_user existingUser = db.tbl_user.FirstOrDefault(tbl_user => tbl_user.user_email == user.user_email);
-                if (existingUser == null)
-                {
-                    user.user_id = Guid.NewGuid().ToString(); // ID will be null
-                    PasswordHasher hasher = new PasswordHasher(user.user_password);
-                    user.user_password_hash = hasher.PasswordHash;
-                    user.user_password_salt = hasher.PasswordSalt;
-                    user.user_creation_date = DateTime.Now.ToString("ddMMyyyyHHmmss");
-                    db.tbl_user.Add(user);
-                    db.SaveChanges();
-                    FormsAuthentication.SetAuthCookie(user.user_email, true); //TODO Does it need to be true?
-                    return RedirectToAction("Index", "Home");
-                }
-                ModelState.AddModelError("", "Login data is incorrect!");
-            }
-            return View(user);
-        }
-
-        /// <summary>
         /// Get Login View
         /// </summary>
         /// <returns>Login View</returns>
         [HttpGet]
-        public ActionResult Login()
+        public ActionResult Index()
         {
             if (User.Identity.IsAuthenticated) return RedirectToAction("Index", "Home");
             return View();
@@ -79,22 +30,19 @@ namespace Calorie_Tracker.Controllers
         /// <param name="user">User Details From View</param>
         /// <returns>Action</returns>
         [HttpPost]
-        public ActionResult Login(DAL.tbl_user user)
+        public ActionResult Index(DAL.tbl_user user)
         {
-            if (ModelState.IsValid)
+            tbl_user existingUser = db.tbl_user.FirstOrDefault(tbl_user => tbl_user.user_email == user.user_email);
+            if (existingUser != null)
             {
-                tbl_user existingUser = db.tbl_user.FirstOrDefault(tbl_user => tbl_user.user_email == user.user_email);
-                if (existingUser != null)
+                if (PasswordHasher.IsPasswordValid(existingUser.user_password_hash, existingUser.user_password_salt, user.user_password))
                 {
-                    if (PasswordHasher.IsPasswordValid(existingUser.user_password_hash, existingUser.user_password_salt, user.user_password))
-                    {
-                        //Password Valid
-                        FormsAuthentication.SetAuthCookie(user.user_email, true);
-                        return RedirectToAction("Index", "Home");
-                    }
+                    //Password Valid
+                    FormsAuthentication.SetAuthCookie(existingUser.user_email, true);
+                    return RedirectToAction("Index", "Home");
                 }
-                ModelState.AddModelError("", "User Name Or Password is incorrect!");
             }
+            ModelState.AddModelError("", "User Name Or Password is incorrect!");
             return View(user);
         }
 

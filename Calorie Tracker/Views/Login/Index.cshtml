@@ -1,0 +1,33 @@
+﻿@model Calorie_Tracker.DAL.tbl_user
+@{
+    ViewBag.Title = "Login";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@using (Html.BeginForm())
+{
+    @Html.ValidationSummary(true, "Login failed. Check your login details.");
+    <div>
+        <fieldset>
+            <legend>Login123    </legend>
+            <div class="editor-label">
+                @Html.LabelFor(u => u.user_email)
+            </div>
+            <div class="editor-field">
+                @Html.TextBoxFor(u => u.user_email)
+                @Html.ValidationMessageFor(u => u.user_email)
+            </div>
+            <div class="editor-label">
+                @Html.LabelFor(u => u.user_password)
+            </div>
+            <div class="editor-field">
+                @Html.PasswordFor(u => u.user_password)
+                @Html.ValidationMessageFor(u => u.user_password)
+            </div>
+            <div class="editor-label">
+                @Html.CheckBoxFor(u => u.user_remember_me)
+                @Html.LabelFor(u => u.user_remember_me)
+            </div>
+            <input type="submit" value="Log In" />
+        </fieldset>
+    </div>
+}

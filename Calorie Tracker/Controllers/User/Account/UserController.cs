@@ -7,6 +7,7 @@ using System.Web;
 using System.Web.Mvc;
 using Calorie_Tracker.DAL;
 using Calorie_Tracker.Utilities;
+using System.Web.Security;
 
 namespace Calorie_Tracker.Controllers
 { 
@@ -19,14 +20,7 @@ namespace Calorie_Tracker.Controllers
 
         public ViewResult Index()
         {
-            List<tbl_user> userList = new List<tbl_user>();
-            foreach(tbl_user user in db.tbl_user.ToList()) //TODO find a more efficent method of doing this!
-            {
-                //user.user_creation_date = DateDisplay.parseDate(user.user_creation_date);
-                //user.user_dob = DateDisplay.parseDOB(user.user_dob);
-                userList.Add(user);
-            }
-            return View(userList);
+            return View(db.tbl_user.ToList());
         }
 
         //
@@ -36,6 +30,28 @@ namespace Calorie_Tracker.Controllers
         {
             tbl_user tbl_user = db.tbl_user.Find(id);
             return View(tbl_user);
+        }
+
+        /// <summary>
+        /// User Log In
+        /// </summary>
+        /// <param name="email">Entered Email Address</param>
+        /// <param name="password">Entered Password</param>
+        /// <returns></returns>
+        public ActionResult Details(string email, string password)
+        {
+            tbl_user existingUser = db.tbl_user.FirstOrDefault(tbl_user => tbl_user.user_email == email);
+            if (existingUser != null)
+            {
+                if (PasswordHasher.IsPasswordValid(existingUser.user_password_hash, existingUser.user_password_salt, password))
+                {
+                    //Password Valid
+                    FormsAuthentication.SetAuthCookie(email, true);
+                    return RedirectToAction("Index", "Home");
+                }
+            }
+            ModelState.AddModelError("", "User Name Or Password is incorrect!");
+            return View();
         }
 
         //
@@ -55,12 +71,15 @@ namespace Calorie_Tracker.Controllers
             if (ModelState.IsValid)
             {
                 if (string.IsNullOrEmpty(tbl_user.user_id)) tbl_user.user_id = Guid.NewGuid().ToString();
-                tbl_user.user_password_hash = string.Empty;
+                PasswordHasher hasher = new PasswordHasher(tbl_user.user_password);
+                tbl_user.user_password_hash = hasher.PasswordHash;
+                tbl_user.user_password_salt = hasher.PasswordSalt;
+                tbl_user.user_creation_date = DateTime.Now.ToString("ddMMyyyyHHmmss");
                 db.tbl_user.Add(tbl_user);
                 db.SaveChanges();
-                return RedirectToAction("Index");  
+                FormsAuthentication.SetAuthCookie(tbl_user.user_email, true); //TODO Does it need to be true?
             }
-
+            else ModelState.AddModelError("", "Login data is incorrect Model!");
             return View(tbl_user);
         }
         
