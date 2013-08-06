@@ -105,6 +105,7 @@
           <Property Name="user_password_hash" Type="varchar" MaxLength="255" />
           <Property Name="user_password_salt" Type="varchar" MaxLength="255" />
           <Property Name="user_creation_date" Type="varchar" MaxLength="45" />
+          <Property Name="user_profile_image" Type="varchar" MaxLength="255" />
         </EntityType>
         <EntityType Name="tbl_user_information">
           <Key>
@@ -367,6 +368,7 @@
           <NavigationProperty Name="tbl_user_information" Relationship="calorie_tracker_v1Model.user_information_user_id" FromRole="tbl_user" ToRole="tbl_user_information" />
           <NavigationProperty Name="tbl_user_target" Relationship="calorie_tracker_v1Model.user_target_user_id" FromRole="tbl_user" ToRole="tbl_user_target" />
           <Property Type="String" Name="user_password_hash" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="user_profile_image" MaxLength="255" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="tbl_user_information">
           <Key>
@@ -560,6 +562,7 @@
             <ScalarProperty Name="food_log_quantity" ColumnName="food_log_quantity" />
           </MappingFragment></EntityTypeMapping></EntitySetMapping>
           <EntitySetMapping Name="tbl_user"><EntityTypeMapping TypeName="calorie_tracker_v1Model.tbl_user"><MappingFragment StoreEntitySet="tbl_user">
+                <ScalarProperty Name="user_profile_image" ColumnName="user_profile_image" />
                 <ScalarProperty Name="user_password_hash" ColumnName="user_password_hash" />
                 <ScalarProperty Name="user_id" ColumnName="user_id" />
             <ScalarProperty Name="user_email" ColumnName="user_email" />

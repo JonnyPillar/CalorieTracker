@@ -16,7 +16,7 @@ namespace Calorie_Tracker.DAL
     using Calorie_Tracker.Connection;
     using Calorie_Tracker.Utilities;
     using Calorie_Tracker.Validators;
-
+    
     public partial class tbl_user
     {
         public tbl_user()
@@ -90,57 +90,11 @@ namespace Calorie_Tracker.DAL
         [Display(Name = "Remember Me")]
         public bool user_remember_me { get; set; }
 
+        [Display(Name = "Profile Image")]
+        public string user_profile_image { get; set; }
+
         public virtual ICollection<tbl_food_log> tbl_food_log { get; set; }
         public virtual ICollection<tbl_user_information> tbl_user_information { get; set; }
         public virtual ICollection<tbl_user_target> tbl_user_target { get; set; }
-
-        /// <summary>
-        /// Is User Object Valid For Logon
-        /// </summary>
-        /// <param name="_email">User Email Address</param>
-        /// <param name="_password">User Password</param>
-        /// <returns>If It Is Valid Or Not</returns>
-        public bool IsValid(string _email, string _password)
-        {
-            //TODO remove if not used
-            DataConnection connection = new DataConnection("SELECT * FROM tbl_user WHERE user_email = ?", typeof(tbl_user));
-            connection.AddParameter(_email);
-            tbl_user[] dbItem = (tbl_user[])connection.ExecuteQuery();
-            //Get User Object Back
-            if (dbItem.Length == 1)
-            {
-                string dbSalt = string.Empty;
-                string dbHash = string.Empty;
-                if (PasswordHasher.IsPasswordValid(dbItem[0].user_password_hash, dbItem[0].user_password_salt, _password)) return true; //Is Inputed Pass Same As Ours
-            }
-            return false;
-        }
-
-        /// <summary>
-        /// Is the User Object Valid For Signup
-        /// </summary>
-        /// <param name="_email">Email Address</param>
-        /// <returns>If Valid Or Not</returns>
-        public bool IsValid(string _email)
-        {
-            //TODO remove if not used
-            DataConnection connection = new DataConnection("SELECT user_email FROM tbl_user WHERE user_email = ?", typeof(tbl_user));
-            connection.AddParameter(_email);
-            if (connection.Exists) return true; //User Doesnt Exist
-            return false;
-        }
-
-        /// <summary>
-        /// Does This User Exist By Email Address
-        /// </summary>
-        /// <param name="_email">User Email Address</param>
-        /// <returns>If It Exists Or Not</returns>
-        public bool validEmail(string _email)
-        {
-            //TODO remove if not used
-            DataConnection connection = new DataConnection("SELECT user_email FROM tbl_user WHERE user_email = ?", typeof(tbl_user));
-            connection.AddParameter(_email);
-            return connection.Exists;
-        }
     }
 }

@@ -56,6 +56,14 @@
                 @Html.PasswordFor(u => u.user_passwordConfim)
                 @Html.ValidationMessageFor(u => u.user_passwordConfim)
             </div>
+
+            <div class="editor-label">
+                @Html.LabelFor(u => u.user_profile_image)
+            </div>
+            <div class="editor-field">
+                @Html.TextBoxFor(u => u.user_profile_image)
+                @Html.ValidationMessageFor(u => u.user_profile_image)
+            </div>
             
             <input type="submit" value="Register" />
         </fieldset>

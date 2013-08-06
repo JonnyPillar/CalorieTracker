@@ -2,8 +2,6 @@
 @{
     ViewBag.Title = "Dashboard";
 }
-
-<h2>Dashboard</h2>
 @*User Information Panel*@
 <div class="dashboardInfoPanel">
     @*Progress Bar*@
@@ -12,7 +10,7 @@
     </div>
     @*User Information*@
     <div class="dashboardInfoUserInfo">
-        <img />
+        <img src="@Model.user_profile_image" alt="Profile Image" width="200px"; style="float:left;" />
         <ul>
             @*User Info*@
             @foreach (var item in Model.tbl_user_information)

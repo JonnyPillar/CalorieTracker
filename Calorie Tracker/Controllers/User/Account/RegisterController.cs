@@ -3,6 +3,8 @@ using System.Web.Mvc;
 using System.Web.Security;
 using Calorie_Tracker.DAL;
 using Calorie_Tracker.Utilities;
+using System.IO;
+using System;
 
 namespace Calorie_Tracker.Controllers.User.Account
 {
@@ -37,6 +39,12 @@ namespace Calorie_Tracker.Controllers.User.Account
                 tbl_user existingUser = db.tbl_user.FirstOrDefault(tbl_user => tbl_user.user_email == user.user_email);
                 if (existingUser == null)
                 {
+                    if (string.IsNullOrWhiteSpace(user.user_profile_image))
+                    {
+                        string baseFolder = AppDomain.CurrentDomain.BaseDirectory + "/Uploads/User/Profile";
+                        if (!Directory.Exists(baseFolder)) Directory.CreateDirectory(baseFolder);
+                        user.user_profile_image = baseFolder + "default.jpeg";
+                    }
                     UserController uController = new UserController();
                     uController.Create(user);
                     return RedirectToAction("Index", "Home");
