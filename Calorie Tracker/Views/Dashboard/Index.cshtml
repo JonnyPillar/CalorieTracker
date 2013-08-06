@@ -1,0 +1,35 @@
+﻿@model Calorie_Tracker.DAL.tbl_user
+@{
+    ViewBag.Title = "Dashboard";
+}
+
+<h2>Dashboard</h2>
+@*User Information Panel*@
+<div class="dashboardInfoPanel">
+    @*Progress Bar*@
+    <div class="dashboardInfoProgress">
+        
+    </div>
+    @*User Information*@
+    <div class="dashboardInfoUserInfo">
+        <img />
+        <ul>
+            @*User Info*@
+            @foreach (var item in Model.tbl_user_information)
+            {
+                <li>
+                    @Html.DisplayFor(modelItem => item.tbl_user_metric.user_metric_name)
+                </li>
+                <li>
+                    @Html.DisplayFor(modelItem => item.user_information_value)
+                </li>
+            }
+        </ul>
+    </div>
+    @*Go To Log Page*@
+    <button title="Log"></button>
+    @*User Log History*@
+    <div>
+    
+    </div>
+</div>
