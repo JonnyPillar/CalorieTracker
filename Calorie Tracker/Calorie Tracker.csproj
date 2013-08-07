@@ -165,6 +165,7 @@
     <Content Include="Content\themes\base\jquery.ui.slider.css" />
     <Content Include="Content\themes\base\jquery.ui.tabs.css" />
     <Content Include="Content\themes\base\jquery.ui.theme.css" />
+    <Content Include="Content\themes\calorietracker\tracker.css" />
     <Content Include="Global.asax" />
     <Content Include="MySql.Data.dll" />
     <Content Include="MySql.Data.Entity.dll" />

@@ -1,0 +1,46 @@
+﻿/*
+    User Dashboard
+*/
+.dashboardInfoPanel
+{
+    margin:0;
+    padding:0;
+    border:1px solid red;
+}
+.dashboardInfoProgress
+{
+    margin:0;
+    padding:20px;
+    border:1px solid green;
+    float:right;
+    width:80%;
+}
+.dashboardInfoUserInfo
+{
+    margin:0;
+    padding:0;
+    border:1px solid blue;
+    width:20%;
+}
+.dashboardInfoUserInfo img
+{
+    margin:0;
+    padding:0;
+    border:0;
+}
+.dashboardInfoUserInfo ul
+{
+    margin:0;
+    padding:0;
+    border:0;
+}
+.dashboardInfoUserInfo li
+{
+    margin:0;
+    padding:0;
+    border:0;
+    list-style:none;
+}
+/*
+    End of User Dashboard
+*/
