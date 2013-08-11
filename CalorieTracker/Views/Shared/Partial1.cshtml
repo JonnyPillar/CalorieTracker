@@ -1,0 +1,72 @@
+﻿@model CalorieTracker.Models.tbl_user
+
+<fieldset>
+    <legend>tbl_user</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.user_email)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.user_email)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.user_first_name)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.user_first_name)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.user_second_name)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.user_second_name)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.user_dob)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.user_dob)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.user_password_salt)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.user_password_salt)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.user_password_hash)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.user_password_hash)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.user_creation_date)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.user_creation_date)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.user_profile_image)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.user_profile_image)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.user_admin)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.user_admin)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.user_id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

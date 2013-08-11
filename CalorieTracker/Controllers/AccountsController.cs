@@ -1,38 +1,50 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.IO;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
-using CalorieTracker.Models.Accounts;
-using CalorieTracker.Utilities;
 using System.Web.Security;
 using CalorieTracker.Models;
-using System.IO;
-using System;
-
+using CalorieTracker.Models.Accounts;
+using CalorieTracker.Utilities;
+using CalorieTracker.Models.Accounts;
 namespace CalorieTracker.Controllers
 {
     public class AccountsController : Controller
     {
         calorie_tracker_v1Entities db = new calorie_tracker_v1Entities();
+
         //
         // GET: /Accounts/
-
+        /// <summary>
+        /// Account Get
+        /// </summary>
+        /// <returns>View</returns>
         public ActionResult Index()
         {
-            return View();
+            if (User.Identity.IsAuthenticated)
+            {
+            }
+            return View("Login");
         }
 
+        /// <summary>
+        /// Login Get
+        /// </summary>
+        /// <returns>Login View</returns>
         [HttpGet]
         public ActionResult Login()
         {
             return View();
         }
 
+        /// <summary>
+        /// Login Post
+        /// </summary>
+        /// <param name="loginModel">Login Model</param>
+        /// <returns>Result</returns>
         [HttpPost]
         public ActionResult Login(UserContext.LoginModel loginModel)
         {
-            // If we got this far, something failed, redisplay form
             if (ModelState.IsValid)
             {
                 tbl_user existingUser = db.tbl_user.First(tbl_user => tbl_user.user_email == loginModel.user_email_address);
@@ -50,12 +62,21 @@ namespace CalorieTracker.Controllers
             return View(loginModel);
         }
 
+        /// <summary>
+        /// Register Get
+        /// </summary>
+        /// <returns>Register View</returns>
         [HttpGet]
         public ActionResult Register()
         {
             return View();
         }
 
+        /// <summary>
+        /// Register Post
+        /// </summary>
+        /// <param name="registerModel">Register Model</param>
+        /// <returns>Result</returns>
         [HttpPost]
         public ActionResult Register(UserContext.RegisterModel registerModel)
         {
@@ -66,13 +87,7 @@ namespace CalorieTracker.Controllers
                 if (existingUser == null)
                 {
                     tbl_user newUser = new tbl_user(registerModel);
-                    if (string.IsNullOrWhiteSpace(newUser.user_profile_image))
-                    {
-                        string baseFolder = AppDomain.CurrentDomain.BaseDirectory + "/Uploads/User/Profile";
-                        if (!Directory.Exists(baseFolder)) Directory.CreateDirectory(baseFolder);
-                        newUser.user_profile_image = baseFolder + "default.jpeg";
-                    }
-                    db.tbl_user.Add(newUser);
+                    db.tbl_user.Add(newUser); //TODO Through inheritance can  just add here?
                     db.SaveChanges();
                     FormsAuthentication.SetAuthCookie(newUser.user_id, true);
                     return RedirectToAction("Index", "Home");
@@ -82,6 +97,10 @@ namespace CalorieTracker.Controllers
             return View(registerModel);
         }
 
+        /// <summary>
+        /// Logoff Action
+        /// </summary>
+        /// <returns>Redirect Routing</returns>
         [HttpPost]
         public ActionResult Logoff()
         {

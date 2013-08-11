@@ -12,14 +12,17 @@ namespace CalorieTracker.Models
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
-    using System.ComponentModel.Design;
-    using System.ComponentModel.DataAnnotations.Schema;
+    using System.IO;
     using System.Web.Mvc;
+    using Calorie_Tracker.Validators;
     using CalorieTracker.Models.Accounts;
     using CalorieTracker.Utilities;
 
     public partial class tbl_user
     {
+        /// <summary>
+        /// Create New User Object
+        /// </summary>
         public tbl_user()
         {
             this.tbl_activity_log = new HashSet<tbl_activity_log>();
@@ -28,29 +31,71 @@ namespace CalorieTracker.Models
             this.tbl_user_target = new HashSet<tbl_user_target>();
         }
 
+        /// <summary>
+        /// Create New User Object Based On Child Register Model
+        /// </summary>
+        /// <param name="newUser">Registered User</param>
         public tbl_user(UserContext.RegisterModel newUser)
         {
-            this.tbl_activity_log = new HashSet<tbl_activity_log>();
-            this.tbl_food_log = new HashSet<tbl_food_log>();
-            this.tbl_user_information = new HashSet<tbl_user_information>();
-            this.tbl_user_target = new HashSet<tbl_user_target>();
             this.user_id = Guid.NewGuid().ToString();
+            this.user_email = newUser.user_email;
+            this.user_first_name = newUser.user_first_name;
+            this.user_second_name = newUser.user_second_name;
+            this.user_dob = newUser.user_dob;
             PasswordHasher hasher = new PasswordHasher(newUser.Password);
             this.user_password_hash = hasher.PasswordHash;
             this.user_password_salt = hasher.PasswordSalt;
             this.user_creation_date = DateTime.Now.ToString("ddMMyyyyHHmmss");
+            if (string.IsNullOrWhiteSpace(newUser.user_profile_image))
+            {
+                string baseFolder = AppDomain.CurrentDomain.BaseDirectory + "Uploads\\User\\Profile\\";
+                if (!Directory.Exists(baseFolder)) Directory.CreateDirectory(baseFolder);
+                this.user_profile_image = baseFolder + "default.jpeg";
+            }
+            else this.user_profile_image = newUser.user_profile_image;
+            this.user_admin = 0; //Not Admin
+            this.tbl_activity_log = new HashSet<tbl_activity_log>();
+            this.tbl_food_log = new HashSet<tbl_food_log>();
+            this.tbl_user_information = new HashSet<tbl_user_information>();
+            this.tbl_user_target = new HashSet<tbl_user_target>();
         }
 
-        [HiddenInput]
+        [Key]
+        [HiddenInput(DisplayValue = false)]
         public string user_id { get; set; }
+
+        [Display(Name = "Email Address")]
+        [Required(ErrorMessage = "Please Provide A Valid Email Address")]
+        [DataType(DataType.EmailAddress)]
+        [EmailValidator]
         public string user_email { get; set; }
+
+        [Display(Name = "First Name")]
+        [Required(ErrorMessage = "Please Provide A Valid Name")]
         public string user_first_name { get; set; }
+
+        [Display(Name = "Second Name")]
+        [Required(ErrorMessage = "Please Provide A Valid Name")]
         public string user_second_name { get; set; }
+
+        [Display(Name = "Date Of Birth")]
+        [Required(ErrorMessage = "Please Provide A Valid Date Of Birth")]
+        //[DateOfBirthValidator] Reinstate later
         public string user_dob { get; set; }
-        public string user_password_hash { get; set; }
+
+        [HiddenInput(DisplayValue = false)]
         public string user_password_salt { get; set; }
+
+        [HiddenInput(DisplayValue = false)]
+        public string user_password_hash { get; set; }
+
+        [Display(Name = "Created Date")]
         public string user_creation_date { get; set; }
+
+        [Display(Name = "Profile Image")]
         public string user_profile_image { get; set; }
+
+        [HiddenInput(DisplayValue = false)]
         public Nullable<sbyte> user_admin { get; set; }
     
         public virtual ICollection<tbl_activity_log> tbl_activity_log { get; set; }

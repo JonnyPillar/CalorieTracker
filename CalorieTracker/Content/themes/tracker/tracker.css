@@ -1,0 +1,117 @@
+﻿/*
+    Generic
+*/
+.buttonOuterPanel
+{
+    width:100%;
+    padding:10px 0;
+}
+.buttonInnerPanel
+{
+    margin:0px auto;
+}
+.buttonInnerPanel button
+{
+    padding:7px 25px;
+}
+/*
+    End of Generic
+*/
+/*
+    User Dashboard
+*/
+.dashboardInfoPanel
+{
+    margin:0;
+    padding:10px;
+    border:0;
+    position:relative;
+    width:100%;
+    background-color:#fff;
+}
+.dashboardInfoBar
+{
+    margin:0;
+    padding:0;
+    border:0;
+    height:170px;
+}
+    .dashboardInfoProgress
+    {
+        margin:0;
+        padding:0;
+        border:1px solid black;
+        float:right;
+        width:55%;
+        position:relative;
+        height:100%;
+    }
+        .dashboardInfoProgressBar
+        {
+            position:relative;
+            background-color:#000;
+            width:97%;
+            height:70%;
+            margin:10px;
+        }
+    .dashboardInfoUserInfo
+    {
+        margin:0;
+        padding:0px;
+        border:0;
+        width:50%;
+        position:relative;
+        height:100%;
+        width:40%;
+    }
+        .dashboardInfoUserInfoRight
+        {
+            float:right;
+            width:45%;
+            position:relative;
+            padding:0 10px 10px;
+        }
+            .dashboardInfoUserInfoRight h2
+            {
+                padding:0;
+                margin:0 0 10px;
+                border:0;
+                width:100%;
+                position:relative;
+            }
+            .dashboardInfoUserInfoRight ul
+            {
+                margin:0;
+                padding:0;
+                border:0;
+                position:relative;
+                width:100%;
+            }
+            .dashboardInfoUserInfoRight li
+            {
+                margin:0;
+                padding:5px 10px 5px 0;
+                border:0;
+                list-style:none;
+                position:relative;
+            }
+            .dashboardInfoUserInfoRight li:nth-child(odd)
+            {
+                float:left;
+            }
+        .dashboardInfoUserInfo img
+        {
+            margin:0;
+            padding:0;
+            border:0;
+            position:relative;
+            height:100%;
+            width:auto;
+        }
+    .dashboardInfoPanel .buttonInnerPanel
+    {
+        width:82px;
+    }
+/*
+    End of User Dashboard
+*/

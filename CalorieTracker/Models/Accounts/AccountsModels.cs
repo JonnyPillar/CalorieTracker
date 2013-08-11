@@ -1,24 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
+﻿using System.ComponentModel.DataAnnotations;
 using System.Data.Entity;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
+using System.Web.Mvc;
 
 namespace CalorieTracker.Models.Accounts
 {
     public class UserContext : DbContext
     {
-        public UserContext()
-            : base("calorie_tracker_v1Entities")
+        public UserContext() : base("calorie_tracker_v1Entities")
         {
         }
 
         public DbSet<tbl_user> UserProfiles { get; set; }
 
-        public class LoginModel : tbl_user
+        public class LoginModel
         {
             [Required]
             [Display(Name = "Email Address")]

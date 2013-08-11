@@ -61,6 +61,7 @@ mark {
 h1, h2, h3,
 h4, h5, h6 {
     color: #000;
+    margin-top:0;
     margin-bottom: 0;
     padding-bottom: 0;
 }
@@ -95,7 +96,9 @@ h5, h6 {
 ----------------------------------------------------------*/
 .content-wrapper {
     margin: 0 auto;
-    max-width: 960px;
+    /*max-width: 960px;*/
+    max-width:1200px;
+    min-width:1200px;
 }
 
 #body {
