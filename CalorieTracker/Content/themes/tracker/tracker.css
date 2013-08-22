@@ -112,6 +112,25 @@
     {
         width:82px;
     }
+    .dashboardFoodLogPanel
+    {
+        margin:0;
+        padding:0;
+        border:1px solid red;
+    }
+        .dashboardFoodLogPanel ul
+        {
+            margin:0;
+            padding:0;
+            border:1px solid blue;
+        }
+        .dashboardFoodLogPanel ul li
+        {
+            margin:0;
+            padding:0;
+            border:0;
+            list-style:none;
+        }
 /*
     End of User Dashboard
 */

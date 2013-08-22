@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.Text.RegularExpressions;
 
-namespace Calorie_Tracker.Validators
+namespace CalorieTracker.Validators
 {
     public class EmailValidator : ValidationAttribute
     {

@@ -14,7 +14,7 @@ namespace CalorieTracker.Models
     using System.ComponentModel.DataAnnotations;
     using System.IO;
     using System.Web.Mvc;
-    using Calorie_Tracker.Validators;
+    using CalorieTracker.Validators;
     using CalorieTracker.Models.Accounts;
     using CalorieTracker.Utilities;
 

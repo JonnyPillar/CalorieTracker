@@ -11,13 +11,23 @@ namespace CalorieTracker.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations.Resources;
+    using System.ComponentModel.DataAnnotations.Schema;
+    using System.Web.Mvc;
+    using System.ComponentModel.DataAnnotations;
+
     public partial class tbl_food_log
     {
+        [HiddenInput]
         public string food_log_id { get; set; }
+        [HiddenInput]
         public string food_log_user_id { get; set; }
+        [HiddenInput]
+        [Display(Name = "Food")]
         public string food_log_food_id { get; set; }
+        [HiddenInput]
         public string food_log_date { get; set; }
+        [Display(Name = "Quantity")]
         public Nullable<double> food_log_quantity { get; set; }
     
         public virtual tbl_food tbl_food { get; set; }

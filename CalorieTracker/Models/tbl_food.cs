@@ -11,7 +11,9 @@ namespace CalorieTracker.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+    using System.Web.Mvc;
+
     public partial class tbl_food
     {
         public tbl_food()
@@ -19,13 +21,20 @@ namespace CalorieTracker.Models
             this.tbl_food_log = new HashSet<tbl_food_log>();
             this.tbl_food1 = new HashSet<tbl_food>();
         }
-    
+        
+        [HiddenInput]
         public string food_id { get; set; }
+        [HiddenInput]
         public string food_parent_id { get; set; }
+        [Display(Name = "Meal Title")]
         public string food_name { get; set; }
+        [Display(Name = "Quantity")]
         public Nullable<double> food_quantity { get; set; }
+        [Display(Name = "Carbohydrate")]
         public Nullable<double> food_carbohydrates { get; set; }
+        [Display(Name = "Protien")]
         public Nullable<double> food_protein { get; set; }
+        [Display(Name = "Fat")]
         public Nullable<double> food_fat { get; set; }
     
         public virtual ICollection<tbl_food_log> tbl_food_log { get; set; }

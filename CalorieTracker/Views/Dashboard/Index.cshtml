@@ -1,4 +1,4 @@
-﻿@model CalorieTracker.Models.tbl_user
+﻿@model CalorieTracker.ViewModels.DashboardModel
 @{
     ViewBag.Title = "Dashboard";
 }
@@ -14,10 +14,10 @@
         </div>
         @*User Information*@
         <div class="dashboardInfoUserInfo">
-            <div class="dashboardInfoUserInfoRight"><h2>@Model.user_first_name @Model.user_second_name</h2>
+            <div class="dashboardInfoUserInfoRight"><h2>@Model.CurrentUser.user_first_name @Model.CurrentUser.user_second_name</h2>
                 <ul>
                     @*User Info*@
-                    @foreach (var item in Model.tbl_user_information)
+                    @foreach (var item in Model.CurrentUser.tbl_user_information)
                     {
                         <li>
                             @Html.DisplayFor(modelItem => item.tbl_user_metric.user_metric_name):
@@ -28,36 +28,19 @@
                     }
                 </ul>
             </div>
-            <img src="@Model.user_profile_image" alt="Profile Image" />
+            <img src="@Model.CurrentUser.user_profile_image" alt="Profile Image" />
         </div>
     </div>
     @*Go To Log Page*@
     <div class="buttonOuterPanel">
         <div class="buttonInnerPanel">
-            <button>Log</button>
+            @Html.ActionLink("Log", "Index", "Log")
         </div>
     </div>
     @*User Log History*@  
-    <div>
-        <ul>
-            @foreach (var item in Model.tbl_food_log)
-            {
-                <li>
-                    @Html.DisplayFor(modelItem => item.tbl_user_metric.user_metric_name):
-                </li>
-                <li>
-                    @Html.DisplayFor(modelItem => item.user_information_value)
-                </li>
-            }
-        </ul>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin fermentum sodales turpis ultricies fringilla. Nullam velit est, porta at malesuada nec, ultrices non ipsum. Vivamus imperdiet nisl quis urna pulvinar tristique. Aenean commodo, tellus at semper sodales, orci sem euismod nibh, a aliquam nisl lacus vel risus. Morbi nulla nibh, laoreet at nisl sed, hendrerit convallis justo. Etiam ac purus quis nisl ultricies interdum id ac lectus. Nullam lacinia blandit dignissim. In sed nunc egestas, dictum mauris eget, porttitor elit. Integer eu nibh diam. Nunc nec fringilla neque. Quisque arcu ipsum, sagittis at mi nec, malesuada tincidunt purus. Donec egestas nulla vitae neque imperdiet lacinia. Praesent dapibus sodales sem, nec ullamcorper massa bibendum nec.
-
-In hac habitasse platea dictumst. Duis placerat, ante a imperdiet lacinia, magna magna euismod leo, eget facilisis lorem nulla quis augue. Donec iaculis nisl non sapien lobortis viverra. Aenean sodales tortor eros, egestas mattis dolor viverra quis. Mauris quis tortor at nisi lacinia auctor. Curabitur dictum sit amet velit vel porttitor. Donec placerat pellentesque tortor. Mauris mattis magna et erat lobortis elementum. Fusce eu lacus diam. Duis non ipsum a nisl ornare luctus nec eu diam. Nulla eget metus tellus. Praesent enim tortor, molestie sit amet ipsum eget, aliquam ultrices sapien.
-
-Nullam interdum nisl eget sem interdum vulputate. Fusce id gravida sapien. Proin porttitor gravida nisl, quis varius orci commodo ut. Pellentesque a porta ipsum. Curabitur rutrum molestie scelerisque. Nullam sed scelerisque nibh. Nulla imperdiet ligula sit amet orci auctor eleifend. Cras at justo at ligula ornare egestas nec at risus. Nunc id gravida tortor. Nunc vulputate, diam id eleifend eleifend, nisl ligula cursus lorem, a tincidunt elit felis vitae elit. Fusce egestas dignissim purus, et dignissim elit pretium sed. Proin ut ornare purus. Curabitur vulputate venenatis adipiscing. Maecenas scelerisque lectus lacus, sit amet pretium mi luctus eget.
-
-Aenean arcu sem, varius ut sapien varius, mollis ornare leo. Pellentesque posuere ut arcu ac suscipit. Sed eget ante vitae odio porta hendrerit. In pharetra in elit eu volutpat. Praesent consequat nisi eu fringilla ullamcorper. Praesent bibendum lectus feugiat ipsum elementum, ut bibendum dui sodales. Sed at ultricies nulla, at fermentum nibh.
-
-Praesent pretium ligula est, ut tincidunt mi blandit ut. Ut elementum scelerisque enim, at lobortis tortor viverra non. Nam pharetra laoreet tortor, ac faucibus tellus. Ut dictum, mauris id faucibus tincidunt, erat lacus pretium leo, in rutrum dui massa et massa. Mauris fringilla sagittis est, at aliquet tellus convallis ac. Cras quis nisl quis eros iaculis rutrum. Nam consectetur commodo est, a pellentesque velit tincidunt lacinia. Donec non mauris sed lacus dictum lacinia eu non nisl. Donec tempus, purus eget suscipit semper, arcu nunc hendrerit turpis, ut blandit augue nulla at elit. Quisque pharetra velit justo, id dapibus ligula sollicitudin at. Ut dignissim sed felis sed placerat. Duis feugiat lorem mauris, id facilisis nibh sollicitudin vel. In eu libero felis.
+    <div class="dashboardFoodLogPanel">
+        
+        <h2>Recent Activity</h2>
+            @Html.Partial("_DashboardFoodLog", Model.FoodLogList)
     </div>
 </div>

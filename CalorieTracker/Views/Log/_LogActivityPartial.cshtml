@@ -1,0 +1,17 @@
+﻿@model CalorieTracker.ViewModels.LogActivityModel
+<h2>
+    Log Activity</h2>
+@using (Html.BeginForm())
+{
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>tbl_food_log</legend>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.ActitivtyList)
+        </div>
+        <div class="editor-field">
+            @Html.DropDownListFor(m => m.selectedActivity, new SelectList(Model.ActitivtyList, "activity_id", "activity_name"))
+        </div>
+    </fieldset>
+}

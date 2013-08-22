@@ -2,7 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.Globalization;
 
-namespace Calorie_Tracker.Validators
+namespace CalorieTracker.Validators
 {
     public class DateOfBirthValidator : ValidationAttribute
     {

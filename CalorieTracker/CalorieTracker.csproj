@@ -166,12 +166,12 @@
     <Compile Include="Controllers\AccountsController.cs" />
     <Compile Include="Controllers\DashboardController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Filters\InitializeSimpleMembershipAttribute.cs" />
+    <Compile Include="Controllers\LogController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\AccountModels.cs" />
     <Compile Include="Models\Accounts\AccountsModels.cs" />
+    <Compile Include="Models\LogModels.cs" />
     <Compile Include="Models\Model1.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -211,6 +211,12 @@
     <Compile Include="Validators\DateOfBirthValidator.cs" />
     <Compile Include="Validators\EmailValidator.cs" />
     <Compile Include="Validators\PrimaryKeyValidator.cs" />
+    <Compile Include="ViewModels\DashboardModel.cs" />
+    <Compile Include="ViewModels\LogActivityModel.cs" />
+    <Compile Include="ViewModels\LoginModel.cs" />
+    <Compile Include="ViewModels\LogFoodModel.cs" />
+    <Compile Include="ViewModels\LogModel.cs" />
+    <Compile Include="ViewModels\RegisterModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
@@ -328,6 +334,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="DAL\" />
+    <Folder Include="Filters\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
@@ -359,6 +366,12 @@
     </None>
     <Content Include="Views\Dashboard\Index.cshtml" />
     <Content Include="Views\Shared\Partial1.cshtml" />
+    <Content Include="Views\Log\Index.cshtml" />
+    <Content Include="Views\Shared\_HeaderPartial.cshtml" />
+    <Content Include="Views\Shared\_FooterPartial.cshtml" />
+    <Content Include="Views\Dashboard\_DashboardFoodLog.cshtml" />
+    <Content Include="Views\Log\_LogFoodPartial.cshtml" />
+    <Content Include="Views\Log\_LogActivityPartial.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

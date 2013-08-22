@@ -8,40 +8,17 @@
         <link href="/Content/Themes/tracker/tracker.css" rel="Stylesheet" />
         @Styles.Render("~/Content/css")
         @Scripts.Render("~/bundles/modernizr")
+        @Scripts.Render("~/bundles/jquery")
     </head>
     <body>
-        <header>
-            <div class="content-wrapper">
-                <div class="float-left">
-                    <p class="site-title">@Html.ActionLink("Calorie Tracker", "Index", "Home")</p>
-                </div>
-                <div class="float-right">
-                    <section id="login">
-                        @Html.Partial("_LoginPartial")
-                    </section>
-                    <nav>
-                        <ul id="menu">
-                            <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                            <li>@Html.ActionLink("Dashboard", "Index", "Dashboard")</li>
-                        </ul>
-                    </nav>
-                </div>
-            </div>
-        </header>
+        @Html.Partial("_HeaderPartial")
         <div id="body">
             @RenderSection("featured", required: false)
             <section class="content-wrapper main-content clear-fix">
                 @RenderBody()
             </section>
         </div>
-        <footer>
-            <div class="content-wrapper">
-                <div class="float-left">
-                    <p>&copy; @DateTime.Now.Year - My ASP.NET MVC Application</p>
-                </div>
-            </div>
-        </footer>
-
+        @Html.Partial("_FooterPartial")
         @Scripts.Render("~/bundles/jquery")
         @RenderSection("scripts", required: false)
     </body>

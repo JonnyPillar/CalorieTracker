@@ -6,7 +6,7 @@ using System.Web.Security;
 using CalorieTracker.Models;
 using CalorieTracker.Models.Accounts;
 using CalorieTracker.Utilities;
-using CalorieTracker.Models.Accounts;
+
 namespace CalorieTracker.Controllers
 {
     public class AccountsController : Controller
@@ -21,9 +21,7 @@ namespace CalorieTracker.Controllers
         /// <returns>View</returns>
         public ActionResult Index()
         {
-            if (User.Identity.IsAuthenticated)
-            {
-            }
+            if (User.Identity.IsAuthenticated) if (User.Identity.IsAuthenticated) return RedirectToAction("Index", "Dashboard");
             return View("Login");
         }
 
@@ -34,6 +32,7 @@ namespace CalorieTracker.Controllers
         [HttpGet]
         public ActionResult Login()
         {
+            if (User.Identity.IsAuthenticated) return RedirectToAction("Index", "Dashboard");
             return View();
         }
 
@@ -54,7 +53,7 @@ namespace CalorieTracker.Controllers
                     {
                         //Password Valid
                         FormsAuthentication.SetAuthCookie(existingUser.user_id, true);
-                        return RedirectToAction("Index", "Home");
+                        return RedirectToAction("Index", "Dashboard");
                     }
                 }
             }
@@ -90,7 +89,7 @@ namespace CalorieTracker.Controllers
                     db.tbl_user.Add(newUser); //TODO Through inheritance can  just add here?
                     db.SaveChanges();
                     FormsAuthentication.SetAuthCookie(newUser.user_id, true);
-                    return RedirectToAction("Index", "Home");
+                    return RedirectToAction("Index", "Dashboard");
                 }
                 else ModelState.AddModelError("", "This Email Address Has Been Used");
             }

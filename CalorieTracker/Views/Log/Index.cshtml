@@ -1,0 +1,27 @@
+﻿@model CalorieTracker.ViewModels.LogModel
+@{
+    ViewBag.Title = "Log";
+}
+<div class="logChoiceBar">
+    <a id="food" href="#">Log Food</a> 
+    <a id="activity" href="#">Log Activity</a>
+</div>
+<div id="foodPanel" class="logChoicePanel">
+    @Html.Partial("_LogFoodPartial", Model.logFood)
+</div>
+<div id="activityPanel" class="logChoicePanel">
+    @Html.Partial("_LogActivityPartial", Model.logActivity)
+</div>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#activityPanel").hide();
+        $(".logChoiceBar a").each(function (count) {
+            $(this).click(function (event) {
+                event.preventDefault();
+                if (!$(".logChoicePanel").eq(count).is(":visible")) {
+                    $(".logChoicePanel").toggle();
+                }
+            });
+        });
+    });
+</script>

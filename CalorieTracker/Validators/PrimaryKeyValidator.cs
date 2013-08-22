@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using System.ComponentModel.DataAnnotations;
 
-namespace Calorie_Tracker.Validators
+namespace CalorieTracker.Validators
 {
     public class PrimaryKeyValidator : ValidationAttribute
     {

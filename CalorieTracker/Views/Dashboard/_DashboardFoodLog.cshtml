@@ -1,0 +1,12 @@
+﻿@using CalorieTracker.Models;
+@model System.Collections.Generic.List<tbl_food_log>
+@foreach (tbl_food_log item in Model)
+{
+    <ul>
+        <li>
+            @Html.DisplayFor(modelItem => item.tbl_food.food_name): </li>
+        <li>
+            @Html.DisplayFor(modelItem => item.food_log_quantity)
+        </li>
+    </ul>
+}

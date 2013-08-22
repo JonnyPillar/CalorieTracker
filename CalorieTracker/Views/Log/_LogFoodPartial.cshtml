@@ -1,0 +1,55 @@
+﻿@model CalorieTracker.ViewModels.LogFoodModel
+
+<h2>Log Food</h2>
+@using (Html.BeginForm()) {
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>tbl_food_log</legend>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.FoodList)
+        </div>
+        <div class="editor-field">
+        @Html.DropDownListFor(m => m.selectedFood, new SelectList(Model.FoodList, "food_id", "food_name"))
+        </div>
+
+        @*<div class="editor-label">
+            @Html.LabelFor(model => model.ActitivtyList)
+        </div>
+        <div class="editor-field">
+        @Html.DropDownListFor(m => m.., new SelectList(Model.ActitivtyList, "food_id", "food_name"))
+        </div>*@
+
+        @*<div class="editor-label">
+            @Html.LabelFor(model => model.FoodLog.food_log_date)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.FoodLog.food_log_date)
+            @Html.ValidationMessageFor(model => model.FoodLog.food_log_date)
+        </div>  
+        <div class="editor-label">
+            @Html.LabelFor(model => model.FoodLog.food_log_date)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.FoodLog.food_log_date)
+            @Html.ValidationMessageFor(model => model.FoodLog.food_log_date)
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.FoodLog.food_log_quantity)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.FoodLog.food_log_quantity)
+            @Html.ValidationMessageFor(model => model.FoodLog.food_log_quantity)
+        </div>*@
+        <p>
+            <input type="submit" value="Create" />
+        </p>
+    </fieldset>
+}
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

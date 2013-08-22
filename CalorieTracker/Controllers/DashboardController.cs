@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using CalorieTracker.Models;
+using CalorieTracker.ViewModels;
 
 namespace CalorieTracker.Controllers
 {
@@ -15,9 +16,10 @@ namespace CalorieTracker.Controllers
 
         public ActionResult Index()
         {
-            if (!User.Identity.IsAuthenticated) return RedirectToAction("Index", "Home");
+            if (!User.Identity.IsAuthenticated) return RedirectToAction("Login", "Accounts");
             tbl_user user = db.tbl_user.Find(User.Identity.Name);
-            return View(user);
+            DashboardModel model = new DashboardModel(user);
+            return View(model);
         }
     }
 }
