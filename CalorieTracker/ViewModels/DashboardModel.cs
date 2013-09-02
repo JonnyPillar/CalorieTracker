@@ -14,9 +14,11 @@ namespace CalorieTracker.ViewModels
         {
             CurrentUser = User;
             FoodLogList = User.tbl_food_log.ToList();
+            ActivityLogList = User.tbl_activity_log.ToList();
         }
 
         public List<tbl_food_log> FoodLogList { get; set; }
+        public List<tbl_activity_log> ActivityLogList { get; set; }
 
     }
 }

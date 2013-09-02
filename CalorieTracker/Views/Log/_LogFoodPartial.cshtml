@@ -1,26 +1,30 @@
 ﻿@model CalorieTracker.ViewModels.LogFoodModel
-
-<h2>Log Food</h2>
-@using (Html.BeginForm()) {
+@using (Html.BeginForm("Food", "Log"))
+{
+    <h2>
+        Log Food</h2>
     @Html.ValidationSummary(true)
-
     <fieldset>
         <legend>tbl_food_log</legend>
         <div class="editor-label">
             @Html.LabelFor(model => model.FoodList)
         </div>
         <div class="editor-field">
-        @Html.DropDownListFor(m => m.selectedFood, new SelectList(Model.FoodList, "food_id", "food_name"))
+            @Html.DropDownListFor(m => m.SelectedFood, new SelectList(Model.FoodList, "food_id", "food_name"))
         </div>
-
+        <div class="editor-label">
+            @Html.LabelFor(m => m.Quantity)
+        </div>
+        <div class="editor-field">
+            @Html.TextBoxFor(u => u.Quantity)
+            @Html.ValidationMessageFor(u => u.Quantity)
+        </div>
         @*<div class="editor-label">
             @Html.LabelFor(model => model.ActitivtyList)
         </div>
         <div class="editor-field">
         @Html.DropDownListFor(m => m.., new SelectList(Model.ActitivtyList, "food_id", "food_name"))
-        </div>*@
-
-        @*<div class="editor-label">
+        </div>*@ @*<div class="editor-label">
             @Html.LabelFor(model => model.FoodLog.food_log_date)
         </div>
         <div class="editor-field">
@@ -49,7 +53,6 @@
 <div>
     @Html.ActionLink("Back to List", "Index")
 </div>
-
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 }

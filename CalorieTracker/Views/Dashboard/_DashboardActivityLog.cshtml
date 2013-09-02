@@ -1,0 +1,16 @@
+﻿@using CalorieTracker.Models;
+@model System.Collections.Generic.List<tbl_activity_log>
+<h3>Activity Log</h3>
+@foreach (tbl_activity_log item in Model)
+{
+    <ul>
+        <li>
+            @Html.DisplayFor(modelItem => item.tbl_activity.activity_name): </li>
+        <li>
+            @Html.DisplayFor(modelItem => item.activity_log_distance),
+        </li>
+        <li>
+            @Html.DisplayFor(modelItem => item.activity_log_time)
+        </li>
+    </ul>
+}

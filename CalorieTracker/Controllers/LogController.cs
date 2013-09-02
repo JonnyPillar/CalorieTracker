@@ -18,17 +18,29 @@ namespace CalorieTracker.Controllers
         {
             if (!User.Identity.IsAuthenticated) RedirectToAction("Logon", "Accounts");
 
-            LogModel foodLogModel = new LogModel(db.tbl_activity.ToList(), GetUserFood().ToList());
+            LogModel foodLogModel = new LogModel(db.tbl_activity.ToList(), GetUserFood());
             //foodLogModel.CurrentUser = db.tbl_user.Find(User.Identity.Name);
             return View(foodLogModel);
         }
 
         [HttpPost]
-        public ActionResult Index(LogFoodModel logModel)
+        public ActionResult Food(LogFoodModel logModel)
         {
-            //tbl_food_log newLog = new tbl_food_log(logModel);
-            RedirectToAction("Index", "Dashboard");
-            return View();
+            logModel.UserID = User.Identity.Name;
+            tbl_food_log newLog = new tbl_food_log(logModel);
+            db.tbl_food_log.Add(newLog);
+            db.SaveChanges();
+            return RedirectToAction("Index", "Dashboard");
+        }
+
+        [HttpPost]
+        public ActionResult Activity(LogActivityModel logModel)
+        {
+            logModel.UserID = User.Identity.Name;
+            tbl_activity_log newLog = new tbl_activity_log(logModel);
+            db.tbl_activity_log.Add(newLog);
+            db.SaveChanges();
+            return RedirectToAction("Index", "Dashboard");
         }
 
         private List<tbl_food> GetUserFood()
@@ -38,7 +50,7 @@ namespace CalorieTracker.Controllers
             List<tbl_food_log> foodLog = db.tbl_food_log
                 .Where(tbl_food_log => tbl_food_log.food_log_user_id == User.Identity.Name)
                 .ToList();
-            for (int i = 0; i < foodLog.Count; i++)
+            for (int i = 0; i < foodLog.Count; i++) //TODO Improve this
             {
                 if (!usedFoodList.ContainsKey(foodLog[i].food_log_food_id))
                 {
@@ -46,7 +58,7 @@ namespace CalorieTracker.Controllers
                     {
                         if (foodLog[i].food_log_food_id.Equals(foodList[j].food_id))
                         {
-                            usedFoodList.Add(foodList[i].food_id, foodList[i]);
+                            usedFoodList.Add(foodList[j].food_id, foodList[j]);
                             break;
                         }
                     }

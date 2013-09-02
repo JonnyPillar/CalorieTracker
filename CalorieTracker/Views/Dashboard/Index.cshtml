@@ -7,21 +7,21 @@
     <div class="dashboardInfoBar">
         @*Progress Bar*@
         <div class="dashboardInfoProgress">
-            <h2>My Progress</h2>
+            <h2>
+                My Progress</h2>
             <div class="dashboardInfoProgressBar">
-        
             </div>
         </div>
         @*User Information*@
         <div class="dashboardInfoUserInfo">
-            <div class="dashboardInfoUserInfoRight"><h2>@Model.CurrentUser.user_first_name @Model.CurrentUser.user_second_name</h2>
+            <div class="dashboardInfoUserInfoRight">
+                <h2>@Model.CurrentUser.user_first_name @Model.CurrentUser.user_second_name</h2>
                 <ul>
                     @*User Info*@
                     @foreach (var item in Model.CurrentUser.tbl_user_information)
                     {
                         <li>
-                            @Html.DisplayFor(modelItem => item.tbl_user_metric.user_metric_name):
-                        </li>
+                            @Html.DisplayFor(modelItem => item.tbl_user_metric.user_metric_name): </li>
                         <li>
                             @Html.DisplayFor(modelItem => item.user_information_value)
                         </li>
@@ -37,10 +37,10 @@
             @Html.ActionLink("Log", "Index", "Log")
         </div>
     </div>
-    @*User Log History*@  
+    @*User Log History*@
     <div class="dashboardFoodLogPanel">
-        
         <h2>Recent Activity</h2>
-            @Html.Partial("_DashboardFoodLog", Model.FoodLogList)
+        @Html.Partial("_DashboardFoodLog", Model.FoodLogList)
+        @Html.Partial("_DashboardActivityLog", Model.ActivityLogList)
     </div>
 </div>

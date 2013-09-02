@@ -14,6 +14,26 @@ namespace CalorieTracker.Models
     
     public partial class tbl_activity_log
     {
+        public tbl_activity_log()
+        {
+
+        }
+
+        /// <summary>
+        /// New Food Log From Log Food View Model
+        /// </summary>
+        /// <param name="newLog">Food Log View Model</param>
+        public tbl_activity_log(ViewModels.LogActivityModel newLog)
+        {
+            this.activity_log_id = Guid.NewGuid().ToString();
+            this.activity_log_activity_id = newLog.SelectedActivity;
+            this.activity_log_user_id = newLog.UserID;
+            this.activity_log_time = Convert.ToDouble(newLog.Time);
+            this.activity_log_distance = Convert.ToDouble(newLog.Distance);
+            this.activity_log_notes = newLog.Notes;
+            this.activity_log_file_url = newLog.File;
+        }
+
         public string activity_log_id { get; set; }
         public string activity_log_activity_id { get; set; }
         public string activity_log_user_id { get; set; }
