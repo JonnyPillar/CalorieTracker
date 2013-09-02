@@ -3,24 +3,28 @@
     ViewBag.Title = "Log";
 }
 <div class="logChoiceBar">
-    <a id="food" href="#">Log Food</a>
+    <a id="food" href="#">Log Food</a> 
     <a id="activity" href="#">Log Activity</a>
+    <a id="metric" href="#">Log Metric</a>
 </div>
 <div id="foodPanel" class="logChoicePanel">
-    
-        @Html.Partial("_LogFoodPartial", Model.logFood)
+    @Html.Partial("_LogFoodPartial", Model.logFood)
 </div>
 <div id="activityPanel" class="logChoicePanel">
     @Html.Partial("_LogActivityPartial", Model.logActivity)
 </div>
+<div id="metricPanel" class="logChoicePanel">
+    @Html.Partial("_LogUserInformationPartial", Model.logMetric)
+</div>
 <script type="text/javascript">
     $(document).ready(function () {
-        $("#activityPanel").hide();
+        $(".logChoicePanel").not(":eq(0)").hide();
         $(".logChoiceBar a").each(function (count) {
             $(this).click(function (event) {
                 event.preventDefault();
                 if (!$(".logChoicePanel").eq(count).is(":visible")) {
-                    $(".logChoicePanel").toggle();
+                    $(".logChoicePanel").not(":eq(" + count + ")").hide();
+                    $(".logChoicePanel").eq(count).show();
                 }
             });
         });

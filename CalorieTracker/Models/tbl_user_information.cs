@@ -11,9 +11,32 @@ namespace CalorieTracker.Models
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
+    using System.IO;
+    using System.Web.Mvc;
+    using CalorieTracker.Validators;
+    using CalorieTracker.Models.Accounts;
+    using CalorieTracker.Utilities;
     
     public partial class tbl_user_information
     {
+        public tbl_user_information()
+        {
+
+        }
+
+        /// <summary>
+        /// New User Information Log From User Information View Model
+        /// </summary>
+        /// <param name="newLog">Food Log View Model</param>
+        public tbl_user_information(ViewModels.LogUserInformationModel newLog)
+        {
+            this.user_information_id = Guid.NewGuid().ToString();
+            this.user_information_user_id = newLog.UserID;
+            this.user_information_metric_id = newLog.SelectedMetric;
+            this.user_information_value = newLog.Value;
+        }
+
         public string user_information_id { get; set; }
         public string user_information_user_id { get; set; }
         public string user_information_metric_id { get; set; }

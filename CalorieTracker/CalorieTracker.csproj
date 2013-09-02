@@ -214,6 +214,7 @@
     <Compile Include="ViewModels\LogActivityModel.cs" />
     <Compile Include="ViewModels\LoginModel.cs" />
     <Compile Include="ViewModels\LogFoodModel.cs" />
+    <Compile Include="ViewModels\LogUserInformationModel.cs" />
     <Compile Include="ViewModels\LogModel.cs" />
     <Compile Include="ViewModels\RegisterModel.cs" />
   </ItemGroup>
@@ -363,6 +364,7 @@
     <Content Include="Views\Log\_LogFoodPartial.cshtml" />
     <Content Include="Views\Log\_LogActivityPartial.cshtml" />
     <Content Include="Views\Dashboard\_DashboardActivityLog.cshtml" />
+    <Content Include="Views\Log\_LogUserInformationPartial.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

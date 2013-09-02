@@ -1,8 +1,7 @@
 ﻿@model CalorieTracker.ViewModels.LogFoodModel
 @using (Html.BeginForm("Food", "Log"))
 {
-    <h2>
-        Log Food</h2>
+    <h2>Log Food</h2>
     @Html.ValidationSummary(true)
     <fieldset>
         <legend>tbl_food_log</legend>
@@ -16,35 +15,9 @@
             @Html.LabelFor(m => m.Quantity)
         </div>
         <div class="editor-field">
-            @Html.TextBoxFor(u => u.Quantity)
-            @Html.ValidationMessageFor(u => u.Quantity)
+            @Html.TextBoxFor(m => m.Quantity)
+            @Html.ValidationMessageFor(m => m.Quantity)
         </div>
-        @*<div class="editor-label">
-            @Html.LabelFor(model => model.ActitivtyList)
-        </div>
-        <div class="editor-field">
-        @Html.DropDownListFor(m => m.., new SelectList(Model.ActitivtyList, "food_id", "food_name"))
-        </div>*@ @*<div class="editor-label">
-            @Html.LabelFor(model => model.FoodLog.food_log_date)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.FoodLog.food_log_date)
-            @Html.ValidationMessageFor(model => model.FoodLog.food_log_date)
-        </div>  
-        <div class="editor-label">
-            @Html.LabelFor(model => model.FoodLog.food_log_date)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.FoodLog.food_log_date)
-            @Html.ValidationMessageFor(model => model.FoodLog.food_log_date)
-        </div>
-        <div class="editor-label">
-            @Html.LabelFor(model => model.FoodLog.food_log_quantity)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.FoodLog.food_log_quantity)
-            @Html.ValidationMessageFor(model => model.FoodLog.food_log_quantity)
-        </div>*@
         <p>
             <input type="submit" value="Create" />
         </p>

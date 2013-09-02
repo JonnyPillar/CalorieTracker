@@ -17,9 +17,7 @@ namespace CalorieTracker.Controllers
         public ActionResult Index()
         {
             if (!User.Identity.IsAuthenticated) RedirectToAction("Logon", "Accounts");
-
-            LogModel foodLogModel = new LogModel(db.tbl_activity.ToList(), GetUserFood());
-            //foodLogModel.CurrentUser = db.tbl_user.Find(User.Identity.Name);
+            LogModel foodLogModel = new LogModel(db.tbl_activity.ToList(), GetUserFood(), db.tbl_user_metric.ToList());
             return View(foodLogModel);
         }
 
@@ -39,6 +37,16 @@ namespace CalorieTracker.Controllers
             logModel.UserID = User.Identity.Name;
             tbl_activity_log newLog = new tbl_activity_log(logModel);
             db.tbl_activity_log.Add(newLog);
+            db.SaveChanges();
+            return RedirectToAction("Index", "Dashboard");
+        }
+
+        [HttpPost]
+        public ActionResult Metric(LogUserInformationModel logModel)
+        {
+            logModel.UserID = User.Identity.Name;
+            tbl_user_information newLog = new tbl_user_information(logModel);
+            db.tbl_user_information.Add(newLog);
             db.SaveChanges();
             return RedirectToAction("Index", "Dashboard");
         }

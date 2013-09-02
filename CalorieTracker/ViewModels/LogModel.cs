@@ -10,11 +10,13 @@ namespace CalorieTracker.ViewModels
     {
         public LogActivityModel logActivity { get; set; }
         public LogFoodModel logFood { get; set; }
+        public LogUserInformationModel logMetric { get; set; }
 
-        public LogModel(List<tbl_activity> activityList, List<tbl_food> foodList)
+        public LogModel(List<tbl_activity> activityList, List<tbl_food> foodList, List<tbl_user_metric> metricList)
         {
             logActivity = new LogActivityModel(activityList);
             logFood = new LogFoodModel(foodList);
+            logMetric = new LogUserInformationModel(metricList);
         }
     }
 }
