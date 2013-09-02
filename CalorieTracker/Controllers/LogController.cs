@@ -53,6 +53,7 @@ namespace CalorieTracker.Controllers
 
         private List<tbl_food> GetUserFood()
         {
+            //TODO you can food list from User Object
             List<tbl_food> foodList = db.tbl_food.ToList();
             Dictionary<string, tbl_food> usedFoodList = new Dictionary<string, tbl_food>();
             List<tbl_food_log> foodLog = db.tbl_food_log

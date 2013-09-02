@@ -176,6 +176,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Model1.Context.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Model1.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Model1.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -211,6 +216,7 @@
     <Compile Include="Validators\EmailValidator.cs" />
     <Compile Include="Validators\PrimaryKeyValidator.cs" />
     <Compile Include="ViewModels\DashboardModel.cs" />
+    <Compile Include="ViewModels\DashboardUserInformationModel.cs" />
     <Compile Include="ViewModels\LogActivityModel.cs" />
     <Compile Include="ViewModels\LoginModel.cs" />
     <Compile Include="ViewModels\LogFoodModel.cs" />
@@ -365,6 +371,7 @@
     <Content Include="Views\Log\_LogActivityPartial.cshtml" />
     <Content Include="Views\Dashboard\_DashboardActivityLog.cshtml" />
     <Content Include="Views\Log\_LogUserInformationPartial.cshtml" />
+    <Content Include="Views\Dashboard\_DashboardUserInformationPartial.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

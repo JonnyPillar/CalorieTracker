@@ -17,7 +17,7 @@ namespace CalorieTracker.Models
     using CalorieTracker.Validators;
     using CalorieTracker.Models.Accounts;
     using CalorieTracker.Utilities;
-
+    
     public partial class tbl_food_log
     {
         public tbl_food_log()

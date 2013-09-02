@@ -12,8 +12,12 @@ namespace CalorieTracker.Models
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
+    using System.IO;
     using System.Web.Mvc;
-
+    using CalorieTracker.Validators;
+    using CalorieTracker.Models.Accounts;
+    using CalorieTracker.Utilities;
+    
     public partial class tbl_food
     {
         public tbl_food()
@@ -21,7 +25,7 @@ namespace CalorieTracker.Models
             this.tbl_food_log = new HashSet<tbl_food_log>();
             this.tbl_food1 = new HashSet<tbl_food>();
         }
-        
+
         [HiddenInput]
         public string food_id { get; set; }
         [HiddenInput]

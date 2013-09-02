@@ -7,28 +7,13 @@
     <div class="dashboardInfoBar">
         @*Progress Bar*@
         <div class="dashboardInfoProgress">
-            <h2>
-                My Progress</h2>
+            <h2>My Progress</h2>
             <div class="dashboardInfoProgressBar">
             </div>
         </div>
         @*User Information*@
         <div class="dashboardInfoUserInfo">
-            <div class="dashboardInfoUserInfoRight">
-                <h2>@Model.CurrentUser.user_first_name @Model.CurrentUser.user_second_name</h2>
-                <ul>
-                    @*User Info*@
-                    @foreach (var item in Model.CurrentUser.tbl_user_information)
-                    {
-                        <li>
-                            @Html.DisplayFor(modelItem => item.tbl_user_metric.user_metric_name): </li>
-                        <li>
-                            @Html.DisplayFor(modelItem => item.user_information_value)
-                        </li>
-                    }
-                </ul>
-            </div>
-            <img src="@Model.CurrentUser.user_profile_image" alt="Profile Image" />
+            @Html.Partial("_DashboardUserInformationPartial", Model.UserInfomation)
         </div>
     </div>
     @*Go To Log Page*@

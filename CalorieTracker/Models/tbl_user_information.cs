@@ -17,7 +17,7 @@ namespace CalorieTracker.Models
     using CalorieTracker.Validators;
     using CalorieTracker.Models.Accounts;
     using CalorieTracker.Utilities;
-    
+
     public partial class tbl_user_information
     {
         public tbl_user_information()
@@ -35,12 +35,14 @@ namespace CalorieTracker.Models
             this.user_information_user_id = newLog.UserID;
             this.user_information_metric_id = newLog.SelectedMetric;
             this.user_information_value = newLog.Value;
+            this.user_information_timestamp = DateTime.Now.ToString("ddMMyyyyhhMMss");
         }
 
         public string user_information_id { get; set; }
         public string user_information_user_id { get; set; }
         public string user_information_metric_id { get; set; }
         public string user_information_value { get; set; }
+        public string user_information_timestamp { get; set; }
     
         public virtual tbl_user_metric tbl_user_metric { get; set; }
         public virtual tbl_user tbl_user { get; set; }

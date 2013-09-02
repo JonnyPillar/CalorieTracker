@@ -1,0 +1,16 @@
+﻿@model CalorieTracker.ViewModels.DashboardUserInformationModel
+<div class="dashboardInfoUserInfoRight">
+    <h2>@Model.User.user_first_name @Model.User.user_second_name</h2>
+    <ul>
+        @*User Info*@
+        @foreach (var item in Model.UserInformationList)
+        {
+            <li>
+                @Html.DisplayFor(modelItem => item.tbl_user_metric.user_metric_name): </li>
+            <li>
+                @Html.DisplayFor(modelItem => item.user_information_value)
+            </li>
+        }
+    </ul>
+</div>
+<img src="@Model.User.user_profile_image" alt="Profile Image" />

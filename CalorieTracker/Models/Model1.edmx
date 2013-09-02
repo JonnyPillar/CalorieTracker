@@ -121,6 +121,7 @@
           <Property Name="user_information_user_id" Type="varchar" MaxLength="45" />
           <Property Name="user_information_metric_id" Type="varchar" MaxLength="45" />
           <Property Name="user_information_value" Type="varchar" MaxLength="255" />
+          <Property Name="user_information_timestamp" Type="varchar" MaxLength="45" />
         </EntityType>
         <EntityType Name="tbl_user_metric">
           <Key>
@@ -390,6 +391,7 @@
           <Property Name="user_information_value" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
           <NavigationProperty Name="tbl_user_metric" Relationship="calorie_tracker_v1Model.user_information_metric_id" FromRole="tbl_user_information" ToRole="tbl_user_metric" />
           <NavigationProperty Name="tbl_user" Relationship="calorie_tracker_v1Model.user_information_user_id" FromRole="tbl_user_information" ToRole="tbl_user" />
+          <Property Type="String" Name="user_information_timestamp" MaxLength="45" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="tbl_user_metric">
           <Key>
@@ -601,7 +603,8 @@
             <ScalarProperty Name="food_log_quantity" ColumnName="food_log_quantity" />
           </MappingFragment></EntityTypeMapping></EntitySetMapping>
           <EntitySetMapping Name="tbl_user_information"><EntityTypeMapping TypeName="calorie_tracker_v1Model.tbl_user_information"><MappingFragment StoreEntitySet="tbl_user_information">
-            <ScalarProperty Name="user_information_id" ColumnName="user_information_id" />
+            <ScalarProperty Name="user_information_timestamp" ColumnName="user_information_timestamp" />
+                <ScalarProperty Name="user_information_id" ColumnName="user_information_id" />
             <ScalarProperty Name="user_information_user_id" ColumnName="user_information_user_id" />
             <ScalarProperty Name="user_information_metric_id" ColumnName="user_information_metric_id" />
             <ScalarProperty Name="user_information_value" ColumnName="user_information_value" />
@@ -661,7 +664,7 @@
         <EntityTypeShape EntityType="calorie_tracker_v1Model.tbl_activity_log" Width="1.5" PointX="8" PointY="5" Height="2.5571907552083317" IsExpanded="true" />
         <EntityTypeShape EntityType="calorie_tracker_v1Model.tbl_food" Width="1.5" PointX="5.75" PointY="1" Height="2.9417936197916656" IsExpanded="true" />
         <EntityTypeShape EntityType="calorie_tracker_v1Model.tbl_food_log" Width="1.5" PointX="8" PointY="1.375" Height="2.1725878906249996" IsExpanded="true" />
-        <EntityTypeShape EntityType="calorie_tracker_v1Model.tbl_user_information" Width="1.5" PointX="3" PointY="1.125" Height="1.9802864583333335" IsExpanded="true" />
+        <EntityTypeShape EntityType="calorie_tracker_v1Model.tbl_user_information" Width="2.25" PointX="3" PointY="1.125" Height="2.3648893229166661" IsExpanded="true" />
         <EntityTypeShape EntityType="calorie_tracker_v1Model.tbl_user_metric" Width="1.5" PointX="0.75" PointY="2.875" Height="1.9802864583333326" IsExpanded="true" />
         <EntityTypeShape EntityType="calorie_tracker_v1Model.tbl_user_target" Width="1.5" PointX="3" PointY="3.875" Height="2.7494921874999996" IsExpanded="true" />
         <AssociationConnector Association="calorie_tracker_v1Model.activity_log_activity_id" ManuallyRouted="false">
@@ -681,15 +684,11 @@
           <ConnectorPoint PointX="6.7284615384615378" PointY="3.9417936197916656" />
         </AssociationConnector>
         <AssociationConnector Association="calorie_tracker_v1Model.user_information_metric_id" ManuallyRouted="false">
-          <ConnectorPoint PointX="2.25" PointY="3.0862939453125" />
-          <ConnectorPoint PointX="2.5416666666666665" PointY="3.0862939453124993" />
-          <ConnectorPoint PointX="2.7083333333333335" PointY="3.0862939453125" />
-          <ConnectorPoint PointX="3" PointY="3.0862939453125" />
+          <ConnectorPoint PointX="2.25" PointY="3.1824446614583328" />
+          <ConnectorPoint PointX="3" PointY="3.1824446614583328" />
         </AssociationConnector>
         <AssociationConnector Association="calorie_tracker_v1Model.user_target_metric_id" ManuallyRouted="false">
           <ConnectorPoint PointX="2.25" PointY="4.3651432291666659" />
-          <ConnectorPoint PointX="2.5416666666666665" PointY="4.365143229166665" />
-          <ConnectorPoint PointX="2.7083333333333335" PointY="4.3651432291666659" />
           <ConnectorPoint PointX="3" PointY="4.3651432291666659" />
         </AssociationConnector>
         <AssociationConnector Association="calorie_tracker_v1Model.user_target_parent_id" ManuallyRouted="false">
@@ -701,22 +700,25 @@
         <EntityTypeShape EntityType="calorie_tracker_v1Model.tbl_user" Width="1.5" PointX="0.75" PointY="5.625" Height="3.7109993489583317" />
         <AssociationConnector Association="calorie_tracker_v1Model.activity_log_user_id" >
           <ConnectorPoint PointX="2.25" PointY="7.5211393229166665" />
+          <ConnectorPoint PointX="4.822916666666667" PointY="7.5211393229166656" />
+          <ConnectorPoint PointX="4.989583333333333" PointY="7.5211393229166665" />
           <ConnectorPoint PointX="7.666666666666667" PointY="7.5211393229166656" />
           <ConnectorPoint PointX="7.833333333333333" PointY="7.5211393229166665" />
           <ConnectorPoint PointX="8" PointY="7.5211393229166665" />
         </AssociationConnector>
         <AssociationConnector Association="calorie_tracker_v1Model.food_log_user_id" >
           <ConnectorPoint PointX="2.25" PointY="8.4598213359375" />
+          <ConnectorPoint PointX="4.822916666666667" PointY="8.4598213359375" />
+          <ConnectorPoint PointX="4.989583333333333" PointY="8.4598213359375" />
           <ConnectorPoint PointX="7.75" PointY="8.4598213359375" />
           <ConnectorPoint PointX="7.75" PointY="4.75" />
           <ConnectorPoint PointX="8.75" PointY="4.75" />
           <ConnectorPoint PointX="8.75" PointY="3.7398893229166661" />
         </AssociationConnector>
         <AssociationConnector Association="calorie_tracker_v1Model.user_information_user_id" >
-          <ConnectorPoint PointX="2.25" PointY="5.625" />
-          <ConnectorPoint PointX="2.625" PointY="5.25" />
-          <ConnectorPoint PointX="2.625" PointY="2.0743949726562492" />
-          <ConnectorPoint PointX="3" PointY="2.0743949726562492" />
+          <ConnectorPoint PointX="2.25" PointY="8.9291628424479157" />
+          <ConnectorPoint PointX="4.90625" PointY="8.9291628424479157" />
+          <ConnectorPoint PointX="4.90625" PointY="3.4898893229166661" />
         </AssociationConnector>
         <AssociationConnector Association="calorie_tracker_v1Model.user_target_user_id" >
           <ConnectorPoint PointX="2.25" PointY="6.2521493098958345" />
