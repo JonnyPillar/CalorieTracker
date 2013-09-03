@@ -14,9 +14,9 @@ namespace CalorieTracker.Models
     using System.ComponentModel.DataAnnotations;
     using System.IO;
     using System.Web.Mvc;
-    using CalorieTracker.Validators;
     using CalorieTracker.Models.Accounts;
     using CalorieTracker.Utilities;
+    using CalorieTracker.Validators;
 
     public partial class tbl_user
     {

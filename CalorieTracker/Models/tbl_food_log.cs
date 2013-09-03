@@ -10,13 +10,8 @@
 namespace CalorieTracker.Models
 {
     using System;
-    using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
-    using System.IO;
     using System.Web.Mvc;
-    using CalorieTracker.Validators;
-    using CalorieTracker.Models.Accounts;
-    using CalorieTracker.Utilities;
 
     public partial class tbl_food_log
     {

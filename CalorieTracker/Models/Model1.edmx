@@ -84,9 +84,21 @@
           <Property Name="food_parent_id" Type="varchar" MaxLength="45" />
           <Property Name="food_name" Type="varchar" MaxLength="255" />
           <Property Name="food_quantity" Type="double" />
-          <Property Name="food_carbohydrates" Type="double" />
+          <Property Name="food_weight" Type="double" />
+          <Property Name="food_volume" Type="double" />
+          <Property Name="food_energy" Type="double" />
+          <Property Name="food_calories" Type="double" />
           <Property Name="food_protein" Type="double" />
+          <Property Name="food_carbohydrates" Type="double" />
+          <Property Name="food_carbohydrates_sugars" Type="double" />
+          <Property Name="food_carbohydrates_starch" Type="double" />
           <Property Name="food_fat" Type="double" />
+          <Property Name="food_fat_saturates" Type="double" />
+          <Property Name="food_fat_monosaturates" Type="double" />
+          <Property Name="food_fat_polysaturates" Type="double" />
+          <Property Name="food_fibre" Type="double" />
+          <Property Name="food_salt" Type="double" />
+          <Property Name="food_salt_sodium" Type="double" />
         </EntityType>
         <EntityType Name="tbl_food_log">
           <Key>
@@ -368,6 +380,18 @@
           <NavigationProperty Name="tbl_food_log" Relationship="calorie_tracker_v1Model.food_log_food_id" FromRole="tbl_food" ToRole="tbl_food_log" />
           <NavigationProperty Name="tbl_food1" Relationship="calorie_tracker_v1Model.food_parent_id" FromRole="tbl_food" ToRole="tbl_food1" />
           <NavigationProperty Name="tbl_food2" Relationship="calorie_tracker_v1Model.food_parent_id" FromRole="tbl_food1" ToRole="tbl_food" />
+          <Property Type="Double" Name="food_weight" />
+          <Property Type="Double" Name="food_volume" />
+          <Property Type="Double" Name="food_energy" />
+          <Property Type="Double" Name="food_calories" />
+          <Property Type="Double" Name="food_carbohydrates_sugars" />
+          <Property Type="Double" Name="food_carbohydrates_starch" />
+          <Property Type="Double" Name="food_fat_saturates" />
+          <Property Type="Double" Name="food_fat_monosaturates" />
+          <Property Type="Double" Name="food_fat_polysaturates" />
+          <Property Type="Double" Name="food_fibre" />
+          <Property Type="Double" Name="food_salt" />
+          <Property Type="Double" Name="food_salt_sodium" />
         </EntityType>
         <EntityType Name="tbl_food_log">
           <Key>
@@ -587,7 +611,19 @@
             <ScalarProperty Name="activity_log_file_url" ColumnName="activity_log_file_url" />
           </MappingFragment></EntityTypeMapping></EntitySetMapping>
           <EntitySetMapping Name="tbl_food"><EntityTypeMapping TypeName="calorie_tracker_v1Model.tbl_food"><MappingFragment StoreEntitySet="tbl_food">
-            <ScalarProperty Name="food_id" ColumnName="food_id" />
+            <ScalarProperty Name="food_salt_sodium" ColumnName="food_salt_sodium" />
+                <ScalarProperty Name="food_salt" ColumnName="food_salt" />
+                <ScalarProperty Name="food_fibre" ColumnName="food_fibre" />
+                <ScalarProperty Name="food_fat_polysaturates" ColumnName="food_fat_polysaturates" />
+                <ScalarProperty Name="food_fat_monosaturates" ColumnName="food_fat_monosaturates" />
+                <ScalarProperty Name="food_fat_saturates" ColumnName="food_fat_saturates" />
+                <ScalarProperty Name="food_carbohydrates_starch" ColumnName="food_carbohydrates_starch" />
+                <ScalarProperty Name="food_carbohydrates_sugars" ColumnName="food_carbohydrates_sugars" />
+                <ScalarProperty Name="food_calories" ColumnName="food_calories" />
+                <ScalarProperty Name="food_energy" ColumnName="food_energy" />
+                <ScalarProperty Name="food_volume" ColumnName="food_volume" />
+                <ScalarProperty Name="food_weight" ColumnName="food_weight" />
+                <ScalarProperty Name="food_id" ColumnName="food_id" />
             <ScalarProperty Name="food_parent_id" ColumnName="food_parent_id" />
             <ScalarProperty Name="food_name" ColumnName="food_name" />
             <ScalarProperty Name="food_quantity" ColumnName="food_quantity" />

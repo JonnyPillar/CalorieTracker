@@ -12,12 +12,8 @@ namespace CalorieTracker.Models
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
-    using System.IO;
     using System.Web.Mvc;
-    using CalorieTracker.Validators;
-    using CalorieTracker.Models.Accounts;
-    using CalorieTracker.Utilities;
-    
+
     public partial class tbl_food
     {
         public tbl_food()
@@ -28,19 +24,55 @@ namespace CalorieTracker.Models
 
         [HiddenInput]
         public string food_id { get; set; }
+
         [HiddenInput]
         public string food_parent_id { get; set; }
-        [Display(Name = "Meal Title")]
+
+        [Display(Name = " Name")]
         public string food_name { get; set; }
+
         [Display(Name = "Quantity")]
         public Nullable<double> food_quantity { get; set; }
+
+        [Display(Name = "Weight")]
+        public Nullable<double> food_weight { get; set; }
+
+        [Display(Name = "Volume")]
+        public Nullable<double> food_volume { get; set; }
+
         [Display(Name = "Carbohydrate")]
         public Nullable<double> food_carbohydrates { get; set; }
+
+        [Display(Name = "Carbohydrate Of Which Sugars")]
+        public Nullable<double> food_carbohydrates_sugars { get; set; }
+
+        [Display(Name = "Carbohydrate Of Which Starch")]
+        public Nullable<double> food_carbohydrates_starch { get; set; }
+
         [Display(Name = "Protien")]
         public Nullable<double> food_protein { get; set; }
+
         [Display(Name = "Fat")]
         public Nullable<double> food_fat { get; set; }
-    
+
+        [Display(Name = "Fat Of Which Saturates")]
+        public Nullable<double> food_fat_saturates { get; set; }
+
+        [Display(Name = "Fat Of Which Mono-Unsaturates")]
+        public Nullable<double> food_fat_monosaturates { get; set; }
+
+        [Display(Name = "Fat Of Which Polyunsaturates")]
+        public Nullable<double> food_fat_polysaturates { get; set; }
+
+        [Display(Name = "Fibre")]
+        public Nullable<double> food_fibre { get; set; }
+
+        [Display(Name = "Salt")]
+        public Nullable<double> food_salt { get; set; }
+
+        [Display(Name = "Salt Of Which Sodium")]
+        public Nullable<double> food_salt_sodium { get; set; }
+
         public virtual ICollection<tbl_food_log> tbl_food_log { get; set; }
         public virtual ICollection<tbl_food> tbl_food1 { get; set; }
         public virtual tbl_food tbl_food2 { get; set; }
