@@ -2,19 +2,34 @@
 @{
     ViewBag.Title = "Log";
 }
-<div class="logChoiceBar">
-    <a id="food" href="#">Log Food</a> 
-    <a id="activity" href="#">Log Activity</a>
-    <a id="metric" href="#">Log Metric</a>
-</div>
-<div id="foodPanel" class="logChoicePanel">
-    @Html.Partial("_LogFoodPartial", Model.logFood)
-</div>
-<div id="activityPanel" class="logChoicePanel">
-    @Html.Partial("_LogActivityPartial", Model.logActivity)
-</div>
-<div id="metricPanel" class="logChoicePanel">
-    @Html.Partial("_LogUserInformationPartial", Model.logMetric)
+<div class="logPanel">
+    @*Log Menu*@
+    <div class="logChoiceBar">
+        <a id="food" href="#">Log Food</a> 
+        <a id="activity" href="#">Log Activity</a> 
+        <a id="metric" href="#">Log Metric</a>
+    </div>
+    <div class="logStatsPanel">
+        <ul>
+            <li>Remaining</li>
+            <li>Eaten</li>
+            <li>Burned</li>
+        </ul>
+    </div>
+    <div class="logInputPanel">
+        @*Food Log Panel*@
+        <div id="foodPanel" class="logChoicePanel">
+            @Html.Partial("_LogFoodPartial", Model.logFood)
+        </div>
+        @*Activity Log Panel*@
+        <div id="activityPanel" class="logChoicePanel">
+            @Html.Partial("_LogActivityPartial", Model.logActivity)
+        </div>
+        @*Metric Log Panel*@
+        <div id="metricPanel" class="logChoicePanel">
+            @Html.Partial("_LogUserInformationPartial", Model.logMetric)
+        </div>
+    </div>
 </div>
 <script type="text/javascript">
     $(document).ready(function () {

@@ -17,7 +17,7 @@ namespace CalorieTracker.Models
     using CalorieTracker.Validators;
     using CalorieTracker.Models.Accounts;
     using CalorieTracker.Utilities;
-    
+
     public partial class tbl_food_log
     {
         public tbl_food_log()
@@ -35,7 +35,16 @@ namespace CalorieTracker.Models
             this.food_log_user_id = newLog.UserID;
             this.food_log_food_id = newLog.SelectedFood;
             this.food_log_date = DateTime.Now.ToString("ddMMyyyyhhMMss");
-            this.food_log_quantity = Convert.ToDouble(newLog.Quantity);
+            this.food_log_quantity = newLog.Quantity;
+        }
+
+        public tbl_food_log(tbl_food newfood)
+        {
+            this.food_log_id = Guid.NewGuid().ToString();
+            //this.food_log_user_id TODO do I need to pass this in or let the controller do it
+            this.food_log_food_id = newfood.food_id;
+            this.food_log_date = DateTime.Now.ToString("ddMMyyyyhhMMss");
+            this.food_log_quantity = newfood.food_quantity;
         }
 
         [HiddenInput]
@@ -49,7 +58,7 @@ namespace CalorieTracker.Models
         public string food_log_date { get; set; }
         [Display(Name = "Quantity")]
         public Nullable<double> food_log_quantity { get; set; }
-    
+
         public virtual tbl_food tbl_food { get; set; }
         public virtual tbl_user tbl_user { get; set; }
     }

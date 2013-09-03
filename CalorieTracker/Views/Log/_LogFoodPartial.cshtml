@@ -1,7 +1,8 @@
 ﻿@model CalorieTracker.ViewModels.LogFoodModel
+<h2>Log Food</h2>
+@Html.ActionLink("Add New Food", "Create", "Food")
 @using (Html.BeginForm("Food", "Log"))
 {
-    <h2>Log Food</h2>
     @Html.ValidationSummary(true)
     <fieldset>
         <legend>tbl_food_log</legend>

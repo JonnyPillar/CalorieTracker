@@ -134,3 +134,53 @@
 /*
     End of User Dashboard
 */
+
+/*
+    Log Page
+*/
+.logPanel
+{
+    margin:0;
+    padding:0;
+    border:1px solid green;
+    width:1200px;
+}  
+    .logPanel .logChoiceBar
+    {
+        margin:0;
+        padding:20px 0;
+        border:1px solid grey;
+        width:100%;
+        position:relative;
+    }  
+        .logPanel .logChoiceBar a
+        {
+            position:relative;
+            margin:10px;
+            padding:10px 20px;
+            vertical-align:middle;
+        }
+    .logPanel .logStatsPanel
+    {
+        margin:0;
+        padding:0;
+        border:1px solid blue;
+        float:right;
+        width:25%;
+    }
+    .logPanel .logInputPanel
+    {
+        margin:0;
+        padding:0;
+        border:1px solid red;
+        width:70%;
+    } 
+        .logPanel .logInputPanel .logChoicePanel
+        {
+            margin:0;
+            padding:0;
+            border:0;
+        }  
+/*
+    End of Log Page
+*/

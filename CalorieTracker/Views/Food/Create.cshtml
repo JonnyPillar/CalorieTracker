@@ -1,0 +1,57 @@
+﻿@model CalorieTracker.Models.tbl_food
+@{
+    ViewBag.Title = "Add A New Food";
+}
+<h2>
+    Create</h2>
+@using (Html.BeginForm())
+{
+    @Html.ValidationSummary(true)
+    <fieldset>
+        <legend>tbl_food</legend>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.food_name)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.food_name)
+            @Html.ValidationMessageFor(model => model.food_name)
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.food_quantity)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.food_quantity)
+            @Html.ValidationMessageFor(model => model.food_quantity)
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.food_carbohydrates)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.food_carbohydrates)
+            @Html.ValidationMessageFor(model => model.food_carbohydrates)
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.food_protein)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.food_protein)
+            @Html.ValidationMessageFor(model => model.food_protein)
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.food_fat)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.food_fat)
+            @Html.ValidationMessageFor(model => model.food_fat)
+        </div>
+        <p>
+            <input type="submit" value="Create" />
+        </p>
+    </fieldset>
+}
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
