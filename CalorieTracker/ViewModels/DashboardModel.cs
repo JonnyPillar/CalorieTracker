@@ -10,6 +10,11 @@ namespace CalorieTracker.ViewModels
         public List<tbl_food_log> FoodLogList { get; set; }
         public List<tbl_activity_log> ActivityLogList { get; set; }
 
+        /// <summary>
+        /// Dashboard Model Constructor
+        /// </summary>
+        /// <param name="User">Current User</param>
+        /// <param name="userInformationList">List of Relivant User Info</param>
         public DashboardModel(tbl_user User, List<tbl_user_information> userInformationList)
         {
             UserInfomation = new DashboardUserInformationModel(User, userInformationList);

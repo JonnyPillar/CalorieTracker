@@ -8,6 +8,11 @@ namespace CalorieTracker.ViewModels
         public tbl_user User { get; set; }
         public List<tbl_user_information> UserInformationList { get; set; }
 
+        /// <summary>
+        /// Dashboard User Information Model Constructor
+        /// </summary>
+        /// <param name="user">Current User</param>
+        /// <param name="informationList">User Indformation</param>
         public DashboardUserInformationModel(tbl_user user, List<tbl_user_information> informationList)
         {
             User = user;

@@ -1,22 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using CalorieTracker.Models;
-using System.ComponentModel.DataAnnotations;
-using System.Data.Entity;
+﻿using System.ComponentModel.DataAnnotations;
 using System.Web.Mvc;
+using CalorieTracker.Models;
 
 namespace CalorieTracker.ViewModels
 {
     public class RegisterModel
     {
+        [HiddenInput(DisplayValue = false)]
         public tbl_user newUser { get; set; }
-
-        public RegisterModel()
-        {
-            newUser = new tbl_user();
-        }
 
         [Required]
         [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
@@ -28,5 +19,10 @@ namespace CalorieTracker.ViewModels
         [Display(Name = "Confirm password")]
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
+
+        public RegisterModel()
+        {
+            newUser = new tbl_user();
+        }
     }
 }

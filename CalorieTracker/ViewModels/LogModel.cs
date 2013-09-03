@@ -1,17 +1,24 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using System.Collections.Generic;
+using System.Web.Mvc;
 using CalorieTracker.Models;
 
 namespace CalorieTracker.ViewModels
 {
     public class LogModel
     {
+        [HiddenInput(DisplayValue = false)]
         public LogActivityModel logActivity { get; set; }
+        [HiddenInput(DisplayValue = false)]
         public LogFoodModel logFood { get; set; }
+        [HiddenInput(DisplayValue = false)]
         public LogUserInformationModel logMetric { get; set; }
 
+        /// <summary>
+        /// Log Model Constructor
+        /// </summary>
+        /// <param name="activityList">List of Activities</param>
+        /// <param name="foodList">List of Foods</param>
+        /// <param name="metricList">List of Metrics</param>
         public LogModel(List<tbl_activity> activityList, List<tbl_food> foodList, List<tbl_user_metric> metricList)
         {
             logActivity = new LogActivityModel(activityList);
