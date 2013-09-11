@@ -1,11 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 using CalorieTracker.Models;
 using CalorieTracker.ViewModels;
-using System.Web.Helpers;
 
 namespace CalorieTracker.Controllers
 {
@@ -14,19 +12,16 @@ namespace CalorieTracker.Controllers
         private calorie_tracker_v1Entities db = new calorie_tracker_v1Entities();
         private  List<tbl_user_information> userInfoList = new List<tbl_user_information>();
         private  List<tbl_user_metric> metricList = new List<tbl_user_metric>();
-        private  IEnumerable<tbl_activity_log> activityLogList;
         private tbl_user user = new tbl_user();
-        ModelServices mobjModel = new ModelServices();
 
         //
         // GET: /Dashboard/
 
-        public ActionResult Index(int page = 1, string sort = "food_name", string sortDir = "ASC")
+        public ActionResult Index()
         {
             if (!User.Identity.IsAuthenticated) RedirectToAction("Login", "Accounts");
-
             //TODO Improve!!! and move SQL Excution out
-            activityLogList = user.tbl_activity_log.ToList();
+            user = db.tbl_user.Find(User.Identity.Name);
             metricList = db.tbl_user_metric.ToList();
             foreach (tbl_user_metric item in metricList)
             {
@@ -34,27 +29,40 @@ namespace CalorieTracker.Controllers
                 tbl_user_information temp = db.tbl_user_information.SqlQuery(query, item.user_metric_id).First();
                 if (temp != null) userInfoList.Add(temp);
             }
-            user = db.tbl_user.Find(User.Identity.Name);
-            const int pageSize = 10;
-            int totalRows = mobjModel.CountCustomer();
-            bool dir = sortDir.Equals("desc", StringComparison.CurrentCultureIgnoreCase) ? true : false;
-            IEnumerable<tbl_food_log> foodLogList = mobjModel.GetFoodLogPage(page, pageSize, sort, dir);
-            var data = new PagedFoodList()
-            {
-                TotalRows = totalRows,
-                PageSize = pageSize,
-                Customer = foodLogList
-            };
-            DashboardModel model = new DashboardModel(user, userInfoList, data);
+            DashboardModel model = new DashboardModel(user, userInfoList, getUserHistory());
             return View(model);
         }
 
-        public ActionResult History()
+        /// <summary>
+        /// Get all users history and merge into one feed ordered by Date
+        /// </summary>
+        /// <returns>Date Ordered Dictionary or User History</returns>
+        private Dictionary<DateTime, List<object>> getUserHistory()
         {
-            if (!User.Identity.IsAuthenticated) RedirectToAction("Login", "Accounts");
-            user = db.tbl_user.Find(User.Identity.Name);
-
-            return View();
+            Dictionary<DateTime, List<object>> historyDictionary = new Dictionary<DateTime, List<object>>();
+            foreach (tbl_food_log item in user.tbl_food_log) //Add all foods to history disctionn
+            {
+                DateTime loggedDate = DateTime.ParseExact(item.food_log_date, "ddMMyyyyHHmmss", null);
+                DateTime recordedDate = new DateTime(loggedDate.Year, loggedDate.Month, loggedDate.Day);
+                if (historyDictionary.ContainsKey(recordedDate)) historyDictionary[recordedDate].Add(item); //If exists add to existing list
+                else historyDictionary.Add(recordedDate, new List<object>() { item }); //Create new List
+            }
+            foreach (tbl_activity_log item in user.tbl_activity_log) //Add all Activities to history dictionary
+            {
+                DateTime loggedDate = DateTime.ParseExact(item.actvitity_log_date, "ddMMyyyyHHmmss", null);
+                DateTime recordedDate = new DateTime(loggedDate.Year, loggedDate.Month, loggedDate.Day);
+                if (historyDictionary.ContainsKey(recordedDate)) historyDictionary[recordedDate].Add(item); //If exists add to existing list
+                else historyDictionary.Add(recordedDate, new List<object>() { item }); //Create new List
+            }
+            foreach (tbl_user_information item in user.tbl_user_information)
+            {
+                DateTime loggedDate = DateTime.ParseExact(item.user_information_timestamp, "ddMMyyyyHHmmss", null);
+                DateTime recordedDate = new DateTime(loggedDate.Year, loggedDate.Month, loggedDate.Day);
+                if (historyDictionary.ContainsKey(recordedDate)) historyDictionary[recordedDate].Add(item); //If exists add to existing list
+                else historyDictionary.Add(recordedDate, new List<object>() { item }); //Create new List
+            }
+            historyDictionary = historyDictionary.OrderByDescending(i => i.Key).ToDictionary(x => x.Key, x => x.Value); // TODO make more efficent
+            return historyDictionary;
         }
     }
 }

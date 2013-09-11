@@ -1,0 +1,31 @@
+﻿@model CalorieTracker.Models.tbl_food_log
+@{
+    ViewBag.Title = "Details";
+}
+<h2>
+    Details</h2>
+<fieldset>
+    <legend>tbl_food_log</legend>
+    <div class="display-label">
+        @Html.DisplayNameFor(model => model.tbl_food.food_name)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.tbl_food.food_name)
+    </div>
+    <div class="display-label">
+        @Html.DisplayNameFor(model => model.food_log_date)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.food_log_date)
+    </div>
+    <div class="display-label">
+        @Html.DisplayNameFor(model => model.food_log_quantity)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.food_log_quantity)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { /* id=Model.PrimaryKey */ }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

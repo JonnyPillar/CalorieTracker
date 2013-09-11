@@ -1,0 +1,49 @@
+﻿@model CalorieTracker.Models.tbl_activity_log
+@{
+    ViewBag.Title = "Details";
+}
+<h2>
+    Details</h2>
+<fieldset>
+    <legend>tbl_activity_log</legend>
+    <div class="display-label">
+        @Html.DisplayNameFor(model => model.tbl_activity.activity_name)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.tbl_activity.activity_name)
+    </div>
+    <div class="display-label">
+        @Html.DisplayNameFor(model => model.activity_log_time)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.activity_log_time)
+    </div>
+    <div class="display-label">
+        @Html.DisplayNameFor(model => model.activity_log_distance)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.activity_log_distance)
+    </div>
+    <div class="display-label">
+        @Html.DisplayNameFor(model => model.activity_log_notes)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.activity_log_notes)
+    </div>
+    <div class="display-label">
+        @Html.DisplayNameFor(model => model.activity_log_file_url)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.activity_log_file_url)
+    </div>
+    <div class="display-label">
+        @Html.DisplayNameFor(model => model.actvitity_log_date)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.actvitity_log_date)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { /* id=Model.PrimaryKey */ }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

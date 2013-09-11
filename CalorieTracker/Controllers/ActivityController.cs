@@ -1,15 +1,17 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
 using System.Web.Mvc;
 using CalorieTracker.Models;
 
 namespace CalorieTracker.Controllers
 {
-    public class FoodController : Controller
+    public class ActivityController : Controller
     {
-        calorie_tracker_v1Entities db = new calorie_tracker_v1Entities();
-
+        private calorie_tracker_v1Entities db = new calorie_tracker_v1Entities();
         //
-        // GET: /Food/
+        // GET: /Activity/
 
         public ActionResult Index()
         {
@@ -17,7 +19,7 @@ namespace CalorieTracker.Controllers
         }
 
         //
-        // GET: /Food/Details/5
+        // GET: /Activity/Details/5
 
         public ActionResult Details(string id)
         {
@@ -30,7 +32,7 @@ namespace CalorieTracker.Controllers
         }
 
         //
-        // GET: /Food/Create
+        // GET: /Activity/Create
 
         public ActionResult Create()
         {
@@ -38,28 +40,25 @@ namespace CalorieTracker.Controllers
         }
 
         //
-        // POST: /Food/Create
+        // POST: /Activity/Create
 
         [HttpPost]
-        public ActionResult Create(tbl_food newFood)
+        public ActionResult Create(FormCollection collection)
         {
-            if (ModelState.IsValid)
+            try
             {
-                if(string.IsNullOrEmpty(newFood.food_id)) newFood.food_id = Guid.NewGuid().ToString();
-                db.tbl_food.Add(newFood); 
-                //Create the New Food Log
-                tbl_food_log foodLog = new tbl_food_log(newFood);
-                foodLog.food_log_user_id = User.Identity.Name;
-                db.tbl_food_log.Add(foodLog);
-                //Save
-                db.SaveChanges();
-                return RedirectToAction("Index", "Dashboard");
+                // TODO: Add insert logic here
+
+                return RedirectToAction("Index");
             }
-            else return View(newFood);
+            catch
+            {
+                return View();
+            }
         }
 
         //
-        // GET: /Food/Edit/5
+        // GET: /Activity/Edit/5
 
         public ActionResult Edit(int id)
         {
@@ -67,7 +66,7 @@ namespace CalorieTracker.Controllers
         }
 
         //
-        // POST: /Food/Edit/5
+        // POST: /Activity/Edit/5
 
         [HttpPost]
         public ActionResult Edit(int id, FormCollection collection)
@@ -85,7 +84,7 @@ namespace CalorieTracker.Controllers
         }
 
         //
-        // GET: /Food/Delete/5
+        // GET: /Activity/Delete/5
 
         public ActionResult Delete(int id)
         {
@@ -93,7 +92,7 @@ namespace CalorieTracker.Controllers
         }
 
         //
-        // POST: /Food/Delete/5
+        // POST: /Activity/Delete/5
 
         [HttpPost]
         public ActionResult Delete(int id, FormCollection collection)

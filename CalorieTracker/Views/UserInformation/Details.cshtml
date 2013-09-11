@@ -1,0 +1,36 @@
+﻿@model CalorieTracker.Models.tbl_user_information
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>tbl_user_information</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.tbl_user_metric.user_metric_name)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.tbl_user_metric.user_metric_name)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.user_information_value)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.user_information_value)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.user_information_timestamp)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.user_information_timestamp)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { /* id=Model.PrimaryKey */ }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

@@ -32,6 +32,7 @@ namespace CalorieTracker.Models
             this.activity_log_distance = Convert.ToDouble(newLog.Distance);
             this.activity_log_notes = newLog.Notes;
             this.activity_log_file_url = newLog.File;
+            this.actvitity_log_date = DateTime.Now.ToString("ddMMyyyyHHmmss");
         }
 
         public string activity_log_id { get; set; }
