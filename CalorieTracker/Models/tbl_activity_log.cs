@@ -41,7 +41,8 @@ namespace CalorieTracker.Models
         public Nullable<double> activity_log_distance { get; set; }
         public string activity_log_notes { get; set; }
         public string activity_log_file_url { get; set; }
-    
+        public string actvitity_log_date { get; set; }
+
         public virtual tbl_activity tbl_activity { get; set; }
         public virtual tbl_user tbl_user { get; set; }
     }

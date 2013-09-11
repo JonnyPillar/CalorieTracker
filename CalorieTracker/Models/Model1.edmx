@@ -75,6 +75,7 @@
           <Property Name="activity_log_distance" Type="double" />
           <Property Name="activity_log_notes" Type="mediumtext" />
           <Property Name="activity_log_file_url" Type="varchar" MaxLength="255" />
+          <Property Name="actvitity_log_date" Type="varchar" MaxLength="45" />
         </EntityType>
         <EntityType Name="tbl_food">
           <Key>
@@ -365,6 +366,7 @@
           <Property Name="activity_log_file_url" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
           <NavigationProperty Name="tbl_activity" Relationship="calorie_tracker_v1Model.activity_log_activity_id" FromRole="tbl_activity_log" ToRole="tbl_activity" />
           <NavigationProperty Name="tbl_user" Relationship="calorie_tracker_v1Model.activity_log_user_id" FromRole="tbl_activity_log" ToRole="tbl_user" />
+          <Property Type="String" Name="actvitity_log_date" MaxLength="45" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="tbl_food">
           <Key>
@@ -602,7 +604,8 @@
             <ScalarProperty Name="activity_image_url" ColumnName="activity_image_url" />
           </MappingFragment></EntityTypeMapping></EntitySetMapping>
           <EntitySetMapping Name="tbl_activity_log"><EntityTypeMapping TypeName="calorie_tracker_v1Model.tbl_activity_log"><MappingFragment StoreEntitySet="tbl_activity_log">
-            <ScalarProperty Name="activity_log_id" ColumnName="activity_log_id" />
+            <ScalarProperty Name="actvitity_log_date" ColumnName="actvitity_log_date" />
+                <ScalarProperty Name="activity_log_id" ColumnName="activity_log_id" />
             <ScalarProperty Name="activity_log_activity_id" ColumnName="activity_log_activity_id" />
             <ScalarProperty Name="activity_log_user_id" ColumnName="activity_log_user_id" />
             <ScalarProperty Name="activity_log_time" ColumnName="activity_log_time" />

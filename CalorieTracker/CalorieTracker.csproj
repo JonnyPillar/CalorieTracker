@@ -168,7 +168,6 @@
     <Compile Include="Controllers\FoodController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LogController.cs" />
-    <Compile Include="Controllers\TestController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -379,9 +378,6 @@
     <Content Include="Views\Food\Index.cshtml" />
     <Content Include="Views\Food\Create.cshtml" />
     <Content Include="Views\Log\_FoodInformationPartial.cshtml" />
-    <Content Include="Views\Test\Index.cshtml" />
-    <Content Include="Views\Test\_test.cshtml" />
-    <Content Include="Views\Test\_htmlTeest.cshtml" />
     <Content Include="Views\Log\_SelectedFood.cshtml" />
   </ItemGroup>
   <PropertyGroup>
