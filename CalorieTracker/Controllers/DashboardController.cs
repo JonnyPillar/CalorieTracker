@@ -34,8 +34,6 @@ namespace CalorieTracker.Controllers
                 tbl_user_information temp = db.tbl_user_information.SqlQuery(query, item.user_metric_id).First();
                 if (temp != null) userInfoList.Add(temp);
             }
-
-
             user = db.tbl_user.Find(User.Identity.Name);
             const int pageSize = 10;
             int totalRows = mobjModel.CountCustomer();
@@ -51,26 +49,12 @@ namespace CalorieTracker.Controllers
             return View(model);
         }
 
-        public ActionResult Test(int page = 1, string sort = "food_name", string sortDir = "ASC")
+        public ActionResult History()
         {
+            if (!User.Identity.IsAuthenticated) RedirectToAction("Login", "Accounts");
             user = db.tbl_user.Find(User.Identity.Name);
-            const int pageSize = 10;
-            int totalRows = mobjModel.CountCustomer();
-            bool dir = sortDir.Equals("desc", StringComparison.CurrentCultureIgnoreCase) ? true : false;
-            IEnumerable<tbl_food_log> foodLogList = mobjModel.GetFoodLogPage(page, pageSize, sort, dir);
-            var data = new PagedFoodList()
-            {
-                TotalRows = totalRows,
-                PageSize = pageSize,
-                Customer = foodLogList
-            };
-            DashboardModel model = new DashboardModel(user, userInfoList, data); 
-          if (Request.IsAjaxRequest())
-            {
-                return PartialView("_partialviewname", model.pagedList);
-             }
-          return View(model);
 
+            return View();
         }
     }
 }
