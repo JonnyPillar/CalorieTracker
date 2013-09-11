@@ -1,29 +1,24 @@
-﻿@model CalorieTracker.ViewModels.LogFoodModel
-<h2>Log Food</h2>
-@Html.ActionLink("Add New Food", "Create", "Food")
-@using (Html.BeginForm("Food", "Log"))
-{
-    @Html.ValidationSummary(true)
-    <fieldset>
-        <legend>tbl_food_log</legend>
-        <div class="editor-label">
-            @Html.LabelFor(model => model.FoodList)
-        </div>
-        <div class="editor-field">
-            @Html.DropDownListFor(m => m.SelectedFood, new SelectList(Model.FoodList, "food_id", "food_name"))
-        </div>
-        <div class="editor-label">
-            @Html.LabelFor(m => m.Quantity)
-        </div>
-        <div class="editor-field">
-            @Html.TextBoxFor(m => m.Quantity)
-            @Html.ValidationMessageFor(m => m.Quantity)
-        </div>
-        <p>
-            <input type="submit" value="Create" />
-        </p>
-    </fieldset>
+﻿@using CalorieTracker.Models
+@model CalorieTracker.ViewModels.LogFoodModel
+@{ 
+    var grid = new WebGrid(Model.FoodList, canPage: true, rowsPerPage: 5, selectionFieldName: "selectedRow", ajaxUpdateContainerId: "gridContent");
+    grid.Pager(WebGridPagerModes.NextPrevious);
 }
+<h2>Log Food</h2>
+@grid.GetHtml(tableStyle: "webGrid",
+        headerStyle: "header",
+        footerStyle: "footer",
+        alternatingRowStyle: "alt",
+        selectedRowStyle: "select",
+        columns: grid.Columns(
+        grid.Column("food_name", " Name", format: (item) => item.GetSelectLink(item.food_name)),
+        grid.Column("food_calories", "Calories")
+     ))
+@if (grid.HasSelection)
+{    
+    @Html.Partial("_SelectedFood", new CalorieTracker.ViewModels.LogSelectedFoodModel((tbl_food)grid.Rows[grid.SelectedIndex].Value))
+}
+@Html.ActionLink("Add New Food", "Create", "Food")
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 }

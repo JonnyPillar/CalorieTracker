@@ -28,17 +28,26 @@ namespace CalorieTracker.Models
         [HiddenInput]
         public string food_parent_id { get; set; }
 
-        [Display(Name = " Name")]
+        [Required]
+        [Display(Name = " Name123")]
         public string food_name { get; set; }
 
+        [Required]
         [Display(Name = "Quantity")]
         public Nullable<double> food_quantity { get; set; }
 
-        [Display(Name = "Weight")]
+        [Display(Name = "Weight Grams")]
         public Nullable<double> food_weight { get; set; }
 
-        [Display(Name = "Volume")]
+        [Display(Name = "Volume ML")]
         public Nullable<double> food_volume { get; set; }
+
+        [Display(Name = "Energy KJ")]
+        public Nullable<double> food_energy { get; set; }
+
+        [Required]
+        [Display(Name = "Energy KCal")]
+        public Nullable<double> food_calories { get; set; }
 
         [Display(Name = "Carbohydrate")]
         public Nullable<double> food_carbohydrates { get; set; }

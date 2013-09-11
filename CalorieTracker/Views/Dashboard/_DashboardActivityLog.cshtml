@@ -1,6 +1,25 @@
 ﻿@using CalorieTracker.Models;
 @model System.Collections.Generic.List<tbl_activity_log>
+@{ 
+    var grid = new WebGrid(Model, canPage: true, rowsPerPage: 5, selectionFieldName: "selectedRow", ajaxUpdateContainerId: "gridContent");
+    grid.Pager(WebGridPagerModes.NextPrevious);
+}
 <h3>Activity Log</h3>
+
+@grid.GetHtml(tableStyle: "webGrid",
+    headerStyle: "header",
+    footerStyle: "footer",
+    alternatingRowStyle: "alt",
+    selectedRowStyle: "select",
+    columns: grid.Columns(
+                    grid.Column("activity_name", " Name", format: (item) => item.GetSelectLink(item.tbl_activity.activity_name)),
+            grid.Column("activity_log_time", "Time"),
+                grid.Column("activity_log_distance", "Duration")
+))
+
+
+
+@*
 @foreach (tbl_activity_log item in Model)
 {
     <ul>
@@ -13,4 +32,4 @@
             @Html.DisplayFor(modelItem => item.activity_log_time)
         </li>
     </ul>
-}
+}*@

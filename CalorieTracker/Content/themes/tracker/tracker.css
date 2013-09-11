@@ -180,7 +180,83 @@
             margin:0;
             padding:0;
             border:0;
-        }  
+        }       
+        #foodPanel.logChoicePanel table
+        {
+            margin:10px 0;
+            padding:10px;
+            border:0;
+            width:100%;
+        }
+            #foodPanel.logChoicePanel table tr
+            {
+                margin:0;
+                padding:0;
+                border:0;
+            }
+            #foodPanel.logChoicePanel table th
+            {
+                margin:0;
+                padding:10px;
+                border:0;
+            }
+            #foodPanel.logChoicePanel table td
+            {
+                margin:0;
+                padding:10px;
+                border:0;
+            }
+            #foodPanel.logChoicePanel table .header
+            {
+                background-color:Blue;
+            }
+            #foodPanel.logChoicePanel table .header th a
+            {
+                color:White;
+            }
+            #foodPanel.logChoicePanel table .footer
+            {
+                background-color:Blue;
+            }
+            #foodPanel.logChoicePanel table .footer a
+            {
+                color:White;
+            }
+            #foodPanel.logChoicePanel table .alt
+            {
+                background-color:White;
+            }
+            #foodPanel.logChoicePanel table .select
+            {
+                background-color:Gray;
+            }
+        #foodPanel.logChoicePanel .selectedFood
+        {
+            margin:0;
+            padding:0;
+            border:0;
+            width:100%;
+        }
+        #foodPanel.logChoicePanel ul
+        {
+            margin:0;
+            padding:0 10px;
+            border:1px solid red;
+            width:47%;
+            display:inline-block;
+        }
+        #foodPanel.logChoicePanel ul li
+        {
+            margin:5px 0;
+            padding:0;
+            border:0;
+            list-style:none;
+        }
+        #foodPanel.logChoicePanel ul li label
+        {
+            float:left;
+        }
+            
 /*
     End of Log Page
 */

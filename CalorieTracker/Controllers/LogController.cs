@@ -13,6 +13,7 @@ namespace CalorieTracker.Controllers
         //
         // GET: /Log/
 
+
         [HttpGet]
         public ActionResult Index()
         {
@@ -22,20 +23,14 @@ namespace CalorieTracker.Controllers
         }
 
         [HttpPost]
-        public ActionResult Food(LogFoodModel logModel)
+        public ActionResult Food(LogSelectedFoodModel model)
         {
-            if (ModelState.IsValid)
-            {
-                logModel.UserID = User.Identity.Name;
-                tbl_food_log newLog = new tbl_food_log(logModel);
+                model.UserID = User.Identity.Name;
+                tbl_food_log newLog = new tbl_food_log(model);
                 db.tbl_food_log.Add(newLog);
                 db.SaveChanges();
                 return RedirectToAction("Index", "Dashboard");
-            }
-            ModelState.AddModelError("", "The user name or password provided is incorrect.");
-            return View();
         }
-
         [HttpPost]
         public ActionResult Activity(LogActivityModel logModel)
         {

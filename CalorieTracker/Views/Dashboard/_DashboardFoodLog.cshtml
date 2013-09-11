@@ -1,13 +1,24 @@
 ﻿@using CalorieTracker.Models;
-@model System.Collections.Generic.List<tbl_food_log>
-<h3>Food Log</h3>
-@foreach (tbl_food_log item in Model)
-{
-    <ul>
-        <li>
-            @Html.DisplayFor(modelItem => item.tbl_food.food_name): </li>
-        <li>
-            @Html.DisplayFor(modelItem => item.food_log_quantity)
-        </li>
-    </ul>
+@model CalorieTracker.ViewModels.PagedFoodList
+@{
+    WebGrid grid = new WebGrid(rowsPerPage: Model.PageSize, defaultSort: "Name", ajaxUpdateContainerId: "grid");
+    grid.Bind(Model.Customer, autoSortAndPage: false, rowCount: Model.TotalRows);
+    grid.Pager(WebGridPagerModes.All);
+ 
+    @grid.GetHtml(htmlAttributes: new { id = "grid" }, // id for ajaxUpdateContainerId parameter
+ fillEmptyRows: false,
+ alternatingRowStyle: "alternate-row",
+ headerStyle: "grid-header",
+ footerStyle: "grid-footer",
+ mode: WebGridPagerModes.All,
+ firstText: "<< First",
+ previousText: "< Prev",
+ nextText: "Next >",
+ lastText: "Last >>",
+ columns: new[] {
+grid.Column("food_name", " Name", format: (item) => item.GetSelectLink(item.tbl_food.food_name)),
+        grid.Column("food_log_quantity", "Quantity"),
+            grid.Column("food_calories", "Calories", format: (item) => item.tbl_food.food_calories),
+                grid.Column("food_log_date", "Date", format: (item) => string.Format("{0:dd/MM/yyyy}", DateTime.ParseExact(item.food_log_date, "ddMMyyyyHHmmss", null)))
+ })
 }

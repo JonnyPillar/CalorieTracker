@@ -1,12 +1,13 @@
 ﻿@model CalorieTracker.Models.tbl_food
 @{
-    ViewBag.Title = "Add A New Food";
+    ViewBag.Title = "Add New Food";
 }
 <h2>
-    Create</h2>
+    Add New Food</h2>
 @using (Html.BeginForm())
 {
     @Html.ValidationSummary(true)
+
     <fieldset>
         <legend>tbl_food</legend>
         <div class="editor-label">
@@ -24,11 +25,53 @@
             @Html.ValidationMessageFor(model => model.food_quantity)
         </div>
         <div class="editor-label">
+            @Html.LabelFor(model => model.food_weight)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.food_weight)
+            @Html.ValidationMessageFor(model => model.food_weight)
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.food_volume)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.food_volume)
+            @Html.ValidationMessageFor(model => model.food_volume)
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.food_energy)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.food_energy)
+            @Html.ValidationMessageFor(model => model.food_energy)
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.food_calories)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.food_calories)
+            @Html.ValidationMessageFor(model => model.food_calories)
+        </div>
+        <div class="editor-label">
             @Html.LabelFor(model => model.food_carbohydrates)
         </div>
         <div class="editor-field">
             @Html.EditorFor(model => model.food_carbohydrates)
             @Html.ValidationMessageFor(model => model.food_carbohydrates)
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.food_carbohydrates_sugars)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.food_carbohydrates_sugars)
+            @Html.ValidationMessageFor(model => model.food_carbohydrates_sugars)
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.food_carbohydrates_starch)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.food_carbohydrates_starch)
+            @Html.ValidationMessageFor(model => model.food_carbohydrates_starch)
         </div>
         <div class="editor-label">
             @Html.LabelFor(model => model.food_protein)
@@ -44,14 +87,53 @@
             @Html.EditorFor(model => model.food_fat)
             @Html.ValidationMessageFor(model => model.food_fat)
         </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.food_fat_saturates)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.food_fat_saturates)
+            @Html.ValidationMessageFor(model => model.food_fat_saturates)
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.food_fat_monosaturates)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.food_fat_monosaturates)
+            @Html.ValidationMessageFor(model => model.food_fat_monosaturates)
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.food_fat_polysaturates)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.food_fat_polysaturates)
+            @Html.ValidationMessageFor(model => model.food_fat_polysaturates)
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.food_fibre)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.food_fibre)
+            @Html.ValidationMessageFor(model => model.food_fibre)
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.food_salt)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.food_salt)
+            @Html.ValidationMessageFor(model => model.food_salt)
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.food_salt_sodium)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.food_salt_sodium)
+            @Html.ValidationMessageFor(model => model.food_salt_sodium)
+        </div>
         <p>
             <input type="submit" value="Create" />
         </p>
     </fieldset>
 }
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 }

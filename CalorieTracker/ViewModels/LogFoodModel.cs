@@ -16,6 +16,9 @@ namespace CalorieTracker.ViewModels
         [HiddenInput(DisplayValue = false)]
         public string UserID { get; set; }
 
+
+        public tbl_food Food { get; set; }
+
         [Display(Name = "Quantity")]
         [Required(ErrorMessage = "Please Provide A Valid Quantity")]
         [Range(0, 10000, ErrorMessage = "Value must be between 0 and 10000")]

@@ -25,7 +25,16 @@
     @*User Log History*@
     <div class="dashboardFoodLogPanel">
         <h2>Recent Activity</h2>
-        @Html.Partial("_DashboardFoodLog", Model.FoodLogList)
-        @Html.Partial("_DashboardActivityLog", Model.ActivityLogList)
+        @using (Ajax.BeginForm("Test", new AjaxOptions { OnFailure = "searchFailed", HttpMethod = "POST", UpdateTargetId = "Submitted" }))
+        {
+                    <div id="Submitted">
+           @Html.Partial("_DashboardFoodLog", Model.pagedList)   
+        </div>
+        }
+
+
+
+        
+        @*@Html.Partial("_DashboardActivityLog", Model.ActivityLogList)*@
     </div>
 </div>

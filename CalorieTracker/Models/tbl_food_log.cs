@@ -24,7 +24,7 @@ namespace CalorieTracker.Models
         /// New Food Log From Log Food View Model
         /// </summary>
         /// <param name="newLog">Food Log View Model</param>
-        public tbl_food_log(ViewModels.LogFoodModel newLog)
+        public tbl_food_log(ViewModels.LogSelectedFoodModel newLog)
         {
             this.food_log_id = Guid.NewGuid().ToString();
             this.food_log_user_id = newLog.UserID;

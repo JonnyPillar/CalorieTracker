@@ -1,0 +1,37 @@
+﻿@model CalorieTracker.ViewModels.LogSelectedFoodModel
+@{
+    ViewBag.Title = "_SelectedFood";
+}
+
+<ul>
+    <li>@Html.LabelFor(products => Model.Food.food_name): @Model.Food.food_name</li>
+    <li>@Html.LabelFor(products => Model.Food.food_weight): @Model.Food.food_weight</li>
+    <li>@Html.LabelFor(products => Model.Food.food_volume): @Model.Food.food_volume</li>
+    <li>@Html.LabelFor(products => Model.Food.food_energy): @Model.Food.food_energy</li>
+    <li>@Html.LabelFor(products => Model.Food.food_calories): @Model.Food.food_calories</li>
+    <li>@Html.LabelFor(products => Model.Food.food_carbohydrates): @Model.Food.food_carbohydrates</li>
+    <li>@Html.LabelFor(products => Model.Food.food_carbohydrates_sugars): @Model.Food.food_carbohydrates_sugars</li>
+    <li>@Html.LabelFor(products => Model.Food.food_carbohydrates_starch): @Model.Food.food_carbohydrates_starch</li>
+</ul>
+<ul>
+    <li>@Html.LabelFor(products => Model.Food.food_protein): @Model.Food.food_protein</li>
+    <li>@Html.LabelFor(products => Model.Food.food_fat): @Model.Food.food_fat</li>
+    <li>@Html.LabelFor(products => Model.Food.food_fat_saturates): @Model.Food.food_fat_saturates</li>
+    <li>@Html.LabelFor(products => Model.Food.food_fat_monosaturates): @Model.Food.food_fat_monosaturates</li>
+    <li>@Html.LabelFor(products => Model.Food.food_fat_polysaturates): @Model.Food.food_fat_polysaturates</li>
+    <li>@Html.LabelFor(products => Model.Food.food_fibre): @Model.Food.food_fibre</li>
+    <li>@Html.LabelFor(products => Model.Food.food_salt): @Model.Food.food_salt</li>
+    <li>@Html.LabelFor(products => Model.Food.food_salt_sodium): @Model.Food.food_salt_sodium</li>
+</ul>
+@using (Html.BeginForm("Food", "Log", FormMethod.Post, null))
+{
+    @Html.ValidationSummary(true)
+    <fieldset>
+        <legend>LogSelectedFoodModel</legend>
+        @Html.HiddenFor(model => model.SelectedFood)
+        @Html.LabelFor(model => model.Quantity)
+        @Html.TextAreaFor(model => model.Quantity)
+        @Html.ValidationMessageFor(model => model.Quantity)
+        <input type="submit" value="Create" />
+    </fieldset>
+}
