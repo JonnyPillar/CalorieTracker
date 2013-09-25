@@ -114,6 +114,7 @@
     }
     .dashboardFoodLogPanel
     {
+        width: 49%;
         margin:0;
         padding:0;
         border:1px solid red;
@@ -131,6 +132,14 @@
             border:0;
             list-style:none;
         }
+    .dashboardLogPanel
+    {
+        float:right;
+        width:49%;
+        height:300px;
+        border:1px solid red;
+    }
+    
 /*
     End of User Dashboard
 */

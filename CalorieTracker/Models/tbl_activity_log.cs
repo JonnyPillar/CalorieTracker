@@ -34,14 +34,37 @@ namespace CalorieTracker.Models
             this.activity_log_file_url = newLog.File;
             this.actvitity_log_date = DateTime.Now.ToString("ddMMyyyyHHmmss");
         }
-
+        /// <summary>
+        /// Log ID
+        /// </summary>
         public string activity_log_id { get; set; }
+        /// <summary>
+        /// Activity ID
+        /// </summary>
         public string activity_log_activity_id { get; set; }
+        /// <summary>
+        /// User ID
+        /// </summary>
         public string activity_log_user_id { get; set; }
+        /// <summary>
+        /// Activity Time Seconds
+        /// </summary>
         public Nullable<double> activity_log_time { get; set; }
+        /// <summary>
+        /// Activity Time Meters
+        /// </summary>
         public Nullable<double> activity_log_distance { get; set; }
+        /// <summary>
+        /// Activity Notes
+        /// </summary>
         public string activity_log_notes { get; set; }
+        /// <summary>
+        /// Activity GPX/TCX file URL
+        /// </summary>
         public string activity_log_file_url { get; set; }
+        /// <summary>
+        /// Activity Date ddMMyyyyHHmmss
+        /// </summary>
         public string actvitity_log_date { get; set; }
 
         public virtual tbl_activity tbl_activity { get; set; }

@@ -19,7 +19,7 @@ namespace CalorieTracker.Controllers
 
         public ActionResult Index()
         {
-            if (!User.Identity.IsAuthenticated) RedirectToAction("Login", "Accounts");
+            if (!User.Identity.IsAuthenticated) return RedirectToAction("Login", "Accounts");
             //TODO Improve!!! and move SQL Excution out
             user = db.tbl_user.Find(User.Identity.Name);
             metricList = db.tbl_user_metric.ToList();

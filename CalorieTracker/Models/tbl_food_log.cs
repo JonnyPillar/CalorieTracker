@@ -42,15 +42,30 @@ namespace CalorieTracker.Models
             this.food_log_quantity = newfood.food_quantity;
         }
 
+        /// <summary>
+        /// Log ID
+        /// </summary>
         [HiddenInput]
         public string food_log_id { get; set; }
+        /// <summary>
+        /// User ID
+        /// </summary>
         [HiddenInput]
         public string food_log_user_id { get; set; }
+        /// <summary>
+        /// Food ID
+        /// </summary>
         [HiddenInput]
         [Display(Name = "Food")]
         public string food_log_food_id { get; set; }
+        /// <summary>
+        /// Log Date ddMMyyyyHHmmss
+        /// </summary>
         [HiddenInput]
         public string food_log_date { get; set; }
+        /// <summary>
+        /// Log Quantity
+        /// </summary>
         [Display(Name = "Quantity")]
         public Nullable<double> food_log_quantity { get; set; }
 

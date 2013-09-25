@@ -22,63 +22,120 @@ namespace CalorieTracker.Models
             this.tbl_food1 = new HashSet<tbl_food>();
         }
 
+        /// <summary>
+        /// Food ID
+        /// </summary>
         [HiddenInput]
         public string food_id { get; set; }
 
+        /// <summary>
+        /// Parent ID - For Meals
+        /// </summary>
         [HiddenInput]
         public string food_parent_id { get; set; }
 
+        /// <summary>
+        /// Food Name
+        /// </summary>
         [Required]
         [Display(Name = " Name123")]
         public string food_name { get; set; }
 
+        /// <summary>
+        /// Quantity 
+        /// </summary>
         [Required]
         [Display(Name = "Quantity")]
         public Nullable<double> food_quantity { get; set; }
 
+        /// <summary>
+        /// Food Wieght Grams
+        /// </summary>
         [Display(Name = "Weight Grams")]
         public Nullable<double> food_weight { get; set; }
 
+        /// <summary>
+        /// Food Volume ML - For Liquids
+        /// </summary>
         [Display(Name = "Volume ML")]
         public Nullable<double> food_volume { get; set; }
 
+        /// <summary>
+        /// Food Energy KJ
+        /// </summary>
         [Display(Name = "Energy KJ")]
         public Nullable<double> food_energy { get; set; }
 
+        /// <summary>
+        /// Food Calories KCal
+        /// </summary>
         [Required]
         [Display(Name = "Energy KCal")]
         public Nullable<double> food_calories { get; set; }
 
+        /// <summary>
+        /// Food Carbohydrates 
+        /// </summary>
         [Display(Name = "Carbohydrate")]
         public Nullable<double> food_carbohydrates { get; set; }
 
+        /// <summary>
+        /// Carbohydrate Of Which Sugars
+        /// </summary>
         [Display(Name = "Carbohydrate Of Which Sugars")]
         public Nullable<double> food_carbohydrates_sugars { get; set; }
 
+        /// <summary>
+        /// Carbohydrate Of Which Starch
+        /// </summary>
         [Display(Name = "Carbohydrate Of Which Starch")]
         public Nullable<double> food_carbohydrates_starch { get; set; }
 
+        /// <summary>
+        /// Food Protein
+        /// </summary>
         [Display(Name = "Protien")]
         public Nullable<double> food_protein { get; set; }
 
+        /// <summary>
+        /// Food Fat
+        /// </summary>
         [Display(Name = "Fat")]
         public Nullable<double> food_fat { get; set; }
 
+        /// <summary>
+        /// Food Fat Of Which Saturates
+        /// </summary>
         [Display(Name = "Fat Of Which Saturates")]
         public Nullable<double> food_fat_saturates { get; set; }
 
+        /// <summary>
+        /// Fat Of Which Mono-Unsaturates
+        /// </summary>
         [Display(Name = "Fat Of Which Mono-Unsaturates")]
         public Nullable<double> food_fat_monosaturates { get; set; }
 
+        /// <summary>
+        /// Fat Of Which Polyunsaturates
+        /// </summary>
         [Display(Name = "Fat Of Which Polyunsaturates")]
         public Nullable<double> food_fat_polysaturates { get; set; }
 
+        /// <summary>
+        /// Food Fibre
+        /// </summary>
         [Display(Name = "Fibre")]
         public Nullable<double> food_fibre { get; set; }
 
+        /// <summary>
+        /// Food Salt
+        /// </summary>
         [Display(Name = "Salt")]
         public Nullable<double> food_salt { get; set; }
 
+        /// <summary>
+        /// Salt Of Which Sodium
+        /// </summary>
         [Display(Name = "Salt Of Which Sodium")]
         public Nullable<double> food_salt_sodium { get; set; }
 
