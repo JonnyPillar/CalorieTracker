@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web.Mvc;
 using CalorieTracker.Models;
 using CalorieTracker.ViewModels;
+using CalorieTracker.Utilities;
 
 namespace CalorieTracker.Controllers
 {
@@ -17,7 +18,7 @@ namespace CalorieTracker.Controllers
         [HttpGet]
         public ActionResult Index()
         {
-            if (!User.Identity.IsAuthenticated) RedirectToAction("Logon", "Accounts");
+            if (!User.Identity.IsAuthenticated) return RedirectToAction("Logon", "Accounts");
             LogModel foodLogModel = new LogModel(db.tbl_activity.ToList(), GetUserFood(), db.tbl_user_metric.ToList(), todayCalorie, GetCalorieBurned());
             return View(foodLogModel);
         }
@@ -50,6 +51,17 @@ namespace CalorieTracker.Controllers
             db.SaveChanges();
             return RedirectToAction("Index", "Dashboard");
         }
+
+        //
+        // GET: /Log/History
+        [HttpGet]
+        public ActionResult History()
+        {
+            if (!User.Identity.IsAuthenticated) return RedirectToAction("Logon", "Accounts");
+            return View(LogUtil.GetUserHistory(db.tbl_user.Find(User.Identity.Name), -1));
+        }
+
+
 
         /// <summary>
         /// Get Users Recent Foods

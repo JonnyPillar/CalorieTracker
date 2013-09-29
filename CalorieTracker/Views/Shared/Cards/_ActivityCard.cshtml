@@ -1,0 +1,13 @@
+﻿@model CalorieTracker.Models.tbl_activity_log
+<table>
+    <tr>
+        <td>@Model.tbl_activity.activity_name
+        </td>
+        <td>@Model.activity_log_time
+        </td>
+        <td>@Model.activity_log_distance
+        </td>
+        <td>@Html.ActionLink(linkText: "View More", actionName: "Details", controllerName: "Activity", routeValues: new { id = Model.activity_log_id }, htmlAttributes: null)
+        </td>
+    </tr>
+</table>

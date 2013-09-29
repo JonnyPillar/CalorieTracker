@@ -1,8 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
 using CalorieTracker.Models;
+using CalorieTracker.Utilities;
 using CalorieTracker.ViewModels;
 
 namespace CalorieTracker.Controllers
@@ -29,40 +29,8 @@ namespace CalorieTracker.Controllers
                 tbl_user_information temp = db.tbl_user_information.SqlQuery(query, item.user_metric_id).First();
                 if (temp != null) userInfoList.Add(temp);
             }
-            DashboardModel model = new DashboardModel(user, userInfoList, getUserHistory());
+            DashboardModel model = new DashboardModel(user, userInfoList, LogUtil.GetUserHistory(user, 5)); //Show 5 Days
             return View(model);
-        }
-
-        /// <summary>
-        /// Get all users history and merge into one feed ordered by Date
-        /// </summary>
-        /// <returns>Date Ordered Dictionary or User History</returns>
-        private Dictionary<DateTime, List<object>> getUserHistory()
-        {
-            Dictionary<DateTime, List<object>> historyDictionary = new Dictionary<DateTime, List<object>>();
-            foreach (tbl_food_log item in user.tbl_food_log) //Add all foods to history disctionn
-            {
-                DateTime loggedDate = DateTime.ParseExact(item.food_log_date, "ddMMyyyyHHmmss", null);
-                DateTime recordedDate = new DateTime(loggedDate.Year, loggedDate.Month, loggedDate.Day);
-                if (historyDictionary.ContainsKey(recordedDate)) historyDictionary[recordedDate].Add(item); //If exists add to existing list
-                else historyDictionary.Add(recordedDate, new List<object>() { item }); //Create new List
-            }
-            foreach (tbl_activity_log item in user.tbl_activity_log) //Add all Activities to history dictionary
-            {
-                DateTime loggedDate = DateTime.ParseExact(item.actvitity_log_date, "ddMMyyyyHHmmss", null);
-                DateTime recordedDate = new DateTime(loggedDate.Year, loggedDate.Month, loggedDate.Day);
-                if (historyDictionary.ContainsKey(recordedDate)) historyDictionary[recordedDate].Add(item); //If exists add to existing list
-                else historyDictionary.Add(recordedDate, new List<object>() { item }); //Create new List
-            }
-            foreach (tbl_user_information item in user.tbl_user_information)
-            {
-                DateTime loggedDate = DateTime.ParseExact(item.user_information_timestamp, "ddMMyyyyHHmmss", null);
-                DateTime recordedDate = new DateTime(loggedDate.Year, loggedDate.Month, loggedDate.Day);
-                if (historyDictionary.ContainsKey(recordedDate)) historyDictionary[recordedDate].Add(item); //If exists add to existing list
-                else historyDictionary.Add(recordedDate, new List<object>() { item }); //Create new List
-            }
-            historyDictionary = historyDictionary.OrderByDescending(i => i.Key).ToDictionary(x => x.Key, x => x.Value); // TODO make more efficent
-            return historyDictionary;
         }
     }
 }

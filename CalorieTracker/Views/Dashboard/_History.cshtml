@@ -1,40 +1,30 @@
-﻿@using CalorieTracker.Models
-@model System.Collections.Generic.Dictionary<DateTime, List<object>>
+﻿@model CalorieTracker.Collections.DashboardHistoryList
 @{
     ViewBag.Title = "History";
 }
-<h2>History</h2>
-@foreach (var item in Model)
-{
-    <div>
-        <h3>@item.Key.ToString("dd/MM/yyyy")</h3>
-        @foreach (var subItem in item.Value)
-        {
-            <ul>
-                @if (subItem is tbl_food_log) 
-                { 
-                    tbl_food_log log = (tbl_food_log)subItem;
-                    <li>@log.tbl_food.food_name</li>
-                    <li>@log.food_log_quantity</li>
-                    <li>@log.tbl_food.food_calories</li>
-                    <li>@Html.ActionLink(linkText: "View More", actionName: "Details", controllerName: "Food", routeValues: new { id = log.food_log_id }, htmlAttributes: null)</li>
-                } 
-                else if (subItem is tbl_activity_log) 
-                { 
-                    tbl_activity_log log = (tbl_activity_log)subItem;
-                    <li>@log.tbl_activity.activity_name</li>
-                    <li>@log.activity_log_time</li>
-                    <li>@log.activity_log_distance</li>
-                    <li>@Html.ActionLink(linkText: "View More", actionName: "Details", controllerName: "Activity", routeValues: new { id = log.activity_log_id }, htmlAttributes: null)</li>
-                }
-                else if (subItem is tbl_user_information) 
-                {
-                    tbl_user_information log = (tbl_user_information)subItem;
-                    <li>@log.tbl_user_metric.user_metric_name</li>
-                    <li>@log.user_information_value</li>
-                    <li>@Html.ActionLink(linkText: "View More", actionName: "Details", controllerName: "UserInformation", routeValues: new { id = log.user_information_id }, htmlAttributes: null)</li>
-                }
-            </ul>
-        }
+<div class="dashboardFoodLogPanel">
+    <h2>
+        History</h2>
+    <div class="buttonPanel">
+        @Html.ActionLink("View All", "History", "Log")
     </div>
-}
+    @foreach (var item in Model.HistoryList)
+    {
+        <h2>@item.Key.ToString("dd/MM/yyyy")</h2>
+        foreach (var subItem in item.Value)
+        {
+            if (subItem.FoodLog != null) //Food
+            {
+                @Html.Partial("../Shared/Cards/_FoodCard", subItem.FoodLog)
+            }
+            else if (subItem.ActivityLog != null) //Activity
+            {
+                @Html.Partial("../Shared/Cards/_ActivityCard", subItem.ActivityLog)
+            }
+            else if (subItem.UserInformation != null) //User Informationn
+            {
+                @Html.Partial("../Shared/Cards/_UserInformationCard", subItem.UserInformation)
+            }
+        }
+    }
+</div>

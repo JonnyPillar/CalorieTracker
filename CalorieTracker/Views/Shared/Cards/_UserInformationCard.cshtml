@@ -1,0 +1,11 @@
+﻿@model CalorieTracker.Models.tbl_user_information
+<table>
+    <tr>
+        <td>@Model.tbl_user_metric.user_metric_name
+        </td>
+        <td>@Model.user_information_value
+        </td>
+        <td>@Html.ActionLink(linkText: "View More", actionName: "Details", controllerName: "UserInformation", routeValues: new { id = Model.user_information_id }, htmlAttributes: null)
+        </td>
+    </tr>
+</table>

@@ -1,0 +1,24 @@
+﻿@model CalorieTracker.Collections.DashboardHistoryList
+@{
+    ViewBag.Title = "History";
+}
+<h2>History</h2>
+@foreach (var item in Model.HistoryList)
+{
+    <h2>@item.Key.ToString("dd/MM/yyyy")</h2>
+    foreach (var subItem in item.Value)
+    {
+        if (subItem.FoodLog != null) //Food
+        {
+            @Html.Partial("Cards/_FoodCard", subItem.FoodLog)
+        }
+        else if (subItem.ActivityLog != null) //Activity
+        {
+            @Html.Partial("Cards/_ActivityCard", subItem.ActivityLog)
+        }
+        else if (subItem.UserInformation != null) //User Informationn
+        {
+            @Html.Partial("Cards/_UserInformationCard", subItem.UserInformation)
+        }
+    }
+}

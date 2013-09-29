@@ -1,0 +1,13 @@
+﻿@model CalorieTracker.Models.tbl_food_log
+<table>
+    <tr>
+        <td>@Model.tbl_food.food_name
+        </td>
+        <td>@Model.food_log_quantity
+        </td>
+        <td>@Model.tbl_food.food_calories
+        </td>
+        <td>@Html.ActionLink(linkText: "View More", actionName: "Details", controllerName: "Food", routeValues: new { id = Model.food_log_id }, htmlAttributes: null)
+        </td>
+    </tr>
+</table>
