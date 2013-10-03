@@ -112,25 +112,19 @@
     {
         width:82px;
     }
-    .dashboardFoodLogPanel
+    .dashboardHistoryPanel
     {
+        width:49%;
         margin:0;
         padding:0;
-        border:1px solid red;
+        border:0;
     }
-        .dashboardFoodLogPanel ul
-        {
-            margin:0;
-            padding:0;
-            border:1px solid blue;
-        }
-        .dashboardFoodLogPanel ul li
-        {
-            margin:0;
-            padding:0;
-            border:0;
-            list-style:none;
-        }
+    .dashboardHistoryPanel .buttonPanel
+    {
+        width:54px;
+        margin:0 auto;
+        text-align:center;
+    }
     .dashboardLogPanel
     {
         float:right;
@@ -267,4 +261,22 @@
             
 /*
     End of Log Page
+*/
+
+/*
+    History Panel
+*/
+.foodCard, .activityCard, .metricCard
+{
+    margin:0;
+    padding:1em;
+    border:0;
+    border-bottom:1px solid grey;
+}
+.foodCard a, .activityCard a, .metricCard a
+{
+    float:right;
+}
+/*
+    End of History Panel
 */

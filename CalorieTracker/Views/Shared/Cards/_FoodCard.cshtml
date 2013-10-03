@@ -1,13 +1,8 @@
 ﻿@model CalorieTracker.Models.tbl_food_log
-<table>
-    <tr>
-        <td>@Model.tbl_food.food_name
-        </td>
-        <td>@Model.food_log_quantity
-        </td>
-        <td>@Model.tbl_food.food_calories
-        </td>
-        <td>@Html.ActionLink(linkText: "View More", actionName: "Details", controllerName: "Food", routeValues: new { id = Model.food_log_id }, htmlAttributes: null)
-        </td>
-    </tr>
-</table>
+@{
+    double consumedValue = (double)Model.food_log_quantity * (double)Model.tbl_food.food_quantity;
+}
+<div class="foodCard">
+    @Html.ActionLink(linkText: "View More", actionName: "Details", controllerName: "Food", routeValues: new { id = Model.food_log_id }, htmlAttributes: null)
+    @Model.tbl_user.user_first_name @Model.tbl_user.user_second_name consumed @consumedValue of @Model.tbl_food.food_name
+</div>
