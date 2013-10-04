@@ -81,13 +81,13 @@ namespace CalorieTracker.Models
         [Display(Name = "Date Of Birth")]
         [Required(ErrorMessage = "Please Provide A Valid Date Of Birth")]
         //[DateOfBirthValidator] Reinstate later
-        public Nullable<System.DateTime> user_dob { get; set; }
+        public System.DateTime user_dob { get; set; }
 
         /// <summary>
         /// User Gender
         /// </summary>
         [Display(Name = "Gender")]
-        public Nullable<sbyte> user_gender { get; set; }
+        public sbyte user_gender { get; set; }
 
         [HiddenInput(DisplayValue = false)]
         public string user_password_salt { get; set; }
@@ -96,13 +96,13 @@ namespace CalorieTracker.Models
         public string user_password_hash { get; set; }
 
         [Display(Name = "Created Date")]
-        public Nullable<System.DateTime> user_creation_timestamp { get; set; }
+        public System.DateTime user_creation_timestamp { get; set; }
 
         [Display(Name = "Profile Image")]
         public string user_profile_image { get; set; }
 
         [HiddenInput(DisplayValue = false)]
-        public Nullable<sbyte> user_admin { get; set; }
+        public sbyte user_admin { get; set; }
     
         public virtual ICollection<tbl_activity_log> tbl_activity_log { get; set; }
         public virtual ICollection<tbl_food_log> tbl_food_log { get; set; }

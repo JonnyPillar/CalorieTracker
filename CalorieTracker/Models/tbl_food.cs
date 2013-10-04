@@ -45,7 +45,7 @@ namespace CalorieTracker.Models
         /// </summary>
         [Required]
         [Display(Name = "Quantity")]
-        public Nullable<double> food_quantity { get; set; }
+        public double food_quantity { get; set; }
 
         /// <summary>
         /// Food Wieght Grams
@@ -70,7 +70,7 @@ namespace CalorieTracker.Models
         /// </summary>
         [Required]
         [Display(Name = "Energy KCal")]
-        public Nullable<double> food_calories { get; set; }
+        public double food_calories { get; set; }
 
         /// <summary>
         /// Food Carbohydrates 

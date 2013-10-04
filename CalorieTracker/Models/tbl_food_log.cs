@@ -62,7 +62,7 @@ namespace CalorieTracker.Models
         /// Log Date ddMMyyyyHHmmss
         /// </summary>
         [HiddenInput]
-        public Nullable<System.DateTime> food_log_timestamp { get; set; }
+        public System.DateTime food_log_timestamp { get; set; }
         /// <summary>
         /// Log Quantity
         /// </summary>

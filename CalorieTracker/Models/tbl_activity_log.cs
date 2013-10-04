@@ -42,11 +42,11 @@ namespace CalorieTracker.Models
         /// <summary>
         /// Activity Time Seconds
         /// </summary>
-        public Nullable<System.TimeSpan> activity_log_duration { get; set; }
+        public System.TimeSpan activity_log_duration { get; set; }
         /// <summary>
         /// Activity Distance Meters
         /// </summary>
-        public Nullable<double> activity_log_distance { get; set; }
+        public double activity_log_distance { get; set; }
         /// <summary>
         /// Activity Hear Rate BPM
         /// </summary>
@@ -66,7 +66,7 @@ namespace CalorieTracker.Models
         /// <summary>
         /// Activity Date ddMMyyyyHHmmss
         /// </summary>
-        public Nullable<System.DateTime> actvitity_log_timestamp { get; set; }
+        public System.DateTime actvitity_log_timestamp { get; set; }
     
         public virtual tbl_activity tbl_activity { get; set; }
         public virtual tbl_user tbl_user { get; set; }

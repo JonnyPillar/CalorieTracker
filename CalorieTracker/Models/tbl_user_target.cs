@@ -24,7 +24,7 @@ namespace CalorieTracker.Models
         public string user_target_metric_id { get; set; }
         public string user_target_name { get; set; }
         public string user_target_parent_id { get; set; }
-        public Nullable<System.DateTime> user_target_creation_timestamp { get; set; }
+        public System.DateTime user_target_creation_timestamp { get; set; }
         public Nullable<sbyte> user_target_completed { get; set; }
         public Nullable<System.DateTime> user_target_completed_timestamp { get; set; }
     

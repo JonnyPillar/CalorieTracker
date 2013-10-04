@@ -19,7 +19,7 @@ namespace CalorieTracker.Models
         /// <summary>
         /// Burn Rate Per Second
         /// </summary>
-        public Nullable<double> activity_calorie_burn_rate { get; set; }
+        public double activity_calorie_burn_rate { get; set; }
         /// <summary>
         /// Image Url
         /// </summary>
