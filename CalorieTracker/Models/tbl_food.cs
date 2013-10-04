@@ -4,8 +4,7 @@
 //
 //    Manual changes to this file may cause unexpected behavior in your application.
 //    Manual changes to this file will be overwritten if the code is regenerated.
-// </auto-generated>
-//------------------------------------------------------------------------------
+// </auto-genetbl_food1//------------------------------------------------------------------------------
 
 namespace CalorieTracker.Models
 {
@@ -13,13 +12,13 @@ namespace CalorieTracker.Models
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using System.Web.Mvc;
-
+    
     public partial class tbl_food
-    {
+    {    
         public tbl_food()
         {
             this.tbl_food_log = new HashSet<tbl_food_log>();
-            this.tbl_food1 = new HashSet<tbl_food>();
+            this.tbl_meal = new HashSet<tbl_food>();
         }
 
         /// <summary>
@@ -140,7 +139,7 @@ namespace CalorieTracker.Models
         public Nullable<double> food_salt_sodium { get; set; }
 
         public virtual ICollection<tbl_food_log> tbl_food_log { get; set; }
-        public virtual ICollection<tbl_food> tbl_food1 { get; set; }
+        public virtual ICollection<tbl_food> tbl_meal { get; set; }
         public virtual tbl_food tbl_food2 { get; set; }
     }
 }

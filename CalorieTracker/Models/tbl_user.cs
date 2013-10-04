@@ -17,7 +17,7 @@ namespace CalorieTracker.Models
     using CalorieTracker.Models.Accounts;
     using CalorieTracker.Utilities;
     using CalorieTracker.Validators;
-
+    
     public partial class tbl_user
     {
         /// <summary>
@@ -27,7 +27,7 @@ namespace CalorieTracker.Models
         {
             this.tbl_activity_log = new HashSet<tbl_activity_log>();
             this.tbl_food_log = new HashSet<tbl_food_log>();
-            this.tbl_user_information = new HashSet<tbl_user_information>();
+            this.tbl_user_metric_log = new HashSet<tbl_user_metric_log>();
             this.tbl_user_target = new HashSet<tbl_user_target>();
         }
 
@@ -45,7 +45,7 @@ namespace CalorieTracker.Models
             PasswordHasher hasher = new PasswordHasher(newUser.Password);
             this.user_password_hash = hasher.PasswordHash;
             this.user_password_salt = hasher.PasswordSalt;
-            this.user_creation_date = DateTime.Now.ToString("ddMMyyyyHHmmss");
+            this.user_creation_timestamp = DateTime.Now;
             if (string.IsNullOrWhiteSpace(newUser.user_profile_image))
             {
                 string baseFolder = AppDomain.CurrentDomain.BaseDirectory + "Uploads\\User\\Profile\\";
@@ -56,7 +56,7 @@ namespace CalorieTracker.Models
             this.user_admin = 0; //Not Admin
             this.tbl_activity_log = new HashSet<tbl_activity_log>();
             this.tbl_food_log = new HashSet<tbl_food_log>();
-            this.tbl_user_information = new HashSet<tbl_user_information>();
+            this.tbl_user_metric_log = new HashSet<tbl_user_metric_log>();
             this.tbl_user_target = new HashSet<tbl_user_target>();
         }
 
@@ -81,7 +81,13 @@ namespace CalorieTracker.Models
         [Display(Name = "Date Of Birth")]
         [Required(ErrorMessage = "Please Provide A Valid Date Of Birth")]
         //[DateOfBirthValidator] Reinstate later
-        public string user_dob { get; set; }
+        public Nullable<System.DateTime> user_dob { get; set; }
+
+        /// <summary>
+        /// User Gender
+        /// </summary>
+        [Display(Name = "Gender")]
+        public Nullable<sbyte> user_gender { get; set; }
 
         [HiddenInput(DisplayValue = false)]
         public string user_password_salt { get; set; }
@@ -90,7 +96,7 @@ namespace CalorieTracker.Models
         public string user_password_hash { get; set; }
 
         [Display(Name = "Created Date")]
-        public string user_creation_date { get; set; }
+        public Nullable<System.DateTime> user_creation_timestamp { get; set; }
 
         [Display(Name = "Profile Image")]
         public string user_profile_image { get; set; }
@@ -100,7 +106,7 @@ namespace CalorieTracker.Models
     
         public virtual ICollection<tbl_activity_log> tbl_activity_log { get; set; }
         public virtual ICollection<tbl_food_log> tbl_food_log { get; set; }
-        public virtual ICollection<tbl_user_information> tbl_user_information { get; set; }
+        public virtual ICollection<tbl_user_metric_log> tbl_user_metric_log { get; set; }
         public virtual ICollection<tbl_user_target> tbl_user_target { get; set; }
     }
 }

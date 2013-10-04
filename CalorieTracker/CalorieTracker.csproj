@@ -204,10 +204,10 @@
     <Compile Include="Models\tbl_user.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\tbl_user_information.cs">
+    <Compile Include="Models\tbl_user_metric.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\tbl_user_metric.cs">
+    <Compile Include="Models\tbl_user_metric_log.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\tbl_user_target.cs">

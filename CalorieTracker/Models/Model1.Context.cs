@@ -29,9 +29,9 @@ namespace CalorieTracker.Models
         public DbSet<tbl_activity_log> tbl_activity_log { get; set; }
         public DbSet<tbl_food> tbl_food { get; set; }
         public DbSet<tbl_food_log> tbl_food_log { get; set; }
-        public DbSet<tbl_user_information> tbl_user_information { get; set; }
-        public DbSet<tbl_user_metric> tbl_user_metric { get; set; }
-        public DbSet<tbl_user_target> tbl_user_target { get; set; }
         public DbSet<tbl_user> tbl_user { get; set; }
+        public DbSet<tbl_user_metric> tbl_user_metric { get; set; }
+        public DbSet<tbl_user_metric_log> tbl_user_metric_log { get; set; }
+        public DbSet<tbl_user_target> tbl_user_target { get; set; }
     }
 }

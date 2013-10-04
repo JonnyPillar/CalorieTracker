@@ -24,11 +24,13 @@ namespace CalorieTracker.Models
         public string user_target_metric_id { get; set; }
         public string user_target_name { get; set; }
         public string user_target_parent_id { get; set; }
-        public string user_target_creation_date { get; set; }
+        public Nullable<System.DateTime> user_target_creation_timestamp { get; set; }
+        public Nullable<sbyte> user_target_completed { get; set; }
+        public Nullable<System.DateTime> user_target_completed_timestamp { get; set; }
     
+        public virtual tbl_user tbl_user { get; set; }
         public virtual tbl_user_metric tbl_user_metric { get; set; }
         public virtual ICollection<tbl_user_target> tbl_user_target1 { get; set; }
         public virtual tbl_user_target tbl_user_target2 { get; set; }
-        public virtual tbl_user tbl_user { get; set; }
     }
 }

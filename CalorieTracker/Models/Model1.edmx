@@ -11,8 +11,8 @@
           <EntitySet Name="tbl_food" EntityType="calorie_tracker_v1Model.Store.tbl_food" store:Type="Tables" Schema="calorie_tracker_v1" />
           <EntitySet Name="tbl_food_log" EntityType="calorie_tracker_v1Model.Store.tbl_food_log" store:Type="Tables" Schema="calorie_tracker_v1" />
           <EntitySet Name="tbl_user" EntityType="calorie_tracker_v1Model.Store.tbl_user" store:Type="Tables" Schema="calorie_tracker_v1" />
-          <EntitySet Name="tbl_user_information" EntityType="calorie_tracker_v1Model.Store.tbl_user_information" store:Type="Tables" Schema="calorie_tracker_v1" />
           <EntitySet Name="tbl_user_metric" EntityType="calorie_tracker_v1Model.Store.tbl_user_metric" store:Type="Tables" Schema="calorie_tracker_v1" />
+          <EntitySet Name="tbl_user_metric_log" EntityType="calorie_tracker_v1Model.Store.tbl_user_metric_log" store:Type="Tables" Schema="calorie_tracker_v1" />
           <EntitySet Name="tbl_user_target" EntityType="calorie_tracker_v1Model.Store.tbl_user_target" store:Type="Tables" Schema="calorie_tracker_v1" />
           <AssociationSet Name="activity_log_activity_id" Association="calorie_tracker_v1Model.Store.activity_log_activity_id">
             <End Role="tbl_activity" EntitySet="tbl_activity" />
@@ -36,11 +36,11 @@
           </AssociationSet>
           <AssociationSet Name="user_information_metric_id" Association="calorie_tracker_v1Model.Store.user_information_metric_id">
             <End Role="tbl_user_metric" EntitySet="tbl_user_metric" />
-            <End Role="tbl_user_information" EntitySet="tbl_user_information" />
+            <End Role="tbl_user_metric_log" EntitySet="tbl_user_metric_log" />
           </AssociationSet>
           <AssociationSet Name="user_information_user_id" Association="calorie_tracker_v1Model.Store.user_information_user_id">
             <End Role="tbl_user" EntitySet="tbl_user" />
-            <End Role="tbl_user_information" EntitySet="tbl_user_information" />
+            <End Role="tbl_user_metric_log" EntitySet="tbl_user_metric_log" />
           </AssociationSet>
           <AssociationSet Name="user_target_metric_id" Association="calorie_tracker_v1Model.Store.user_target_metric_id">
             <End Role="tbl_user_metric" EntitySet="tbl_user_metric" />
@@ -71,11 +71,13 @@
           <Property Name="activity_log_id" Type="varchar" Nullable="false" MaxLength="45" />
           <Property Name="activity_log_activity_id" Type="varchar" MaxLength="45" />
           <Property Name="activity_log_user_id" Type="varchar" MaxLength="45" />
-          <Property Name="activity_log_time" Type="double" />
+          <Property Name="activity_log_duration" Type="time" />
           <Property Name="activity_log_distance" Type="double" />
+          <Property Name="activity_log_heart_rate" Type="int" />
+          <Property Name="activity_log_accent" Type="double" />
           <Property Name="activity_log_notes" Type="mediumtext" />
           <Property Name="activity_log_file_url" Type="varchar" MaxLength="255" />
-          <Property Name="actvitity_log_date" Type="varchar" MaxLength="45" />
+          <Property Name="actvitity_log_timestamp" Type="datetime" />
         </EntityType>
         <EntityType Name="tbl_food">
           <Key>
@@ -108,7 +110,7 @@
           <Property Name="food_log_id" Type="varchar" Nullable="false" MaxLength="45" />
           <Property Name="food_log_user_id" Type="varchar" MaxLength="45" />
           <Property Name="food_log_food_id" Type="varchar" MaxLength="45" />
-          <Property Name="food_log_date" Type="varchar" MaxLength="45" />
+          <Property Name="food_log_timestamp" Type="datetime" />
           <Property Name="food_log_quantity" Type="double" />
         </EntityType>
         <EntityType Name="tbl_user">
@@ -119,22 +121,13 @@
           <Property Name="user_email" Type="varchar" MaxLength="254" />
           <Property Name="user_first_name" Type="varchar" MaxLength="40" />
           <Property Name="user_second_name" Type="varchar" MaxLength="40" />
-          <Property Name="user_dob" Type="varchar" MaxLength="45" />
+          <Property Name="user_dob" Type="datetime" />
+          <Property Name="user_gender" Type="tinyint" />
           <Property Name="user_password_hash" Type="varchar" MaxLength="255" />
           <Property Name="user_password_salt" Type="varchar" MaxLength="255" />
-          <Property Name="user_creation_date" Type="varchar" MaxLength="45" />
+          <Property Name="user_creation_timestamp" Type="datetime" />
           <Property Name="user_profile_image" Type="varchar" MaxLength="255" />
           <Property Name="user_admin" Type="tinyint" />
-        </EntityType>
-        <EntityType Name="tbl_user_information">
-          <Key>
-            <PropertyRef Name="user_information_id" />
-          </Key>
-          <Property Name="user_information_id" Type="varchar" Nullable="false" MaxLength="45" />
-          <Property Name="user_information_user_id" Type="varchar" MaxLength="45" />
-          <Property Name="user_information_metric_id" Type="varchar" MaxLength="45" />
-          <Property Name="user_information_value" Type="varchar" MaxLength="255" />
-          <Property Name="user_information_timestamp" Type="varchar" MaxLength="45" />
         </EntityType>
         <EntityType Name="tbl_user_metric">
           <Key>
@@ -143,6 +136,16 @@
           <Property Name="user_metric_id" Type="varchar" Nullable="false" MaxLength="45" />
           <Property Name="user_metric_name" Type="varchar" MaxLength="255" />
           <Property Name="user_metric_type" Type="varchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="tbl_user_metric_log">
+          <Key>
+            <PropertyRef Name="user_metric_log_id" />
+          </Key>
+          <Property Name="user_metric_log_id" Type="varchar" Nullable="false" MaxLength="45" />
+          <Property Name="user_metric_log_user_id" Type="varchar" MaxLength="45" />
+          <Property Name="user_metric_log_metric_id" Type="varchar" MaxLength="45" />
+          <Property Name="user_metric_log_value" Type="varchar" MaxLength="255" />
+          <Property Name="user_metric_log_timestamp" Type="datetime" />
         </EntityType>
         <EntityType Name="tbl_user_target">
           <Key>
@@ -153,7 +156,9 @@
           <Property Name="user_target_metric_id" Type="varchar" MaxLength="45" />
           <Property Name="user_target_name" Type="varchar" MaxLength="255" />
           <Property Name="user_target_parent_id" Type="varchar" MaxLength="45" />
-          <Property Name="user_target_creation_date" Type="varchar" MaxLength="45" />
+          <Property Name="user_target_creation_timestamp" Type="datetime" />
+          <Property Name="user_target_completed" Type="tinyint" />
+          <Property Name="user_target_completed_timestamp" Type="datetime" />
         </EntityType>
         <Association Name="activity_log_activity_id">
           <End Role="tbl_activity" Type="calorie_tracker_v1Model.Store.tbl_activity" Multiplicity="0..1">
@@ -225,13 +230,13 @@
           <End Role="tbl_user_metric" Type="calorie_tracker_v1Model.Store.tbl_user_metric" Multiplicity="0..1">
             <OnDelete Action="Cascade" />
           </End>
-          <End Role="tbl_user_information" Type="calorie_tracker_v1Model.Store.tbl_user_information" Multiplicity="*" />
+          <End Role="tbl_user_metric_log" Type="calorie_tracker_v1Model.Store.tbl_user_metric_log" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="tbl_user_metric">
               <PropertyRef Name="user_metric_id" />
             </Principal>
-            <Dependent Role="tbl_user_information">
-              <PropertyRef Name="user_information_metric_id" />
+            <Dependent Role="tbl_user_metric_log">
+              <PropertyRef Name="user_metric_log_metric_id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -239,13 +244,13 @@
           <End Role="tbl_user" Type="calorie_tracker_v1Model.Store.tbl_user" Multiplicity="0..1">
             <OnDelete Action="Cascade" />
           </End>
-          <End Role="tbl_user_information" Type="calorie_tracker_v1Model.Store.tbl_user_information" Multiplicity="*" />
+          <End Role="tbl_user_metric_log" Type="calorie_tracker_v1Model.Store.tbl_user_metric_log" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="tbl_user">
               <PropertyRef Name="user_id" />
             </Principal>
-            <Dependent Role="tbl_user_information">
-              <PropertyRef Name="user_information_user_id" />
+            <Dependent Role="tbl_user_metric_log">
+              <PropertyRef Name="user_metric_log_user_id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -298,11 +303,16 @@
           <EntitySet Name="tbl_activity_log" EntityType="calorie_tracker_v1Model.tbl_activity_log" />
           <EntitySet Name="tbl_food" EntityType="calorie_tracker_v1Model.tbl_food" />
           <EntitySet Name="tbl_food_log" EntityType="calorie_tracker_v1Model.tbl_food_log" />
-          <EntitySet Name="tbl_user_information" EntityType="calorie_tracker_v1Model.tbl_user_information" />
+          <EntitySet Name="tbl_user" EntityType="calorie_tracker_v1Model.tbl_user" />
           <EntitySet Name="tbl_user_metric" EntityType="calorie_tracker_v1Model.tbl_user_metric" />
+          <EntitySet Name="tbl_user_metric_log" EntityType="calorie_tracker_v1Model.tbl_user_metric_log" />
           <EntitySet Name="tbl_user_target" EntityType="calorie_tracker_v1Model.tbl_user_target" />
           <AssociationSet Name="activity_log_activity_id" Association="calorie_tracker_v1Model.activity_log_activity_id">
             <End Role="tbl_activity" EntitySet="tbl_activity" />
+            <End Role="tbl_activity_log" EntitySet="tbl_activity_log" />
+          </AssociationSet>
+          <AssociationSet Name="activity_log_user_id" Association="calorie_tracker_v1Model.activity_log_user_id">
+            <End Role="tbl_user" EntitySet="tbl_user" />
             <End Role="tbl_activity_log" EntitySet="tbl_activity_log" />
           </AssociationSet>
           <AssociationSet Name="food_log_food_id" Association="calorie_tracker_v1Model.food_log_food_id">
@@ -313,9 +323,21 @@
             <End Role="tbl_food" EntitySet="tbl_food" />
             <End Role="tbl_food1" EntitySet="tbl_food" />
           </AssociationSet>
+          <AssociationSet Name="food_log_user_id" Association="calorie_tracker_v1Model.food_log_user_id">
+            <End Role="tbl_user" EntitySet="tbl_user" />
+            <End Role="tbl_food_log" EntitySet="tbl_food_log" />
+          </AssociationSet>
+          <AssociationSet Name="user_information_user_id" Association="calorie_tracker_v1Model.user_information_user_id">
+            <End Role="tbl_user" EntitySet="tbl_user" />
+            <End Role="tbl_user_metric_log" EntitySet="tbl_user_metric_log" />
+          </AssociationSet>
+          <AssociationSet Name="user_target_user_id" Association="calorie_tracker_v1Model.user_target_user_id">
+            <End Role="tbl_user" EntitySet="tbl_user" />
+            <End Role="tbl_user_target" EntitySet="tbl_user_target" />
+          </AssociationSet>
           <AssociationSet Name="user_information_metric_id" Association="calorie_tracker_v1Model.user_information_metric_id">
             <End Role="tbl_user_metric" EntitySet="tbl_user_metric" />
-            <End Role="tbl_user_information" EntitySet="tbl_user_information" />
+            <End Role="tbl_user_metric_log" EntitySet="tbl_user_metric_log" />
           </AssociationSet>
           <AssociationSet Name="user_target_metric_id" Association="calorie_tracker_v1Model.user_target_metric_id">
             <End Role="tbl_user_metric" EntitySet="tbl_user_metric" />
@@ -325,130 +347,135 @@
             <End Role="tbl_user_target" EntitySet="tbl_user_target" />
             <End Role="tbl_user_target1" EntitySet="tbl_user_target" />
           </AssociationSet>
-          <EntitySet Name="tbl_user" EntityType="calorie_tracker_v1Model.tbl_user" />
-          <AssociationSet Name="activity_log_user_id" Association="calorie_tracker_v1Model.activity_log_user_id">
-            <End Role="tbl_user" EntitySet="tbl_user" />
-            <End Role="tbl_activity_log" EntitySet="tbl_activity_log" />
-          </AssociationSet>
-          <AssociationSet Name="food_log_user_id" Association="calorie_tracker_v1Model.food_log_user_id">
-            <End Role="tbl_user" EntitySet="tbl_user" />
-            <End Role="tbl_food_log" EntitySet="tbl_food_log" />
-          </AssociationSet>
-          <AssociationSet Name="user_information_user_id" Association="calorie_tracker_v1Model.user_information_user_id">
-            <End Role="tbl_user" EntitySet="tbl_user" />
-            <End Role="tbl_user_information" EntitySet="tbl_user_information" />
-          </AssociationSet>
-          <AssociationSet Name="user_target_user_id" Association="calorie_tracker_v1Model.user_target_user_id">
-            <End Role="tbl_user" EntitySet="tbl_user" />
-            <End Role="tbl_user_target" EntitySet="tbl_user_target" />
-          </AssociationSet>
         </EntityContainer>
         <EntityType Name="tbl_activity">
           <Key>
             <PropertyRef Name="activity_id" />
           </Key>
-          <Property Name="activity_id" Type="String" Nullable="false" MaxLength="45" Unicode="false" FixedLength="false" />
-          <Property Name="activity_name" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
-          <Property Name="activity_calorie_burn_rate" Type="Double" />
-          <Property Name="activity_image_url" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+          <Property Type="String" Name="activity_id" Nullable="false" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="activity_name" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="Double" Name="activity_calorie_burn_rate" />
+          <Property Type="String" Name="activity_image_url" MaxLength="255" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="tbl_activity_log" Relationship="calorie_tracker_v1Model.activity_log_activity_id" FromRole="tbl_activity" ToRole="tbl_activity_log" />
         </EntityType>
         <EntityType Name="tbl_activity_log">
           <Key>
             <PropertyRef Name="activity_log_id" />
           </Key>
-          <Property Name="activity_log_id" Type="String" Nullable="false" MaxLength="45" Unicode="false" FixedLength="false" />
-          <Property Name="activity_log_activity_id" Type="String" MaxLength="45" Unicode="false" FixedLength="false" />
-          <Property Name="activity_log_user_id" Type="String" MaxLength="45" Unicode="false" FixedLength="false" />
-          <Property Name="activity_log_time" Type="Double" />
-          <Property Name="activity_log_distance" Type="Double" />
-          <Property Name="activity_log_notes" Type="String" MaxLength="16777215" Unicode="false" FixedLength="false" />
-          <Property Name="activity_log_file_url" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+          <Property Type="String" Name="activity_log_id" Nullable="false" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="activity_log_activity_id" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="activity_log_user_id" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Type="Time" Name="activity_log_duration" />
+          <Property Type="Double" Name="activity_log_distance" />
+          <Property Type="Int32" Name="activity_log_heart_rate" />
+          <Property Type="Double" Name="activity_log_accent" />
+          <Property Type="String" Name="activity_log_notes" MaxLength="16777215" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="activity_log_file_url" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="DateTime" Name="actvitity_log_timestamp" />
           <NavigationProperty Name="tbl_activity" Relationship="calorie_tracker_v1Model.activity_log_activity_id" FromRole="tbl_activity_log" ToRole="tbl_activity" />
           <NavigationProperty Name="tbl_user" Relationship="calorie_tracker_v1Model.activity_log_user_id" FromRole="tbl_activity_log" ToRole="tbl_user" />
-          <Property Type="String" Name="actvitity_log_date" MaxLength="45" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="tbl_food">
           <Key>
             <PropertyRef Name="food_id" />
           </Key>
-          <Property Name="food_id" Type="String" Nullable="false" MaxLength="45" Unicode="false" FixedLength="false" />
-          <Property Name="food_parent_id" Type="String" MaxLength="45" Unicode="false" FixedLength="false" />
-          <Property Name="food_name" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
-          <Property Name="food_quantity" Type="Double" />
-          <Property Name="food_carbohydrates" Type="Double" />
-          <Property Name="food_protein" Type="Double" />
-          <Property Name="food_fat" Type="Double" />
-          <NavigationProperty Name="tbl_food_log" Relationship="calorie_tracker_v1Model.food_log_food_id" FromRole="tbl_food" ToRole="tbl_food_log" />
-          <NavigationProperty Name="tbl_food1" Relationship="calorie_tracker_v1Model.food_parent_id" FromRole="tbl_food" ToRole="tbl_food1" />
-          <NavigationProperty Name="tbl_food2" Relationship="calorie_tracker_v1Model.food_parent_id" FromRole="tbl_food1" ToRole="tbl_food" />
+          <Property Type="String" Name="food_id" Nullable="false" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="food_parent_id" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="food_name" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="Double" Name="food_quantity" />
           <Property Type="Double" Name="food_weight" />
           <Property Type="Double" Name="food_volume" />
           <Property Type="Double" Name="food_energy" />
           <Property Type="Double" Name="food_calories" />
+          <Property Type="Double" Name="food_protein" />
+          <Property Type="Double" Name="food_carbohydrates" />
           <Property Type="Double" Name="food_carbohydrates_sugars" />
           <Property Type="Double" Name="food_carbohydrates_starch" />
+          <Property Type="Double" Name="food_fat" />
           <Property Type="Double" Name="food_fat_saturates" />
           <Property Type="Double" Name="food_fat_monosaturates" />
           <Property Type="Double" Name="food_fat_polysaturates" />
           <Property Type="Double" Name="food_fibre" />
           <Property Type="Double" Name="food_salt" />
           <Property Type="Double" Name="food_salt_sodium" />
+          <NavigationProperty Name="tbl_food_log" Relationship="calorie_tracker_v1Model.food_log_food_id" FromRole="tbl_food" ToRole="tbl_food_log" />
+          <NavigationProperty Name="tbl_food1" Relationship="calorie_tracker_v1Model.food_parent_id" FromRole="tbl_food" ToRole="tbl_food1" />
+          <NavigationProperty Name="tbl_food2" Relationship="calorie_tracker_v1Model.food_parent_id" FromRole="tbl_food1" ToRole="tbl_food" />
         </EntityType>
         <EntityType Name="tbl_food_log">
           <Key>
             <PropertyRef Name="food_log_id" />
           </Key>
-          <Property Name="food_log_id" Type="String" Nullable="false" MaxLength="45" Unicode="false" FixedLength="false" />
-          <Property Name="food_log_user_id" Type="String" MaxLength="45" Unicode="false" FixedLength="false" />
-          <Property Name="food_log_food_id" Type="String" MaxLength="45" Unicode="false" FixedLength="false" />
-          <Property Name="food_log_date" Type="String" MaxLength="45" Unicode="false" FixedLength="false" />
-          <Property Name="food_log_quantity" Type="Double" />
+          <Property Type="String" Name="food_log_id" Nullable="false" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="food_log_user_id" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="food_log_food_id" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Type="DateTime" Name="food_log_timestamp" />
+          <Property Type="Double" Name="food_log_quantity" />
           <NavigationProperty Name="tbl_food" Relationship="calorie_tracker_v1Model.food_log_food_id" FromRole="tbl_food_log" ToRole="tbl_food" />
           <NavigationProperty Name="tbl_user" Relationship="calorie_tracker_v1Model.food_log_user_id" FromRole="tbl_food_log" ToRole="tbl_user" />
         </EntityType>
-        <EntityType Name="tbl_user_information">
+        <EntityType Name="tbl_user">
           <Key>
-            <PropertyRef Name="user_information_id" />
+            <PropertyRef Name="user_id" />
           </Key>
-          <Property Name="user_information_id" Type="String" Nullable="false" MaxLength="45" Unicode="false" FixedLength="false" />
-          <Property Name="user_information_user_id" Type="String" MaxLength="45" Unicode="false" FixedLength="false" />
-          <Property Name="user_information_metric_id" Type="String" MaxLength="45" Unicode="false" FixedLength="false" />
-          <Property Name="user_information_value" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
-          <NavigationProperty Name="tbl_user_metric" Relationship="calorie_tracker_v1Model.user_information_metric_id" FromRole="tbl_user_information" ToRole="tbl_user_metric" />
-          <NavigationProperty Name="tbl_user" Relationship="calorie_tracker_v1Model.user_information_user_id" FromRole="tbl_user_information" ToRole="tbl_user" />
-          <Property Type="String" Name="user_information_timestamp" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="user_id" Nullable="false" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="user_email" MaxLength="254" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="user_first_name" MaxLength="40" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="user_second_name" MaxLength="40" FixedLength="false" Unicode="false" />
+          <Property Type="DateTime" Name="user_dob" />
+          <Property Type="SByte" Name="user_gender" />
+          <Property Type="String" Name="user_password_hash" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="user_password_salt" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="DateTime" Name="user_creation_timestamp" />
+          <Property Type="String" Name="user_profile_image" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="SByte" Name="user_admin" />
+          <NavigationProperty Name="tbl_activity_log" Relationship="calorie_tracker_v1Model.activity_log_user_id" FromRole="tbl_user" ToRole="tbl_activity_log" />
+          <NavigationProperty Name="tbl_food_log" Relationship="calorie_tracker_v1Model.food_log_user_id" FromRole="tbl_user" ToRole="tbl_food_log" />
+          <NavigationProperty Name="tbl_user_metric_log" Relationship="calorie_tracker_v1Model.user_information_user_id" FromRole="tbl_user" ToRole="tbl_user_metric_log" />
+          <NavigationProperty Name="tbl_user_target" Relationship="calorie_tracker_v1Model.user_target_user_id" FromRole="tbl_user" ToRole="tbl_user_target" />
         </EntityType>
         <EntityType Name="tbl_user_metric">
           <Key>
             <PropertyRef Name="user_metric_id" />
           </Key>
-          <Property Name="user_metric_id" Type="String" Nullable="false" MaxLength="45" Unicode="false" FixedLength="false" />
-          <Property Name="user_metric_name" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
-          <Property Name="user_metric_type" Type="String" MaxLength="10" Unicode="false" FixedLength="false" />
-          <NavigationProperty Name="tbl_user_information" Relationship="calorie_tracker_v1Model.user_information_metric_id" FromRole="tbl_user_metric" ToRole="tbl_user_information" />
+          <Property Type="String" Name="user_metric_id" Nullable="false" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="user_metric_name" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="user_metric_type" MaxLength="10" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="tbl_user_metric_log" Relationship="calorie_tracker_v1Model.user_information_metric_id" FromRole="tbl_user_metric" ToRole="tbl_user_metric_log" />
           <NavigationProperty Name="tbl_user_target" Relationship="calorie_tracker_v1Model.user_target_metric_id" FromRole="tbl_user_metric" ToRole="tbl_user_target" />
+        </EntityType>
+        <EntityType Name="tbl_user_metric_log">
+          <Key>
+            <PropertyRef Name="user_metric_log_id" />
+          </Key>
+          <Property Type="String" Name="user_metric_log_id" Nullable="false" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="user_metric_log_user_id" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="user_metric_log_metric_id" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="user_metric_log_value" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="DateTime" Name="user_metric_log_timestamp" />
+          <NavigationProperty Name="tbl_user" Relationship="calorie_tracker_v1Model.user_information_user_id" FromRole="tbl_user_metric_log" ToRole="tbl_user" />
+          <NavigationProperty Name="tbl_user_metric" Relationship="calorie_tracker_v1Model.user_information_metric_id" FromRole="tbl_user_metric_log" ToRole="tbl_user_metric" />
         </EntityType>
         <EntityType Name="tbl_user_target">
           <Key>
             <PropertyRef Name="user_target_id" />
           </Key>
-          <Property Name="user_target_id" Type="String" Nullable="false" MaxLength="45" Unicode="false" FixedLength="false" />
-          <Property Name="user_target_user_id" Type="String" MaxLength="45" Unicode="false" FixedLength="false" />
-          <Property Name="user_target_metric_id" Type="String" MaxLength="45" Unicode="false" FixedLength="false" />
-          <Property Name="user_target_name" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
-          <Property Name="user_target_parent_id" Type="String" MaxLength="45" Unicode="false" FixedLength="false" />
-          <Property Name="user_target_creation_date" Type="String" MaxLength="45" Unicode="false" FixedLength="false" />
+          <Property Type="String" Name="user_target_id" Nullable="false" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="user_target_user_id" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="user_target_metric_id" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="user_target_name" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="user_target_parent_id" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Type="DateTime" Name="user_target_creation_timestamp" />
+          <Property Type="SByte" Name="user_target_completed" />
+          <Property Type="DateTime" Name="user_target_completed_timestamp" />
+          <NavigationProperty Name="tbl_user" Relationship="calorie_tracker_v1Model.user_target_user_id" FromRole="tbl_user_target" ToRole="tbl_user" />
           <NavigationProperty Name="tbl_user_metric" Relationship="calorie_tracker_v1Model.user_target_metric_id" FromRole="tbl_user_target" ToRole="tbl_user_metric" />
           <NavigationProperty Name="tbl_user_target1" Relationship="calorie_tracker_v1Model.user_target_parent_id" FromRole="tbl_user_target" ToRole="tbl_user_target1" />
           <NavigationProperty Name="tbl_user_target2" Relationship="calorie_tracker_v1Model.user_target_parent_id" FromRole="tbl_user_target1" ToRole="tbl_user_target" />
-          <NavigationProperty Name="tbl_user" Relationship="calorie_tracker_v1Model.user_target_user_id" FromRole="tbl_user_target" ToRole="tbl_user" />
         </EntityType>
         <Association Name="activity_log_activity_id">
-          <End Role="tbl_activity" Type="calorie_tracker_v1Model.tbl_activity" Multiplicity="0..1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="tbl_activity_log" Type="calorie_tracker_v1Model.tbl_activity_log" Multiplicity="*" />
+          <End Type="calorie_tracker_v1Model.tbl_activity" Role="tbl_activity" Multiplicity="0..1" />
+          <End Type="calorie_tracker_v1Model.tbl_activity_log" Role="tbl_activity_log" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="tbl_activity">
               <PropertyRef Name="activity_id" />
@@ -458,9 +485,21 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="activity_log_user_id">
+          <End Type="calorie_tracker_v1Model.tbl_user" Role="tbl_user" Multiplicity="0..1" />
+          <End Type="calorie_tracker_v1Model.tbl_activity_log" Role="tbl_activity_log" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_user">
+              <PropertyRef Name="user_id" />
+            </Principal>
+            <Dependent Role="tbl_activity_log">
+              <PropertyRef Name="activity_log_user_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="food_log_food_id">
-          <End Role="tbl_food" Type="calorie_tracker_v1Model.tbl_food" Multiplicity="0..1" />
-          <End Role="tbl_food_log" Type="calorie_tracker_v1Model.tbl_food_log" Multiplicity="*" />
+          <End Type="calorie_tracker_v1Model.tbl_food" Role="tbl_food" Multiplicity="0..1" />
+          <End Type="calorie_tracker_v1Model.tbl_food_log" Role="tbl_food_log" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="tbl_food">
               <PropertyRef Name="food_id" />
@@ -471,87 +510,14 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="food_parent_id">
-          <End Role="tbl_food" Type="calorie_tracker_v1Model.tbl_food" Multiplicity="0..1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="tbl_food1" Type="calorie_tracker_v1Model.tbl_food" Multiplicity="*" />
+          <End Type="calorie_tracker_v1Model.tbl_food" Role="tbl_food" Multiplicity="0..1" />
+          <End Type="calorie_tracker_v1Model.tbl_food" Role="tbl_food1" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="tbl_food">
               <PropertyRef Name="food_id" />
             </Principal>
             <Dependent Role="tbl_food1">
               <PropertyRef Name="food_parent_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="user_information_metric_id">
-          <End Role="tbl_user_metric" Type="calorie_tracker_v1Model.tbl_user_metric" Multiplicity="0..1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="tbl_user_information" Type="calorie_tracker_v1Model.tbl_user_information" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tbl_user_metric">
-              <PropertyRef Name="user_metric_id" />
-            </Principal>
-            <Dependent Role="tbl_user_information">
-              <PropertyRef Name="user_information_metric_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="user_target_metric_id">
-          <End Role="tbl_user_metric" Type="calorie_tracker_v1Model.tbl_user_metric" Multiplicity="0..1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="tbl_user_target" Type="calorie_tracker_v1Model.tbl_user_target" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tbl_user_metric">
-              <PropertyRef Name="user_metric_id" />
-            </Principal>
-            <Dependent Role="tbl_user_target">
-              <PropertyRef Name="user_target_metric_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="user_target_parent_id">
-          <End Role="tbl_user_target" Type="calorie_tracker_v1Model.tbl_user_target" Multiplicity="0..1" />
-          <End Role="tbl_user_target1" Type="calorie_tracker_v1Model.tbl_user_target" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tbl_user_target">
-              <PropertyRef Name="user_target_id" />
-            </Principal>
-            <Dependent Role="tbl_user_target1">
-              <PropertyRef Name="user_target_parent_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <EntityType Name="tbl_user">
-          <Key>
-            <PropertyRef Name="user_id" />
-          </Key>
-          <Property Type="String" Name="user_id" Nullable="false" MaxLength="45" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="user_email" MaxLength="254" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="user_first_name" MaxLength="40" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="user_second_name" MaxLength="40" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="user_dob" MaxLength="45" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="user_password_hash" MaxLength="255" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="user_password_salt" MaxLength="255" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="user_creation_date" MaxLength="45" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="user_profile_image" MaxLength="255" FixedLength="false" Unicode="false" />
-          <Property Type="SByte" Name="user_admin" />
-          <NavigationProperty Name="tbl_activity_log" Relationship="calorie_tracker_v1Model.activity_log_user_id" FromRole="tbl_user" ToRole="tbl_activity_log" />
-          <NavigationProperty Name="tbl_food_log" Relationship="calorie_tracker_v1Model.food_log_user_id" FromRole="tbl_user" ToRole="tbl_food_log" />
-          <NavigationProperty Name="tbl_user_information" Relationship="calorie_tracker_v1Model.user_information_user_id" FromRole="tbl_user" ToRole="tbl_user_information" />
-          <NavigationProperty Name="tbl_user_target" Relationship="calorie_tracker_v1Model.user_target_user_id" FromRole="tbl_user" ToRole="tbl_user_target" />
-        </EntityType>
-        <Association Name="activity_log_user_id">
-          <End Type="calorie_tracker_v1Model.tbl_user" Role="tbl_user" Multiplicity="0..1" />
-          <End Type="calorie_tracker_v1Model.tbl_activity_log" Role="tbl_activity_log" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tbl_user">
-              <PropertyRef Name="user_id" />
-            </Principal>
-            <Dependent Role="tbl_activity_log">
-              <PropertyRef Name="activity_log_user_id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -569,13 +535,13 @@
         </Association>
         <Association Name="user_information_user_id">
           <End Type="calorie_tracker_v1Model.tbl_user" Role="tbl_user" Multiplicity="0..1" />
-          <End Type="calorie_tracker_v1Model.tbl_user_information" Role="tbl_user_information" Multiplicity="*" />
+          <End Type="calorie_tracker_v1Model.tbl_user_metric_log" Role="tbl_user_metric_log" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="tbl_user">
               <PropertyRef Name="user_id" />
             </Principal>
-            <Dependent Role="tbl_user_information">
-              <PropertyRef Name="user_information_user_id" />
+            <Dependent Role="tbl_user_metric_log">
+              <PropertyRef Name="user_metric_log_user_id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -591,89 +557,158 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-      </Schema>
+        <Association Name="user_information_metric_id">
+          <End Type="calorie_tracker_v1Model.tbl_user_metric" Role="tbl_user_metric" Multiplicity="0..1" />
+          <End Type="calorie_tracker_v1Model.tbl_user_metric_log" Role="tbl_user_metric_log" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_user_metric">
+              <PropertyRef Name="user_metric_id" />
+            </Principal>
+            <Dependent Role="tbl_user_metric_log">
+              <PropertyRef Name="user_metric_log_metric_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="user_target_metric_id">
+          <End Type="calorie_tracker_v1Model.tbl_user_metric" Role="tbl_user_metric" Multiplicity="0..1" />
+          <End Type="calorie_tracker_v1Model.tbl_user_target" Role="tbl_user_target" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_user_metric">
+              <PropertyRef Name="user_metric_id" />
+            </Principal>
+            <Dependent Role="tbl_user_target">
+              <PropertyRef Name="user_target_metric_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="user_target_parent_id">
+          <End Type="calorie_tracker_v1Model.tbl_user_target" Role="tbl_user_target" Multiplicity="0..1" />
+          <End Type="calorie_tracker_v1Model.tbl_user_target" Role="tbl_user_target1" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_user_target">
+              <PropertyRef Name="user_target_id" />
+            </Principal>
+            <Dependent Role="tbl_user_target1">
+              <PropertyRef Name="user_target_parent_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="calorie_tracker_v1ModelStoreContainer" CdmEntityContainer="calorie_tracker_v1Entities">
-          <EntitySetMapping Name="tbl_activity"><EntityTypeMapping TypeName="calorie_tracker_v1Model.tbl_activity"><MappingFragment StoreEntitySet="tbl_activity">
-            <ScalarProperty Name="activity_id" ColumnName="activity_id" />
-            <ScalarProperty Name="activity_name" ColumnName="activity_name" />
-            <ScalarProperty Name="activity_calorie_burn_rate" ColumnName="activity_calorie_burn_rate" />
-            <ScalarProperty Name="activity_image_url" ColumnName="activity_image_url" />
-          </MappingFragment></EntityTypeMapping></EntitySetMapping>
-          <EntitySetMapping Name="tbl_activity_log"><EntityTypeMapping TypeName="calorie_tracker_v1Model.tbl_activity_log"><MappingFragment StoreEntitySet="tbl_activity_log">
-            <ScalarProperty Name="actvitity_log_date" ColumnName="actvitity_log_date" />
+          <EntitySetMapping Name="tbl_activity">
+            <EntityTypeMapping TypeName="calorie_tracker_v1Model.tbl_activity">
+              <MappingFragment StoreEntitySet="tbl_activity">
+                <ScalarProperty Name="activity_image_url" ColumnName="activity_image_url" />
+                <ScalarProperty Name="activity_calorie_burn_rate" ColumnName="activity_calorie_burn_rate" />
+                <ScalarProperty Name="activity_name" ColumnName="activity_name" />
+                <ScalarProperty Name="activity_id" ColumnName="activity_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_activity_log">
+            <EntityTypeMapping TypeName="calorie_tracker_v1Model.tbl_activity_log">
+              <MappingFragment StoreEntitySet="tbl_activity_log">
+                <ScalarProperty Name="actvitity_log_timestamp" ColumnName="actvitity_log_timestamp" />
+                <ScalarProperty Name="activity_log_file_url" ColumnName="activity_log_file_url" />
+                <ScalarProperty Name="activity_log_notes" ColumnName="activity_log_notes" />
+                <ScalarProperty Name="activity_log_accent" ColumnName="activity_log_accent" />
+                <ScalarProperty Name="activity_log_heart_rate" ColumnName="activity_log_heart_rate" />
+                <ScalarProperty Name="activity_log_distance" ColumnName="activity_log_distance" />
+                <ScalarProperty Name="activity_log_duration" ColumnName="activity_log_duration" />
+                <ScalarProperty Name="activity_log_user_id" ColumnName="activity_log_user_id" />
+                <ScalarProperty Name="activity_log_activity_id" ColumnName="activity_log_activity_id" />
                 <ScalarProperty Name="activity_log_id" ColumnName="activity_log_id" />
-            <ScalarProperty Name="activity_log_activity_id" ColumnName="activity_log_activity_id" />
-            <ScalarProperty Name="activity_log_user_id" ColumnName="activity_log_user_id" />
-            <ScalarProperty Name="activity_log_time" ColumnName="activity_log_time" />
-            <ScalarProperty Name="activity_log_distance" ColumnName="activity_log_distance" />
-            <ScalarProperty Name="activity_log_notes" ColumnName="activity_log_notes" />
-            <ScalarProperty Name="activity_log_file_url" ColumnName="activity_log_file_url" />
-          </MappingFragment></EntityTypeMapping></EntitySetMapping>
-          <EntitySetMapping Name="tbl_food"><EntityTypeMapping TypeName="calorie_tracker_v1Model.tbl_food"><MappingFragment StoreEntitySet="tbl_food">
-            <ScalarProperty Name="food_salt_sodium" ColumnName="food_salt_sodium" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_food">
+            <EntityTypeMapping TypeName="calorie_tracker_v1Model.tbl_food">
+              <MappingFragment StoreEntitySet="tbl_food">
+                <ScalarProperty Name="food_salt_sodium" ColumnName="food_salt_sodium" />
                 <ScalarProperty Name="food_salt" ColumnName="food_salt" />
                 <ScalarProperty Name="food_fibre" ColumnName="food_fibre" />
                 <ScalarProperty Name="food_fat_polysaturates" ColumnName="food_fat_polysaturates" />
                 <ScalarProperty Name="food_fat_monosaturates" ColumnName="food_fat_monosaturates" />
                 <ScalarProperty Name="food_fat_saturates" ColumnName="food_fat_saturates" />
+                <ScalarProperty Name="food_fat" ColumnName="food_fat" />
                 <ScalarProperty Name="food_carbohydrates_starch" ColumnName="food_carbohydrates_starch" />
                 <ScalarProperty Name="food_carbohydrates_sugars" ColumnName="food_carbohydrates_sugars" />
+                <ScalarProperty Name="food_carbohydrates" ColumnName="food_carbohydrates" />
+                <ScalarProperty Name="food_protein" ColumnName="food_protein" />
                 <ScalarProperty Name="food_calories" ColumnName="food_calories" />
                 <ScalarProperty Name="food_energy" ColumnName="food_energy" />
                 <ScalarProperty Name="food_volume" ColumnName="food_volume" />
                 <ScalarProperty Name="food_weight" ColumnName="food_weight" />
+                <ScalarProperty Name="food_quantity" ColumnName="food_quantity" />
+                <ScalarProperty Name="food_name" ColumnName="food_name" />
+                <ScalarProperty Name="food_parent_id" ColumnName="food_parent_id" />
                 <ScalarProperty Name="food_id" ColumnName="food_id" />
-            <ScalarProperty Name="food_parent_id" ColumnName="food_parent_id" />
-            <ScalarProperty Name="food_name" ColumnName="food_name" />
-            <ScalarProperty Name="food_quantity" ColumnName="food_quantity" />
-            <ScalarProperty Name="food_carbohydrates" ColumnName="food_carbohydrates" />
-            <ScalarProperty Name="food_protein" ColumnName="food_protein" />
-            <ScalarProperty Name="food_fat" ColumnName="food_fat" />
-          </MappingFragment></EntityTypeMapping></EntitySetMapping>
-          <EntitySetMapping Name="tbl_food_log"><EntityTypeMapping TypeName="calorie_tracker_v1Model.tbl_food_log"><MappingFragment StoreEntitySet="tbl_food_log">
-            <ScalarProperty Name="food_log_id" ColumnName="food_log_id" />
-            <ScalarProperty Name="food_log_user_id" ColumnName="food_log_user_id" />
-            <ScalarProperty Name="food_log_food_id" ColumnName="food_log_food_id" />
-            <ScalarProperty Name="food_log_date" ColumnName="food_log_date" />
-            <ScalarProperty Name="food_log_quantity" ColumnName="food_log_quantity" />
-          </MappingFragment></EntityTypeMapping></EntitySetMapping>
-          <EntitySetMapping Name="tbl_user_information"><EntityTypeMapping TypeName="calorie_tracker_v1Model.tbl_user_information"><MappingFragment StoreEntitySet="tbl_user_information">
-            <ScalarProperty Name="user_information_timestamp" ColumnName="user_information_timestamp" />
-                <ScalarProperty Name="user_information_id" ColumnName="user_information_id" />
-            <ScalarProperty Name="user_information_user_id" ColumnName="user_information_user_id" />
-            <ScalarProperty Name="user_information_metric_id" ColumnName="user_information_metric_id" />
-            <ScalarProperty Name="user_information_value" ColumnName="user_information_value" />
-          </MappingFragment></EntityTypeMapping></EntitySetMapping>
-          <EntitySetMapping Name="tbl_user_metric"><EntityTypeMapping TypeName="calorie_tracker_v1Model.tbl_user_metric"><MappingFragment StoreEntitySet="tbl_user_metric">
-            <ScalarProperty Name="user_metric_id" ColumnName="user_metric_id" />
-            <ScalarProperty Name="user_metric_name" ColumnName="user_metric_name" />
-            <ScalarProperty Name="user_metric_type" ColumnName="user_metric_type" />
-          </MappingFragment></EntityTypeMapping></EntitySetMapping>
-          <EntitySetMapping Name="tbl_user_target"><EntityTypeMapping TypeName="calorie_tracker_v1Model.tbl_user_target"><MappingFragment StoreEntitySet="tbl_user_target">
-            <ScalarProperty Name="user_target_id" ColumnName="user_target_id" />
-            <ScalarProperty Name="user_target_user_id" ColumnName="user_target_user_id" />
-            <ScalarProperty Name="user_target_metric_id" ColumnName="user_target_metric_id" />
-            <ScalarProperty Name="user_target_name" ColumnName="user_target_name" />
-            <ScalarProperty Name="user_target_parent_id" ColumnName="user_target_parent_id" />
-            <ScalarProperty Name="user_target_creation_date" ColumnName="user_target_creation_date" />
-          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_food_log">
+            <EntityTypeMapping TypeName="calorie_tracker_v1Model.tbl_food_log">
+              <MappingFragment StoreEntitySet="tbl_food_log">
+                <ScalarProperty Name="food_log_quantity" ColumnName="food_log_quantity" />
+                <ScalarProperty Name="food_log_timestamp" ColumnName="food_log_timestamp" />
+                <ScalarProperty Name="food_log_food_id" ColumnName="food_log_food_id" />
+                <ScalarProperty Name="food_log_user_id" ColumnName="food_log_user_id" />
+                <ScalarProperty Name="food_log_id" ColumnName="food_log_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="tbl_user">
             <EntityTypeMapping TypeName="calorie_tracker_v1Model.tbl_user">
               <MappingFragment StoreEntitySet="tbl_user">
                 <ScalarProperty Name="user_admin" ColumnName="user_admin" />
                 <ScalarProperty Name="user_profile_image" ColumnName="user_profile_image" />
-                <ScalarProperty Name="user_creation_date" ColumnName="user_creation_date" />
+                <ScalarProperty Name="user_creation_timestamp" ColumnName="user_creation_timestamp" />
                 <ScalarProperty Name="user_password_salt" ColumnName="user_password_salt" />
                 <ScalarProperty Name="user_password_hash" ColumnName="user_password_hash" />
+                <ScalarProperty Name="user_gender" ColumnName="user_gender" />
                 <ScalarProperty Name="user_dob" ColumnName="user_dob" />
                 <ScalarProperty Name="user_second_name" ColumnName="user_second_name" />
                 <ScalarProperty Name="user_first_name" ColumnName="user_first_name" />
                 <ScalarProperty Name="user_email" ColumnName="user_email" />
                 <ScalarProperty Name="user_id" ColumnName="user_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_user_metric">
+            <EntityTypeMapping TypeName="calorie_tracker_v1Model.tbl_user_metric">
+              <MappingFragment StoreEntitySet="tbl_user_metric">
+                <ScalarProperty Name="user_metric_type" ColumnName="user_metric_type" />
+                <ScalarProperty Name="user_metric_name" ColumnName="user_metric_name" />
+                <ScalarProperty Name="user_metric_id" ColumnName="user_metric_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_user_metric_log">
+            <EntityTypeMapping TypeName="calorie_tracker_v1Model.tbl_user_metric_log">
+              <MappingFragment StoreEntitySet="tbl_user_metric_log">
+                <ScalarProperty Name="user_metric_log_timestamp" ColumnName="user_metric_log_timestamp" />
+                <ScalarProperty Name="user_metric_log_value" ColumnName="user_metric_log_value" />
+                <ScalarProperty Name="user_metric_log_metric_id" ColumnName="user_metric_log_metric_id" />
+                <ScalarProperty Name="user_metric_log_user_id" ColumnName="user_metric_log_user_id" />
+                <ScalarProperty Name="user_metric_log_id" ColumnName="user_metric_log_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_user_target">
+            <EntityTypeMapping TypeName="calorie_tracker_v1Model.tbl_user_target">
+              <MappingFragment StoreEntitySet="tbl_user_target">
+                <ScalarProperty Name="user_target_completed_timestamp" ColumnName="user_target_completed_timestamp" />
+                <ScalarProperty Name="user_target_completed" ColumnName="user_target_completed" />
+                <ScalarProperty Name="user_target_creation_timestamp" ColumnName="user_target_creation_timestamp" />
+                <ScalarProperty Name="user_target_parent_id" ColumnName="user_target_parent_id" />
+                <ScalarProperty Name="user_target_name" ColumnName="user_target_name" />
+                <ScalarProperty Name="user_target_metric_id" ColumnName="user_target_metric_id" />
+                <ScalarProperty Name="user_target_user_id" ColumnName="user_target_user_id" />
+                <ScalarProperty Name="user_target_id" ColumnName="user_target_id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -699,69 +734,72 @@
     <!-- Diagram content (shape and connector positions) -->
     <Diagrams>
       <Diagram Name="Model1">
-        <EntityTypeShape EntityType="calorie_tracker_v1Model.tbl_activity" Width="1.5" PointX="5.75" PointY="5.25" Height="1.9802864583333335" IsExpanded="true" />
-        <EntityTypeShape EntityType="calorie_tracker_v1Model.tbl_activity_log" Width="1.5" PointX="8" PointY="5" Height="2.5571907552083317" IsExpanded="true" />
-        <EntityTypeShape EntityType="calorie_tracker_v1Model.tbl_food" Width="1.5" PointX="5.75" PointY="1" Height="2.9417936197916656" IsExpanded="true" />
-        <EntityTypeShape EntityType="calorie_tracker_v1Model.tbl_food_log" Width="1.5" PointX="8" PointY="1.375" Height="2.1725878906249996" IsExpanded="true" />
-        <EntityTypeShape EntityType="calorie_tracker_v1Model.tbl_user_information" Width="2.25" PointX="3" PointY="1.125" Height="2.3648893229166661" IsExpanded="true" />
-        <EntityTypeShape EntityType="calorie_tracker_v1Model.tbl_user_metric" Width="1.5" PointX="0.75" PointY="2.875" Height="1.9802864583333326" IsExpanded="true" />
-        <EntityTypeShape EntityType="calorie_tracker_v1Model.tbl_user_target" Width="1.5" PointX="3" PointY="3.875" Height="2.7494921874999996" IsExpanded="true" />
-        <AssociationConnector Association="calorie_tracker_v1Model.activity_log_activity_id" ManuallyRouted="false">
-          <ConnectorPoint PointX="7.25" PointY="6.2401432291666667" />
-          <ConnectorPoint PointX="7.666666666666667" PointY="6.2401432291666659" />
-          <ConnectorPoint PointX="7.833333333333333" PointY="6.2401432291666667" />
-          <ConnectorPoint PointX="8" PointY="6.2401432291666667" />
+        <EntityTypeShape EntityType="calorie_tracker_v1Model.tbl_activity" Width="1.5" PointX="0.75" PointY="11.375" Height="1.9802864583333317" />
+        <EntityTypeShape EntityType="calorie_tracker_v1Model.tbl_activity_log" Width="1.5" PointX="3" PointY="6.625" Height="3.3263964843749996" />
+        <EntityTypeShape EntityType="calorie_tracker_v1Model.tbl_food" Width="1.5" PointX="3.75" PointY="11.75" Height="5.2494108072916656" />
+        <EntityTypeShape EntityType="calorie_tracker_v1Model.tbl_food_log" Width="1.5" PointX="6" PointY="7.125" Height="2.3648893229166674" />
+        <EntityTypeShape EntityType="calorie_tracker_v1Model.tbl_user" Width="1.5" PointX="0.75" PointY="6.375" Height="3.9033007812500031" />
+        <EntityTypeShape EntityType="calorie_tracker_v1Model.tbl_user_metric" Width="1.5" PointX="0.75" PointY="3.375" Height="1.9802864583333388" />
+        <EntityTypeShape EntityType="calorie_tracker_v1Model.tbl_user_metric_log" Width="1.5" PointX="3" PointY="3.125" Height="2.3648893229166674" />
+        <EntityTypeShape EntityType="calorie_tracker_v1Model.tbl_user_target" Width="1.5" PointX="6" PointY="2.625" Height="3.3263964843750031" />
+        <AssociationConnector Association="calorie_tracker_v1Model.activity_log_activity_id" >
+          <ConnectorPoint PointX="2.25" PointY="11.53125" />
+          <ConnectorPoint PointX="3.34375" PointY="11.53125" />
+          <ConnectorPoint PointX="3.34375" PointY="9.951396484375" />
         </AssociationConnector>
-        <AssociationConnector Association="calorie_tracker_v1Model.food_log_food_id" ManuallyRouted="false">
-          <ConnectorPoint PointX="7.25" PointY="2.5574446614583328" />
-          <ConnectorPoint PointX="8" PointY="2.5574446614583328" />
-        </AssociationConnector>
-        <AssociationConnector Association="calorie_tracker_v1Model.food_parent_id" ManuallyRouted="false">
-          <ConnectorPoint PointX="6.2819230769230767" PointY="3.9417936197916656" />
-          <ConnectorPoint PointX="6.2819230769230767" PointY="4.1917936197916656" />
-          <ConnectorPoint PointX="6.7284615384615378" PointY="4.1917936197916656" />
-          <ConnectorPoint PointX="6.7284615384615378" PointY="3.9417936197916656" />
-        </AssociationConnector>
-        <AssociationConnector Association="calorie_tracker_v1Model.user_information_metric_id" ManuallyRouted="false">
-          <ConnectorPoint PointX="2.25" PointY="3.1824446614583328" />
-          <ConnectorPoint PointX="3" PointY="3.1824446614583328" />
-        </AssociationConnector>
-        <AssociationConnector Association="calorie_tracker_v1Model.user_target_metric_id" ManuallyRouted="false">
-          <ConnectorPoint PointX="2.25" PointY="4.3651432291666659" />
-          <ConnectorPoint PointX="3" PointY="4.3651432291666659" />
-        </AssociationConnector>
-        <AssociationConnector Association="calorie_tracker_v1Model.user_target_parent_id" ManuallyRouted="false">
-          <ConnectorPoint PointX="3.5319230769230767" PointY="6.8167936197916665" />
-          <ConnectorPoint PointX="3.5319230769230767" PointY="7.0667936197916674" />
-          <ConnectorPoint PointX="3.9784615384615383" PointY="7.0667936197916674" />
-          <ConnectorPoint PointX="3.9784615384615383" PointY="6.8167936197916665" />
-        </AssociationConnector>
-        <EntityTypeShape EntityType="calorie_tracker_v1Model.tbl_user" Width="1.5" PointX="0.75" PointY="5.625" Height="3.7109993489583317" />
         <AssociationConnector Association="calorie_tracker_v1Model.activity_log_user_id" >
-          <ConnectorPoint PointX="2.25" PointY="7.5211393229166665" />
-          <ConnectorPoint PointX="4.822916666666667" PointY="7.5211393229166656" />
-          <ConnectorPoint PointX="4.989583333333333" PointY="7.5211393229166665" />
-          <ConnectorPoint PointX="7.666666666666667" PointY="7.5211393229166656" />
-          <ConnectorPoint PointX="7.833333333333333" PointY="7.5211393229166665" />
-          <ConnectorPoint PointX="8" PointY="7.5211393229166665" />
+          <ConnectorPoint PointX="2.25" PointY="8.2881982421875" />
+          <ConnectorPoint PointX="3" PointY="8.2881982421875" />
+        </AssociationConnector>
+        <AssociationConnector Association="calorie_tracker_v1Model.food_log_food_id" >
+          <ConnectorPoint PointX="5.25" PointY="14.374705403645834" />
+          <ConnectorPoint PointX="6.75" PointY="14.374705403645834" />
+          <ConnectorPoint PointX="6.75" PointY="9.4898893229166674" />
+        </AssociationConnector>
+        <AssociationConnector Association="calorie_tracker_v1Model.food_parent_id" >
+          <ConnectorPoint PointX="4.2819230769230767" PointY="16.999410807291667" />
+          <ConnectorPoint PointX="4.2819230769230767" PointY="17.249410807291667" />
+          <ConnectorPoint PointX="4.7284615384615378" PointY="17.249410807291667" />
+          <ConnectorPoint PointX="4.7284615384615378" PointY="16.999410807291667" />
         </AssociationConnector>
         <AssociationConnector Association="calorie_tracker_v1Model.food_log_user_id" >
-          <ConnectorPoint PointX="2.25" PointY="8.4598213359375" />
-          <ConnectorPoint PointX="4.822916666666667" PointY="8.4598213359375" />
-          <ConnectorPoint PointX="4.989583333333333" PointY="8.4598213359375" />
-          <ConnectorPoint PointX="7.75" PointY="8.4598213359375" />
-          <ConnectorPoint PointX="7.75" PointY="4.75" />
-          <ConnectorPoint PointX="8.75" PointY="4.75" />
-          <ConnectorPoint PointX="8.75" PointY="3.7398893229166661" />
+          <ConnectorPoint PointX="2.25" PointY="10.146098632812501" />
+          <ConnectorPoint PointX="3.2604166666666665" PointY="10.146098632812501" />
+          <ConnectorPoint PointX="3.4270833333333335" PointY="10.146098632812501" />
+          <ConnectorPoint PointX="6.3437475" PointY="10.146098632812501" />
+          <ConnectorPoint PointX="6.3437475" PointY="9.4898893229166674" />
         </AssociationConnector>
         <AssociationConnector Association="calorie_tracker_v1Model.user_information_user_id" >
-          <ConnectorPoint PointX="2.25" PointY="8.9291628424479157" />
-          <ConnectorPoint PointX="4.90625" PointY="8.9291628424479157" />
-          <ConnectorPoint PointX="4.90625" PointY="3.4898893229166661" />
+          <ConnectorPoint PointX="2.25" PointY="6.3819220769230771" />
+          <ConnectorPoint PointX="2.65625" PointY="5.9756720769230771" />
+          <ConnectorPoint PointX="2.65625" PointY="4.3074446614583337" />
+          <ConnectorPoint PointX="3" PointY="4.3074446614583337" />
         </AssociationConnector>
         <AssociationConnector Association="calorie_tracker_v1Model.user_target_user_id" >
-          <ConnectorPoint PointX="2.25" PointY="6.2521493098958345" />
-          <ConnectorPoint PointX="3" PointY="6.2521493098958345" />
+          <ConnectorPoint PointX="2.25" PointY="6.400383615384615" />
+          <ConnectorPoint PointX="2.5" PointY="6.1503836153846159" />
+          <ConnectorPoint PointX="2.5" PointY="6.3263964843750031" />
+          <ConnectorPoint PointX="5.625" PointY="6.3263964843750031" />
+          <ConnectorPoint PointX="6" PointY="5.9513964843750031" />
+        </AssociationConnector>
+        <AssociationConnector Association="calorie_tracker_v1Model.user_information_metric_id" >
+          <ConnectorPoint PointX="2.25" PointY="4.8938655598958363" />
+          <ConnectorPoint PointX="2.5729166666666665" PointY="4.8938655598958354" />
+          <ConnectorPoint PointX="2.7395833333333335" PointY="4.8938655598958363" />
+          <ConnectorPoint PointX="3" PointY="4.8938655598958363" />
+        </AssociationConnector>
+        <AssociationConnector Association="calorie_tracker_v1Model.user_target_metric_id" >
+          <ConnectorPoint PointX="1.5" PointY="5.3552864583333388" />
+          <ConnectorPoint PointX="1.5" PointY="5.7206404036458416" />
+          <ConnectorPoint PointX="2.5729166666666665" PointY="5.7206404036458407" />
+          <ConnectorPoint PointX="2.7395833333333335" PointY="5.7206404036458416" />
+          <ConnectorPoint PointX="6" PointY="5.7206404036458416" />
+        </AssociationConnector>
+        <AssociationConnector Association="calorie_tracker_v1Model.user_target_parent_id" >
+          <ConnectorPoint PointX="6.5319230769230767" PointY="5.9513964843750031" />
+          <ConnectorPoint PointX="6.5319230769230767" PointY="6.2013964843750031" />
+          <ConnectorPoint PointX="6.9784615384615378" PointY="6.2013964843750031" />
+          <ConnectorPoint PointX="6.9784615384615378" PointY="5.9513964843750031" />
         </AssociationConnector>
       </Diagram>
     </Diagrams>
