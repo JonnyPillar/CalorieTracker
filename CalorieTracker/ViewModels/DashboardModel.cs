@@ -14,7 +14,7 @@ namespace CalorieTracker.ViewModels
         /// </summary>
         /// <param name="User">Current User</param>
         /// <param name="userInformationList">List of Relivant User Info</param>
-        public DashboardModel(tbl_user User, List<tbl_user_information> userInformationList, DashboardHistoryList userHistory)
+        public DashboardModel(tbl_user User, List<tbl_user_metric> userInformationList, DashboardHistoryList userHistory)
         {
             UserInfomation = new DashboardUserInformationModel(User, userInformationList);
             UserHistory = userHistory;

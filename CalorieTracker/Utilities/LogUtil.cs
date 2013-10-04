@@ -25,7 +25,7 @@ namespace CalorieTracker.Utilities
             {
                 historyDictionary.Add(item);
             }
-            foreach (tbl_user_information item in user.tbl_user_information)
+            foreach (tbl_user_metric_log item in user.tbl_user_metric_log)
             {
                 historyDictionary.Add(item);
             }
@@ -61,7 +61,7 @@ namespace CalorieTracker.Utilities
         //        if (historyDictionary.ContainsKey(recordedDate)) historyDictionary[recordedDate].Add(item); //If exists add to existing list
         //        else historyDictionary.Add(recordedDate, new List<object>() { item }); //Create new List
         //    }
-        //    foreach (tbl_user_information item in user.tbl_user_information)
+        //    foreach (tbl_user_metric item in user.tbl_user_metric)
         //    {
         //        DateTime loggedDate = DateTime.ParseExact(item.user_information_timestamp, "ddMMyyyyHHmmss", null);
         //        DateTime recordedDate = new DateTime(loggedDate.Year, loggedDate.Month, loggedDate.Day);

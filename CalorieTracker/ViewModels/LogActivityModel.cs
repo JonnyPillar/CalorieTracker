@@ -19,7 +19,7 @@ namespace CalorieTracker.ViewModels
         [Display(Name = "Duration")]
         [Required(ErrorMessage = "Please Provide A Valid Duration")]
         [Range(0, 1440, ErrorMessage = "Value must be between 0 and 1440")] //Max 24 Hours
-        public double Time { get; set; }
+        public double Duration { get; set; }
 
         [Display(Name = "Distance")]
         [Required(ErrorMessage = "Please Provide A Valid Distance")]

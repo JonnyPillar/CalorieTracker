@@ -7,7 +7,7 @@ namespace CalorieTracker.Collections
     {
         public tbl_food_log FoodLog { get; set; }
         public tbl_activity_log ActivityLog { get; set; }
-        public tbl_user_information UserInformation { get; set; }
+        public tbl_user_metric_log UserInformation { get; set; }
         public string Name { get; set; }
         public DateTime Date { get; set; }
 
@@ -18,7 +18,7 @@ namespace CalorieTracker.Collections
         {
             FoodLog = new tbl_food_log();
             ActivityLog = new tbl_activity_log();
-            UserInformation = new tbl_user_information();
+            UserInformation = new tbl_user_metric_log();
             Name = string.Empty;
             Date = new DateTime();
         }
@@ -31,7 +31,7 @@ namespace CalorieTracker.Collections
         {
             FoodLog = item;
             Name = item.tbl_food.food_name;
-            Date = GetDate(item.food_log_date);
+            Date = item.food_log_timestamp;
         }
 
         /// <summary>
@@ -42,29 +42,18 @@ namespace CalorieTracker.Collections
         {
             ActivityLog = item;
             Name = item.tbl_activity.activity_name;
-            Date = GetDate(item.actvitity_log_date);
+            Date = item.actvitity_log_timestamp;
         }
 
         /// <summary>
         /// Create Dashboard History Item From User Information
         /// </summary>
         /// <param name="item">User Information</param>
-        public DashboardHistoryListItem(tbl_user_information item)
+        public DashboardHistoryListItem(tbl_user_metric_log item)
         {
             UserInformation = item;
             Name = item.tbl_user_metric.user_metric_name;
-            Date = GetDate(item.user_information_timestamp);
-        }
-
-        /// <summary>
-        /// Parse Timestamp To Createed Date 
-        /// </summary>
-        /// <param name="date">Timestamp</param>
-        /// <returns>Date DateTime</returns>
-        private DateTime GetDate(string date)
-        {
-            DateTime loggedDate = DateTime.ParseExact(date, "ddMMyyyyHHmmss", null);
-            return new DateTime(loggedDate.Year, loggedDate.Month, loggedDate.Day);
+            Date = item.user_metric_log_timestamp;
         }
     }
 }

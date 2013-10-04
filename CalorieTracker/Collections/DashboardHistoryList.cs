@@ -41,7 +41,7 @@ namespace CalorieTracker.Collections
         /// Add User Information To History List
         /// </summary>
         /// <param name="item">User Information</param>
-        public void Add(tbl_user_information item)
+        public void Add(tbl_user_metric_log item)
         {
             InsertItem(new DashboardHistoryListItem(item));
         }

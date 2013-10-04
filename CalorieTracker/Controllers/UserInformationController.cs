@@ -19,7 +19,7 @@ namespace CalorieTracker.Controllers
 
         public ActionResult Details(string id)
         {
-            tbl_user_information log = db.tbl_user_information.Find(id);
+            tbl_user_metric log = db.tbl_user_metric.Find(id);
             if (log != null)
             {
                 return View(log);
