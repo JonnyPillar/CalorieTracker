@@ -20,7 +20,7 @@ namespace CalorieTracker.Models
             this.activity_log_id = Guid.NewGuid().ToString();
             this.activity_log_activity_id = newLog.SelectedActivity;
             this.activity_log_user_id = newLog.UserID;
-            this.activity_log_duration = TimeSpan.ParseExact(newLog.Duration.ToString(), "HH:MM:SS", null);
+            this.activity_log_duration = newLog.Duration;
             this.activity_log_distance = Convert.ToDouble(newLog.Distance);
             this.activity_log_notes = newLog.Notes;
             this.activity_log_file_url = newLog.File;

@@ -12,13 +12,13 @@ namespace CalorieTracker.Models
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using System.Web.Mvc;
-    
+
     public partial class tbl_food
-    {    
+    {
         public tbl_food()
         {
             this.tbl_food_log = new HashSet<tbl_food_log>();
-            this.tbl_meal = new HashSet<tbl_food>();
+            this.tbl_food1 = new HashSet<tbl_food>();
         }
 
         /// <summary>
@@ -138,8 +138,25 @@ namespace CalorieTracker.Models
         [Display(Name = "Salt Of Which Sodium")]
         public Nullable<double> food_salt_sodium { get; set; }
 
+        public int food_mass_type { get; set; }
+
         public virtual ICollection<tbl_food_log> tbl_food_log { get; set; }
-        public virtual ICollection<tbl_food> tbl_meal { get; set; }
+        public virtual ICollection<tbl_food> tbl_food1 { get; set; }
         public virtual tbl_food tbl_food2 { get; set; }
+
+        public user_metric_type_enum food_types
+        {
+            get { return (user_metric_type_enum)food_mass_type; }
+            set { food_mass_type = (int)value; }
+        }
+    }
+
+    public enum user_mass_type_enum : int
+    {
+        g = 0,
+        Kg = 1,
+        Ml = 2,
+        L = 3,
+        Pint = 4
     }
 }

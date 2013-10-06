@@ -6,7 +6,7 @@ namespace CalorieTracker.ViewModels
 {
     public class DashboardModel
     {
-        public DashboardUserInformationModel UserInfomation { get; set; }
+        public DashboardUserMetricModel UserMetric { get; set; }
         public DashboardHistoryList UserHistory { get; set; }
 
         /// <summary>
@@ -14,9 +14,9 @@ namespace CalorieTracker.ViewModels
         /// </summary>
         /// <param name="User">Current User</param>
         /// <param name="userInformationList">List of Relivant User Info</param>
-        public DashboardModel(tbl_user User, List<tbl_user_metric> userInformationList, DashboardHistoryList userHistory)
+        public DashboardModel(tbl_user User, List<tbl_user_metric_log> userInformationList, DashboardHistoryList userHistory)
         {
-            UserInfomation = new DashboardUserInformationModel(User, userInformationList);
+            UserMetric = new DashboardUserMetricModel(User, userInformationList);
             UserHistory = userHistory;
         }
     }

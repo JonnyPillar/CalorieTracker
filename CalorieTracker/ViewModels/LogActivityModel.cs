@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Web.Mvc;
 using CalorieTracker.Models;
@@ -18,8 +19,7 @@ namespace CalorieTracker.ViewModels
 
         [Display(Name = "Duration")]
         [Required(ErrorMessage = "Please Provide A Valid Duration")]
-        [Range(0, 1440, ErrorMessage = "Value must be between 0 and 1440")] //Max 24 Hours
-        public double Duration { get; set; }
+        public TimeSpan Duration { get; set; }
 
         [Display(Name = "Distance")]
         [Required(ErrorMessage = "Please Provide A Valid Distance")]

@@ -1,5 +1,5 @@
-﻿@model CalorieTracker.Models.tbl_user_metric
+﻿@model CalorieTracker.Models.tbl_user_metric_log
 <div class="metricCard">
-    @Html.ActionLink(linkText: "View More", actionName: "Details", controllerName: "UserInformation", routeValues: new { id = Model.user_information_id }, htmlAttributes: null)
-    @Model.tbl_user.user_first_name @Model.tbl_user.user_second_name updated their @Model.tbl_user_metric.user_metric_name to @Model.user_information_value
+    @Html.ActionLink(linkText: "View More", actionName: "Details", controllerName: "UserInformation", routeValues: new { id = Model.user_metric_log_id }, htmlAttributes: null)
+    @Model.tbl_user.user_first_name @Model.tbl_user.user_second_name updated their @Model.tbl_user_metric.user_metric_name to @Model.user_metric_log_value  @Model.tbl_user_metric.metric_types
 </div>

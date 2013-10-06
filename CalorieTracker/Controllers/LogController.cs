@@ -18,7 +18,7 @@ namespace CalorieTracker.Controllers
         [HttpGet]
         public ActionResult Index()
         {
-            if (!User.Identity.IsAuthenticated) return RedirectToAction("Logon", "Accounts");
+            if (!User.Identity.IsAuthenticated) return RedirectToAction("Login", "Accounts");
             LogModel foodLogModel = new LogModel(db.tbl_activity.ToList(), GetUserFood(), db.tbl_user_metric.ToList(), todayCalorie, GetCalorieBurned());
             return View(foodLogModel);
         }
@@ -77,7 +77,7 @@ namespace CalorieTracker.Controllers
             for (int i = 0; i < foodLog.Count; i++)
             {
                 if (!usedFoodList.ContainsKey(foodLog[i].food_log_food_id)) usedFoodList.Add(foodLog[i].food_log_food_id, foodLog[i].tbl_food); //If we have not already added the food to the list
-                if (foodLog[i].food_log_timestamp.CompareTo(DateTime.Now.Date) == 0)
+                if (foodLog[i].food_log_timestamp.Date.CompareTo(DateTime.Now.Date) == 0)
                 {
                     todayCalorie += (double)foodLog[i].tbl_food.food_calories * (double)foodLog[i].food_log_quantity;
                 }
@@ -95,7 +95,7 @@ namespace CalorieTracker.Controllers
             List<tbl_activity_log> log = db.tbl_activity_log.Where(tbl_activity_log => tbl_activity_log.activity_log_user_id == User.Identity.Name).ToList();
             for (int i = 0; i < log.Count; i++)
             {
-                if (log[i].actvitity_log_timestamp.CompareTo(DateTime.Now) == 0) todayBurned += log[i].tbl_activity.activity_calorie_burn_rate * log[i].activity_log_duration.Seconds;
+                if (log[i].actvitity_log_timestamp.Date.CompareTo(DateTime.Now.Date) == 0) todayBurned += log[i].tbl_activity.activity_calorie_burn_rate * log[i].activity_log_duration.TotalSeconds;
             }
             return todayBurned;
         }

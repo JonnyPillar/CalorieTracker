@@ -222,7 +222,7 @@
     <Compile Include="Validators\PrimaryKeyValidator.cs" />
     <Compile Include="Collections\DashboardHistoryList.cs" />
     <Compile Include="ViewModels\DashboardModel.cs" />
-    <Compile Include="ViewModels\DashboardUserInformationModel.cs" />
+    <Compile Include="ViewModels\DashboardUserMetricModel.cs" />
     <Compile Include="Collections\DashboardHistoryListItem.cs" />
     <Compile Include="ViewModels\LogActivityModel.cs" />
     <Compile Include="ViewModels\LoginModel.cs" />

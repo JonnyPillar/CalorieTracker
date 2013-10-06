@@ -14,11 +14,11 @@
             @Html.DropDownListFor(m => m.SelectedActivity, new SelectList(Model.ActitivtyList, "activity_id", "activity_name"))
         </div>
         <div class="editor-label">
-            @Html.LabelFor(m => m.Time)
+            @Html.LabelFor(m => m.Duration)
         </div>
         <div class="editor-field">
-            @Html.TextBoxFor(u => u.Time)
-            @Html.ValidationMessageFor(u => u.Time)
+            @Html.TextBoxFor(u => u.Duration)
+            @Html.ValidationMessageFor(u => u.Duration)
         </div>
         <div class="editor-label">
             @Html.LabelFor(m => m.Distance)

@@ -10,64 +10,15 @@
 namespace CalorieTracker.Models
 {
     using System;
-    using System.ComponentModel.DataAnnotations;
-    using System.Web.Mvc;
+    using System.Collections.Generic;
     
     public partial class tbl_food_log
     {
-        public tbl_food_log()
-        {
-
-        }
-
-        /// <summary>
-        /// New Food Log From Log Food View Model
-        /// </summary>
-        /// <param name="newLog">Food Log View Model</param>
-        public tbl_food_log(ViewModels.LogSelectedFoodModel newLog)
-        {
-            this.food_log_id = Guid.NewGuid().ToString();
-            this.food_log_user_id = newLog.UserID;
-            this.food_log_food_id = newLog.SelectedFood;
-            this.food_log_timestamp = DateTime.Now;
-            this.food_log_quantity = newLog.Quantity;
-        }
-
-        public tbl_food_log(tbl_food newfood)
-        {
-            this.food_log_id = Guid.NewGuid().ToString();
-            //this.food_log_user_id TODO do I need to pass this in or let the controller do it
-            this.food_log_food_id = newfood.food_id;
-            this.food_log_timestamp = DateTime.Now;
-            this.food_log_quantity = newfood.food_quantity;
-        }
-
-        /// <summary>
-        /// Log ID
-        /// </summary>
-        [HiddenInput]
         public string food_log_id { get; set; }
-        /// <summary>
-        /// User ID
-        /// </summary>
-        [HiddenInput]
         public string food_log_user_id { get; set; }
-        /// <summary>
-        /// Food ID
-        /// </summary>
-        [HiddenInput]
-        [Display(Name = "Food")]
         public string food_log_food_id { get; set; }
-        /// <summary>
-        /// Log Date ddMMyyyyHHmmss
-        /// </summary>
-        [HiddenInput]
         public System.DateTime food_log_timestamp { get; set; }
-        /// <summary>
-        /// Log Quantity
-        /// </summary>
-        [Display(Name = "Quantity")]
-        public Nullable<double> food_log_quantity { get; set; }
+        public double food_log_quantity { get; set; }
     
         public virtual tbl_food tbl_food { get; set; }
         public virtual tbl_user tbl_user { get; set; }

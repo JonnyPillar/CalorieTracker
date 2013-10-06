@@ -1,8 +1,8 @@
 ﻿@model CalorieTracker.Models.tbl_activity_log
 @{
-    double caloriesBurned = (double)@Model.activity_log_time * (double)@Model.tbl_activity.activity_calorie_burn_rate;
+    double caloriesBurned = (double)@Model.activity_log_duration.TotalSeconds * (double)@Model.tbl_activity.activity_calorie_burn_rate;
 }
 <div class="activityCard">
     @Html.ActionLink(linkText: "View More", actionName: "Details", controllerName: "Activity", routeValues: new { id = Model.activity_log_id }, htmlAttributes: null)
-    @Model.tbl_user.user_first_name @Model.tbl_user.user_second_name Burned @caloriesBurned calories doing @Model.tbl_activity.activity_name
+    @Model.tbl_user.user_first_name @Model.tbl_user.user_second_name burned @caloriesBurned calories doing @Model.tbl_activity.activity_name
 </div>

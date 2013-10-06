@@ -52,8 +52,8 @@ namespace CalorieTracker.Collections
         /// <param name="item">Dashboard History Item</param>
         private void InsertItem(DashboardHistoryListItem item)
         {
-            if (HistoryList.ContainsKey(item.Date)) HistoryList[item.Date].Add(item);
-            else HistoryList.Add(item.Date, new List<DashboardHistoryListItem>() { item }); //Create new List
+            if (HistoryList.ContainsKey(item.Date.Date)) HistoryList[item.Date.Date].Add(item);
+            else HistoryList.Add(item.Date.Date, new List<DashboardHistoryListItem>() { item }); //Create new List
         }
 
         /// <summary>

@@ -11,7 +11,7 @@ namespace CalorieTracker.Models
 {
     using System;
     using System.Collections.Generic;
-    
+
     public partial class tbl_user_metric
     {
         public tbl_user_metric()
@@ -19,12 +19,29 @@ namespace CalorieTracker.Models
             this.tbl_user_metric_log = new HashSet<tbl_user_metric_log>();
             this.tbl_user_target = new HashSet<tbl_user_target>();
         }
-    
+
         public string user_metric_id { get; set; }
         public string user_metric_name { get; set; }
-        public string user_metric_type { get; set; }
-    
+        public int user_metric_type { get; set; }
         public virtual ICollection<tbl_user_metric_log> tbl_user_metric_log { get; set; }
         public virtual ICollection<tbl_user_target> tbl_user_target { get; set; }
+
+        public user_metric_type_enum metric_types
+        {
+            get { return (user_metric_type_enum)user_metric_type; }
+            set { user_metric_type = (int)value; }
+        }
+    }
+
+    public enum user_metric_type_enum : int
+    {
+        g = 0,
+        Kg = 1,
+        Cm = 2,
+        Mtr = 3,
+        Inch = 4,
+        Feet = 5,
+        Lb = 6,
+        Stone = 7
     }
 }

@@ -135,7 +135,7 @@
           </Key>
           <Property Name="user_metric_id" Type="varchar" Nullable="false" MaxLength="45" />
           <Property Name="user_metric_name" Type="varchar" Nullable="false" MaxLength="255" />
-          <Property Name="user_metric_type" Type="varchar" Nullable="false" MaxLength="10" />
+          <Property Name="user_metric_type" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="tbl_user_metric_log">
           <Key>
@@ -440,7 +440,7 @@
           </Key>
           <Property Type="String" Name="user_metric_id" Nullable="false" MaxLength="45" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="user_metric_name" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="user_metric_type" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="user_metric_type" Nullable="false" />
           <NavigationProperty Name="tbl_user_metric_log" Relationship="calorie_tracker_v1Model.user_information_metric_id" FromRole="tbl_user_metric" ToRole="tbl_user_metric_log" />
           <NavigationProperty Name="tbl_user_target" Relationship="calorie_tracker_v1Model.user_target_metric_id" FromRole="tbl_user_metric" ToRole="tbl_user_target" />
         </EntityType>
