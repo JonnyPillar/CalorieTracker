@@ -10,15 +10,12 @@ namespace CalorieTracker.Controllers
     {
         public ActionResult Index()
         {
-            if (User.Identity.IsAuthenticated) return RedirectToAction("Index", "Dashboard");
-            ViewBag.Message = "Modify this template to jump-start your ASP.NET MVC application.";
-
             return View();
         }
 
         public ActionResult About()
         {
-            ViewBag.Message = "Your app description page.";
+            ViewBag.Message = "Your application description page.";
 
             return View();
         }
