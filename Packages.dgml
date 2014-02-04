@@ -1,0 +1,68 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<DirectedGraph GraphDirection="LeftToRight" xmlns="http://schemas.microsoft.com/vs/2009/dgml">
+  <Nodes>
+    <Node Id="Antlr 3.4.1.9004" Category="Package" Bounds="165.7,167.88,102.053333333333,25.96" Label="Antlr 3.4.1.9004" />
+    <Node Id="CalorieTracker" Category="Project" Bounds="960.05,0,95.3533333333334,25.96" Label="CalorieTracker" />
+    <Node Id="CalorieTracker.Tests" Category="Project" Bounds="5.3416666666667,1.13686837721616E-13,124.77,25.96" Label="CalorieTracker.Tests" />
+    <Node Id="Microsoft.AspNet.Mvc 5.0.0" Category="Package" Bounds="219.353333333333,55.9600000000002,164.746666666667,25.96" Label="Microsoft.AspNet.Mvc 5.0.0" />
+    <Node Id="Microsoft.AspNet.Razor 3.0.0" Category="Package" Bounds="298.43,167.88,172.593333333333,25.96" Label="Microsoft.AspNet.Razor 3.0.0" />
+    <Node Id="Microsoft.AspNet.Web.Optimization 1.1.1" Category="Package" Bounds="545.495,55.96,238.463333333333,25.96" Label="Microsoft.AspNet.Web.Optimization 1.1.1" />
+    <Node Id="Microsoft.AspNet.WebPages 3.0.0" Category="Package" Bounds="332.485,111.92,198.483333333333,25.96" Label="Microsoft.AspNet.WebPages 3.0.0" />
+    <Node Id="Microsoft.Web.Infrastructure 1.0.0.0" Category="Package" Bounds="560.688333333333,167.88,208.076666666667,25.96" Label="Microsoft.Web.Infrastructure 1.0.0.0" />
+    <Node Id="Modernizr 2.6.2" Category="Package" Bounds="1245.46833333333,55.9599999999999,102.516666666667,25.96" Label="Modernizr 2.6.2" />
+    <Node Id="MySql.Data 6.8.3" Category="Package" Bounds="1106.66666666667,55.9599999999999,108.12,25.96" Label="MySql.Data 6.8.3" />
+    <Node Id="MySql.Data.Entity 6.7.2-beta-ef6" Category="Package" Bounds="1378.71,55.9599999999999,190.033333333333,25.96" Label="MySql.Data.Entity 6.7.2-beta-ef6" />
+    <Node Id="Newtonsoft.Json 5.0.6" Category="Package" Bounds="0,167.88,135.453333333333,25.96" Label="Newtonsoft.Json 5.0.6" />
+    <Node Id="Respond 1.2.0" Category="Package" Bounds="814.535,55.96,94.3833333333332,25.96" Label="Respond 1.2.0" />
+    <Node Id="WebGrease 1.5.2" Category="Package" Bounds="162.428333333334,111.92,108.596666666667,25.96" Label="WebGrease 1.5.2" />
+    <Node Id="bootstrap 3.0.0" Category="Package" Bounds="414.941666666667,55.96,99.5699999999997,25.96" Label="bootstrap 3.0.0" />
+    <Node Id="jQuery 1.10.2" Category="Package" Bounds="1599.04333333333,55.9599999999999,89.3666666666668,25.96" Label="jQuery 1.10.2" />
+  </Nodes>
+  <Links>
+    <Link Source="CalorieTracker" Target="Microsoft.AspNet.Mvc 5.0.0" Category="Installed Package" Bounds="391.133758544922,15.9495658874512,568.916229248047,39.2207832336426" />
+    <Link Source="CalorieTracker" Target="Microsoft.AspNet.Web.Optimization 1.1.1" Category="Installed Package" Bounds="753.168579101563,20.7583847045898,206.881408691406,33.7524375915527" />
+    <Link Source="CalorieTracker" Target="Modernizr 2.6.2" Category="Installed Package" Bounds="1055.4033203125,22.2117862701416,181.229125976563,35.0919780731201" />
+    <Link Source="CalorieTracker" Target="MySql.Data 6.8.3" Category="Installed Package" Bounds="1043.21521081422,25.9599995422363,73.5704722565918,26.9085253680139" />
+    <Link Source="CalorieTracker" Target="MySql.Data.Entity 6.7.2-beta-ef6" Category="Installed Package" Bounds="1055.4033203125,18.7052917480469,314.7119140625,37.7924423217773" />
+    <Link Source="CalorieTracker" Target="Respond 1.2.0" Category="Installed Package" Bounds="903.995401429097,25.9599995422363,69.8663485670926,26.778909601712" />
+    <Link Source="CalorieTracker" Target="bootstrap 3.0.0" Category="Installed Package" Bounds="522.808349609375,16.7203159332275,437.241638183594,38.9746990203857" />
+    <Link Source="CalorieTracker" Target="jQuery 1.10.2" Category="Installed Package" Bounds="1055.4033203125,15.9163818359375,535.831909179688,39.1700897216797" />
+    <Link Source="CalorieTracker.Tests" Target="Microsoft.AspNet.Mvc 5.0.0" Category="Installed Package" Bounds="122.003295898438,25.9599990844727,116.693557739258,27.9067192077637" />
+    <Link Source="CalorieTracker.Tests" Target="Newtonsoft.Json 5.0.6" Category="Installed Package" Bounds="67.7266693115234,25.9599990844727,0,132.92000579834" />
+    <Link Source="Microsoft.AspNet.Mvc 5.0.0" Target="Microsoft.AspNet.Razor 3.0.0" Category="Package Dependency" Bounds="301.726654052734,81.9199981689453,56.2857055664063,80.9287567138672" />
+    <Link Source="Microsoft.AspNet.Mvc 5.0.0" Target="Microsoft.AspNet.WebPages 3.0.0" Category="Package Dependency" Bounds="331.880340576172,81.9199981689453,61.4259948730469,26.441535949707" />
+    <Link Source="Microsoft.AspNet.Web.Optimization 1.1.1" Target="Microsoft.Web.Infrastructure 1.0.0.0" Category="Package Dependency" Bounds="664.726684570313,81.9199981689453,0,76.9600067138672" />
+    <Link Source="Microsoft.AspNet.Web.Optimization 1.1.1" Target="WebGrease 1.5.2" Category="Package Dependency" Bounds="279.924011230469,81.9187316894531,268.483764648438,31.9146423339844" />
+    <Link Source="Microsoft.AspNet.WebPages 3.0.0" Target="Microsoft.AspNet.Razor 3.0.0" Category="Package Dependency" Bounds="401.416656494141,137.880004882813,19.4082946777344,23.1082611083984" />
+    <Link Source="Microsoft.AspNet.WebPages 3.0.0" Target="Microsoft.Web.Infrastructure 1.0.0.0" Category="Package Dependency" Bounds="485.771331787109,137.880004882813,116.159515380859,27.8982238769531" />
+    <Link Source="WebGrease 1.5.2" Target="Antlr 3.4.1.9004" Category="Package Dependency" Bounds="216.726669311523,137.880004882813,0,21" />
+    <Link Source="WebGrease 1.5.2" Target="Newtonsoft.Json 5.0.6" Category="Package Dependency" Bounds="110.71280670166,137.880004882813,71.4531021118164,26.8356781005859" />
+  </Links>
+  <Categories>
+    <Category Id="Installed Package" />
+    <Category Id="Package" />
+    <Category Id="Package Dependency" />
+    <Category Id="Project" />
+  </Categories>
+  <Properties>
+    <Property Id="Bounds" DataType="System.Windows.Rect" />
+    <Property Id="Expression" DataType="System.String" />
+    <Property Id="GraphDirection" DataType="Microsoft.VisualStudio.Diagrams.Layout.LayoutOrientation" />
+    <Property Id="GroupLabel" DataType="System.String" />
+    <Property Id="IsEnabled" DataType="System.Boolean" />
+    <Property Id="Label" Label="Label" Description="Displayable label of an Annotatable object" DataType="System.String" />
+    <Property Id="TargetType" DataType="System.Type" />
+    <Property Id="Value" DataType="System.String" />
+    <Property Id="ValueLabel" DataType="System.String" />
+  </Properties>
+  <Styles>
+    <Style TargetType="Node" GroupLabel="Project" ValueLabel="True">
+      <Condition Expression="HasCategory('Project')" />
+      <Setter Property="Background" Value="Blue" />
+    </Style>
+    <Style TargetType="Link" GroupLabel="Package Dependency" ValueLabel="True">
+      <Condition Expression="HasCategory('Package Dependency')" />
+      <Setter Property="Background" Value="Yellow" />
+    </Style>
+  </Styles>
+</DirectedGraph>
