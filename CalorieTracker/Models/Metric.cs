@@ -12,18 +12,17 @@ namespace CalorieTracker.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class tbl_activity
+    public partial class Metric
     {
-        public tbl_activity()
+        public Metric()
         {
-            this.tbl_activity_log = new HashSet<tbl_activity_log>();
+            this.MetricLogs = new HashSet<MetricLog>();
         }
     
-        public string activity_id { get; set; }
-        public string activity_name { get; set; }
-        public decimal activity_calorie_burn_rate { get; set; }
-        public string activity_image_url { get; set; }
+        public string MetricID { get; set; }
+        public string Name { get; set; }
+        public sbyte Type { get; set; }
     
-        public virtual ICollection<tbl_activity_log> tbl_activity_log { get; set; }
+        public virtual ICollection<MetricLog> MetricLogs { get; set; }
     }
 }

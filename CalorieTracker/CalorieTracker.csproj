@@ -132,44 +132,53 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\CalorieTrackerDatabase.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>CalorieTrackerDatabase.Context.tt</DependentUpon>
+    <Compile Include="Models\ActivityLog.cs">
+      <DependentUpon>CTModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\CalorieTrackerDatabase.cs">
+    <Compile Include="Models\CTModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>CalorieTrackerDatabase.tt</DependentUpon>
+      <DependentUpon>CTModel.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\CalorieTrackerDatabase.Designer.cs">
+    <Compile Include="Models\CTModel.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>CalorieTrackerDatabase.edmx</DependentUpon>
+      <DependentUpon>CTModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CTModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CTModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Food.cs">
+      <DependentUpon>CTModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\FoodGroup.cs">
+      <DependentUpon>CTModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\FoodLog.cs">
+      <DependentUpon>CTModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\FoodNutrients.cs">
+      <DependentUpon>CTModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Metric.cs">
+      <DependentUpon>CTModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\MetricLog.cs">
+      <DependentUpon>CTModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\tbl_activity.cs">
-      <DependentUpon>CalorieTrackerDatabase.tt</DependentUpon>
+      <DependentUpon>CTModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\tbl_activity_log.cs">
-      <DependentUpon>CalorieTrackerDatabase.tt</DependentUpon>
+    <Compile Include="Models\tbl_food_unit.cs">
+      <DependentUpon>CTModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\tbl_food.cs">
-      <DependentUpon>CalorieTrackerDatabase.tt</DependentUpon>
+    <Compile Include="Models\tbl_nutrient.cs">
+      <DependentUpon>CTModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\tbl_food_log.cs">
-      <DependentUpon>CalorieTrackerDatabase.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\tbl_metric_log.cs">
-      <DependentUpon>CalorieTrackerDatabase.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\tbl_user.cs">
-      <DependentUpon>CalorieTrackerDatabase.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\tbl_user_metric.cs">
-      <DependentUpon>CalorieTrackerDatabase.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\tbl_user_target.cs">
-      <DependentUpon>CalorieTrackerDatabase.tt</DependentUpon>
+    <Compile Include="Models\User.cs">
+      <DependentUpon>CTModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -182,22 +191,22 @@
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
-    <EntityDeploy Include="Models\CalorieTrackerDatabase.edmx">
+    <EntityDeploy Include="Models\CTModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>CalorieTrackerDatabase.Designer.cs</LastGenOutput>
+      <LastGenOutput>CTModel.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <Content Include="Models\CalorieTrackerDatabase.Context.tt">
+    <Content Include="Models\CTModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>CalorieTrackerDatabase.edmx</DependentUpon>
-      <LastGenOutput>CalorieTrackerDatabase.Context.cs</LastGenOutput>
+      <DependentUpon>CTModel.edmx</DependentUpon>
+      <LastGenOutput>CTModel.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="Models\CalorieTrackerDatabase.edmx.diagram">
-      <DependentUpon>CalorieTrackerDatabase.edmx</DependentUpon>
+    <Content Include="Models\CTModel.edmx.diagram">
+      <DependentUpon>CTModel.edmx</DependentUpon>
     </Content>
-    <Content Include="Models\CalorieTrackerDatabase.tt">
+    <Content Include="Models\CTModel.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>CalorieTrackerDatabase.edmx</DependentUpon>
-      <LastGenOutput>CalorieTrackerDatabase.cs</LastGenOutput>
+      <DependentUpon>CTModel.edmx</DependentUpon>
+      <LastGenOutput>CTModel.cs</LastGenOutput>
     </Content>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />

@@ -12,19 +12,19 @@ namespace CalorieTracker.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class tbl_user_metric
+    public partial class tbl_nutrient
     {
-        public tbl_user_metric()
+        public tbl_nutrient()
         {
-            this.tbl_metric_log = new HashSet<tbl_metric_log>();
-            this.tbl_user_target = new HashSet<tbl_user_target>();
+            this.NutrientFoods = new HashSet<FoodNutrients>();
         }
     
-        public string user_metric_id { get; set; }
-        public string user_metric_name { get; set; }
-        public sbyte user_metric_type { get; set; }
+        public int NutrientID { get; set; }
+        public int SourceID { get; set; }
+        public int UnitType { get; set; }
+        public string Name { get; set; }
+        public int DecimalRounding { get; set; }
     
-        public virtual ICollection<tbl_metric_log> tbl_metric_log { get; set; }
-        public virtual ICollection<tbl_user_target> tbl_user_target { get; set; }
+        public virtual ICollection<FoodNutrients> NutrientFoods { get; set; }
     }
 }

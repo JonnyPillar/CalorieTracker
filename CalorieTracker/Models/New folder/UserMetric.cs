@@ -7,23 +7,24 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace CalorieTracker.Models
+namespace CTDataGenerator.Data
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class tbl_food
+    public partial class UserMetric
     {
-        public tbl_food()
+        public UserMetric()
         {
-            this.tbl_food_log = new HashSet<tbl_food_log>();
+            this.MetricLogs = new HashSet<MetricLog>();
+            this.Targets = new HashSet<UserTarget>();
         }
     
-        public string food_id { get; set; }
-        public string food_parent_id { get; set; }
-        public string food_name { get; set; }
-        public Nullable<double> food_quantity { get; set; }
+        public string MetricID { get; set; }
+        public string MetricName { get; set; }
+        public sbyte MetricType { get; set; }
     
-        public virtual ICollection<tbl_food_log> tbl_food_log { get; set; }
+        public virtual ICollection<MetricLog> MetricLogs { get; set; }
+        public virtual ICollection<UserTarget> Targets { get; set; }
     }
 }
