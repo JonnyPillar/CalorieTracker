@@ -16,13 +16,13 @@ namespace CalorieTracker.Models
     {
         public Metric()
         {
-            this.tbl_metric_log = new HashSet<MetricLog>();
+            this.MetricLogs = new HashSet<MetricLog>();
         }
     
         public string MetricID { get; set; }
-        public string user_metric_name { get; set; }
-        public int user_metric_type { get; set; }
+        public string Name { get; set; }
+        public int Type { get; set; }
     
-        public virtual ICollection<MetricLog> tbl_metric_log { get; set; }
+        public virtual ICollection<MetricLog> MetricLogs { get; set; }
     }
 }

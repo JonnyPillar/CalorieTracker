@@ -14,13 +14,13 @@ namespace CalorieTracker.Models
     
     public partial class FoodLog
     {
-        public string food_log_id { get; set; }
-        public int food_log_food_id { get; set; }
-        public int food_log_user_id { get; set; }
-        public decimal food_log_quantity { get; set; }
-        public System.DateTime food_log_creation_timestamp { get; set; }
+        public string FoodLogID { get; set; }
+        public int FoodID { get; set; }
+        public int UserID { get; set; }
+        public decimal Quantity { get; set; }
+        public System.DateTime CreationTimestamp { get; set; }
     
-        public virtual Food tbl_food { get; set; }
-        public virtual User tbl_user { get; set; }
+        public virtual Food Food { get; set; }
+        public virtual User User { get; set; }
     }
 }

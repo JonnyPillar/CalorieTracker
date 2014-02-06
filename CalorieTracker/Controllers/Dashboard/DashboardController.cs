@@ -17,5 +17,16 @@ namespace CalorieTracker.Controllers.Dashboard
             //Check Logged In
             return View();
         }
+
+        /// <summary>
+        ///     View Users Info
+        /// </summary>
+        /// <returns>Dashboard View</returns>
+        [HttpGet]
+        public ActionResult Index(int newUserID)
+        {
+            //Check Logged In
+            return View();
+        }
     }
 }

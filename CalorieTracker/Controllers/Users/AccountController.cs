@@ -1,6 +1,6 @@
 ﻿using System.Web.Mvc;
 
-namespace CalorieTracker.Controllers.User
+namespace CalorieTracker.Controllers.Users
 {
     public class AccountController : Controller
     {

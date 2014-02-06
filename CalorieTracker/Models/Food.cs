@@ -16,20 +16,20 @@ namespace CalorieTracker.Models
     {
         public Food()
         {
-            this.tbl_food_log = new HashSet<FoodLog>();
-            this.tbl_food_nutrient_log = new HashSet<FoodNutientLog>();
+            this.FoodLogs = new HashSet<FoodLog>();
+            this.FoodNurtients = new HashSet<FoodNutientLog>();
         }
     
-        public int food_id { get; set; }
-        public int food_source_id { get; set; }
-        public Nullable<int> food_parent_id { get; set; }
-        public int food_group_id { get; set; }
-        public string food_name { get; set; }
-        public string food_description { get; set; }
-        public string food_manufacture_name { get; set; }
+        public int FoodID { get; set; }
+        public int SourceID { get; set; }
+        public Nullable<int> ParentID { get; set; }
+        public int GroupID { get; set; }
+        public string Name { get; set; }
+        public string Description { get; set; }
+        public string ManufactureName { get; set; }
     
-        public virtual FoodGroup tbl_food_group { get; set; }
-        public virtual ICollection<FoodLog> tbl_food_log { get; set; }
-        public virtual ICollection<FoodNutientLog> tbl_food_nutrient_log { get; set; }
+        public virtual FoodGroup FoodGroup { get; set; }
+        public virtual ICollection<FoodLog> FoodLogs { get; set; }
+        public virtual ICollection<FoodNutientLog> FoodNurtients { get; set; }
     }
 }

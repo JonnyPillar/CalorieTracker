@@ -16,13 +16,13 @@ namespace CalorieTracker.Models
     {
         public FoodGroup()
         {
-            this.tbl_food = new HashSet<Food>();
+            this.Foods = new HashSet<Food>();
         }
     
-        public int food_group_id { get; set; }
-        public string food_group_name { get; set; }
-        public int food_group_source_id { get; set; }
+        public int FoodGroupID { get; set; }
+        public string Name { get; set; }
+        public int SourceID { get; set; }
     
-        public virtual ICollection<Food> tbl_food { get; set; }
+        public virtual ICollection<Food> Foods { get; set; }
     }
 }

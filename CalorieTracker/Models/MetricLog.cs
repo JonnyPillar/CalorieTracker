@@ -14,13 +14,13 @@ namespace CalorieTracker.Models
     
     public partial class MetricLog
     {
-        public string metric_log_id { get; set; }
-        public Nullable<int> metric_log_user_id { get; set; }
-        public string metric_log_metric_id { get; set; }
-        public decimal metric_log_value { get; set; }
-        public System.DateTime metric_log_creation_timestamp { get; set; }
+        public string MetricLogID { get; set; }
+        public Nullable<int> UserID { get; set; }
+        public string MetricID { get; set; }
+        public decimal Value { get; set; }
+        public System.DateTime CreationTimestamp { get; set; }
     
-        public virtual Metric tbl_user_metric { get; set; }
-        public virtual User tbl_user { get; set; }
+        public virtual Metric Metric { get; set; }
+        public virtual User User { get; set; }
     }
 }

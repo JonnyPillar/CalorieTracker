@@ -14,19 +14,19 @@ namespace CalorieTracker.Models
     
     public partial class ActivityLog
     {
-        public string activity_log_id { get; set; }
-        public string activity_log_activity_id { get; set; }
-        public int activity_log_user_id { get; set; }
-        public System.DateTime activity_log_start_date { get; set; }
-        public System.TimeSpan activity_log_duration { get; set; }
-        public decimal activity_log_distance { get; set; }
-        public string activity_log_title { get; set; }
-        public decimal activity_log_accent { get; set; }
-        public int activity_log_heart_rate { get; set; }
-        public string activity_log_notes { get; set; }
-        public string activity_log_file_url { get; set; }
+        public string ActivityLogID { get; set; }
+        public string ActivityID { get; set; }
+        public int UserID { get; set; }
+        public System.DateTime StartDate { get; set; }
+        public System.TimeSpan Duration { get; set; }
+        public decimal Distance { get; set; }
+        public string Title { get; set; }
+        public decimal Accent { get; set; }
+        public int HeartRate { get; set; }
+        public string Notes { get; set; }
+        public string FileURL { get; set; }
     
-        public virtual Activity tbl_activity { get; set; }
-        public virtual User tbl_user { get; set; }
+        public virtual Activity Activity { get; set; }
+        public virtual User User { get; set; }
     }
 }

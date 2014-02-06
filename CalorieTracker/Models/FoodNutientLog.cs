@@ -14,12 +14,12 @@ namespace CalorieTracker.Models
     
     public partial class FoodNutientLog
     {
-        public int food_nutrient_log_id { get; set; }
-        public int food_nutrient_log_food_id { get; set; }
-        public int food_nutrient_log_nutrient_id { get; set; }
-        public decimal food_nutrient_log_value { get; set; }
+        public int NurtientLogID { get; set; }
+        public int FoodID { get; set; }
+        public int NurtientID { get; set; }
+        public decimal Value { get; set; }
     
-        public virtual Food tbl_food { get; set; }
-        public virtual Nutrient tbl_nutrient { get; set; }
+        public virtual Food Food { get; set; }
+        public virtual Nutrient Nurtient { get; set; }
     }
 }

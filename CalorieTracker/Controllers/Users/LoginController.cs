@@ -1,14 +1,14 @@
 ﻿using System.Web.Mvc;
 
-namespace CalorieTracker.Controllers.User
+namespace CalorieTracker.Controllers.Users
 {
-    public class RegisterController : Controller
+    public class LoginController : Controller
     {
         //
-        // GET: /Register/
+        // GET: /Login/
 
         /// <summary>
-        ///     Register New User View
+        ///     Login User View
         /// </summary>
         /// <returns>Login View</returns>
         [HttpGet]
@@ -18,10 +18,10 @@ namespace CalorieTracker.Controllers.User
         }
 
         /// <summary>
-        ///     Register New User Post Back
+        ///     Login User Post Back
         /// </summary>
-        /// <param name="formCollection">New User Form</param>
-        /// <returns>Action</returns>
+        /// <param name="formCollection">User Login Form</param>
+        /// <returns>Login View</returns>
         [HttpPost]
         public ActionResult Index(FormCollection formCollection)
         {

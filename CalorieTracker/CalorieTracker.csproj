@@ -126,7 +126,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Summary\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
@@ -140,9 +139,10 @@
     <Compile Include="Controllers\Log\Food\FoodController.cs" />
     <Compile Include="Controllers\Log\Metric\MetricController.cs" />
     <Compile Include="Controllers\Summary\SummaryController.cs" />
-    <Compile Include="Controllers\User\AccountController.cs" />
-    <Compile Include="Controllers\User\LoginController.cs" />
-    <Compile Include="Controllers\User\RegisterController.cs" />
+    <Compile Include="Controllers\Users\AccountController.cs" />
+    <Compile Include="Controllers\Users\LoginController.cs" />
+    <Compile Include="Controllers\Users\RegisterController.cs" />
+    <Compile Include="Controllers\Users\TestController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -151,21 +151,6 @@
     </Compile>
     <Compile Include="Models\ActivityLog.cs">
       <DependentUpon>CTDB.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\CTDatabase.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>CTDatabase.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\CTDatabase.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>CTDatabase.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\CTDatabase.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>CTDatabase.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\CTDB.Context.cs">
       <AutoGen>True</AutoGen>
@@ -203,43 +188,14 @@
     <Compile Include="Models\Nutrient.cs">
       <DependentUpon>CTDB.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\tbl_activity.cs">
-      <DependentUpon>CTDatabase.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\tbl_activity_log.cs">
-      <DependentUpon>CTDatabase.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\tbl_food.cs">
-      <DependentUpon>CTDatabase.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\tbl_food_group.cs">
-      <DependentUpon>CTDatabase.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\tbl_food_log.cs">
-      <DependentUpon>CTDatabase.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\tbl_food_nutrient_log.cs">
-      <DependentUpon>CTDatabase.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\tbl_food_unit.cs">
-      <DependentUpon>CTDatabase.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\tbl_metric_log.cs">
-      <DependentUpon>CTDatabase.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\tbl_nutrient.cs">
-      <DependentUpon>CTDatabase.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\tbl_user.cs">
-      <DependentUpon>CTDatabase.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\tbl_user_metric.cs">
-      <DependentUpon>CTDatabase.tt</DependentUpon>
-    </Compile>
+    <Compile Include="Models\PartialModels\User.cs" />
     <Compile Include="Models\User.cs">
       <DependentUpon>CTDB.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\ViewModels\RegisterModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Utils\Account\PasswordHasher.cs" />
+    <Compile Include="Utils\Account\SecurityUtil.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
@@ -251,23 +207,6 @@
     <Content Include="Models\CTDB.edmx.sql" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
-    <EntityDeploy Include="Models\CTDatabase.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>CTDatabase.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="Models\CTDatabase.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>CTDatabase.edmx</DependentUpon>
-      <LastGenOutput>CTDatabase.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="Models\CTDatabase.edmx.diagram">
-      <DependentUpon>CTDatabase.edmx</DependentUpon>
-    </Content>
-    <Content Include="Models\CTDatabase.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>CTDatabase.edmx</DependentUpon>
-      <LastGenOutput>CTDatabase.cs</LastGenOutput>
-    </Content>
     <EntityDeploy Include="Models\CTDB.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>CTDB.Designer.cs</LastGenOutput>
@@ -329,11 +268,6 @@
     <Content Include="Views\Activity\Edit.cshtml" />
     <Content Include="Views\Activity\Delete.cshtml" />
     <Content Include="Views\Metric\Index.cshtml" />
-    <Content Include="Views\Default1\Create.cshtml" />
-    <Content Include="Views\Default1\Delete.cshtml" />
-    <Content Include="Views\Default1\Details.cshtml" />
-    <Content Include="Views\Default1\Edit.cshtml" />
-    <Content Include="Views\Default1\Index.cshtml" />
     <Content Include="Views\Metric\Details.cshtml" />
     <Content Include="Views\Metric\Create.cshtml" />
     <Content Include="Views\Metric\Edit.cshtml" />
@@ -343,6 +277,15 @@
     <Content Include="Views\Review\Day.cshtml" />
     <Content Include="Views\Review\Week.cshtml" />
     <Content Include="Views\Review\Year.cshtml" />
+    <Content Include="Views\Summary\Index.cshtml" />
+    <Content Include="Views\Summary\Deficiencies.cshtml" />
+    <Content Include="Views\Summary\HealthIssues.cshtml" />
+    <Content Include="Views\Summary\Overloads.cshtml" />
+    <Content Include="Views\Test\Create.cshtml" />
+    <Content Include="Views\Test\Delete.cshtml" />
+    <Content Include="Views\Test\Details.cshtml" />
+    <Content Include="Views\Test\Edit.cshtml" />
+    <Content Include="Views\Test\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

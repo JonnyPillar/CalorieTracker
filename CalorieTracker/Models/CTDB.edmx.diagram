@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="e9bc1218a6c34907a7507cec9826de5a" Name="Diagram1" ZoomLevel="35" >
+      <Diagram DiagramId="e9bc1218a6c34907a7507cec9826de5a" Name="Diagram1" ZoomLevel="88" >
         <EntityTypeShape EntityType="CTDB.Activity" Width="1.5" PointX="1.875" PointY="11.625" />
         <EntityTypeShape EntityType="CTDB.ActivityLog" Width="1.5" PointX="5.875" PointY="7" />
         <EntityTypeShape EntityType="CTDB.Food" Width="1.5" PointX="2.5" PointY="6.75" />

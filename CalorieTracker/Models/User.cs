@@ -16,23 +16,23 @@ namespace CalorieTracker.Models
     {
         public User()
         {
-            this.tbl_activity_log = new HashSet<ActivityLog>();
-            this.tbl_food_log = new HashSet<FoodLog>();
-            this.tbl_metric_log = new HashSet<MetricLog>();
+            this.ActivityLogs = new HashSet<ActivityLog>();
+            this.FoodLogs = new HashSet<FoodLog>();
+            this.MetricLogs = new HashSet<MetricLog>();
         }
     
-        public int user_id { get; set; }
-        public System.DateTime user_dob { get; set; }
-        public bool user_gender { get; set; }
-        public string user_password_hash { get; set; }
-        public string user_password_salt { get; set; }
-        public bool user_admin { get; set; }
-        public System.DateTime user_creation_timestamp { get; set; }
-        public int user_activity_level_type { get; set; }
-        public int user_personality_type { get; set; }
+        public int UserID { get; set; }
+        public System.DateTime DOB { get; set; }
+        public bool Gender { get; set; }
+        public string PasswordHash { get; set; }
+        public string PasswordSalt { get; set; }
+        public bool Admin { get; set; }
+        public System.DateTime CreationTimestamp { get; set; }
+        public int ActivityLevelType { get; set; }
+        public int Personality { get; set; }
     
-        public virtual ICollection<ActivityLog> tbl_activity_log { get; set; }
-        public virtual ICollection<FoodLog> tbl_food_log { get; set; }
-        public virtual ICollection<MetricLog> tbl_metric_log { get; set; }
+        public virtual ICollection<ActivityLog> ActivityLogs { get; set; }
+        public virtual ICollection<FoodLog> FoodLogs { get; set; }
+        public virtual ICollection<MetricLog> MetricLogs { get; set; }
     }
 }

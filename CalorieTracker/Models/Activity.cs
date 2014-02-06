@@ -16,14 +16,14 @@ namespace CalorieTracker.Models
     {
         public Activity()
         {
-            this.tbl_activity_log = new HashSet<ActivityLog>();
+            this.ActivityLogs = new HashSet<ActivityLog>();
         }
     
-        public string activity_id { get; set; }
-        public string activity_name { get; set; }
-        public decimal activity_calorie_burn_rate { get; set; }
-        public string activity_image_url { get; set; }
+        public string ActivityID { get; set; }
+        public string Name { get; set; }
+        public decimal CalorieBurnRate { get; set; }
+        public string ImageUrl { get; set; }
     
-        public virtual ICollection<ActivityLog> tbl_activity_log { get; set; }
+        public virtual ICollection<ActivityLog> ActivityLogs { get; set; }
     }
 }

@@ -16,15 +16,15 @@ namespace CalorieTracker.Models
     {
         public Nutrient()
         {
-            this.tbl_food_nutrient_log = new HashSet<FoodNutientLog>();
+            this.NutrientRecords = new HashSet<FoodNutientLog>();
         }
     
-        public int nutrient_id { get; set; }
-        public int nutrient_source_id { get; set; }
-        public int nutrient_unit_id { get; set; }
-        public string nutrient_name { get; set; }
-        public int nutrient_decimal_rounding { get; set; }
+        public int NutrientID { get; set; }
+        public int SourceID { get; set; }
+        public int UnitType { get; set; }
+        public string Name { get; set; }
+        public int DecimalRounding { get; set; }
     
-        public virtual ICollection<FoodNutientLog> tbl_food_nutrient_log { get; set; }
+        public virtual ICollection<FoodNutientLog> NutrientRecords { get; set; }
     }
 }
