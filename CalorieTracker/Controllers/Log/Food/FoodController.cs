@@ -127,7 +127,7 @@ namespace CalorieTracker.Controllers.Log.Food
             try
             {
                 // TODO: Add delete logic here
-
+                //Admin Only
                 return RedirectToAction("Index");
             }
             catch
