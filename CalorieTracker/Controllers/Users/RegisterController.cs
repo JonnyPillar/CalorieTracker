@@ -19,7 +19,7 @@ namespace CalorieTracker.Controllers.Users
         [HttpGet]
         public ActionResult Index()
         {
-            if (SecurityUtil.AuthenticUser(User)) return RedirectToAction("Index", "Login");
+            if (SecurityUtil.AuthenticUser(User)) return RedirectToAction("Index", "Dashboard");
             return View();
         }
 
@@ -32,6 +32,7 @@ namespace CalorieTracker.Controllers.Users
         [ValidateAntiForgeryToken]
         public ActionResult Index(RegisterModel registerModel)
         {
+            if (SecurityUtil.AuthenticUser(User)) return RedirectToAction("Index", "Dashboard");
             if (ModelState.IsValid)
             {
                 var user = new User(registerModel);
