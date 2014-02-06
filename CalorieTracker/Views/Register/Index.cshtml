@@ -1,7 +1,43 @@
-﻿@model dynamic
+﻿@model CalorieTracker.Models.ViewModels.RegisterModel
 
 @{
-    ViewBag.Title = "title";
+    ViewBag.Title = "Register";
 }
 
-<h2>title</h2>
+<hgroup>
+    <h1>@ViewBag.Title</h1>
+    <h2>Create a new account.</h2>
+</hgroup>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary()
+
+    <fieldset>
+        <legend>Registration Form</legend>
+        <ol>
+            <li>
+                @Html.LabelFor(m => m.DateOfBirth)
+                @Html.TextBoxFor(m => m.DateOfBirth)
+            </li>
+            <li>
+                @Html.LabelFor(m => m.Gender)
+                @Html.TextBoxFor(m => m.Gender)
+            </li>
+            <li>
+                @Html.LabelFor(m => m.Password)
+                @Html.PasswordFor(m => m.Password)
+            </li>
+            <li>
+                @Html.LabelFor(m => m.ConfirmPassword)
+                @Html.PasswordFor(m => m.ConfirmPassword)
+            </li>
+        </ol>
+        <input type="submit" value="Register" />
+    </fieldset>
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
