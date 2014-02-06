@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="e9bc1218a6c34907a7507cec9826de5a" Name="Diagram1" ZoomLevel="35" >
+        <EntityTypeShape EntityType="CTDB.Activity" Width="1.5" PointX="1.875" PointY="11.625" />
+        <EntityTypeShape EntityType="CTDB.ActivityLog" Width="1.5" PointX="5.875" PointY="7" />
+        <EntityTypeShape EntityType="CTDB.Food" Width="1.5" PointX="2.5" PointY="6.75" />
+        <EntityTypeShape EntityType="CTDB.FoodGroup" Width="1.5" PointX="0.5" PointY="8.25" />
+        <EntityTypeShape EntityType="CTDB.FoodLog" Width="1.5" PointX="6" PointY="3.875" />
+        <EntityTypeShape EntityType="CTDB.FoodNutientLog" Width="1.5" PointX="8.625" PointY="7.5" />
+        <EntityTypeShape EntityType="CTDB.MetricLog" Width="1.5" PointX="9.625" PointY="3" />
+        <EntityTypeShape EntityType="CTDB.Nutrient" Width="1.5" PointX="5.875" PointY="12" />
+        <EntityTypeShape EntityType="CTDB.User" Width="1.5" PointX="2.375" PointY="2.25" />
+        <EntityTypeShape EntityType="CTDB.Metric" Width="1.5" PointX="5.625" PointY="0.5" />
+        <AssociationConnector Association="CTDB.FK_activity_id" />
+        <AssociationConnector Association="CTDB.FK_activity_user_id" />
+        <AssociationConnector Association="CTDB.fk_food_group_id1" />
+        <AssociationConnector Association="CTDB.FK_food_log_food_id" />
+        <AssociationConnector Association="CTDB.fk_food_nutrient_food_id" />
+        <AssociationConnector Association="CTDB.FK_food_log_user_id" />
+        <AssociationConnector Association="CTDB.fk_food_nutrient_nutrient_id" />
+        <AssociationConnector Association="CTDB.FK_tbl_metric_id" />
+        <AssociationConnector Association="CTDB.FK_tbl_user_id" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

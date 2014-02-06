@@ -1,0 +1,75 @@
+﻿@model IEnumerable<CalorieTracker.Models.User>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.user_dob)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.user_gender)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.user_password_hash)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.user_password_salt)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.user_admin)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.user_creation_timestamp)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.user_activity_level_type)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.user_personality_type)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.user_dob)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.user_gender)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.user_password_hash)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.user_password_salt)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.user_admin)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.user_creation_timestamp)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.user_activity_level_type)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.user_personality_type)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.user_id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.user_id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.user_id })
+        </td>
+    </tr>
+}
+
+</table>
