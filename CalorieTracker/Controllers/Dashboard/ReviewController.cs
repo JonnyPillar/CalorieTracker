@@ -10,6 +10,7 @@ namespace CalorieTracker.Controllers.Dashboard
         ///     Latest User Review Day
         /// </summary>
         /// <returns>Review Choice View</returns>
+        [HttpGet]
         public ActionResult Index()
         {
             return View();
@@ -19,6 +20,7 @@ namespace CalorieTracker.Controllers.Dashboard
         ///     Day Review
         /// </summary>
         /// <returns>Day Review View</returns>
+        [HttpGet]
         public ActionResult Day()
         {
             return View();
@@ -29,6 +31,7 @@ namespace CalorieTracker.Controllers.Dashboard
         /// </summary>
         /// <param name="dayNumber">Day Number of Year</param>
         /// <returns>Day Review View</returns>
+        [HttpGet]
         public ActionResult Day(int dayNumber)
         {
             return View();
@@ -38,6 +41,7 @@ namespace CalorieTracker.Controllers.Dashboard
         ///     Weej Review
         /// </summary>
         /// <returns>Week Review View</returns>
+        [HttpGet]
         public ActionResult Week()
         {
             return View();
@@ -48,6 +52,7 @@ namespace CalorieTracker.Controllers.Dashboard
         /// </summary>
         /// <param name="weekNumber">Week Number</param>
         /// <returns>Week Review View</returns>
+        [HttpGet]
         public ActionResult Week(int weekNumber)
         {
             return View();
@@ -57,6 +62,7 @@ namespace CalorieTracker.Controllers.Dashboard
         ///     Year Review
         /// </summary>
         /// <returns>Year Review View</returns>
+        [HttpGet]
         public ActionResult Year()
         {
             return View();
@@ -67,6 +73,7 @@ namespace CalorieTracker.Controllers.Dashboard
         /// </summary>
         /// <param name="yearNumber">Year</param>
         /// <returns>Year Review View</returns>
+        [HttpGet]
         public ActionResult Year(int yearNumber)
         {
             return View();

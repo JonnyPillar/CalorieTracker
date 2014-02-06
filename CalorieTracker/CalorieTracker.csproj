@@ -126,8 +126,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Dashboard\" />
-    <Folder Include="Views\Review\" />
     <Folder Include="Views\Summary\" />
   </ItemGroup>
   <ItemGroup>
@@ -136,6 +134,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\Dashboard\DashboardController.cs" />
     <Compile Include="Controllers\Dashboard\ReviewController.cs" />
+    <Compile Include="Controllers\Dashboard\SummaryController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\Log\Activity\ActivityController.cs" />
     <Compile Include="Controllers\Log\Food\FoodController.cs" />
@@ -339,6 +338,11 @@
     <Content Include="Views\Metric\Create.cshtml" />
     <Content Include="Views\Metric\Edit.cshtml" />
     <Content Include="Views\Metric\Delete.cshtml" />
+    <Content Include="Views\Dashboard\Index.cshtml" />
+    <Content Include="Views\Review\Index.cshtml" />
+    <Content Include="Views\Review\Day.cshtml" />
+    <Content Include="Views\Review\Week.cshtml" />
+    <Content Include="Views\Review\Year.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
