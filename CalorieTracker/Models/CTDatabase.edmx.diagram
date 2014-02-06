@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="c52ffb25281145d59f16e9cbb0d035c7" Name="Diagram1">
+        <EntityTypeShape EntityType="CalorieTrackerModel.tbl_activity" Width="1.5" PointX="0.75" PointY="9.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="CalorieTrackerModel.tbl_activity_log" Width="1.5" PointX="3" PointY="4.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="CalorieTrackerModel.tbl_food" Width="1.5" PointX="3.75" PointY="12.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="CalorieTrackerModel.tbl_food_group" Width="1.5" PointX="1.5" PointY="13.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="CalorieTrackerModel.tbl_food_log" Width="1.5" PointX="6" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="CalorieTrackerModel.tbl_food_nutrient_log" Width="1.5" PointX="6" PointY="13.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="CalorieTrackerModel.tbl_food_unit" Width="1.5" PointX="5.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="CalorieTrackerModel.tbl_metric_log" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="CalorieTrackerModel.tbl_nutrient" Width="1.5" PointX="3.75" PointY="9.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="CalorieTrackerModel.tbl_user" Width="1.5" PointX="0.75" PointY="4.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="CalorieTrackerModel.tbl_user_metric" Width="1.5" PointX="0.75" PointY="1.25" IsExpanded="true" />
+        <AssociationConnector Association="CalorieTrackerModel.activity_id" ManuallyRouted="false" />
+        <AssociationConnector Association="CalorieTrackerModel.activity_user_id" ManuallyRouted="false" />
+        <AssociationConnector Association="CalorieTrackerModel.fk_food_group_id" ManuallyRouted="false" />
+        <AssociationConnector Association="CalorieTrackerModel.fk_food_nutrient_food_id" ManuallyRouted="false" />
+        <AssociationConnector Association="CalorieTrackerModel.food_log_food_id" ManuallyRouted="false" />
+        <AssociationConnector Association="CalorieTrackerModel.food_log_user_id" ManuallyRouted="false" />
+        <AssociationConnector Association="CalorieTrackerModel.fk_food_nutrient_nutrient_id" ManuallyRouted="false" />
+        <AssociationConnector Association="CalorieTrackerModel.tbl_metric_id" ManuallyRouted="false" />
+        <AssociationConnector Association="CalorieTrackerModel.tbl_user_id" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

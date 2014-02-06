@@ -7,13 +7,22 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace CTDataGenerator.Data
+namespace CalorieTracker.Models
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class tbl_food_unit
+    public partial class tbl_food_group
     {
-        public string food_unit { get; set; }
+        public tbl_food_group()
+        {
+            this.tbl_food = new HashSet<tbl_food>();
+        }
+    
+        public int food_group_id { get; set; }
+        public string food_group_name { get; set; }
+        public int food_group_source_id { get; set; }
+    
+        public virtual ICollection<tbl_food> tbl_food { get; set; }
     }
 }

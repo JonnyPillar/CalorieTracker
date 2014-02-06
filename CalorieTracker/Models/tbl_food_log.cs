@@ -12,15 +12,15 @@ namespace CalorieTracker.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class MetricLog
+    public partial class tbl_food_log
     {
-        public string MetricLogID { get; set; }
-        public Nullable<int> UserID { get; set; }
-        public string MetricID { get; set; }
-        public decimal Value { get; set; }
-        public System.DateTime CreationTimestamp { get; set; }
+        public string food_log_id { get; set; }
+        public int food_log_food_id { get; set; }
+        public int food_log_user_id { get; set; }
+        public decimal food_log_quantity { get; set; }
+        public System.DateTime food_log_creation_timestamp { get; set; }
     
-        public virtual Metric Metric { get; set; }
-        public virtual User User { get; set; }
+        public virtual tbl_food tbl_food { get; set; }
+        public virtual tbl_user tbl_user { get; set; }
     }
 }

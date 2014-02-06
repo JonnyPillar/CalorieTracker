@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace CTDataGenerator.Data
+namespace CalorieTracker.Models
 {
     using System;
     using System.Collections.Generic;
@@ -15,12 +15,12 @@ namespace CTDataGenerator.Data
     public partial class FoodLog
     {
         public string FoodLogID { get; set; }
-        public int MealID { get; set; }
+        public int FoodID { get; set; }
         public int UserID { get; set; }
         public decimal Quantity { get; set; }
         public System.DateTime CreationTimestamp { get; set; }
     
-        public virtual Food FoodLogFood { get; set; }
-        public virtual User FoodLogUser { get; set; }
+        public virtual Food Food { get; set; }
+        public virtual User User { get; set; }
     }
 }

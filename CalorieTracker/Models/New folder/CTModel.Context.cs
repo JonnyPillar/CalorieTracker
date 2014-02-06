@@ -7,19 +7,16 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace CTDataGenerator.Data
+namespace CalorieTracker.Models
 {
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
-    using System.Data.Objects;
-    using System.Data.Objects.DataClasses;
-    using System.Linq;
     
-    public partial class CTEntities : DbContext
+    public partial class Entities : DbContext
     {
-        public CTEntities()
-            : base("name=CTEntities")
+        public Entities()
+            : base("name=MudfootConnection")
         {
         }
     
@@ -31,50 +28,13 @@ namespace CTDataGenerator.Data
         public DbSet<Activity> Activities { get; set; }
         public DbSet<ActivityLog> ActivityLogs { get; set; }
         public DbSet<Food> Foods { get; set; }
-        public DbSet<FoodLog> FoodLogs { get; set; }
-        public DbSet<MetricLog> MetricLogs { get; set; }
-        public DbSet<User> Users { get; set; }
-        public DbSet<UserMetric> UserMetrics { get; set; }
-        public DbSet<UserTarget> UserTargets { get; set; }
         public DbSet<FoodGroup> FoodGroups { get; set; }
-        public DbSet<tbl_food_unit> tbl_food_unit { get; set; }
+        public DbSet<FoodLog> FoodLogs { get; set; }
+        public DbSet<FoodNutrients> FoodNutrients { get; set; }
+        public DbSet<FoodUnit> FoodUnits { get; set; }
+        public DbSet<MetricLog> MetricLogs { get; set; }
         public DbSet<Nutrient> Nutrients { get; set; }
-        public DbSet<FoodNutrientLog> FoodNutrientLogs { get; set; }
-    
-        public virtual int ActivityCount(Nullable<int> type)
-        {
-            var typeParameter = type.HasValue ?
-                new ObjectParameter("type", type) :
-                new ObjectParameter("type", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("ActivityCount", typeParameter);
-        }
-    
-        public virtual int activity_Count_Per_Week_For_User_Type(Nullable<int> userType)
-        {
-            var userTypeParameter = userType.HasValue ?
-                new ObjectParameter("userType", userType) :
-                new ObjectParameter("userType", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("activity_Count_Per_Week_For_User_Type", userTypeParameter);
-        }
-    
-        public virtual int activity_Count_Per_Week_For_User_Type1(Nullable<int> userType)
-        {
-            var userTypeParameter = userType.HasValue ?
-                new ObjectParameter("userType", userType) :
-                new ObjectParameter("userType", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("activity_Count_Per_Week_For_User_Type1", userTypeParameter);
-        }
-    
-        public virtual int activity_Count_Per_Week_For_User_Type2(Nullable<int> userType)
-        {
-            var userTypeParameter = userType.HasValue ?
-                new ObjectParameter("userType", userType) :
-                new ObjectParameter("userType", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("activity_Count_Per_Week_For_User_Type2", userTypeParameter);
-        }
+        public DbSet<User> Users { get; set; }
+        public DbSet<Metric> Metrics { get; set; }
     }
 }

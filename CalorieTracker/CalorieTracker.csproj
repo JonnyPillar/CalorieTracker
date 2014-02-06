@@ -123,62 +123,77 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Account\" />
+    <Folder Include="Views\Activity\" />
+    <Folder Include="Views\Dashboard\" />
+    <Folder Include="Views\Food\" />
+    <Folder Include="Views\Login\" />
+    <Folder Include="Views\Metric\" />
+    <Folder Include="Views\Summary\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\Dashboard\DashboardController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\Log\Activity\ActivityController.cs" />
+    <Compile Include="Controllers\Log\Food\FoodController.cs" />
+    <Compile Include="Controllers\Log\Metric\MetricController.cs" />
+    <Compile Include="Controllers\Summary\SummaryController.cs" />
+    <Compile Include="Controllers\User\AccountController.cs" />
+    <Compile Include="Controllers\User\LoginController.cs" />
+    <Compile Include="Controllers\User\RegisterController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\ActivityLog.cs">
-      <DependentUpon>CTModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\CTModel.Context.cs">
+    <Compile Include="Models\CTDatabase.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>CTModel.Context.tt</DependentUpon>
+      <DependentUpon>CTDatabase.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\CTModel.cs">
+    <Compile Include="Models\CTDatabase.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>CTModel.tt</DependentUpon>
+      <DependentUpon>CTDatabase.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\CTModel.Designer.cs">
+    <Compile Include="Models\CTDatabase.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>CTModel.edmx</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Food.cs">
-      <DependentUpon>CTModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\FoodGroup.cs">
-      <DependentUpon>CTModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\FoodLog.cs">
-      <DependentUpon>CTModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\FoodNutrients.cs">
-      <DependentUpon>CTModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Metric.cs">
-      <DependentUpon>CTModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\MetricLog.cs">
-      <DependentUpon>CTModel.tt</DependentUpon>
+      <DependentUpon>CTDatabase.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\tbl_activity.cs">
-      <DependentUpon>CTModel.tt</DependentUpon>
+      <DependentUpon>CTDatabase.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tbl_activity_log.cs">
+      <DependentUpon>CTDatabase.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tbl_food.cs">
+      <DependentUpon>CTDatabase.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tbl_food_group.cs">
+      <DependentUpon>CTDatabase.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tbl_food_log.cs">
+      <DependentUpon>CTDatabase.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tbl_food_nutrient_log.cs">
+      <DependentUpon>CTDatabase.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\tbl_food_unit.cs">
-      <DependentUpon>CTModel.tt</DependentUpon>
+      <DependentUpon>CTDatabase.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tbl_metric_log.cs">
+      <DependentUpon>CTDatabase.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\tbl_nutrient.cs">
-      <DependentUpon>CTModel.tt</DependentUpon>
+      <DependentUpon>CTDatabase.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\User.cs">
-      <DependentUpon>CTModel.tt</DependentUpon>
+    <Compile Include="Models\tbl_user.cs">
+      <DependentUpon>CTDatabase.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tbl_user_metric.cs">
+      <DependentUpon>CTDatabase.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -191,23 +206,25 @@
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
-    <EntityDeploy Include="Models\CTModel.edmx">
+    <EntityDeploy Include="Models\CTDatabase.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>CTModel.Designer.cs</LastGenOutput>
+      <LastGenOutput>CTDatabase.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <Content Include="Models\CTModel.Context.tt">
+    <Content Include="Models\CTDatabase.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>CTModel.edmx</DependentUpon>
-      <LastGenOutput>CTModel.Context.cs</LastGenOutput>
+      <DependentUpon>CTDatabase.edmx</DependentUpon>
+      <LastGenOutput>CTDatabase.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="Models\CTModel.edmx.diagram">
-      <DependentUpon>CTModel.edmx</DependentUpon>
+    <Content Include="Models\CTDatabase.edmx.diagram">
+      <DependentUpon>CTDatabase.edmx</DependentUpon>
     </Content>
-    <Content Include="Models\CTModel.tt">
+    <Content Include="Models\CTDatabase.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>CTModel.edmx</DependentUpon>
-      <LastGenOutput>CTModel.cs</LastGenOutput>
+      <DependentUpon>CTDatabase.edmx</DependentUpon>
+      <LastGenOutput>CTDatabase.cs</LastGenOutput>
     </Content>
+    <None Include="Properties\PublishProfiles\Local.pubxml" />
+    <None Include="Properties\PublishProfiles\Rob Server.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -232,6 +249,8 @@
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
+    <Content Include="Views\Register\Index.cshtml" />
+    <Content Include="Views\User\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

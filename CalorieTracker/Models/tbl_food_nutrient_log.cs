@@ -7,19 +7,19 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace CTDataGenerator.Data
+namespace CalorieTracker.Models
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class FoodNutrientLog
+    public partial class tbl_food_nutrient_log
     {
-        public int NutrientLogID { get; set; }
-        public int FoodID { get; set; }
-        public int NutrientID { get; set; }
-        public decimal Value { get; set; }
+        public int food_nutrient_log_id { get; set; }
+        public int food_nutrient_log_food_id { get; set; }
+        public int food_nutrient_log_nutrient_id { get; set; }
+        public decimal food_nutrient_log_value { get; set; }
     
-        public virtual Food Food { get; set; }
-        public virtual Nutrient Nutrient { get; set; }
+        public virtual tbl_food tbl_food { get; set; }
+        public virtual tbl_nutrient tbl_nutrient { get; set; }
     }
 }

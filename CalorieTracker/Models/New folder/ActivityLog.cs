@@ -7,16 +7,17 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace CTDataGenerator.Data
+namespace CalorieTracker.Models
 {
     using System;
     using System.Collections.Generic;
     
     public partial class ActivityLog
     {
-        public string LogID { get; set; }
+        public string ActivityLogID { get; set; }
         public string ActivityID { get; set; }
         public int UserID { get; set; }
+        public System.DateTime StartTimestamp { get; set; }
         public System.TimeSpan Duration { get; set; }
         public decimal Distance { get; set; }
         public string Title { get; set; }
@@ -24,7 +25,6 @@ namespace CTDataGenerator.Data
         public int HeartRate { get; set; }
         public string Notes { get; set; }
         public string FileURL { get; set; }
-        public System.DateTime StartDate { get; set; }
     
         public virtual Activity Activity { get; set; }
         public virtual User User { get; set; }

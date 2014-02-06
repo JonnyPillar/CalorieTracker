@@ -12,17 +12,8 @@ namespace CalorieTracker.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class FoodGroup
+    public partial class tbl_food_unit
     {
-        public FoodGroup()
-        {
-            this.GroupFoods = new HashSet<Food>();
-        }
-    
-        public int GroupID { get; set; }
-        public string Name { get; set; }
-        public int SourceID { get; set; }
-    
-        public virtual ICollection<Food> GroupFoods { get; set; }
+        public string food_unit { get; set; }
     }
 }

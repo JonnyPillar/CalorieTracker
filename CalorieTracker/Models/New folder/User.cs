@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace CTDataGenerator.Data
+namespace CalorieTracker.Models
 {
     using System;
     using System.Collections.Generic;
@@ -16,25 +16,23 @@ namespace CTDataGenerator.Data
     {
         public User()
         {
-            this.ActivityLogs = new HashSet<ActivityLog>();
-            this.FoodLogs = new HashSet<FoodLog>();
-            this.MetricLogs = new HashSet<MetricLog>();
-            this.Targets = new HashSet<UserTarget>();
+            this.UserActivityLog = new HashSet<ActivityLog>();
+            this.UserFoodLog = new HashSet<FoodLog>();
+            this.UserMetricLog = new HashSet<MetricLog>();
         }
     
         public int UserID { get; set; }
-        public System.DateTime DateOfBirth { get; set; }
+        public System.DateTime DOB { get; set; }
         public sbyte Gender { get; set; }
         public string PasswordHash { get; set; }
         public string PasswordSalt { get; set; }
-        public sbyte AdminInt { get; set; }
+        public sbyte Admin { get; set; }
         public System.DateTime CreationTimestamp { get; set; }
         public int ActivityLevel { get; set; }
         public int PersonalityType { get; set; }
     
-        public virtual ICollection<ActivityLog> ActivityLogs { get; set; }
-        public virtual ICollection<FoodLog> FoodLogs { get; set; }
-        public virtual ICollection<MetricLog> MetricLogs { get; set; }
-        public virtual ICollection<UserTarget> Targets { get; set; }
+        public virtual ICollection<ActivityLog> UserActivityLog { get; set; }
+        public virtual ICollection<FoodLog> UserFoodLog { get; set; }
+        public virtual ICollection<MetricLog> UserMetricLog { get; set; }
     }
 }

@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace CTDataGenerator.Data
+namespace CalorieTracker.Models
 {
     using System;
     using System.Collections.Generic;
@@ -16,7 +16,7 @@ namespace CTDataGenerator.Data
     {
         public Nutrient()
         {
-            this.Nutrients = new HashSet<FoodNutrientLog>();
+            this.NutrientFoods = new HashSet<FoodNutrients>();
         }
     
         public int NutrientID { get; set; }
@@ -25,6 +25,6 @@ namespace CTDataGenerator.Data
         public string Name { get; set; }
         public int DecimalRounding { get; set; }
     
-        public virtual ICollection<FoodNutrientLog> Nutrients { get; set; }
+        public virtual ICollection<FoodNutrients> NutrientFoods { get; set; }
     }
 }
