@@ -12,6 +12,7 @@ namespace CalorieTracker.Controllers.Log.Metrics
         // GET: /Metric/
         public ActionResult Index()
         {
+            if (!User.Identity.IsAuthenticated) return RedirectToAction("Index", "Login");
             return View(db.Metrics.ToList());
         }
 

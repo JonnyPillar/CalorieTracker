@@ -137,6 +137,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\Log\Activitys\ActivityController.cs" />
     <Compile Include="Controllers\Log\Foods\FoodController.cs" />
+    <Compile Include="Controllers\Log\LogController.cs" />
     <Compile Include="Controllers\Log\Metrics\MetricController.cs" />
     <Compile Include="Controllers\Summary\SummaryController.cs" />
     <Compile Include="Controllers\Users\AccountController.cs" />
@@ -295,6 +296,7 @@
     <Content Include="Views\Food\Details.cshtml" />
     <Content Include="Views\Food\Edit.cshtml" />
     <Content Include="Views\Food\Index.cshtml" />
+    <Content Include="Views\Log\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

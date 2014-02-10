@@ -12,6 +12,7 @@ namespace CalorieTracker.Controllers.Log.Foods
         // GET: /Food/
         public ActionResult Index()
         {
+            if (!User.Identity.IsAuthenticated) return RedirectToAction("Index", "Login");
             IQueryable<Food> foods = db.Foods.Include(f => f.FoodGroup);
             return View(foods.ToList());
         }
