@@ -3,6 +3,7 @@ using System.Data.Entity;
 using System.Linq;
 using System.Web.Mvc;
 using CalorieTracker.Models;
+using CalorieTracker.Models.ModelBinders;
 using CalorieTracker.Utils.Account;
 
 namespace CalorieTracker.Controllers.Log
@@ -52,7 +53,7 @@ namespace CalorieTracker.Controllers.Log
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create(
-            [Bind(
+            [ModelBinder(typeof(ActivityLogModelBinder))][Bind(
                 Include =
                     "ActivityLogID,ActivityID,UserID,StartDate,Duration,Distance,Title,Accent,HeartRate,Notes,FileURL")] ActivityLog activitylog)
         {

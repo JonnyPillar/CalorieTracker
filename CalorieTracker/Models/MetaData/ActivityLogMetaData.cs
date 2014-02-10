@@ -17,7 +17,7 @@ namespace CalorieTracker.Models.MetaData
 
         [Required]
         [Display(Name = "Start Date")]
-        [DataType(DataType.Date)]
+        [DataType(DataType.DateTime)]
         public DateTime StartDate { get; set; }
 
         [Required]
@@ -33,14 +33,14 @@ namespace CalorieTracker.Models.MetaData
         public decimal Accent { get; set; }
 
         [Required]
-        [Display(Name = "Date Of Birth")]
+        [Display(Name = "Heart Rate")]
         public int HeartRate { get; set; }
 
         [Required]
         public string Notes { get; set; }
 
         [Required]
-        [Display(Name = "Date Of Birth")]
+        [Display(Name = "File URL")]
         [DataType(DataType.Upload)]
         public string FileURL { get; set; }
     }

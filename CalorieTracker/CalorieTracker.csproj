@@ -197,6 +197,7 @@
     <Compile Include="Models\MetricLog.cs">
       <DependentUpon>CTDB.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\ModelBinders\ActivityLogModelBinder.cs" />
     <Compile Include="Models\ModelBinders\FoodLogModelBinder.cs" />
     <Compile Include="Models\Nutrient.cs">
       <DependentUpon>CTDB.tt</DependentUpon>

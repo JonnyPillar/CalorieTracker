@@ -1,4 +1,5 @@
-﻿using System.Data.Entity;
+﻿using System;
+using System.Data.Entity;
 using System.Linq;
 using System.Web.Mvc;
 using CalorieTracker.Models;
@@ -44,6 +45,7 @@ namespace CalorieTracker.Controllers.Activitys
         {
             if (ModelState.IsValid)
             {
+                activity.ActivityID = Guid.NewGuid().ToString();
                 db.Activities.Add(activity);
                 db.SaveChanges();
                 return RedirectToAction("Index");

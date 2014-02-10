@@ -19,6 +19,7 @@ namespace CalorieTracker
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
             ModelBinders.Binders.Add(typeof(FoodLog), new FoodLogModelBinder());
+            ModelBinders.Binders.Add(typeof(ActivityLog), new ActivityLogModelBinder());
         }
     }
 }

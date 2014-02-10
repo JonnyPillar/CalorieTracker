@@ -15,6 +15,14 @@
         <h4>ActivityLog</h4>
         <hr />
         @Html.ValidationSummary(true)
+        
+        <div class="form-group">
+            @Html.LabelFor(model => model.ActivityID, "ActivityID", new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("ActivityID", String.Empty)
+                @Html.ValidationMessageFor(model => model.ActivityID)
+            </div>
+        </div>
 
         <div class="form-group">
             @Html.LabelFor(model => model.StartDate, new { @class = "control-label col-md-2" })
