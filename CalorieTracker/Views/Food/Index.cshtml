@@ -1,18 +1,50 @@
-﻿@model dynamic
+﻿@model IEnumerable<CalorieTracker.Models.Food>
 
 @{
-    Layout = null;
+    ViewBag.Title = "Index";
 }
 
-<!DOCTYPE html>
+<h2>Index</h2>
 
-<html>
-    <head>
-        <title>title</title>
-    </head>
-    <body>
-        <div>
-              
-        </div>
-    </body>
-</html>
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Description)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ManufactureName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FoodGroup.Name)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.ActionLink(item.Name, "Details", new { id = item.FoodID })
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Description)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ManufactureName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FoodGroup.Name)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.FoodID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.FoodID })
+        </td>
+    </tr>
+}
+
+</table>

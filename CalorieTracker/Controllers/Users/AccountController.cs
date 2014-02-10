@@ -1,120 +1,112 @@
-﻿using System;
+﻿using System.Data.Entity;
 using System.Web.Mvc;
+using CalorieTracker.Models;
+using CalorieTracker.Utils.Account;
 
 namespace CalorieTracker.Controllers.Users
 {
     public class AccountController : Controller
     {
-        //
-        // GET: /Account/
+        private readonly CTDBContainer db = new CTDBContainer();
 
-        /// <summary>
-        ///     View User Account
-        /// </summary>
-        /// <returns>Account View</returns>
-        [HttpGet]
+        // GET: /Account/
         public ActionResult Index()
         {
             if (User.Identity.IsAuthenticated)
             {
-                string id = User.Identity.Name;
-                try
+                int userID = IdentityUtil.GetUserIDFromCookie(User);
+                if (userID >= 0) // valid user ID
                 {
-                    int userID = Convert.ToInt32(id);
-                }
-                catch (Exception)
-                {
-                    return RedirectToAction("Index", "Login");
+                    User user = db.Users.Find(userID);
+                    if (user != null)
+                    {
+                        return View("Details", user);
+                    }
                 }
             }
-            return View();
+            return RedirectToAction("Index", "Login");
         }
 
-        //
         // GET: /Account/Details/5
-        /// <summary>
-        ///     Get details of a user. Admin Only
-        /// </summary>
-        /// <param name="id">User ID</param>
-        /// <returns>Details View</returns>
-        [HttpGet]
-        public ActionResult Details(int id)
+        public ActionResult Details(int? id)
         {
-            //Check Admin
-            return View();
+            if (id != null)
+            {
+                User user = db.Users.Find(id);
+                if (user != null)
+                {
+                    return View(user);
+                }
+            }
+            return RedirectToAction("Index", "Login");
         }
 
-        //
         // GET: /Account/Edit/5
-        /// <summary>
-        ///     Edit User Info
-        /// </summary>
-        /// <param name="id">User ID</param>
-        /// <returns>Edit View</returns>
-        [HttpGet]
-        public ActionResult Edit(int id)
+        public ActionResult Edit(int? id)
         {
-            return View();
+            if (id == null)
+            {
+                return RedirectToAction("Index", "Login");
+            }
+            User user = db.Users.Find(id);
+            if (user == null)
+            {
+                return RedirectToAction("Index", "Login");
+            }
+            return View(user);
         }
 
-        //
         // POST: /Account/Edit/5
-        /// <summary>
-        ///     Edit User Post Back
-        /// </summary>
-        /// <param name="id">User ID</param>
-        /// <param name="collection">User Edit Form</param>
-        /// <returns>View Info View</returns>
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit(
+            [Bind(
+                Include =
+                    "UserID,DOB,Gender,PasswordHash,PasswordSalt,Admin,CreationTimestamp,ActivityLevelType,Personality")
+            ] User user)
         {
-            try
+            if (ModelState.IsValid)
             {
-                // TODO: Add update logic here
-
+                db.Entry(user).State = EntityState.Modified;
+                db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            catch
-            {
-                return View();
-            }
+            return View(user);
         }
 
-        //
         // GET: /Account/Delete/5
-
-        /// <summary>
-        ///     Delete User
-        /// </summary>
-        /// <param name="id">User ID</param>
-        /// <returns>Delete Confirmation View</returns>
-        [HttpGet]
-        public ActionResult Delete(int id)
+        public ActionResult Delete(int? id)
         {
-            return View();
+            if (id == null)
+            {
+                return RedirectToAction("Index", "Login");
+            }
+            User user = db.Users.Find(id);
+            if (user == null)
+            {
+                return RedirectToAction("Index", "Login");
+            }
+            return View(user);
         }
 
-        //
         // POST: /Account/Delete/5
-        /// <summary>
-        ///     Delete A User After Confirmation
-        /// </summary>
-        /// <param name="id">User ID</param>
-        /// <param name="collection">Delete User Form</param>
-        /// <returns>Return To Homepage</returns>
-        [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteConfirmed(int id)
         {
-            try
+            User user = db.Users.Find(id);
+            db.Users.Remove(user);
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
             {
-                // TODO: Add delete logic here
-                //Ensure User logged out!
-                return RedirectToAction("Index");
+                db.Dispose();
             }
-            catch
-            {
-                return View();
-            }
+            base.Dispose(disposing);
         }
     }
 }
