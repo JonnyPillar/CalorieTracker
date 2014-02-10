@@ -143,7 +143,6 @@
     <Compile Include="Controllers\Users\AccountController.cs" />
     <Compile Include="Controllers\Users\LoginController.cs" />
     <Compile Include="Controllers\Users\RegisterController.cs" />
-    <Compile Include="Controllers\Users\TestController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -200,6 +199,7 @@
     <Compile Include="Models\User.cs">
       <DependentUpon>CTDB.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\ViewModels\DashboardModel.cs" />
     <Compile Include="Models\ViewModels\LoginModel.cs" />
     <Compile Include="Models\ViewModels\RegisterModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -210,6 +210,7 @@
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\CalorieTracker.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -282,10 +283,6 @@
     <Content Include="Views\Summary\Deficiencies.cshtml" />
     <Content Include="Views\Summary\HealthIssues.cshtml" />
     <Content Include="Views\Summary\Overloads.cshtml" />
-    <Content Include="Views\Test\Create.cshtml" />
-    <Content Include="Views\Test\Delete.cshtml" />
-    <Content Include="Views\Test\Details.cshtml" />
-    <Content Include="Views\Test\Edit.cshtml" />
     <Content Include="Views\Account\Create.cshtml" />
     <Content Include="Views\Account\Delete.cshtml" />
     <Content Include="Views\Account\Details.cshtml" />
@@ -297,6 +294,9 @@
     <Content Include="Views\Food\Edit.cshtml" />
     <Content Include="Views\Food\Index.cshtml" />
     <Content Include="Views\Log\Index.cshtml" />
+    <Content Include="Views\Dashboard\PartialViews\_UserInfomation.cshtml" />
+    <Content Include="Views\Dashboard\PartialViews\_UserLogHistory.cshtml" />
+    <Content Include="Views\Dashboard\PartialViews\_DashboardNewUserWelcome.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

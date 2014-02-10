@@ -1,0 +1,16 @@
+﻿/*
+    Dashboard    
+*/
+.dashboardPanel {
+}
+
+    .dashboardPanel .dashboardWelcome {
+        text-align: center;
+    }
+
+    .dashboardPanel .dashboardLogPanel {
+        text-align: center;
+    }
+/*
+    End of Dashboard
+*/

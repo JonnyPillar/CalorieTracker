@@ -15,6 +15,7 @@ namespace CalorieTracker.Controllers.Dashboard
         public ActionResult Index()
         {
             //Check Logged In
+            if (!User.Identity.IsAuthenticated) return RedirectToAction("Index", "Login");
             return View();
         }
 
@@ -26,6 +27,7 @@ namespace CalorieTracker.Controllers.Dashboard
         public ActionResult Index(string id)
         {
             //Check Logged In
+            if (!User.Identity.IsAuthenticated) return RedirectToAction("Index", "Login");
             return View();
         }
     }
