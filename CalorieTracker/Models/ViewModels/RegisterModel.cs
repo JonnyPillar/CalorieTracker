@@ -1,7 +1,6 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 
-
 namespace CalorieTracker.Models.ViewModels
 {
     public class RegisterModel

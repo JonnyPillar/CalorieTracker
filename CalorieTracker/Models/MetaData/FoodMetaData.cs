@@ -4,7 +4,7 @@ namespace CalorieTracker.Models.MetaData
 {
     public class FoodMetaData
     {
-        [ScaffoldColumn(false)]
+        //[ScaffoldColumn(false)]
         public int FoodID { get; set; }
 
         [ScaffoldColumn(false)]
@@ -13,7 +13,7 @@ namespace CalorieTracker.Models.MetaData
         [ScaffoldColumn(false)]
         public int? ParentID { get; set; }
 
-        [ScaffoldColumn(false)]
+        //[ScaffoldColumn(false)]
         public int GroupID { get; set; }
 
         [Required]

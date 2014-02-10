@@ -131,14 +131,18 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\Log\ActivityLogController.cs" />
     <Compile Include="Controllers\Dashboard\DashboardController.cs" />
     <Compile Include="Controllers\Dashboard\ReviewController.cs" />
     <Compile Include="Controllers\Dashboard\SummaryController.cs" />
+    <Compile Include="Controllers\Foods\FoodController.cs" />
+    <Compile Include="Controllers\Foods\FoodGroupController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\Log\Activitys\ActivityController.cs" />
-    <Compile Include="Controllers\Log\Foods\FoodController.cs" />
+    <Compile Include="Controllers\Activitys\ActivityController.cs" />
+    <Compile Include="Controllers\Log\FoodLogController.cs" />
     <Compile Include="Controllers\Log\LogController.cs" />
-    <Compile Include="Controllers\Log\Metrics\MetricController.cs" />
+    <Compile Include="Controllers\Log\MetricLogController.cs" />
+    <Compile Include="Controllers\Metrics\MetricController.cs" />
     <Compile Include="Controllers\Summary\SummaryController.cs" />
     <Compile Include="Controllers\Users\AccountController.cs" />
     <Compile Include="Controllers\Users\LoginController.cs" />
@@ -179,8 +183,12 @@
     <Compile Include="Models\FoodNutientLog.cs">
       <DependentUpon>CTDB.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\MetaData\ActivityLogMetaData.cs" />
     <Compile Include="Models\MetaData\ActivityMetaData.cs" />
+    <Compile Include="Models\MetaData\FoodGroupMetaData.cs" />
+    <Compile Include="Models\MetaData\FoodLogMetaData.cs" />
     <Compile Include="Models\MetaData\FoodMetaData.cs" />
+    <Compile Include="Models\MetaData\MetricLogMetaData.cs" />
     <Compile Include="Models\MetaData\MetricMetaData.cs" />
     <Compile Include="Models\MetaData\UserMetaData.cs" />
     <Compile Include="Models\Metric.cs">
@@ -193,7 +201,11 @@
       <DependentUpon>CTDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\PartialModels\Activity.cs" />
+    <Compile Include="Models\PartialModels\ActivityLog.cs" />
     <Compile Include="Models\PartialModels\Food.cs" />
+    <Compile Include="Models\PartialModels\FoodGroup.cs" />
+    <Compile Include="Models\PartialModels\FoodLog.cs" />
+    <Compile Include="Models\PartialModels\MetricLog.cs" />
     <Compile Include="Models\PartialModels\Metric.cs" />
     <Compile Include="Models\PartialModels\User.cs" />
     <Compile Include="Models\User.cs">
@@ -296,7 +308,28 @@
     <Content Include="Views\Log\Index.cshtml" />
     <Content Include="Views\Dashboard\PartialViews\_UserInfomation.cshtml" />
     <Content Include="Views\Dashboard\PartialViews\_UserLogHistory.cshtml" />
-    <Content Include="Views\Dashboard\PartialViews\_DashboardNewUserWelcome.cshtml" />
+    <Content Include="Views\Dashboard\PartialViews\_NewUserWelcomeBar.cshtml" />
+    <Content Include="Views\Log\Food.cshtml" />
+    <Content Include="Views\FoodGroup\Create.cshtml" />
+    <Content Include="Views\FoodGroup\Delete.cshtml" />
+    <Content Include="Views\FoodGroup\Details.cshtml" />
+    <Content Include="Views\FoodGroup\Edit.cshtml" />
+    <Content Include="Views\FoodGroup\Index.cshtml" />
+    <Content Include="Views\ActivityLog\Create.cshtml" />
+    <Content Include="Views\ActivityLog\Delete.cshtml" />
+    <Content Include="Views\ActivityLog\Details.cshtml" />
+    <Content Include="Views\ActivityLog\Edit.cshtml" />
+    <Content Include="Views\ActivityLog\Index.cshtml" />
+    <Content Include="Views\FoodLog\Create.cshtml" />
+    <Content Include="Views\FoodLog\Delete.cshtml" />
+    <Content Include="Views\FoodLog\Details.cshtml" />
+    <Content Include="Views\FoodLog\Edit.cshtml" />
+    <Content Include="Views\FoodLog\Index.cshtml" />
+    <Content Include="Views\MetricLog\Create.cshtml" />
+    <Content Include="Views\MetricLog\Delete.cshtml" />
+    <Content Include="Views\MetricLog\Details.cshtml" />
+    <Content Include="Views\MetricLog\Edit.cshtml" />
+    <Content Include="Views\MetricLog\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

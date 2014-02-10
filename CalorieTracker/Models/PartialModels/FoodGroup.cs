@@ -3,9 +3,8 @@ using CalorieTracker.Models.MetaData;
 
 namespace CalorieTracker.Models
 {
-    [MetadataType(typeof (MetricMetaData))]
-    public partial class Metric
+    [MetadataType(typeof (FoodGroupMetaData))]
+    public partial class FoodGroup
     {
-
     }
 }

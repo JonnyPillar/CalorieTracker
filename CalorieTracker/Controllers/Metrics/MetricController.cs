@@ -3,7 +3,7 @@ using System.Linq;
 using System.Web.Mvc;
 using CalorieTracker.Models;
 
-namespace CalorieTracker.Controllers.Log.Metrics
+namespace CalorieTracker.Controllers.Metrics
 {
     public class MetricController : Controller
     {

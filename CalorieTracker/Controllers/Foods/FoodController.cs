@@ -3,7 +3,7 @@ using System.Linq;
 using System.Web.Mvc;
 using CalorieTracker.Models;
 
-namespace CalorieTracker.Controllers.Log.Foods
+namespace CalorieTracker.Controllers.Foods
 {
     public class FoodController : Controller
     {
@@ -12,7 +12,6 @@ namespace CalorieTracker.Controllers.Log.Foods
         // GET: /Food/
         public ActionResult Index()
         {
-            if (!User.Identity.IsAuthenticated) return RedirectToAction("Index", "Login");
             IQueryable<Food> foods = db.Foods.Include(f => f.FoodGroup);
             return View(foods.ToList());
         }
@@ -53,6 +52,7 @@ namespace CalorieTracker.Controllers.Log.Foods
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+
             ViewBag.GroupID = new SelectList(db.FoodGroups, "FoodGroupID", "Name", food.GroupID);
             return View(food);
         }
