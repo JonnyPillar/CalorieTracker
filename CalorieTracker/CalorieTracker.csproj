@@ -136,7 +136,7 @@
     <Compile Include="Controllers\Dashboard\SummaryController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\Log\Activity\ActivityController.cs" />
-    <Compile Include="Controllers\Log\Food\FoodController.cs" />
+    <Compile Include="Controllers\Log\Foods\FoodController.cs" />
     <Compile Include="Controllers\Log\Metric\MetricController.cs" />
     <Compile Include="Controllers\Summary\SummaryController.cs" />
     <Compile Include="Controllers\Users\AccountController.cs" />
@@ -179,6 +179,9 @@
     <Compile Include="Models\FoodNutientLog.cs">
       <DependentUpon>CTDB.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\MetaData\ActivityMetaData.cs" />
+    <Compile Include="Models\MetaData\FoodMetaData.cs" />
+    <Compile Include="Models\MetaData\UserMetaData.cs" />
     <Compile Include="Models\Metric.cs">
       <DependentUpon>CTDB.tt</DependentUpon>
     </Compile>
@@ -188,6 +191,7 @@
     <Compile Include="Models\Nutrient.cs">
       <DependentUpon>CTDB.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\PartialModels\Activity.cs" />
     <Compile Include="Models\PartialModels\Food.cs" />
     <Compile Include="Models\PartialModels\User.cs" />
     <Compile Include="Models\User.cs">

@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using CalorieTracker.Models.MetaData;
 using CalorieTracker.Models.ViewModels;
 using CTDataGenerator.Utils;
 
 namespace CalorieTracker.Models
 {
-    [MetadataType(typeof (UserMetadata))]
+    [MetadataType(typeof (UserMetaData))]
     public partial class User
     {
         public User(RegisterModel registerModel)
@@ -25,36 +26,5 @@ namespace CalorieTracker.Models
             FoodLogs = new HashSet<FoodLog>();
             MetricLogs = new HashSet<MetricLog>();
         }
-    }
-
-    public class UserMetadata
-    {
-        [ScaffoldColumn(false)]
-        public int UserID { get; set; }
-
-        [Required]
-        [Display(Name = "Date Of Birth")]
-        public DateTime DOB { get; set; }
-
-        [Required]
-        public bool Gender { get; set; }
-
-        [ScaffoldColumn(false)]
-        public string PasswordHash { get; set; }
-
-        [ScaffoldColumn(false)]
-        public string PasswordSalt { get; set; }
-
-        [ScaffoldColumn(false)]
-        public bool Admin { get; set; }
-
-        [ScaffoldColumn(false)]
-        public DateTime CreationTimestamp { get; set; }
-
-        [ScaffoldColumn(false)]
-        public int ActivityLevelType { get; set; }
-
-        [ScaffoldColumn(false)]
-        public int Personality { get; set; }
     }
 }

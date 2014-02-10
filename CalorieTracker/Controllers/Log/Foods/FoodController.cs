@@ -52,7 +52,6 @@ namespace CalorieTracker.Controllers.Log.Foods
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-
             ViewBag.GroupID = new SelectList(db.FoodGroups, "FoodGroupID", "Name", food.GroupID);
             return View(food);
         }
