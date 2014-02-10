@@ -1,4 +1,5 @@
-﻿using System.Web.Mvc;
+﻿using System;
+using System.Web.Mvc;
 
 namespace CalorieTracker.Controllers.Users
 {
@@ -14,6 +15,18 @@ namespace CalorieTracker.Controllers.Users
         [HttpGet]
         public ActionResult Index()
         {
+            if (User.Identity.IsAuthenticated)
+            {
+                string id = User.Identity.Name;
+                try
+                {
+                    int userID = Convert.ToInt32(id);
+                }
+                catch (Exception)
+                {
+                    return RedirectToAction("Index", "Login");
+                }
+            }
             return View();
         }
 

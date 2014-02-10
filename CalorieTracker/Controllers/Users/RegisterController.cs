@@ -32,13 +32,13 @@ namespace CalorieTracker.Controllers.Users
         [ValidateAntiForgeryToken]
         public ActionResult Index(RegisterModel registerModel)
         {
+            //No user validation needed as there is no unique login detail eg Email etc
             if (SecurityUtil.AuthenticUser(User)) return RedirectToAction("Index", "Dashboard");
             if (ModelState.IsValid)
             {
                 var user = new User(registerModel);
                 db.Users.Add(user);
                 db.SaveChanges();
-
                 //Password Valid
                 FormsAuthentication.SetAuthCookie(user.UserID.ToString(), true);
                 return RedirectToAction("Index", "Dashboard", new {id = user.UserID});

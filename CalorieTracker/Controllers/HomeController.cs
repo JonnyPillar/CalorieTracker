@@ -11,19 +11,8 @@ namespace CalorieTracker.Controllers
     public class HomeController : Controller
     {
         //private calo
-
-
         public ActionResult Index()
         {
-            //tbl_user temp = new tbl_user();
-            //temp.user_gender = 0;
-            //temp.user_creation_timestamp = DateTime.UtcNow;
-            //temp.user_admin = 0;
-            //temp.user_password_hash = "";
-            //temp.user_password_salt = "";
-
-            //temp.
-
             return View();
             
         }
