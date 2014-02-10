@@ -135,7 +135,7 @@
     <Compile Include="Controllers\Dashboard\ReviewController.cs" />
     <Compile Include="Controllers\Dashboard\SummaryController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\Log\Activity\ActivityController.cs" />
+    <Compile Include="Controllers\Log\Activitys\ActivityController.cs" />
     <Compile Include="Controllers\Log\Foods\FoodController.cs" />
     <Compile Include="Controllers\Log\Metric\MetricController.cs" />
     <Compile Include="Controllers\Summary\SummaryController.cs" />
