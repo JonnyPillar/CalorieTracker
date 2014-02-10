@@ -24,7 +24,7 @@ namespace CalorieTracker.Controllers.Users
                     }
                 }
             }
-            return RedirectToAction("Index", "Login");
+            return RedirectToAction("Index", "Account");
         }
 
         // GET: /Account/Details/5
@@ -38,7 +38,7 @@ namespace CalorieTracker.Controllers.Users
                     return View(user);
                 }
             }
-            return RedirectToAction("Index", "Login");
+            return RedirectToAction("Index", "Account");
         }
 
         // GET: /Account/Edit/5
@@ -46,12 +46,12 @@ namespace CalorieTracker.Controllers.Users
         {
             if (id == null)
             {
-                return RedirectToAction("Index", "Login");
+                return RedirectToAction("Index", "Account");
             }
             User user = db.Users.Find(id);
             if (user == null)
             {
-                return RedirectToAction("Index", "Login");
+                return RedirectToAction("Index", "Account");
             }
             return View(user);
         }
@@ -79,12 +79,12 @@ namespace CalorieTracker.Controllers.Users
         {
             if (id == null)
             {
-                return RedirectToAction("Index", "Login");
+                return RedirectToAction("Index", "Account");
             }
             User user = db.Users.Find(id);
             if (user == null)
             {
-                return RedirectToAction("Index", "Login");
+                return RedirectToAction("Index", "Account");
             }
             return View(user);
         }

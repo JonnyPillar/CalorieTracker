@@ -20,12 +20,12 @@ namespace CalorieTracker.Controllers.Foods
         {
             if (id == null)
             {
-                return RedirectToAction("Index", "Login");
+                return RedirectToAction("Index", "Account");
             }
             FoodGroup foodgroup = db.FoodGroups.Find(id);
             if (foodgroup == null)
             {
-                return RedirectToAction("Index", "Login");
+                return RedirectToAction("Index", "Account");
             }
             return View(foodgroup);
         }
@@ -58,12 +58,12 @@ namespace CalorieTracker.Controllers.Foods
         {
             if (id == null)
             {
-                return RedirectToAction("Index", "Login");
+                return RedirectToAction("Index", "Account");
             }
             FoodGroup foodgroup = db.FoodGroups.Find(id);
             if (foodgroup == null)
             {
-                return RedirectToAction("Index", "Login");
+                return RedirectToAction("Index", "Account");
             }
             return View(foodgroup);
         }
@@ -89,12 +89,12 @@ namespace CalorieTracker.Controllers.Foods
         {
             if (id == null)
             {
-                return RedirectToAction("Index", "Login");
+                return RedirectToAction("Index", "Account");
             }
             FoodGroup foodgroup = db.FoodGroups.Find(id);
             if (foodgroup == null)
             {
-                return RedirectToAction("Index", "Login");
+                return RedirectToAction("Index", "Account");
             }
             return View(foodgroup);
         }

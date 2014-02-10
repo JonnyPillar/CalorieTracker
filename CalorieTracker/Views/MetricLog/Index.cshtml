@@ -17,9 +17,6 @@
         <th>
             @Html.DisplayNameFor(model => model.Metric.Name)
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.User.PasswordHash)
-        </th>
         <th></th>
     </tr>
 
@@ -30,9 +27,6 @@
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Metric.Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.User.PasswordHash)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.MetricLogID }) |

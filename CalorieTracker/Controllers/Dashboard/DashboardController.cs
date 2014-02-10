@@ -22,7 +22,7 @@ namespace CalorieTracker.Controllers.Dashboard
         public ActionResult Index(string id)
         {
             //Check Logged In
-            if (!User.Identity.IsAuthenticated) return RedirectToAction("Index", "Login");
+            if (!User.Identity.IsAuthenticated) return RedirectToAction("Index", "Account");
             int userID = IdentityUtil.GetUserIDFromCookie(User);
             User dashboardUser = db.Users.FirstOrDefault(user => user.UserID == userID);
 

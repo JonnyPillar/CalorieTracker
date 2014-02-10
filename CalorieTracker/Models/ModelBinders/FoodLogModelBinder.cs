@@ -23,12 +23,12 @@ namespace CalorieTracker.Models.ModelBinders
                 string rawQuantity = request.Form.Get("Quantity");
                 int foodID = 0;
                 int userID = 0;
-                int quantity = 0;
+                decimal quantity = 0;
                 try
                 {
                     foodID = Convert.ToInt32(rawfoodID);
                     userID = Convert.ToInt32(rawUserID);
-                    quantity = Convert.ToInt32(rawQuantity);
+                    quantity = Convert.ToDecimal(rawQuantity);
                 }
                 catch (Exception)
                 {

@@ -1,7 +1,9 @@
-﻿using System.Data.Entity;
+﻿using System;
+using System.Data.Entity;
 using System.Linq;
 using System.Web.Mvc;
 using CalorieTracker.Models;
+using CalorieTracker.Models.ModelBinders;
 using CalorieTracker.Utils.Account;
 
 namespace CalorieTracker.Controllers.Log
@@ -13,24 +15,24 @@ namespace CalorieTracker.Controllers.Log
         // GET: /FoodLog/
         public ActionResult Index()
         {
-            if (!User.Identity.IsAuthenticated) return RedirectToAction("Index", "Login");
+            if (!User.Identity.IsAuthenticated) return RedirectToAction("Index", "Account");
             int currentUserID = IdentityUtil.GetUserIDFromCookie(User);
-            IQueryable<FoodLog> foodlogs = db.FoodLogs.Include(f => f.Food).Include(f => f.User.UserID == currentUserID);
+            IQueryable<FoodLog> foodlogs = db.FoodLogs.Include(f => f.Food).Include(f => f.User).Where(f => f.User.UserID == currentUserID);
             return View(foodlogs.ToList());
         }
 
         // GET: /FoodLog/Details/5
         public ActionResult Details(string id)
         {
-            if (!User.Identity.IsAuthenticated) return RedirectToAction("Index", "Login");
+            if (!User.Identity.IsAuthenticated) return RedirectToAction("Index", "Account");
             if (id == null)
             {
-                return RedirectToAction("Index", "Login");
+                return RedirectToAction("Index", "Account");
             }
             FoodLog foodlog = db.FoodLogs.Find(id);
             if (foodlog == null)
             {
-                return RedirectToAction("Index", "Login");
+                return RedirectToAction("Index", "Account");
             }
             return View(foodlog);
         }
@@ -38,9 +40,9 @@ namespace CalorieTracker.Controllers.Log
         // GET: /FoodLog/Create
         public ActionResult Create()
         {
-            if (!User.Identity.IsAuthenticated) return RedirectToAction("Index", "Login");
+            if (!User.Identity.IsAuthenticated) return RedirectToAction("Index", "Account");
             ViewBag.FoodID = new SelectList(db.Foods, "FoodID", "Name");
-            ViewBag.UserID = new SelectList(db.Users, "UserID", "PasswordHash");
+            ViewBag.UserID = new SelectList(db.Users, "UserID", "Name");
             return View();
         }
 
@@ -50,35 +52,36 @@ namespace CalorieTracker.Controllers.Log
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create(
-            [Bind(Include = "FoodLogID,FoodID,UserID,Quantity,CreationTimestamp")] FoodLog foodlog)
+            [ModelBinder(typeof(FoodLogModelBinder))][Bind(Include = "FoodID,UserID,Quantity,CreationTimestamp")] FoodLog foodlog)
         {
             if (ModelState.IsValid)
             {
+                foodlog.FoodLogID = Guid.NewGuid().ToString();
                 db.FoodLogs.Add(foodlog);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
             ViewBag.FoodID = new SelectList(db.Foods, "FoodID", "Name", foodlog.FoodID);
-            ViewBag.UserID = new SelectList(db.Users, "UserID", "PasswordHash", foodlog.UserID);
+            ViewBag.UserID = new SelectList(db.Users, "UserID", "Name", foodlog.UserID);
             return View(foodlog);
         }
 
         // GET: /FoodLog/Edit/5
         public ActionResult Edit(string id)
         {
-            if (!User.Identity.IsAuthenticated) return RedirectToAction("Index", "Login");
+            if (!User.Identity.IsAuthenticated) return RedirectToAction("Index", "Account");
             if (id == null)
             {
-                return RedirectToAction("Index", "Login");
+                return RedirectToAction("Index", "Account");
             }
             FoodLog foodlog = db.FoodLogs.Find(id);
             if (foodlog == null)
             {
-                return RedirectToAction("Index", "Login");
+                return RedirectToAction("Index", "Account");
             }
             ViewBag.FoodID = new SelectList(db.Foods, "FoodID", "Name", foodlog.FoodID);
-            ViewBag.UserID = new SelectList(db.Users, "UserID", "PasswordHash", foodlog.UserID);
+            ViewBag.UserID = new SelectList(db.Users, "UserID", "Name", foodlog.UserID);
             return View(foodlog);
         }
 
@@ -96,22 +99,22 @@ namespace CalorieTracker.Controllers.Log
                 return RedirectToAction("Index");
             }
             ViewBag.FoodID = new SelectList(db.Foods, "FoodID", "Name", foodlog.FoodID);
-            ViewBag.UserID = new SelectList(db.Users, "UserID", "PasswordHash", foodlog.UserID);
+            ViewBag.UserID = new SelectList(db.Users, "UserID", "Name", foodlog.UserID);
             return View(foodlog);
         }
 
         // GET: /FoodLog/Delete/5
         public ActionResult Delete(string id)
         {
-            if (!User.Identity.IsAuthenticated) return RedirectToAction("Index", "Login");
+            if (!User.Identity.IsAuthenticated) return RedirectToAction("Index", "Account");
             if (id == null)
             {
-                return RedirectToAction("Index", "Login");
+                return RedirectToAction("Index", "Account");
             }
             FoodLog foodlog = db.FoodLogs.Find(id);
             if (foodlog == null)
             {
-                return RedirectToAction("Index", "Login");
+                return RedirectToAction("Index", "Account");
             }
             return View(foodlog);
         }

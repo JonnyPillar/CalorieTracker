@@ -1,4 +1,5 @@
-﻿using System.Data.Entity;
+﻿using System;
+using System.Data.Entity;
 using System.Linq;
 using System.Web.Mvc;
 using CalorieTracker.Models;
@@ -13,25 +14,25 @@ namespace CalorieTracker.Controllers.Log
         // GET: /ActivityLog/
         public ActionResult Index()
         {
-            if (!User.Identity.IsAuthenticated) return RedirectToAction("Index", "Login");
+            if (!User.Identity.IsAuthenticated) return RedirectToAction("Index", "Account");
             int currentUserID = IdentityUtil.GetUserIDFromCookie(User);
             IQueryable<ActivityLog> activitylogs =
-                db.ActivityLogs.Include(a => a.Activity).Include(a => a.User.UserID == currentUserID);
+                db.ActivityLogs.Include(a => a.Activity).Include(a => a.User).Where(a => a.User.UserID == currentUserID);
             return View(activitylogs.ToList());
         }
 
         // GET: /ActivityLog/Details/5
         public ActionResult Details(string id)
         {
-            if (!User.Identity.IsAuthenticated) return RedirectToAction("Index", "Login");
+            if (!User.Identity.IsAuthenticated) return RedirectToAction("Index", "Account");
             if (id == null)
             {
-                return RedirectToAction("Index", "Login");
+                return RedirectToAction("Index", "Account");
             }
             ActivityLog activitylog = db.ActivityLogs.Find(id);
             if (activitylog == null)
             {
-                return RedirectToAction("Index", "Login");
+                return RedirectToAction("Index", "Account");
             }
             return View(activitylog);
         }
@@ -39,9 +40,9 @@ namespace CalorieTracker.Controllers.Log
         // GET: /ActivityLog/Create
         public ActionResult Create()
         {
-            if (!User.Identity.IsAuthenticated) return RedirectToAction("Index", "Login");
+            if (!User.Identity.IsAuthenticated) return RedirectToAction("Index", "Account");
             ViewBag.ActivityID = new SelectList(db.Activities, "ActivityID", "Name");
-            ViewBag.UserID = new SelectList(db.Users, "UserID", "PasswordHash");
+            ViewBag.UserID = new SelectList(db.Users, "UserID", "Name");
             return View();
         }
 
@@ -57,31 +58,32 @@ namespace CalorieTracker.Controllers.Log
         {
             if (ModelState.IsValid)
             {
+                activitylog.ActivityLogID = Guid.NewGuid().ToString();
                 db.ActivityLogs.Add(activitylog);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
             ViewBag.ActivityID = new SelectList(db.Activities, "ActivityID", "Name", activitylog.ActivityID);
-            ViewBag.UserID = new SelectList(db.Users, "UserID", "PasswordHash", activitylog.UserID);
+            ViewBag.UserID = new SelectList(db.Users, "UserID", "Name", activitylog.UserID);
             return View(activitylog);
         }
 
         // GET: /ActivityLog/Edit/5
         public ActionResult Edit(string id)
         {
-            if (!User.Identity.IsAuthenticated) return RedirectToAction("Index", "Login");
+            if (!User.Identity.IsAuthenticated) return RedirectToAction("Index", "Account");
             if (id == null)
             {
-                return RedirectToAction("Index", "Login");
+                return RedirectToAction("Index", "Account");
             }
             ActivityLog activitylog = db.ActivityLogs.Find(id);
             if (activitylog == null)
             {
-                return RedirectToAction("Index", "Login");
+                return RedirectToAction("Index", "Account");
             }
             ViewBag.ActivityID = new SelectList(db.Activities, "ActivityID", "Name", activitylog.ActivityID);
-            ViewBag.UserID = new SelectList(db.Users, "UserID", "PasswordHash", activitylog.UserID);
+            ViewBag.UserID = new SelectList(db.Users, "UserID", "Name", activitylog.UserID);
             return View(activitylog);
         }
 
@@ -102,22 +104,22 @@ namespace CalorieTracker.Controllers.Log
                 return RedirectToAction("Index");
             }
             ViewBag.ActivityID = new SelectList(db.Activities, "ActivityID", "Name", activitylog.ActivityID);
-            ViewBag.UserID = new SelectList(db.Users, "UserID", "PasswordHash", activitylog.UserID);
+            ViewBag.UserID = new SelectList(db.Users, "UserID", "Name", activitylog.UserID);
             return View(activitylog);
         }
 
         // GET: /ActivityLog/Delete/5
         public ActionResult Delete(string id)
         {
-            if (!User.Identity.IsAuthenticated) return RedirectToAction("Index", "Login");
+            if (!User.Identity.IsAuthenticated) return RedirectToAction("Index", "Account");
             if (id == null)
             {
-                return RedirectToAction("Index", "Login");
+                return RedirectToAction("Index", "Account");
             }
             ActivityLog activitylog = db.ActivityLogs.Find(id);
             if (activitylog == null)
             {
-                return RedirectToAction("Index", "Login");
+                return RedirectToAction("Index", "Account");
             }
             return View(activitylog);
         }
