@@ -49,5 +49,11 @@ namespace CalorieTracker.Controllers.Users
             ModelState.AddModelError("", "The user name or password provided is incorrect.");
             return View();
         }
+
+        public ActionResult Signout()
+        {
+            if (User.Identity.IsAuthenticated) FormsAuthentication.SignOut();
+            return RedirectToAction("Index", "Home");
+        }
     }
 }

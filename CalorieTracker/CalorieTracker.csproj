@@ -330,7 +330,7 @@
     <Content Include="Views\MetricLog\Edit.cshtml" />
     <Content Include="Views\MetricLog\Index.cshtml" />
     <Content Include="Views\Shared\_Navigation.cshtml" />
-    <Content Include="Views\Shared\Partial1.cshtml" />
+    <Content Include="Views\Shared\_Footer.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
