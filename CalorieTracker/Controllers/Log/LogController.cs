@@ -11,23 +11,5 @@ namespace CalorieTracker.Controllers.Log
             if (!User.Identity.IsAuthenticated) return RedirectToAction("Index", "Login");
             return View();
         }
-
-        public ActionResult Food()
-        {
-            if (!User.Identity.IsAuthenticated) return RedirectToAction("Index", "Login");
-            return View();
-        }
-
-        public ActionResult Activity()
-        {
-            if (!User.Identity.IsAuthenticated) return RedirectToAction("Index", "Login");
-            return View();
-        }
-
-        public ActionResult Metric()
-        {
-            if (!User.Identity.IsAuthenticated) return RedirectToAction("Index", "Login");
-            return View();
-        }
     }
 }
