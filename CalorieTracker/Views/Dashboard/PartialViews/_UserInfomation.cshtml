@@ -1,8 +1,11 @@
 ﻿@model CalorieTracker.Models.User
-
-<h3>User Number @Model.UserID</h3>
-<ul>
-    <li>Number Of Logged Activities: @Model.FoodLogs.Count</li>
-    <li>Number Of Logged Activities: @Model.ActivityLogs.Count</li>
-    <li>Number Of Logged Metrics: @Model.MetricLogs.Count</li>
-</ul>
+<div class="dashboardUserPanel">
+    <h3 class="section-title">User Number @Model.UserID</h3>
+    <div class="container">
+        <ul>
+            <li>Number Of Logged Activities: @Model.FoodLogs.Count</li>
+            <li>Number Of Logged Activities: @Model.ActivityLogs.Count</li>
+            <li>Number Of Logged Metrics: @Model.MetricLogs.Count</li>
+        </ul>
+    </div>
+</div>

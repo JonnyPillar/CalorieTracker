@@ -1,29 +1,34 @@
 ﻿@model CalorieTracker.Models.User
 
-<h3>Recent Food History</h3>
-@if (@Model.FoodLogs.Count == 0)
-{
-    <span></span>
-    @Html.ActionLink("Please Your First Log", "Index", "Log")
-}
-else
-{
-    <ul>
-        @foreach (var item in @Model.FoodLogs)
+<div class="dashboardUserPanel">
+    <h3 class="section-title">Recent History</h3>
+    <div class="container">
+        @if (@Model.FoodLogs.Count == 0)
         {
-            <li>
-                <ul>
-                    <li>
-                        Name: @item.Food.Name
-                    </li>
-                    <li>
-                        Amount: @item.Quantity
-                    </li>
-                    <li>
-                        Date: @item.CreationTimestamp.ToString("dd:MM:yyyy hh:mm")
-                    </li>
-                </ul>
-            </li>
+            <span></span>
+            @Html.ActionLink("Please Your First Log", "Index", "Log")
         }
-    </ul>
-}
+        else
+        {
+            <ul>
+                @foreach (var item in @Model.FoodLogs)
+                {
+                    <li>
+                        <ul>
+                            <li>
+                                <b>Date: @item.CreationTimestamp.ToString("dd:MM:yyyy hh:mm")</b>
+                            </li>
+                            <li>
+                                Name: @item.Food.Name
+                            </li>
+                            <li>
+                                Amount: @item.Quantity
+                            </li>
+                            
+                        </ul>
+                    </li>
+                }
+            </ul>
+        }
+    </div>
+</div>

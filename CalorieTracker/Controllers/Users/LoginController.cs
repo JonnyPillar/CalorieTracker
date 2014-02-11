@@ -30,6 +30,7 @@ namespace CalorieTracker.Controllers.Users
         /// <param name="loginModel">User Login Form</param>
         /// <returns>Login View</returns>
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Index(LoginModel loginModel)
         {
             if (SecurityUtil.AuthenticUser(User)) return RedirectToAction("Index", "Dashboard");
@@ -41,7 +42,7 @@ namespace CalorieTracker.Controllers.Users
                     if (SecurityUtil.IsPasswordValid(existingUser, loginModel.Password))
                     {
                         //Password Valid
-                        FormsAuthentication.SetAuthCookie(existingUser.UserID.ToString(), true);
+                        FormsAuthentication.SetAuthCookie(existingUser.UserID.ToString(), loginModel.RememberMe);
                         return RedirectToAction("Index", "Dashboard");
                     }
                 }

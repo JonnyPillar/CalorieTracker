@@ -1,16 +1,59 @@
-﻿/*
-    Dashboard    
-*/
-.dashboardPanel {
+﻿.redButton a {
+    background: #ff7878;
+    margin: 25px 0 20px;
+    color: #ffffff;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    line-height: 20px;
+    position: relative;
+    display: block;
+    -moz-transition: color 0.1s ease-in, background 0.1s ease-in;
+    -ms-transition: color 0.1s ease-in, background 0.1s ease-in;
+    -o-transition: color 0.1s ease-in, background 0.1s ease-in;
+    -webkit-transition: color 0.1s ease-in, background 0.1s ease-in;
+    transition: color 0.1s ease-in, background 0.1s ease-in;
+    word-wrap: break-word;
+    font-weight: bold;
+}
+.redButton a:hover,
+.redButton a:focus {
+  color: #ffffff;
+  background-color: #EB5252;
 }
 
-    .dashboardPanel .dashboardWelcome {
-        text-align: center;
-    }
+/*
+    Login Panel
+*/
+.loginPanel {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+/*
+    End of Login Panel    
+*/
+.section-title {
+    display: block;
+    text-align: center;
+    font-size: 18px;
+    font-weight: bold;
+    padding: 15px 10px;
+    color: white;
+    background: #1abc9c;
+}
 
-    .dashboardPanel .dashboardLogPanel {
-        text-align: center;
-    }
+/*
+    Dashboard Information    
+*/
+.dashboardUserPanel ul{
+    text-align: left;
+    margin: 0;
+    padding: 0;
+}
+.dashboardUserPanel ul li{
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
 /*
     End of Dashboard
 */

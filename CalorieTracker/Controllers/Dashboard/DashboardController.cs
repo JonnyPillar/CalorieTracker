@@ -4,7 +4,6 @@ using System.Web.Security;
 using CalorieTracker.Models;
 using CalorieTracker.Models.ViewModels;
 using CalorieTracker.Utils.Account;
-using Microsoft.Ajax.Utilities;
 
 namespace CalorieTracker.Controllers.Dashboard
 {
@@ -31,7 +30,7 @@ namespace CalorieTracker.Controllers.Dashboard
                 FormsAuthentication.SignOut();
                 return RedirectToAction("Index", "Home");
             }
-            var dashboardModel = new DashboardModel(id.IsNullOrWhiteSpace(), dashboardUser);
+            var dashboardModel = new DashboardModel(!string.IsNullOrEmpty(id), dashboardUser);
             return View(dashboardModel);
         }
     }

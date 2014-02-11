@@ -171,8 +171,8 @@ hr {
 
 #dg {
     background: #e0e0e0;
-    padding-bottom: 70px;
-    padding-top: 70px;
+    padding-bottom: 35px;
+    padding-top: 35px;
     text-align: center;
 }
 
@@ -216,6 +216,11 @@ hr {
 #blue h4 {
     color: white;
     font-weight: 700;
+}
+
+#blue h2 {
+    color: white;
+    font-weight: 500;
 }
 
 #blue p { color: white; }
