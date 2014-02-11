@@ -24,7 +24,7 @@ namespace CalorieTracker.Controllers.Users
                     }
                 }
             }
-            return RedirectToAction("Index", "Account");
+            return RedirectToAction("Index", "Home");
         }
 
         // GET: /Account/Details/5
