@@ -225,6 +225,25 @@
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\CalorieTracker.css" />
+    <Content Include="Content\fonts\fontawesome-webfont.svg" />
+    <Content Include="Content\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Content\img\c01.gif" />
+    <Content Include="Content\img\c02.gif" />
+    <Content Include="Content\img\c03.gif" />
+    <Content Include="Content\img\c04.gif" />
+    <Content Include="Content\img\c05.gif" />
+    <Content Include="Content\img\header-bg.jpg" />
+    <Content Include="Content\img\link_icon.png" />
+    <Content Include="Content\img\munter.png" />
+    <Content Include="Content\img\p01.png" />
+    <Content Include="Content\img\p02.png" />
+    <Content Include="Content\img\p03.png" />
+    <Content Include="Content\img\pic.jpg" />
+    <Content Include="Content\img\pic2.jpg" />
+    <Content Include="Content\img\pic3.jpg" />
+    <Content Include="Content\img\pic4.jpg" />
+    <Content Include="Content\js\bootstrap.min.js" />
+    <Content Include="Content\js\Chart.js" />
     <Content Include="Content\main.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -250,6 +269,16 @@
       <LastGenOutput>CTDB.cs</LastGenOutput>
       <DependentUpon>CTDB.edmx</DependentUpon>
     </Content>
+    <Content Include="Content\fonts\.DS_Store" />
+    <Content Include="Content\fonts\fontawesome-webfont.eot" />
+    <Content Include="Content\fonts\fontawesome-webfont.ttf" />
+    <Content Include="Content\fonts\fontawesome-webfont.woff" />
+    <Content Include="Content\fonts\FontAwesome.otf" />
+    <Content Include="Content\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Content\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="Content\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="Content\img\.DS_Store" />
+    <Content Include="Content\js\.DS_Store" />
     <None Include="Properties\PublishProfiles\Local.pubxml" />
     <None Include="Properties\PublishProfiles\Rob Server.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
