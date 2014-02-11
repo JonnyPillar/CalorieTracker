@@ -1,4 +1,6 @@
-﻿<div class="navbar navbar-inverse navbar-fixed-top">
+﻿@using CalorieTracker.Utils.HtmlHelpers
+
+<div class="navbar navbar-inverse navbar-fixed-top">
     <div class="container">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -10,20 +12,20 @@
         </div>
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
-                <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                <li>@Html.ActionLink("About", "About", "Home")</li>
-                <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                <li>@Html.MenuLink("Home", "Index", "Home")</li>
+                <li>@Html.MenuLink("About", "About", "Home")</li>
+                <li>@Html.MenuLink("Contact", "Contact", "Home")</li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 @if (User.Identity.IsAuthenticated)
                 {
-                    <li>@Html.ActionLink("Dashboard", "Index", "Dashboard")</li>
-                    <li>@Html.ActionLink("Signout", "Signout", "Login")</li>
+                    <li>@Html.MenuLink("Dashboard", "Index", "Dashboard")</li>
+                    <li>@Html.MenuLink("Signout", "Signout", "Login")</li>
                 }
                 else
                 {
-                    <li>@Html.ActionLink("Register", "Index", "Register")</li>
-                    <li>@Html.ActionLink("Login", "Index", "Login")</li>
+                    <li>@Html.MenuLink("Register", "Index", "Register")</li>
+                    <li>@Html.MenuLink("Login", "Index", "Login")</li>
                 }
             </ul>
         </div>

@@ -220,6 +220,7 @@
     <Compile Include="Utils\Account\IdentityUtil.cs" />
     <Compile Include="Utils\Account\PasswordHasher.cs" />
     <Compile Include="Utils\Account\SecurityUtil.cs" />
+    <Compile Include="Utils\HtmlHelpers\HtmlHelpers.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
