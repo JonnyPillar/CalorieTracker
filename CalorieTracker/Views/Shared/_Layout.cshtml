@@ -9,12 +9,10 @@
 </head>
 <body>
     @Html.Partial("_Navigation")
-    <div class="container body-content">
-        @RenderBody()
-        <hr />
-        @Html.Partial("_Footer")
+    <div class="row body-content">
+        @RenderBody()        
     </div>
-
+    @Html.Partial("_Footer")
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
