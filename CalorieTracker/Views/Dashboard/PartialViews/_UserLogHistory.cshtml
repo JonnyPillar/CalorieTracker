@@ -2,7 +2,7 @@
 
 <div class="dashboardUserPanel">
     <h3 class="section-title">Recent History</h3>
-    <div class="container">
+    <div class="reverseShelf">
         @if (@Model.FoodLogs.Count == 0)
         {
             <span></span>
@@ -24,7 +24,7 @@
                             <li>
                                 Amount: @item.Quantity
                             </li>
-                            
+
                         </ul>
                     </li>
                 }

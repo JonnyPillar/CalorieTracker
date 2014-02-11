@@ -57,3 +57,46 @@
 /*
     End of Dashboard
 */
+/*
+    Log Panel    
+*/
+.logPanel {
+    padding-top: 40px;
+}
+
+.logPanel .pricing-option { padding-bottom: 40px; }
+
+.logPanel .pricing-option .pricing-top {
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    background: #fff;
+    box-sizing: border-box;
+    color: #2d2d2d;
+    font-weight: bold;
+    padding: 40px 20px 40px 20px;
+    position: relative;
+    text-align: center;
+    border: 1px solid #e0e0e0;
+}
+.logPanel {
+    margin-bottom: 40px;
+}
+.logPanel .logOption {
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    background: #fff;
+    box-sizing: border-box;
+    color: #2d2d2d;
+    font-weight: bold;
+    padding: 40px 20px 40px 20px;
+    position: relative;
+    text-align: center;
+    border: 1px solid #e0e0e0;
+    display: block;
+}
+    .logPanel .logOption p {
+        font-weight: normal;
+    }
+/*
+    End of Log Panel    
+*/

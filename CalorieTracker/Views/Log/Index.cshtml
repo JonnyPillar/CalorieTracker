@@ -2,10 +2,68 @@
     ViewBag.Title = "Log";
 }
 
-<h2>Log</h2>
-<span>Please Choose A Category To Log</span>
-<ul>
-    <li>@Html.ActionLink("Activty", "Create", "ActivityLog")</li>
-    <li> @Html.ActionLink("Food", "Create", "FoodLog") </li>
-    <li>@Html.ActionLink("Metric", "Create", "MetricLog")</li>
-</ul>
+<div id="blue">
+    <div class="centered">
+        <h2>Log</h2>
+        <p>Please Choose A Category To Log</p>
+    </div>
+</div>
+
+<div id="dg" class="row">
+    <div class="container">
+        <div class="logPanel row centered">
+            <div class="col-md-4">
+                <a href="FoodLog/Create" class="logOption">
+                    <h2>Food</h2>
+                    <p>
+                        ASP.NET MVC gives you a powerful, sion that makes it easy to add patterns-based way to build dynamic websites that
+                    </p>
+                </a>
+            </div>
+            <div class="col-md-4">
+                <a href="ActivityLog/Create" class="logOption">
+                    <h2>Activity</h2>
+                    <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
+                </a>
+            </div>
+            <div class="col-md-4">
+                <a href="MetricLog/Create" class="logOption">
+                    <h2>MetricLog</h2>
+                    <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+@*<div class="container">
+        <div class="logPanel row centered">
+            <div class="col-sm-4">
+                <a href="ActivityLog/Create" class="pricing-option">
+                    <div class="pricing-option">
+                        <div class="pricing-top">
+                            <span class="pricing-edition">Activity</span>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="col-sm-4">
+                <a href="FoodLog/Create" class="pricing-option">
+                    <div class="pricing-option">
+                        <div class="pricing-top">
+                            <span class="pricing-edition">Food</span>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="col-sm-4">
+                <a href="MetricLog/Create" class="pricing-option">
+                    <div class="pricing-option">
+                        <div class="pricing-top">
+                            <span class="pricing-edition">Metric</span>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>*@

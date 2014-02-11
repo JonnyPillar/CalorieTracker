@@ -18,6 +18,7 @@ namespace CalorieTracker.Models.MetaData
         [Required]
         [Display(Name = "Start Date")]
         [DataType(DataType.DateTime)]
+        [DisplayFormat(DataFormatString = "hh:MM:ss hh:mm:ss")]
         public DateTime StartDate { get; set; }
 
         [Required]
