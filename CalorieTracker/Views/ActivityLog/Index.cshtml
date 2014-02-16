@@ -2,82 +2,90 @@
 
 @{
     ViewBag.Title = "Index";
-}
+}<div id="blue">
+    <div class="centered">
+        <h2>Activity Logs</h2>
+        <p>Have A Look Through All Your Activity Logs</p>
+    </div>
+</div>
 
-<h2>Index</h2>
+<div class="foodList container">
+    <div class="row centered">
+        <div class="redButton col-xs-6 col-xs-offset-3 col-sm-2 col-sm-offset-5">
+            <p>@Html.ActionLink("Create New", "Create")</p>
+        </div>
+        <table class="table">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Activity.Name)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.StartDate)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Duration)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Distance)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Title)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Accent)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.HeartRate)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Notes)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.FileURL)
+                </th>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Activity.Name)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.StartDate)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Duration)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Distance)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Title)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Accent)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.HeartRate)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Notes)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.FileURL)
-        </th>
-        
-        <th></th>
-    </tr>
+                <th></th>
+            </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Activity.Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.StartDate)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Duration)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Distance)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Title)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Accent)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.HeartRate)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Notes)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.FileURL)
-        </td>
-        
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ActivityLogID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ActivityLogID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ActivityLogID })
-        </td>
-    </tr>
-}
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Activity.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.StartDate)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Duration)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Distance)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Title)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Accent)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.HeartRate)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Notes)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.FileURL)
+                    </td>
 
-</table>
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", new { id = item.ActivityLogID }) |
+                        @Html.ActionLink("Details", "Details", new { id = item.ActivityLogID }) |
+                        @Html.ActionLink("Delete", "Delete", new { id = item.ActivityLogID })
+                    </td>
+                </tr>
+            }
+
+        </table>
+    </div>
+</div>
