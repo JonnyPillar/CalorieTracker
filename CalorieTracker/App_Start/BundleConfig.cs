@@ -27,7 +27,8 @@ namespace CalorieTracker
                 "~/Content/bootstrap.css",
                 "~/Content/site.css",
                 "~/Content/main.css",
-                "~/Content/CalorieTracker.css"));
+                "~/Content/CalorieTracker.css",
+                "~/Content/PagesList.css"));
         }
     }
 }

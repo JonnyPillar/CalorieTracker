@@ -16,7 +16,7 @@ namespace CalorieTracker.Models
     {
         public Nutrient()
         {
-            this.NutrientRecords = new HashSet<FoodNutientLog>();
+            this.FoodNutritionLogs = new HashSet<FoodNutritionLogs>();
         }
     
         public int NutrientID { get; set; }
@@ -25,6 +25,6 @@ namespace CalorieTracker.Models
         public string Name { get; set; }
         public int DecimalRounding { get; set; }
     
-        public virtual ICollection<FoodNutientLog> NutrientRecords { get; set; }
+        public virtual ICollection<FoodNutritionLogs> FoodNutritionLogs { get; set; }
     }
 }

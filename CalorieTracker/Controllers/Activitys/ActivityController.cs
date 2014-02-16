@@ -8,7 +8,7 @@ namespace CalorieTracker.Controllers.Activitys
 {
     public class ActivityController : Controller
     {
-        private readonly CTDBContainer db = new CTDBContainer();
+        private readonly CalorieTrackerEntities db = new CalorieTrackerEntities();
 
         // GET: /Activity/
         public ActionResult Index()
@@ -45,7 +45,6 @@ namespace CalorieTracker.Controllers.Activitys
         {
             if (ModelState.IsValid)
             {
-                activity.ActivityID = Guid.NewGuid().ToString();
                 db.Activities.Add(activity);
                 db.SaveChanges();
                 return RedirectToAction("Index");

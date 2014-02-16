@@ -9,7 +9,7 @@ namespace CalorieTracker.Controllers.Dashboard
 {
     public class DashboardController : Controller
     {
-        private readonly CTDBContainer db = new CTDBContainer();
+        private readonly CalorieTrackerEntities db = new CalorieTrackerEntities();
         //
         // GET: /Dashboard/
 

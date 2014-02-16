@@ -3,7 +3,7 @@
 <div class="dashboardUserPanel">
     <h3 class="section-title">Recent History</h3>
     <div class="reverseShelf">
-        @if (@Model.FoodLogs.Count == 0)
+        @if (@Model.UserFoodLogs.Count == 0)
         {
             <span></span>
             @Html.ActionLink("Please Your First Log", "Index", "Log")
@@ -11,22 +11,25 @@
         else
         {
             <ul>
-                @foreach (var item in @Model.FoodLogs)
+                @for (int i = 0; i < @Model.UserFoodLogs.Count; i++)
                 {
                     <li>
                         <ul>
                             <li>
-                                <b>Date: @item.CreationTimestamp.ToString("dd:MM:yyyy hh:mm")</b>
+                                <b>Date: @Model.UserFoodLogs.ElementAt(i).CreationTimestamp.ToString("dd:MM:yyyy hh:mm")</b>
                             </li>
                             <li>
-                                Name: @item.Food.Name
+                                Name: @Model.UserFoodLogs.ElementAt(i).Food.Name
                             </li>
                             <li>
-                                Amount: @item.Quantity
+                                Amount: @Model.UserFoodLogs.ElementAt(i).Quantity
                             </li>
-
                         </ul>
                     </li>
+                    if (i == 5)
+                    {
+                        break;
+                    }
                 }
             </ul>
         }

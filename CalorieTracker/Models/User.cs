@@ -16,9 +16,9 @@ namespace CalorieTracker.Models
     {
         public User()
         {
-            this.ActivityLogs = new HashSet<ActivityLog>();
-            this.FoodLogs = new HashSet<FoodLog>();
-            this.MetricLogs = new HashSet<MetricLog>();
+            this.UserActivityLogs = new HashSet<ActivityLog>();
+            this.UserFoodLogs = new HashSet<FoodLog>();
+            this.UserMetricLogs = new HashSet<MetricLog>();
         }
     
         public int UserID { get; set; }
@@ -31,8 +31,8 @@ namespace CalorieTracker.Models
         public int ActivityLevelType { get; set; }
         public int Personality { get; set; }
     
-        public virtual ICollection<ActivityLog> ActivityLogs { get; set; }
-        public virtual ICollection<FoodLog> FoodLogs { get; set; }
-        public virtual ICollection<MetricLog> MetricLogs { get; set; }
+        public virtual ICollection<ActivityLog> UserActivityLogs { get; set; }
+        public virtual ICollection<FoodLog> UserFoodLogs { get; set; }
+        public virtual ICollection<MetricLog> UserMetricLogs { get; set; }
     }
 }

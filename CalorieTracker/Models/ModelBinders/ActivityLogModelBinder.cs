@@ -18,8 +18,7 @@ namespace CalorieTracker.Models.ModelBinders
 
             if (bindingContext.ModelType == typeof (ActivityLog))
             {
-                string activityLogID = Guid.NewGuid().ToString();
-                string activityID = request.Form.Get("ActivityID");
+                int activityID = Convert.ToInt32(request.Form.Get("ActivityID"));
                 int userID = Convert.ToInt32(controllerContext.HttpContext.User.Identity.Name);
                 DateTime startDate = DateTime.ParseExact(request.Form.Get("StartDate"), "dd:MM:yyyy hh:mm:ss", null);
                 //TimeSpan duration = TimeSpan.ParseExact(request.Form.Get("Duration"), "hh:mm:ss", null);
@@ -33,7 +32,6 @@ namespace CalorieTracker.Models.ModelBinders
 
                 return new ActivityLog
                 {
-                    ActivityLogID = activityLogID,
                     ActivityID = activityID,
                     UserID = userID,
                     StartDate = startDate,

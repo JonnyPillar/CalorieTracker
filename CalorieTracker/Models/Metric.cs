@@ -19,7 +19,7 @@ namespace CalorieTracker.Models
             this.MetricLogs = new HashSet<MetricLog>();
         }
     
-        public string MetricID { get; set; }
+        public int MetricID { get; set; }
         public string Name { get; set; }
         public int Type { get; set; }
     

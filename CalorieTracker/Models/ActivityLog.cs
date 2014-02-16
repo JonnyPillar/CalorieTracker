@@ -14,8 +14,8 @@ namespace CalorieTracker.Models
     
     public partial class ActivityLog
     {
-        public string ActivityLogID { get; set; }
-        public string ActivityID { get; set; }
+        public int ActivityLogID { get; set; }
+        public int ActivityID { get; set; }
         public int UserID { get; set; }
         public System.DateTime StartDate { get; set; }
         public System.TimeSpan Duration { get; set; }

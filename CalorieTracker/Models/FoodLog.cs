@@ -14,7 +14,7 @@ namespace CalorieTracker.Models
     
     public partial class FoodLog
     {
-        public string FoodLogID { get; set; }
+        public int FoodLogID { get; set; }
         public int FoodID { get; set; }
         public int UserID { get; set; }
         public decimal Quantity { get; set; }

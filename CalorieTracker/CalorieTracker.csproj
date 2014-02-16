@@ -56,6 +56,12 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\MySql.Data.Entity.6.7.2-beta-ef6\lib\net45\MySql.Data.Entity.dll</HintPath>
     </Reference>
+    <Reference Include="PagedList">
+      <HintPath>..\packages\PagedList.1.17.0.0\lib\net40\PagedList.dll</HintPath>
+    </Reference>
+    <Reference Include="PagedList.Mvc">
+      <HintPath>..\packages\PagedList.Mvc.4.5.0.0\lib\net40\PagedList.Mvc.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -180,7 +186,7 @@
     <Compile Include="Models\FoodLog.cs">
       <DependentUpon>CTDB.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\FoodNutientLog.cs">
+    <Compile Include="Models\FoodNutritionLogs.cs">
       <DependentUpon>CTDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\MetaData\ActivityLogMetaData.cs" />
@@ -245,30 +251,13 @@
     <Content Include="Content\js\bootstrap.min.js" />
     <Content Include="Content\js\Chart.js" />
     <Content Include="Content\main.css" />
+    <Content Include="Content\PagedList.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
-    <Content Include="Models\CTDB.edmx.sql" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
-    <EntityDeploy Include="Models\CTDB.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>CTDB.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="Models\CTDB.edmx.diagram">
-      <DependentUpon>CTDB.edmx</DependentUpon>
-    </Content>
-    <Content Include="Models\CTDB.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>CTDB.Context.cs</LastGenOutput>
-      <DependentUpon>CTDB.edmx</DependentUpon>
-    </Content>
-    <Content Include="Models\CTDB.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>CTDB.cs</LastGenOutput>
-      <DependentUpon>CTDB.edmx</DependentUpon>
-    </Content>
     <Content Include="Content\fonts\.DS_Store" />
     <Content Include="Content\fonts\fontawesome-webfont.eot" />
     <Content Include="Content\fonts\fontawesome-webfont.ttf" />
@@ -279,6 +268,23 @@
     <Content Include="Content\fonts\glyphicons-halflings-regular.woff" />
     <Content Include="Content\img\.DS_Store" />
     <Content Include="Content\js\.DS_Store" />
+    <EntityDeploy Include="Models\CTDB.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>CTDB.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\CTDB.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>CTDB.edmx</DependentUpon>
+      <LastGenOutput>CTDB.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\CTDB.edmx.diagram">
+      <DependentUpon>CTDB.edmx</DependentUpon>
+    </Content>
+    <Content Include="Models\CTDB.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>CTDB.edmx</DependentUpon>
+      <LastGenOutput>CTDB.cs</LastGenOutput>
+    </Content>
     <None Include="Properties\PublishProfiles\Local.pubxml" />
     <None Include="Properties\PublishProfiles\Rob Server.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />

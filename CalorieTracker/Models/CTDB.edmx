@@ -4,350 +4,333 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="CTDB.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <EntityType Name="tbl_activity">
+      <Schema Namespace="CalorieTrackerModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="tbl_activities">
           <Key>
-            <PropertyRef Name="activity_id" />
+            <PropertyRef Name="ActivityID" />
           </Key>
-          <Property Name="activity_id" Type="varchar" MaxLength="45" Nullable="false" />
-          <Property Name="activity_name" Type="varchar" MaxLength="256" Nullable="false" />
-          <Property Name="activity_calorie_burn_rate" Type="decimal" Precision="18" Scale="0" Nullable="false" />
-          <Property Name="activity_image_url" Type="varchar" MaxLength="256" />
+          <Property Name="ActivityID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="256" Nullable="false" />
+          <Property Name="CalorieBurnRate" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="ImageUrl" Type="varchar" MaxLength="256" />
         </EntityType>
-        <EntityType Name="tbl_activity_log">
+        <EntityType Name="tbl_activity_logs">
           <Key>
-            <PropertyRef Name="activity_log_id" />
+            <PropertyRef Name="ActivityLogID" />
           </Key>
-          <Property Name="activity_log_id" Type="varchar" MaxLength="45" Nullable="false" />
-          <Property Name="activity_log_activity_id" Type="varchar" MaxLength="45" Nullable="false" />
-          <Property Name="activity_log_user_id" Type="int" Nullable="false" />
-          <Property Name="activity_log_start_date" Type="datetime" Nullable="false" />
-          <Property Name="activity_log_duration" Type="time" Precision="7" Nullable="false" />
-          <Property Name="activity_log_distance" Type="decimal" Precision="18" Scale="0" Nullable="false" />
-          <Property Name="activity_log_title" Type="varchar" MaxLength="256" Nullable="false" />
-          <Property Name="activity_log_accent" Type="decimal" Precision="18" Scale="0" Nullable="false" />
-          <Property Name="activity_log_heart_rate" Type="int" Nullable="false" />
-          <Property Name="activity_log_notes" Type="varchar(max)" Nullable="false" />
-          <Property Name="activity_log_file_url" Type="varchar" MaxLength="256" Nullable="false" />
+          <Property Name="ActivityLogID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ActivityID" Type="int" Nullable="false" />
+          <Property Name="UserID" Type="int" Nullable="false" />
+          <Property Name="StartDate" Type="datetime" Nullable="false" />
+          <Property Name="Duration" Type="time" Precision="7" Nullable="false" />
+          <Property Name="Distance" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="Title" Type="varchar" MaxLength="256" Nullable="false" />
+          <Property Name="Accent" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="HeartRate" Type="int" Nullable="false" />
+          <Property Name="Notes" Type="varchar(max)" Nullable="false" />
+          <Property Name="FileURL" Type="varchar" MaxLength="256" Nullable="false" />
         </EntityType>
-        <EntityType Name="tbl_food">
+        <EntityType Name="tbl_food_groups">
           <Key>
-            <PropertyRef Name="food_id" />
+            <PropertyRef Name="FoodGroupID" />
           </Key>
-          <Property Name="food_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="food_source_id" Type="int" Nullable="false" />
-          <Property Name="food_parent_id" Type="int" />
-          <Property Name="food_group_id" Type="int" Nullable="false" />
-          <Property Name="food_name" Type="varchar" MaxLength="256" Nullable="false" />
-          <Property Name="food_description" Type="varchar" MaxLength="256" Nullable="false" />
-          <Property Name="food_manufacture_name" Type="varchar" MaxLength="256" Nullable="false" />
+          <Property Name="FoodGroupID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="256" Nullable="false" />
+          <Property Name="SourceID" Type="int" Nullable="false" />
         </EntityType>
-        <EntityType Name="tbl_food_group">
+        <EntityType Name="tbl_food_logs">
           <Key>
-            <PropertyRef Name="food_group_id" />
+            <PropertyRef Name="FoodLogID" />
           </Key>
-          <Property Name="food_group_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="food_group_name" Type="varchar" MaxLength="256" Nullable="false" />
-          <Property Name="food_group_source_id" Type="int" Nullable="false" />
+          <Property Name="FoodLogID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FoodID" Type="int" Nullable="false" />
+          <Property Name="UserID" Type="int" Nullable="false" />
+          <Property Name="Quantity" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="CreationTimestamp" Type="datetime" Nullable="false" />
         </EntityType>
-        <EntityType Name="tbl_food_log">
+        <EntityType Name="tbl_food_nutrition_logs">
           <Key>
-            <PropertyRef Name="food_log_id" />
+            <PropertyRef Name="NurtientLogID" />
           </Key>
-          <Property Name="food_log_id" Type="varchar" MaxLength="45" Nullable="false" />
-          <Property Name="food_log_food_id" Type="int" Nullable="false" />
-          <Property Name="food_log_user_id" Type="int" Nullable="false" />
-          <Property Name="food_log_quantity" Type="decimal" Precision="18" Scale="0" Nullable="false" />
-          <Property Name="food_log_creation_timestamp" Type="datetime" Nullable="false" />
+          <Property Name="NurtientLogID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FoodID" Type="int" Nullable="false" />
+          <Property Name="NurtientID" Type="int" Nullable="false" />
+          <Property Name="Value" Type="decimal" Precision="18" Scale="0" Nullable="false" />
         </EntityType>
-        <EntityType Name="tbl_food_nutrient_log">
+        <EntityType Name="tbl_foods">
           <Key>
-            <PropertyRef Name="food_nutrient_log_id" />
+            <PropertyRef Name="FoodID" />
           </Key>
-          <Property Name="food_nutrient_log_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="food_nutrient_log_food_id" Type="int" Nullable="false" />
-          <Property Name="food_nutrient_log_nutrient_id" Type="int" Nullable="false" />
-          <Property Name="food_nutrient_log_value" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="FoodID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SourceID" Type="int" Nullable="false" />
+          <Property Name="ParentID" Type="int" />
+          <Property Name="GroupID" Type="int" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="256" Nullable="false" />
+          <Property Name="Description" Type="varchar" MaxLength="256" Nullable="false" />
+          <Property Name="ManufactureName" Type="varchar" MaxLength="256" Nullable="false" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'CALTRACK.dbo.tbl_food_unit' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
-        <EntityType Name="tbl_metric_log">
+        <EntityType Name="tbl_metric_logs">
           <Key>
-            <PropertyRef Name="metric_log_id" />
+            <PropertyRef Name="MetricLogID" />
           </Key>
-          <Property Name="metric_log_id" Type="varchar" MaxLength="45" Nullable="false" />
-          <Property Name="metric_log_user_id" Type="int" />
-          <Property Name="metric_log_metric_id" Type="varchar" MaxLength="45" />
-          <Property Name="metric_log_value" Type="decimal" Precision="18" Scale="0" Nullable="false" />
-          <Property Name="metric_log_creation_timestamp" Type="datetime" Nullable="false" />
+          <Property Name="MetricLogID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserID" Type="int" />
+          <Property Name="MetricID" Type="int" />
+          <Property Name="Value" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="CreationTimestamp" Type="datetime" Nullable="false" />
         </EntityType>
-        <EntityType Name="tbl_nutrient">
+        <EntityType Name="tbl_metrics">
           <Key>
-            <PropertyRef Name="nutrient_id" />
+            <PropertyRef Name="MetricID" />
           </Key>
-          <Property Name="nutrient_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="nutrient_source_id" Type="int" Nullable="false" />
-          <Property Name="nutrient_unit_id" Type="int" Nullable="false" />
-          <Property Name="nutrient_name" Type="varchar" MaxLength="256" Nullable="false" />
-          <Property Name="nutrient_decimal_rounding" Type="int" Nullable="false" />
+          <Property Name="MetricID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="256" Nullable="false" />
+          <Property Name="Type" Type="int" Nullable="false" />
         </EntityType>
-        <EntityType Name="tbl_user">
+        <EntityType Name="tbl_nutrients">
           <Key>
-            <PropertyRef Name="user_id" />
+            <PropertyRef Name="NutrientID" />
           </Key>
-          <Property Name="user_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="user_dob" Type="datetime" Nullable="false" />
-          <Property Name="user_gender" Type="bit" Nullable="false" />
-          <Property Name="user_password_hash" Type="varchar" MaxLength="128" Nullable="false" />
-          <Property Name="user_password_salt" Type="varchar" MaxLength="128" Nullable="false" />
-          <Property Name="user_admin" Type="bit" Nullable="false" />
-          <Property Name="user_creation_timestamp" Type="datetime" Nullable="false" />
-          <Property Name="user_activity_level_type" Type="int" Nullable="false" />
-          <Property Name="user_personality_type" Type="int" Nullable="false" />
+          <Property Name="NutrientID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SourceID" Type="int" Nullable="false" />
+          <Property Name="UnitType" Type="int" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="256" Nullable="false" />
+          <Property Name="DecimalRounding" Type="int" Nullable="false" />
         </EntityType>
-        <EntityType Name="tbl_user_metric">
+        <EntityType Name="tbl_users">
           <Key>
-            <PropertyRef Name="user_metric_id" />
+            <PropertyRef Name="UserID" />
           </Key>
-          <Property Name="user_metric_id" Type="varchar" MaxLength="45" Nullable="false" />
-          <Property Name="user_metric_name" Type="varchar" MaxLength="256" Nullable="false" />
-          <Property Name="user_metric_type" Type="int" Nullable="false" />
+          <Property Name="UserID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DOB" Type="datetime" Nullable="false" />
+          <Property Name="Gender" Type="bit" Nullable="false" />
+          <Property Name="PasswordHash" Type="varchar" MaxLength="128" Nullable="false" />
+          <Property Name="PasswordSalt" Type="varchar" MaxLength="128" Nullable="false" />
+          <Property Name="Admin" Type="bit" Nullable="false" />
+          <Property Name="CreationTimestamp" Type="datetime" Nullable="false" />
+          <Property Name="ActivityLevelType" Type="int" Nullable="false" />
+          <Property Name="Personality" Type="int" Nullable="false" />
         </EntityType>
         <Association Name="FK_activity_id">
-          <End Role="tbl_activity" Type="Self.tbl_activity" Multiplicity="1" />
-          <End Role="tbl_activity_log" Type="Self.tbl_activity_log" Multiplicity="*" />
+          <End Role="tbl_activities" Type="Self.tbl_activities" Multiplicity="1" />
+          <End Role="tbl_activity_logs" Type="Self.tbl_activity_logs" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="tbl_activity">
-              <PropertyRef Name="activity_id" />
+            <Principal Role="tbl_activities">
+              <PropertyRef Name="ActivityID" />
             </Principal>
-            <Dependent Role="tbl_activity_log">
-              <PropertyRef Name="activity_log_activity_id" />
+            <Dependent Role="tbl_activity_logs">
+              <PropertyRef Name="ActivityID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_activity_user_id">
-          <End Role="tbl_user" Type="Self.tbl_user" Multiplicity="1" />
-          <End Role="tbl_activity_log" Type="Self.tbl_activity_log" Multiplicity="*" />
+          <End Role="tbl_users" Type="Self.tbl_users" Multiplicity="1" />
+          <End Role="tbl_activity_logs" Type="Self.tbl_activity_logs" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="tbl_user">
-              <PropertyRef Name="user_id" />
+            <Principal Role="tbl_users">
+              <PropertyRef Name="UserID" />
             </Principal>
-            <Dependent Role="tbl_activity_log">
-              <PropertyRef Name="activity_log_user_id" />
+            <Dependent Role="tbl_activity_logs">
+              <PropertyRef Name="UserID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="fk_food_group_id">
-          <End Role="tbl_food_group" Type="Self.tbl_food_group" Multiplicity="1" />
-          <End Role="tbl_food" Type="Self.tbl_food" Multiplicity="*" />
+        <Association Name="fk_food_group_id1">
+          <End Role="tbl_food_groups" Type="Self.tbl_food_groups" Multiplicity="1" />
+          <End Role="tbl_foods" Type="Self.tbl_foods" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="tbl_food_group">
-              <PropertyRef Name="food_group_id" />
+            <Principal Role="tbl_food_groups">
+              <PropertyRef Name="FoodGroupID" />
             </Principal>
-            <Dependent Role="tbl_food">
-              <PropertyRef Name="food_group_id" />
+            <Dependent Role="tbl_foods">
+              <PropertyRef Name="GroupID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_food_log_food_id">
-          <End Role="tbl_food" Type="Self.tbl_food" Multiplicity="1" />
-          <End Role="tbl_food_log" Type="Self.tbl_food_log" Multiplicity="*" />
+          <End Role="tbl_foods" Type="Self.tbl_foods" Multiplicity="1" />
+          <End Role="tbl_food_logs" Type="Self.tbl_food_logs" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="tbl_food">
-              <PropertyRef Name="food_id" />
+            <Principal Role="tbl_foods">
+              <PropertyRef Name="FoodID" />
             </Principal>
-            <Dependent Role="tbl_food_log">
-              <PropertyRef Name="food_log_food_id" />
+            <Dependent Role="tbl_food_logs">
+              <PropertyRef Name="FoodID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_food_log_user_id">
-          <End Role="tbl_user" Type="Self.tbl_user" Multiplicity="1" />
-          <End Role="tbl_food_log" Type="Self.tbl_food_log" Multiplicity="*" />
+          <End Role="tbl_users" Type="Self.tbl_users" Multiplicity="1" />
+          <End Role="tbl_food_logs" Type="Self.tbl_food_logs" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="tbl_user">
-              <PropertyRef Name="user_id" />
+            <Principal Role="tbl_users">
+              <PropertyRef Name="UserID" />
             </Principal>
-            <Dependent Role="tbl_food_log">
-              <PropertyRef Name="food_log_user_id" />
+            <Dependent Role="tbl_food_logs">
+              <PropertyRef Name="UserID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="fk_food_nutrient_food_id">
-          <End Role="tbl_food" Type="Self.tbl_food" Multiplicity="1" />
-          <End Role="tbl_food_nutrient_log" Type="Self.tbl_food_nutrient_log" Multiplicity="*" />
+          <End Role="tbl_foods" Type="Self.tbl_foods" Multiplicity="1" />
+          <End Role="tbl_food_nutrition_logs" Type="Self.tbl_food_nutrition_logs" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="tbl_food">
-              <PropertyRef Name="food_id" />
+            <Principal Role="tbl_foods">
+              <PropertyRef Name="FoodID" />
             </Principal>
-            <Dependent Role="tbl_food_nutrient_log">
-              <PropertyRef Name="food_nutrient_log_food_id" />
+            <Dependent Role="tbl_food_nutrition_logs">
+              <PropertyRef Name="FoodID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="fk_food_nutrient_nutrient_id">
-          <End Role="tbl_nutrient" Type="Self.tbl_nutrient" Multiplicity="1" />
-          <End Role="tbl_food_nutrient_log" Type="Self.tbl_food_nutrient_log" Multiplicity="*" />
+          <End Role="tbl_nutrients" Type="Self.tbl_nutrients" Multiplicity="1" />
+          <End Role="tbl_food_nutrition_logs" Type="Self.tbl_food_nutrition_logs" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="tbl_nutrient">
-              <PropertyRef Name="nutrient_id" />
+            <Principal Role="tbl_nutrients">
+              <PropertyRef Name="NutrientID" />
             </Principal>
-            <Dependent Role="tbl_food_nutrient_log">
-              <PropertyRef Name="food_nutrient_log_nutrient_id" />
+            <Dependent Role="tbl_food_nutrition_logs">
+              <PropertyRef Name="NurtientID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_tbl_metric_id">
-          <End Role="tbl_user_metric" Type="Self.tbl_user_metric" Multiplicity="0..1" />
-          <End Role="tbl_metric_log" Type="Self.tbl_metric_log" Multiplicity="*" />
+          <End Role="tbl_metrics" Type="Self.tbl_metrics" Multiplicity="0..1" />
+          <End Role="tbl_metric_logs" Type="Self.tbl_metric_logs" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="tbl_user_metric">
-              <PropertyRef Name="user_metric_id" />
+            <Principal Role="tbl_metrics">
+              <PropertyRef Name="MetricID" />
             </Principal>
-            <Dependent Role="tbl_metric_log">
-              <PropertyRef Name="metric_log_metric_id" />
+            <Dependent Role="tbl_metric_logs">
+              <PropertyRef Name="MetricID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_tbl_user_id">
-          <End Role="tbl_user" Type="Self.tbl_user" Multiplicity="0..1" />
-          <End Role="tbl_metric_log" Type="Self.tbl_metric_log" Multiplicity="*" />
+          <End Role="tbl_users" Type="Self.tbl_users" Multiplicity="0..1" />
+          <End Role="tbl_metric_logs" Type="Self.tbl_metric_logs" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="tbl_user">
-              <PropertyRef Name="user_id" />
+            <Principal Role="tbl_users">
+              <PropertyRef Name="UserID" />
             </Principal>
-            <Dependent Role="tbl_metric_log">
-              <PropertyRef Name="metric_log_user_id" />
+            <Dependent Role="tbl_metric_logs">
+              <PropertyRef Name="UserID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="CTDBStoreContainer">
-          <EntitySet Name="tbl_activity" EntityType="Self.tbl_activity" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="tbl_activity_log" EntityType="Self.tbl_activity_log" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="tbl_food" EntityType="Self.tbl_food" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="tbl_food_group" EntityType="Self.tbl_food_group" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="tbl_food_log" EntityType="Self.tbl_food_log" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="tbl_food_nutrient_log" EntityType="Self.tbl_food_nutrient_log" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="tbl_metric_log" EntityType="Self.tbl_metric_log" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="tbl_nutrient" EntityType="Self.tbl_nutrient" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="tbl_user" EntityType="Self.tbl_user" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="tbl_user_metric" EntityType="Self.tbl_user_metric" Schema="dbo" store:Type="Tables" />
+        <EntityContainer Name="CalorieTrackerModelStoreContainer">
+          <EntitySet Name="tbl_activities" EntityType="Self.tbl_activities" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_activity_logs" EntityType="Self.tbl_activity_logs" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_food_groups" EntityType="Self.tbl_food_groups" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_food_logs" EntityType="Self.tbl_food_logs" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_food_nutrition_logs" EntityType="Self.tbl_food_nutrition_logs" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_foods" EntityType="Self.tbl_foods" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_metric_logs" EntityType="Self.tbl_metric_logs" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_metrics" EntityType="Self.tbl_metrics" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_nutrients" EntityType="Self.tbl_nutrients" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_users" EntityType="Self.tbl_users" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_activity_id" Association="Self.FK_activity_id">
-            <End Role="tbl_activity" EntitySet="tbl_activity" />
-            <End Role="tbl_activity_log" EntitySet="tbl_activity_log" />
+            <End Role="tbl_activities" EntitySet="tbl_activities" />
+            <End Role="tbl_activity_logs" EntitySet="tbl_activity_logs" />
           </AssociationSet>
           <AssociationSet Name="FK_activity_user_id" Association="Self.FK_activity_user_id">
-            <End Role="tbl_user" EntitySet="tbl_user" />
-            <End Role="tbl_activity_log" EntitySet="tbl_activity_log" />
+            <End Role="tbl_users" EntitySet="tbl_users" />
+            <End Role="tbl_activity_logs" EntitySet="tbl_activity_logs" />
           </AssociationSet>
-          <AssociationSet Name="fk_food_group_id" Association="Self.fk_food_group_id">
-            <End Role="tbl_food_group" EntitySet="tbl_food_group" />
-            <End Role="tbl_food" EntitySet="tbl_food" />
+          <AssociationSet Name="fk_food_group_id1" Association="Self.fk_food_group_id1">
+            <End Role="tbl_food_groups" EntitySet="tbl_food_groups" />
+            <End Role="tbl_foods" EntitySet="tbl_foods" />
           </AssociationSet>
           <AssociationSet Name="FK_food_log_food_id" Association="Self.FK_food_log_food_id">
-            <End Role="tbl_food" EntitySet="tbl_food" />
-            <End Role="tbl_food_log" EntitySet="tbl_food_log" />
+            <End Role="tbl_foods" EntitySet="tbl_foods" />
+            <End Role="tbl_food_logs" EntitySet="tbl_food_logs" />
           </AssociationSet>
           <AssociationSet Name="FK_food_log_user_id" Association="Self.FK_food_log_user_id">
-            <End Role="tbl_user" EntitySet="tbl_user" />
-            <End Role="tbl_food_log" EntitySet="tbl_food_log" />
+            <End Role="tbl_users" EntitySet="tbl_users" />
+            <End Role="tbl_food_logs" EntitySet="tbl_food_logs" />
           </AssociationSet>
           <AssociationSet Name="fk_food_nutrient_food_id" Association="Self.fk_food_nutrient_food_id">
-            <End Role="tbl_food" EntitySet="tbl_food" />
-            <End Role="tbl_food_nutrient_log" EntitySet="tbl_food_nutrient_log" />
+            <End Role="tbl_foods" EntitySet="tbl_foods" />
+            <End Role="tbl_food_nutrition_logs" EntitySet="tbl_food_nutrition_logs" />
           </AssociationSet>
           <AssociationSet Name="fk_food_nutrient_nutrient_id" Association="Self.fk_food_nutrient_nutrient_id">
-            <End Role="tbl_nutrient" EntitySet="tbl_nutrient" />
-            <End Role="tbl_food_nutrient_log" EntitySet="tbl_food_nutrient_log" />
+            <End Role="tbl_nutrients" EntitySet="tbl_nutrients" />
+            <End Role="tbl_food_nutrition_logs" EntitySet="tbl_food_nutrition_logs" />
           </AssociationSet>
           <AssociationSet Name="FK_tbl_metric_id" Association="Self.FK_tbl_metric_id">
-            <End Role="tbl_user_metric" EntitySet="tbl_user_metric" />
-            <End Role="tbl_metric_log" EntitySet="tbl_metric_log" />
+            <End Role="tbl_metrics" EntitySet="tbl_metrics" />
+            <End Role="tbl_metric_logs" EntitySet="tbl_metric_logs" />
           </AssociationSet>
           <AssociationSet Name="FK_tbl_user_id" Association="Self.FK_tbl_user_id">
-            <End Role="tbl_user" EntitySet="tbl_user" />
-            <End Role="tbl_metric_log" EntitySet="tbl_metric_log" />
+            <End Role="tbl_users" EntitySet="tbl_users" />
+            <End Role="tbl_metric_logs" EntitySet="tbl_metric_logs" />
           </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="CTDB" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" annotation:UseStrongSpatialTypes="false">
-        <EntityContainer Name="CTDBContainer" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Activities" EntityType="CTDB.Activity" />
-          <EntitySet Name="ActivityLogs" EntityType="CTDB.ActivityLog" />
-          <EntitySet Name="Foods" EntityType="CTDB.Food" />
-          <EntitySet Name="FoodGroups" EntityType="CTDB.FoodGroup" />
-          <EntitySet Name="FoodLogs" EntityType="CTDB.FoodLog" />
-          <EntitySet Name="FoodNutientLogs" EntityType="CTDB.FoodNutientLog" />
-          <EntitySet Name="MetricLogs" EntityType="CTDB.MetricLog" />
-          <EntitySet Name="Nutrients" EntityType="CTDB.Nutrient" />
-          <EntitySet Name="Users" EntityType="CTDB.User" />
-          <EntitySet Name="Metrics" EntityType="CTDB.Metric" />
-          <AssociationSet Name="FK_activity_id" Association="CTDB.FK_activity_id">
-            <End Role="tbl_activity" EntitySet="Activities" />
-            <End Role="tbl_activity_log" EntitySet="ActivityLogs" />
-          </AssociationSet>
-          <AssociationSet Name="FK_activity_user_id" Association="CTDB.FK_activity_user_id">
-            <End Role="tbl_user" EntitySet="Users" />
-            <End Role="tbl_activity_log" EntitySet="ActivityLogs" />
-          </AssociationSet>
-          <AssociationSet Name="fk_food_group_id1" Association="CTDB.fk_food_group_id1">
-            <End Role="tbl_food_group" EntitySet="FoodGroups" />
-            <End Role="tbl_food" EntitySet="Foods" />
-          </AssociationSet>
-          <AssociationSet Name="FK_food_log_food_id" Association="CTDB.FK_food_log_food_id">
-            <End Role="tbl_food" EntitySet="Foods" />
-            <End Role="tbl_food_log" EntitySet="FoodLogs" />
-          </AssociationSet>
-          <AssociationSet Name="fk_food_nutrient_food_id" Association="CTDB.fk_food_nutrient_food_id">
-            <End Role="tbl_food" EntitySet="Foods" />
-            <End Role="tbl_food_nutrient_log" EntitySet="FoodNutientLogs" />
-          </AssociationSet>
-          <AssociationSet Name="FK_food_log_user_id" Association="CTDB.FK_food_log_user_id">
-            <End Role="tbl_user" EntitySet="Users" />
-            <End Role="tbl_food_log" EntitySet="FoodLogs" />
-          </AssociationSet>
-          <AssociationSet Name="fk_food_nutrient_nutrient_id" Association="CTDB.fk_food_nutrient_nutrient_id">
-            <End Role="tbl_nutrient" EntitySet="Nutrients" />
-            <End Role="tbl_food_nutrient_log" EntitySet="FoodNutientLogs" />
-          </AssociationSet>
-          <AssociationSet Name="FK_tbl_metric_id" Association="CTDB.FK_tbl_metric_id">
-            <End Role="tbl_user_metric" EntitySet="Metrics" />
-            <End Role="tbl_metric_log" EntitySet="MetricLogs" />
-          </AssociationSet>
-          <AssociationSet Name="FK_tbl_user_id" Association="CTDB.FK_tbl_user_id">
-            <End Role="tbl_user" EntitySet="Users" />
-            <End Role="tbl_metric_log" EntitySet="MetricLogs" />
-          </AssociationSet>
-        </EntityContainer>
+      <Schema Namespace="CalorieTrackerModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityType Name="Activity">
           <Key>
             <PropertyRef Name="ActivityID" />
           </Key>
-          <Property Name="ActivityID" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="false" />
-          <Property Name="Name" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="false" />
-          <Property Name="CalorieBurnRate" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+          <Property Name="ActivityID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="256" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CalorieBurnRate" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
           <Property Name="ImageUrl" Type="String" MaxLength="256" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="ActivityLogs" Relationship="CTDB.FK_activity_id" FromRole="tbl_activity" ToRole="tbl_activity_log" />
+          <NavigationProperty Name="ActivityLogs" Relationship="Self.FK_activity_id" FromRole="tbl_activities" ToRole="tbl_activity_logs" />
         </EntityType>
         <EntityType Name="ActivityLog">
           <Key>
             <PropertyRef Name="ActivityLogID" />
           </Key>
-          <Property Name="ActivityLogID" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="false" />
-          <Property Name="ActivityID" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="ActivityLogID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ActivityID" Type="Int32" Nullable="false" />
           <Property Name="UserID" Type="Int32" Nullable="false" />
           <Property Name="StartDate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="Duration" Type="Time" Nullable="false" Precision="7" />
-          <Property Name="Distance" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
-          <Property Name="Title" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="false" />
-          <Property Name="Accent" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+          <Property Name="Distance" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="Title" Type="String" MaxLength="256" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Accent" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
           <Property Name="HeartRate" Type="Int32" Nullable="false" />
-          <Property Name="Notes" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="FileURL" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Activity" Relationship="CTDB.FK_activity_id" FromRole="tbl_activity_log" ToRole="tbl_activity" />
-          <NavigationProperty Name="User" Relationship="CTDB.FK_activity_user_id" FromRole="tbl_activity_log" ToRole="tbl_user" />
+          <Property Name="Notes" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="FileURL" Type="String" MaxLength="256" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Activity" Relationship="Self.FK_activity_id" FromRole="tbl_activity_logs" ToRole="tbl_activities" />
+          <NavigationProperty Name="User" Relationship="Self.FK_activity_user_id" FromRole="tbl_activity_logs" ToRole="tbl_users" />
+        </EntityType>
+        <EntityType Name="FoodGroup">
+          <Key>
+            <PropertyRef Name="FoodGroupID" />
+          </Key>
+          <Property Name="FoodGroupID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="256" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="SourceID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Foods" Relationship="Self.fk_food_group_id1" FromRole="tbl_food_groups" ToRole="tbl_foods" />
+        </EntityType>
+        <EntityType Name="FoodLog">
+          <Key>
+            <PropertyRef Name="FoodLogID" />
+          </Key>
+          <Property Name="FoodLogID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FoodID" Type="Int32" Nullable="false" />
+          <Property Name="UserID" Type="Int32" Nullable="false" />
+          <Property Name="Quantity" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="CreationTimestamp" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Food" Relationship="Self.FK_food_log_food_id" FromRole="tbl_food_logs" ToRole="tbl_foods" />
+          <NavigationProperty Name="User" Relationship="Self.FK_food_log_user_id" FromRole="tbl_food_logs" ToRole="tbl_users" />
+        </EntityType>
+        <EntityType Name="FoodNutritionLogs">
+          <Key>
+            <PropertyRef Name="NurtientLogID" />
+          </Key>
+          <Property Name="NurtientLogID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FoodID" Type="Int32" Nullable="false" />
+          <Property Name="NurtientID" Type="Int32" Nullable="false" />
+          <Property Name="Value" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <NavigationProperty Name="Food" Relationship="Self.fk_food_nutrient_food_id" FromRole="tbl_food_nutrition_logs" ToRole="tbl_foods" />
+          <NavigationProperty Name="Nutrient" Relationship="Self.fk_food_nutrient_nutrient_id" FromRole="tbl_food_nutrition_logs" ToRole="tbl_nutrients" />
         </EntityType>
         <EntityType Name="Food">
           <Key>
@@ -357,56 +340,33 @@ warning 6002: The table/view 'CALTRACK.dbo.tbl_food_unit' does not have a primar
           <Property Name="SourceID" Type="Int32" Nullable="false" />
           <Property Name="ParentID" Type="Int32" />
           <Property Name="GroupID" Type="Int32" Nullable="false" />
-          <Property Name="Name" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="false" />
-          <Property Name="Description" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="false" />
-          <Property Name="ManufactureName" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="FoodGroup" Relationship="CTDB.fk_food_group_id1" FromRole="tbl_food" ToRole="tbl_food_group" />
-          <NavigationProperty Name="FoodLogs" Relationship="CTDB.FK_food_log_food_id" FromRole="tbl_food" ToRole="tbl_food_log" />
-          <NavigationProperty Name="FoodNurtients" Relationship="CTDB.fk_food_nutrient_food_id" FromRole="tbl_food" ToRole="tbl_food_nutrient_log" />
-        </EntityType>
-        <EntityType Name="FoodGroup">
-          <Key>
-            <PropertyRef Name="FoodGroupID" />
-          </Key>
-          <Property Name="FoodGroupID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="false" />
-          <Property Name="SourceID" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Foods" Relationship="CTDB.fk_food_group_id1" FromRole="tbl_food_group" ToRole="tbl_food" />
-        </EntityType>
-        <EntityType Name="FoodLog">
-          <Key>
-            <PropertyRef Name="FoodLogID" />
-          </Key>
-          <Property Name="FoodLogID" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="false" />
-          <Property Name="FoodID" Type="Int32" Nullable="false" />
-          <Property Name="UserID" Type="Int32" Nullable="false" />
-          <Property Name="Quantity" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
-          <Property Name="CreationTimestamp" Type="DateTime" Nullable="false" Precision="3" />
-          <NavigationProperty Name="Food" Relationship="CTDB.FK_food_log_food_id" FromRole="tbl_food_log" ToRole="tbl_food" />
-          <NavigationProperty Name="User" Relationship="CTDB.FK_food_log_user_id" FromRole="tbl_food_log" ToRole="tbl_user" />
-        </EntityType>
-        <EntityType Name="FoodNutientLog">
-          <Key>
-            <PropertyRef Name="NurtientLogID" />
-          </Key>
-          <Property Name="NurtientLogID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="FoodID" Type="Int32" Nullable="false" />
-          <Property Name="NurtientID" Type="Int32" Nullable="false" />
-          <Property Name="Value" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
-          <NavigationProperty Name="Food" Relationship="CTDB.fk_food_nutrient_food_id" FromRole="tbl_food_nutrient_log" ToRole="tbl_food" />
-          <NavigationProperty Name="Nurtient" Relationship="CTDB.fk_food_nutrient_nutrient_id" FromRole="tbl_food_nutrient_log" ToRole="tbl_nutrient" />
+          <Property Name="Name" Type="String" MaxLength="256" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="256" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ManufactureName" Type="String" MaxLength="256" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="FoodGroup" Relationship="Self.fk_food_group_id1" FromRole="tbl_foods" ToRole="tbl_food_groups" />
+          <NavigationProperty Name="FoodLogs" Relationship="Self.FK_food_log_food_id" FromRole="tbl_foods" ToRole="tbl_food_logs" />
+          <NavigationProperty Name="FoodNutritionLogs" Relationship="Self.fk_food_nutrient_food_id" FromRole="tbl_foods" ToRole="tbl_food_nutrition_logs" />
         </EntityType>
         <EntityType Name="MetricLog">
           <Key>
             <PropertyRef Name="MetricLogID" />
           </Key>
-          <Property Name="MetricLogID" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="MetricLogID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="UserID" Type="Int32" />
-          <Property Name="MetricID" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
-          <Property Name="Value" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+          <Property Name="MetricID" Type="Int32" />
+          <Property Name="Value" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
           <Property Name="CreationTimestamp" Type="DateTime" Nullable="false" Precision="3" />
-          <NavigationProperty Name="Metric" Relationship="CTDB.FK_tbl_metric_id" FromRole="tbl_metric_log" ToRole="tbl_user_metric" />
-          <NavigationProperty Name="User" Relationship="CTDB.FK_tbl_user_id" FromRole="tbl_metric_log" ToRole="tbl_user" />
+          <NavigationProperty Name="Metric" Relationship="Self.FK_tbl_metric_id" FromRole="tbl_metric_logs" ToRole="tbl_metrics" />
+          <NavigationProperty Name="User" Relationship="Self.FK_tbl_user_id" FromRole="tbl_metric_logs" ToRole="tbl_users" />
+        </EntityType>
+        <EntityType Name="Metric">
+          <Key>
+            <PropertyRef Name="MetricID" />
+          </Key>
+          <Property Name="MetricID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="256" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Type" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="MetricLogs" Relationship="Self.FK_tbl_metric_id" FromRole="tbl_metrics" ToRole="tbl_metric_logs" />
         </EntityType>
         <EntityType Name="Nutrient">
           <Key>
@@ -415,9 +375,9 @@ warning 6002: The table/view 'CALTRACK.dbo.tbl_food_unit' does not have a primar
           <Property Name="NutrientID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="SourceID" Type="Int32" Nullable="false" />
           <Property Name="UnitType" Type="Int32" Nullable="false" />
-          <Property Name="Name" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="false" />
+          <Property Name="Name" Type="String" MaxLength="256" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="DecimalRounding" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="NutrientRecords" Relationship="CTDB.fk_food_nutrient_nutrient_id" FromRole="tbl_nutrient" ToRole="tbl_food_nutrient_log" />
+          <NavigationProperty Name="FoodNutritionLogs" Relationship="Self.fk_food_nutrient_nutrient_id" FromRole="tbl_nutrients" ToRole="tbl_food_nutrition_logs" />
         </EntityType>
         <EntityType Name="User">
           <Key>
@@ -426,276 +386,315 @@ warning 6002: The table/view 'CALTRACK.dbo.tbl_food_unit' does not have a primar
           <Property Name="UserID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="DOB" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="Gender" Type="Boolean" Nullable="false" />
-          <Property Name="PasswordHash" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="false" />
-          <Property Name="PasswordSalt" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="false" />
+          <Property Name="PasswordHash" Type="String" MaxLength="128" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PasswordSalt" Type="String" MaxLength="128" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Admin" Type="Boolean" Nullable="false" />
           <Property Name="CreationTimestamp" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="ActivityLevelType" Type="Int32" Nullable="false" />
           <Property Name="Personality" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="ActivityLogs" Relationship="CTDB.FK_activity_user_id" FromRole="tbl_user" ToRole="tbl_activity_log" />
-          <NavigationProperty Name="FoodLogs" Relationship="CTDB.FK_food_log_user_id" FromRole="tbl_user" ToRole="tbl_food_log" />
-          <NavigationProperty Name="MetricLogs" Relationship="CTDB.FK_tbl_user_id" FromRole="tbl_user" ToRole="tbl_metric_log" />
-        </EntityType>
-        <EntityType Name="Metric">
-          <Key>
-            <PropertyRef Name="MetricID" />
-          </Key>
-          <Property Name="MetricID" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="false" />
-          <Property Name="Name" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="false" />
-          <Property Name="Type" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="MetricLogs" Relationship="CTDB.FK_tbl_metric_id" FromRole="tbl_user_metric" ToRole="tbl_metric_log" />
+          <NavigationProperty Name="UserActivityLogs" Relationship="Self.FK_activity_user_id" FromRole="tbl_users" ToRole="tbl_activity_logs" />
+          <NavigationProperty Name="UserFoodLogs" Relationship="Self.FK_food_log_user_id" FromRole="tbl_users" ToRole="tbl_food_logs" />
+          <NavigationProperty Name="UserMetricLogs" Relationship="Self.FK_tbl_user_id" FromRole="tbl_users" ToRole="tbl_metric_logs" />
         </EntityType>
         <Association Name="FK_activity_id">
-          <End Type="CTDB.Activity" Role="tbl_activity" Multiplicity="1" />
-          <End Type="CTDB.ActivityLog" Role="tbl_activity_log" Multiplicity="*" />
+          <End Role="tbl_activities" Type="CalorieTrackerModel.Activity" Multiplicity="1" />
+          <End Role="tbl_activity_logs" Type="CalorieTrackerModel.ActivityLog" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="tbl_activity">
+            <Principal Role="tbl_activities">
               <PropertyRef Name="ActivityID" />
             </Principal>
-            <Dependent Role="tbl_activity_log">
+            <Dependent Role="tbl_activity_logs">
               <PropertyRef Name="ActivityID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_activity_user_id">
-          <End Type="CTDB.User" Role="tbl_user" Multiplicity="1" />
-          <End Type="CTDB.ActivityLog" Role="tbl_activity_log" Multiplicity="*" />
+          <End Role="tbl_users" Type="CalorieTrackerModel.User" Multiplicity="1" />
+          <End Role="tbl_activity_logs" Type="CalorieTrackerModel.ActivityLog" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="tbl_user">
+            <Principal Role="tbl_users">
               <PropertyRef Name="UserID" />
             </Principal>
-            <Dependent Role="tbl_activity_log">
+            <Dependent Role="tbl_activity_logs">
               <PropertyRef Name="UserID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="fk_food_group_id1">
-          <End Type="CTDB.FoodGroup" Role="tbl_food_group" Multiplicity="1" />
-          <End Type="CTDB.Food" Role="tbl_food" Multiplicity="*" />
+          <End Role="tbl_food_groups" Type="CalorieTrackerModel.FoodGroup" Multiplicity="1" />
+          <End Role="tbl_foods" Type="CalorieTrackerModel.Food" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="tbl_food_group">
+            <Principal Role="tbl_food_groups">
               <PropertyRef Name="FoodGroupID" />
             </Principal>
-            <Dependent Role="tbl_food">
+            <Dependent Role="tbl_foods">
               <PropertyRef Name="GroupID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_food_log_food_id">
-          <End Type="CTDB.Food" Role="tbl_food" Multiplicity="1" />
-          <End Type="CTDB.FoodLog" Role="tbl_food_log" Multiplicity="*" />
+          <End Role="tbl_foods" Type="CalorieTrackerModel.Food" Multiplicity="1" />
+          <End Role="tbl_food_logs" Type="CalorieTrackerModel.FoodLog" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="tbl_food">
+            <Principal Role="tbl_foods">
               <PropertyRef Name="FoodID" />
             </Principal>
-            <Dependent Role="tbl_food_log">
-              <PropertyRef Name="FoodID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="fk_food_nutrient_food_id">
-          <End Type="CTDB.Food" Role="tbl_food" Multiplicity="1" />
-          <End Type="CTDB.FoodNutientLog" Role="tbl_food_nutrient_log" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tbl_food">
-              <PropertyRef Name="FoodID" />
-            </Principal>
-            <Dependent Role="tbl_food_nutrient_log">
+            <Dependent Role="tbl_food_logs">
               <PropertyRef Name="FoodID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_food_log_user_id">
-          <End Type="CTDB.User" Role="tbl_user" Multiplicity="1" />
-          <End Type="CTDB.FoodLog" Role="tbl_food_log" Multiplicity="*" />
+          <End Role="tbl_users" Type="CalorieTrackerModel.User" Multiplicity="1" />
+          <End Role="tbl_food_logs" Type="CalorieTrackerModel.FoodLog" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="tbl_user">
+            <Principal Role="tbl_users">
               <PropertyRef Name="UserID" />
             </Principal>
-            <Dependent Role="tbl_food_log">
+            <Dependent Role="tbl_food_logs">
               <PropertyRef Name="UserID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="fk_food_nutrient_nutrient_id">
-          <End Type="CTDB.Nutrient" Role="tbl_nutrient" Multiplicity="1" />
-          <End Type="CTDB.FoodNutientLog" Role="tbl_food_nutrient_log" Multiplicity="*" />
+        <Association Name="fk_food_nutrient_food_id">
+          <End Role="tbl_foods" Type="CalorieTrackerModel.Food" Multiplicity="1" />
+          <End Role="tbl_food_nutrition_logs" Type="CalorieTrackerModel.FoodNutritionLogs" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="tbl_nutrient">
+            <Principal Role="tbl_foods">
+              <PropertyRef Name="FoodID" />
+            </Principal>
+            <Dependent Role="tbl_food_nutrition_logs">
+              <PropertyRef Name="FoodID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_food_nutrient_nutrient_id">
+          <End Role="tbl_nutrients" Type="CalorieTrackerModel.Nutrient" Multiplicity="1" />
+          <End Role="tbl_food_nutrition_logs" Type="CalorieTrackerModel.FoodNutritionLogs" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_nutrients">
               <PropertyRef Name="NutrientID" />
             </Principal>
-            <Dependent Role="tbl_food_nutrient_log">
+            <Dependent Role="tbl_food_nutrition_logs">
               <PropertyRef Name="NurtientID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_tbl_metric_id">
-          <End Type="CTDB.Metric" Role="tbl_user_metric" Multiplicity="0..1" />
-          <End Type="CTDB.MetricLog" Role="tbl_metric_log" Multiplicity="*" />
+          <End Role="tbl_metrics" Type="CalorieTrackerModel.Metric" Multiplicity="0..1" />
+          <End Role="tbl_metric_logs" Type="CalorieTrackerModel.MetricLog" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="tbl_user_metric">
+            <Principal Role="tbl_metrics">
               <PropertyRef Name="MetricID" />
             </Principal>
-            <Dependent Role="tbl_metric_log">
+            <Dependent Role="tbl_metric_logs">
               <PropertyRef Name="MetricID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_tbl_user_id">
-          <End Type="CTDB.User" Role="tbl_user" Multiplicity="0..1" />
-          <End Type="CTDB.MetricLog" Role="tbl_metric_log" Multiplicity="*" />
+          <End Role="tbl_users" Type="CalorieTrackerModel.User" Multiplicity="0..1" />
+          <End Role="tbl_metric_logs" Type="CalorieTrackerModel.MetricLog" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="tbl_user">
+            <Principal Role="tbl_users">
               <PropertyRef Name="UserID" />
             </Principal>
-            <Dependent Role="tbl_metric_log">
+            <Dependent Role="tbl_metric_logs">
               <PropertyRef Name="UserID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityContainer Name="CalorieTrackerEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Activities" EntityType="CalorieTrackerModel.Activity" />
+          <EntitySet Name="ActivityLogs" EntityType="CalorieTrackerModel.ActivityLog" />
+          <EntitySet Name="FoodGroups" EntityType="CalorieTrackerModel.FoodGroup" />
+          <EntitySet Name="FoodLogs" EntityType="CalorieTrackerModel.FoodLog" />
+          <EntitySet Name="FoodNutritionLogs" EntityType="CalorieTrackerModel.FoodNutritionLogs" />
+          <EntitySet Name="Foods" EntityType="CalorieTrackerModel.Food" />
+          <EntitySet Name="MetricLogs" EntityType="CalorieTrackerModel.MetricLog" />
+          <EntitySet Name="Metrics" EntityType="CalorieTrackerModel.Metric" />
+          <EntitySet Name="Nutrients" EntityType="CalorieTrackerModel.Nutrient" />
+          <EntitySet Name="Users" EntityType="CalorieTrackerModel.User" />
+          <AssociationSet Name="FK_activity_id" Association="Self.FK_activity_id">
+            <End Role="tbl_activities" EntitySet="Activities" />
+            <End Role="tbl_activity_logs" EntitySet="ActivityLogs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_activity_user_id" Association="Self.FK_activity_user_id">
+            <End Role="tbl_users" EntitySet="Users" />
+            <End Role="tbl_activity_logs" EntitySet="ActivityLogs" />
+          </AssociationSet>
+          <AssociationSet Name="fk_food_group_id1" Association="Self.fk_food_group_id1">
+            <End Role="tbl_food_groups" EntitySet="FoodGroups" />
+            <End Role="tbl_foods" EntitySet="Foods" />
+          </AssociationSet>
+          <AssociationSet Name="FK_food_log_food_id" Association="Self.FK_food_log_food_id">
+            <End Role="tbl_foods" EntitySet="Foods" />
+            <End Role="tbl_food_logs" EntitySet="FoodLogs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_food_log_user_id" Association="Self.FK_food_log_user_id">
+            <End Role="tbl_users" EntitySet="Users" />
+            <End Role="tbl_food_logs" EntitySet="FoodLogs" />
+          </AssociationSet>
+          <AssociationSet Name="fk_food_nutrient_food_id" Association="Self.fk_food_nutrient_food_id">
+            <End Role="tbl_foods" EntitySet="Foods" />
+            <End Role="tbl_food_nutrition_logs" EntitySet="FoodNutritionLogs" />
+          </AssociationSet>
+          <AssociationSet Name="fk_food_nutrient_nutrient_id" Association="Self.fk_food_nutrient_nutrient_id">
+            <End Role="tbl_nutrients" EntitySet="Nutrients" />
+            <End Role="tbl_food_nutrition_logs" EntitySet="FoodNutritionLogs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbl_metric_id" Association="Self.FK_tbl_metric_id">
+            <End Role="tbl_metrics" EntitySet="Metrics" />
+            <End Role="tbl_metric_logs" EntitySet="MetricLogs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbl_user_id" Association="Self.FK_tbl_user_id">
+            <End Role="tbl_users" EntitySet="Users" />
+            <End Role="tbl_metric_logs" EntitySet="MetricLogs" />
+          </AssociationSet>
+        </EntityContainer>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
-    <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-  <EntityContainerMapping StorageEntityContainer="CTDBStoreContainer" CdmEntityContainer="CTDBContainer">
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="CalorieTrackerModelStoreContainer" CdmEntityContainer="CalorieTrackerEntities">
           <EntitySetMapping Name="Activities">
-            <EntityTypeMapping TypeName="CTDB.Activity">
-              <MappingFragment StoreEntitySet="tbl_activity">
-                <ScalarProperty Name="ImageUrl" ColumnName="activity_image_url" />
-                <ScalarProperty Name="CalorieBurnRate" ColumnName="activity_calorie_burn_rate" />
-                <ScalarProperty Name="Name" ColumnName="activity_name" />
-                <ScalarProperty Name="ActivityID" ColumnName="activity_id" />
+            <EntityTypeMapping TypeName="CalorieTrackerModel.Activity">
+              <MappingFragment StoreEntitySet="tbl_activities">
+                <ScalarProperty Name="ActivityID" ColumnName="ActivityID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="CalorieBurnRate" ColumnName="CalorieBurnRate" />
+                <ScalarProperty Name="ImageUrl" ColumnName="ImageUrl" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="ActivityLogs">
-            <EntityTypeMapping TypeName="CTDB.ActivityLog">
-              <MappingFragment StoreEntitySet="tbl_activity_log">
-                <ScalarProperty Name="FileURL" ColumnName="activity_log_file_url" />
-                <ScalarProperty Name="Notes" ColumnName="activity_log_notes" />
-                <ScalarProperty Name="HeartRate" ColumnName="activity_log_heart_rate" />
-                <ScalarProperty Name="Accent" ColumnName="activity_log_accent" />
-                <ScalarProperty Name="Title" ColumnName="activity_log_title" />
-                <ScalarProperty Name="Distance" ColumnName="activity_log_distance" />
-                <ScalarProperty Name="Duration" ColumnName="activity_log_duration" />
-                <ScalarProperty Name="StartDate" ColumnName="activity_log_start_date" />
-                <ScalarProperty Name="UserID" ColumnName="activity_log_user_id" />
-                <ScalarProperty Name="ActivityID" ColumnName="activity_log_activity_id" />
-                <ScalarProperty Name="ActivityLogID" ColumnName="activity_log_id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Foods">
-            <EntityTypeMapping TypeName="CTDB.Food">
-              <MappingFragment StoreEntitySet="tbl_food">
-                <ScalarProperty Name="ManufactureName" ColumnName="food_manufacture_name" />
-                <ScalarProperty Name="Description" ColumnName="food_description" />
-                <ScalarProperty Name="Name" ColumnName="food_name" />
-                <ScalarProperty Name="GroupID" ColumnName="food_group_id" />
-                <ScalarProperty Name="ParentID" ColumnName="food_parent_id" />
-                <ScalarProperty Name="SourceID" ColumnName="food_source_id" />
-                <ScalarProperty Name="FoodID" ColumnName="food_id" />
+            <EntityTypeMapping TypeName="CalorieTrackerModel.ActivityLog">
+              <MappingFragment StoreEntitySet="tbl_activity_logs">
+                <ScalarProperty Name="ActivityLogID" ColumnName="ActivityLogID" />
+                <ScalarProperty Name="ActivityID" ColumnName="ActivityID" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+                <ScalarProperty Name="Duration" ColumnName="Duration" />
+                <ScalarProperty Name="Distance" ColumnName="Distance" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Accent" ColumnName="Accent" />
+                <ScalarProperty Name="HeartRate" ColumnName="HeartRate" />
+                <ScalarProperty Name="Notes" ColumnName="Notes" />
+                <ScalarProperty Name="FileURL" ColumnName="FileURL" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="FoodGroups">
-            <EntityTypeMapping TypeName="CTDB.FoodGroup">
-              <MappingFragment StoreEntitySet="tbl_food_group">
-                <ScalarProperty Name="SourceID" ColumnName="food_group_source_id" />
-                <ScalarProperty Name="Name" ColumnName="food_group_name" />
-                <ScalarProperty Name="FoodGroupID" ColumnName="food_group_id" />
+            <EntityTypeMapping TypeName="CalorieTrackerModel.FoodGroup">
+              <MappingFragment StoreEntitySet="tbl_food_groups">
+                <ScalarProperty Name="FoodGroupID" ColumnName="FoodGroupID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="SourceID" ColumnName="SourceID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="FoodLogs">
-            <EntityTypeMapping TypeName="CTDB.FoodLog">
-              <MappingFragment StoreEntitySet="tbl_food_log">
-                <ScalarProperty Name="CreationTimestamp" ColumnName="food_log_creation_timestamp" />
-                <ScalarProperty Name="Quantity" ColumnName="food_log_quantity" />
-                <ScalarProperty Name="UserID" ColumnName="food_log_user_id" />
-                <ScalarProperty Name="FoodID" ColumnName="food_log_food_id" />
-                <ScalarProperty Name="FoodLogID" ColumnName="food_log_id" />
+            <EntityTypeMapping TypeName="CalorieTrackerModel.FoodLog">
+              <MappingFragment StoreEntitySet="tbl_food_logs">
+                <ScalarProperty Name="FoodLogID" ColumnName="FoodLogID" />
+                <ScalarProperty Name="FoodID" ColumnName="FoodID" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="CreationTimestamp" ColumnName="CreationTimestamp" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="FoodNutientLogs">
-            <EntityTypeMapping TypeName="CTDB.FoodNutientLog">
-              <MappingFragment StoreEntitySet="tbl_food_nutrient_log">
-                <ScalarProperty Name="Value" ColumnName="food_nutrient_log_value" />
-                <ScalarProperty Name="NurtientID" ColumnName="food_nutrient_log_nutrient_id" />
-                <ScalarProperty Name="FoodID" ColumnName="food_nutrient_log_food_id" />
-                <ScalarProperty Name="NurtientLogID" ColumnName="food_nutrient_log_id" />
+          <EntitySetMapping Name="FoodNutritionLogs">
+            <EntityTypeMapping TypeName="CalorieTrackerModel.FoodNutritionLogs">
+              <MappingFragment StoreEntitySet="tbl_food_nutrition_logs">
+                <ScalarProperty Name="NurtientLogID" ColumnName="NurtientLogID" />
+                <ScalarProperty Name="FoodID" ColumnName="FoodID" />
+                <ScalarProperty Name="NurtientID" ColumnName="NurtientID" />
+                <ScalarProperty Name="Value" ColumnName="Value" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Foods">
+            <EntityTypeMapping TypeName="CalorieTrackerModel.Food">
+              <MappingFragment StoreEntitySet="tbl_foods">
+                <ScalarProperty Name="FoodID" ColumnName="FoodID" />
+                <ScalarProperty Name="SourceID" ColumnName="SourceID" />
+                <ScalarProperty Name="ParentID" ColumnName="ParentID" />
+                <ScalarProperty Name="GroupID" ColumnName="GroupID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="ManufactureName" ColumnName="ManufactureName" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="MetricLogs">
-            <EntityTypeMapping TypeName="CTDB.MetricLog">
-              <MappingFragment StoreEntitySet="tbl_metric_log">
-                <ScalarProperty Name="CreationTimestamp" ColumnName="metric_log_creation_timestamp" />
-                <ScalarProperty Name="Value" ColumnName="metric_log_value" />
-                <ScalarProperty Name="MetricID" ColumnName="metric_log_metric_id" />
-                <ScalarProperty Name="UserID" ColumnName="metric_log_user_id" />
-                <ScalarProperty Name="MetricLogID" ColumnName="metric_log_id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Nutrients">
-            <EntityTypeMapping TypeName="CTDB.Nutrient">
-              <MappingFragment StoreEntitySet="tbl_nutrient">
-                <ScalarProperty Name="DecimalRounding" ColumnName="nutrient_decimal_rounding" />
-                <ScalarProperty Name="Name" ColumnName="nutrient_name" />
-                <ScalarProperty Name="UnitType" ColumnName="nutrient_unit_id" />
-                <ScalarProperty Name="SourceID" ColumnName="nutrient_source_id" />
-                <ScalarProperty Name="NutrientID" ColumnName="nutrient_id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Users">
-            <EntityTypeMapping TypeName="CTDB.User">
-              <MappingFragment StoreEntitySet="tbl_user">
-                <ScalarProperty Name="Personality" ColumnName="user_personality_type" />
-                <ScalarProperty Name="ActivityLevelType" ColumnName="user_activity_level_type" />
-                <ScalarProperty Name="CreationTimestamp" ColumnName="user_creation_timestamp" />
-                <ScalarProperty Name="Admin" ColumnName="user_admin" />
-                <ScalarProperty Name="PasswordSalt" ColumnName="user_password_salt" />
-                <ScalarProperty Name="PasswordHash" ColumnName="user_password_hash" />
-                <ScalarProperty Name="Gender" ColumnName="user_gender" />
-                <ScalarProperty Name="DOB" ColumnName="user_dob" />
-                <ScalarProperty Name="UserID" ColumnName="user_id" />
+            <EntityTypeMapping TypeName="CalorieTrackerModel.MetricLog">
+              <MappingFragment StoreEntitySet="tbl_metric_logs">
+                <ScalarProperty Name="MetricLogID" ColumnName="MetricLogID" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="MetricID" ColumnName="MetricID" />
+                <ScalarProperty Name="Value" ColumnName="Value" />
+                <ScalarProperty Name="CreationTimestamp" ColumnName="CreationTimestamp" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Metrics">
-            <EntityTypeMapping TypeName="CTDB.Metric">
-              <MappingFragment StoreEntitySet="tbl_user_metric">
-                <ScalarProperty Name="Type" ColumnName="user_metric_type" />
-                <ScalarProperty Name="Name" ColumnName="user_metric_name" />
-                <ScalarProperty Name="MetricID" ColumnName="user_metric_id" />
+            <EntityTypeMapping TypeName="CalorieTrackerModel.Metric">
+              <MappingFragment StoreEntitySet="tbl_metrics">
+                <ScalarProperty Name="MetricID" ColumnName="MetricID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-    </EntityContainerMapping>
-</Mapping></edmx:Mappings>
+          <EntitySetMapping Name="Nutrients">
+            <EntityTypeMapping TypeName="CalorieTrackerModel.Nutrient">
+              <MappingFragment StoreEntitySet="tbl_nutrients">
+                <ScalarProperty Name="NutrientID" ColumnName="NutrientID" />
+                <ScalarProperty Name="SourceID" ColumnName="SourceID" />
+                <ScalarProperty Name="UnitType" ColumnName="UnitType" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="DecimalRounding" ColumnName="DecimalRounding" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="CalorieTrackerModel.User">
+              <MappingFragment StoreEntitySet="tbl_users">
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="DOB" ColumnName="DOB" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="PasswordHash" ColumnName="PasswordHash" />
+                <ScalarProperty Name="PasswordSalt" ColumnName="PasswordSalt" />
+                <ScalarProperty Name="Admin" ColumnName="Admin" />
+                <ScalarProperty Name="CreationTimestamp" ColumnName="CreationTimestamp" />
+                <ScalarProperty Name="ActivityLevelType" ColumnName="ActivityLevelType" />
+                <ScalarProperty Name="Personality" ColumnName="Personality" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
   </edmx:Runtime>
   <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
-  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
-    <edmx:Connection>
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
       <DesignerInfoPropertySet>
         <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
       </DesignerInfoPropertySet>
-    </edmx:Connection>
-    <edmx:Options>
+    </Connection>
+    <Options>
       <DesignerInfoPropertySet>
         <DesignerProperty Name="ValidateOnBuild" Value="true" />
-        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
         <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
-        <DesignerProperty Name="UseLegacyProvider" Value="False" />
-        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
       </DesignerInfoPropertySet>
-    </edmx:Options>
+    </Options>
     <!-- Diagram content (shape and connector positions) -->
-    <edmx:Diagrams>
-    </edmx:Diagrams>
-  </edmx:Designer>
+    <Diagrams></Diagrams>
+  </Designer>
 </edmx:Edmx>

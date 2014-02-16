@@ -17,7 +17,7 @@ namespace CalorieTracker.Models
         public Food()
         {
             this.FoodLogs = new HashSet<FoodLog>();
-            this.FoodNurtients = new HashSet<FoodNutientLog>();
+            this.FoodNutritionLogs = new HashSet<FoodNutritionLogs>();
         }
     
         public int FoodID { get; set; }
@@ -30,6 +30,6 @@ namespace CalorieTracker.Models
     
         public virtual FoodGroup FoodGroup { get; set; }
         public virtual ICollection<FoodLog> FoodLogs { get; set; }
-        public virtual ICollection<FoodNutientLog> FoodNurtients { get; set; }
+        public virtual ICollection<FoodNutritionLogs> FoodNutritionLogs { get; set; }
     }
 }

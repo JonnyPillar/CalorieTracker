@@ -22,9 +22,9 @@ namespace CalorieTracker.Models
             ActivityLevelType = 0;
             Personality = 0;
 
-            ActivityLogs = new HashSet<ActivityLog>();
-            FoodLogs = new HashSet<FoodLog>();
-            MetricLogs = new HashSet<MetricLog>();
+            UserActivityLogs = new HashSet<ActivityLog>();
+            UserFoodLogs = new HashSet<FoodLog>();
+            UserMetricLogs = new HashSet<MetricLog>();
         }
     }
 }

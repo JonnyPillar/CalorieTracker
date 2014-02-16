@@ -1,19 +1,74 @@
-﻿using System.Data.Entity;
+﻿using System;
+using System.Data.Entity;
 using System.Linq;
 using System.Web.Mvc;
 using CalorieTracker.Models;
+using PagedList;
 
 namespace CalorieTracker.Controllers.Foods
 {
     public class FoodController : Controller
     {
-        private readonly CTDBContainer db = new CTDBContainer();
+        private readonly CalorieTrackerEntities db = new CalorieTrackerEntities();
 
         // GET: /Food/
-        public ActionResult Index()
+        public ActionResult Index(string sortOrder, string currentFilter, string searchString, int? page)
         {
+            ViewBag.CurrentSort = sortOrder;
+            ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "Name_desc" : "";
+            ViewBag.DescSortParm = sortOrder == "Description" ? "Description_desc" : "Description";
+            ViewBag.FoodGroupSortParm = sortOrder == "FoodGroup" ? "FoodGroup_desc" : "FoodGroup";
+
+            if (searchString != null)
+            {
+                page = 1;
+            }
+            else
+            {
+                searchString = currentFilter;
+            }
+
+            ViewBag.CurrentFilter = searchString;
+
             IQueryable<Food> foods = db.Foods.Include(f => f.FoodGroup);
-            return View(foods.ToList());
+
+            if (!string.IsNullOrEmpty(searchString))
+            {
+                foods = foods.Where(
+                    f =>
+                        f.Name.ToUpper().Contains(searchString.ToUpper()) ||
+                        f.Description.ToUpper().Contains(searchString.ToUpper()) ||
+                        f.ManufactureName.ToUpper().Contains(searchString.ToUpper()));
+            }
+
+            if (string.IsNullOrEmpty(sortOrder))
+            {
+                foods = foods.OrderBy(f => f.Name);
+            }
+            else if (sortOrder.Equals("Name_desc"))
+            {
+                foods = foods.OrderByDescending(f => f.Name);
+            }
+            else if (sortOrder.Equals("Description"))
+            {
+                foods = foods.OrderBy(f => f.Description);
+            }
+            else if (sortOrder.Equals("Description_desc"))
+            {
+                foods = foods.OrderByDescending(f => f.Description);
+            }
+            else if (sortOrder.Equals("FoodGroup"))
+            {
+                foods = foods.OrderBy(f => f.FoodGroup.Name);
+            }
+            else if (sortOrder.Equals("FoodGroup_desc"))
+            {
+                foods = foods.OrderByDescending(f => f.FoodGroup.Name);
+            }
+
+            int pageSize = 20;
+            int pageNumber = (page ?? 1);
+            return View(foods.ToPagedList(pageNumber, pageSize));
         }
 
         // GET: /Food/Details/5

@@ -9,7 +9,7 @@ namespace CalorieTracker.Controllers.Log
 {
     public class MetricLogController : Controller
     {
-        private readonly CTDBContainer db = new CTDBContainer();
+        private readonly CalorieTrackerEntities db = new CalorieTrackerEntities();
 
         // GET: /MetricLog/
         public ActionResult Index()
@@ -56,7 +56,6 @@ namespace CalorieTracker.Controllers.Log
         {
             if (ModelState.IsValid)
             {
-                metriclog.MetricLogID = Guid.NewGuid().ToString();
                 db.MetricLogs.Add(metriclog);
                 db.SaveChanges();
                 return RedirectToAction("Index");

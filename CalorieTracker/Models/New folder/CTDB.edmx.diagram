@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="a94329877c9b4c3aab75d335f5c0f8e2" Name="Diagram1" ZoomLevel="99" >
+        <EntityTypeShape EntityType="CTDatabase.Activity" Width="1.5" PointX="6.625" PointY="0.5" />
+        <EntityTypeShape EntityType="CTDatabase.ActivityLog" Width="1.5" PointX="4.375" PointY="0.5" />
+        <EntityTypeShape EntityType="CTDatabase.FoodGroup" Width="1.5" PointX="7.375" PointY="5.625" />
+        <EntityTypeShape EntityType="CTDatabase.FoodLog" Width="1.5" PointX="2.625" PointY="4.75" />
+        <EntityTypeShape EntityType="CTDatabase.FoodNutrients" Width="1.5" PointX="6.75" PointY="3" />
+        <EntityTypeShape EntityType="CTDatabase.Food" Width="1.5" PointX="4.75" PointY="4.75" />
+        <EntityTypeShape EntityType="CTDatabase.MetricLog" Width="1.5" PointX="2.375" PointY="0.5" />
+        <EntityTypeShape EntityType="CTDatabase.Metric" Width="1.5" PointX="0.5" PointY="0.5" />
+        <EntityTypeShape EntityType="CTDatabase.Nutrient" Width="1.5" PointX="8.75" PointY="3.125" />
+        <EntityTypeShape EntityType="CTDatabase.User" Width="1.5" PointX="0.75" PointY="3.5" />
+        <AssociationConnector Association="CTDatabase.FK_activity_id" />
+        <AssociationConnector Association="CTDatabase.FK_activity_user_id" />
+        <AssociationConnector Association="CTDatabase.fk_food_group_id1" />
+        <AssociationConnector Association="CTDatabase.FK_food_log_food_id" />
+        <AssociationConnector Association="CTDatabase.FK_food_log_user_id" />
+        <AssociationConnector Association="CTDatabase.fk_food_nutrient_food_id" />
+        <AssociationConnector Association="CTDatabase.fk_food_nutrient_nutrient_id" />
+        <AssociationConnector Association="CTDatabase.FK_tbl_metric_id" />
+        <AssociationConnector Association="CTDatabase.FK_tbl_user_id" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

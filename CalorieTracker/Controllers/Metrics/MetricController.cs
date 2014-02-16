@@ -8,7 +8,7 @@ namespace CalorieTracker.Controllers.Metrics
 {
     public class MetricController : Controller
     {
-        private readonly CTDBContainer db = new CTDBContainer();
+        private readonly CalorieTrackerEntities db = new CalorieTrackerEntities();
 
         // GET: /Metric/
         public ActionResult Index()
@@ -45,7 +45,6 @@ namespace CalorieTracker.Controllers.Metrics
         {
             if (ModelState.IsValid)
             {
-                metric.MetricID = Guid.NewGuid().ToString();
                 db.Metrics.Add(metric);
                 db.SaveChanges();
                 return RedirectToAction("Index");

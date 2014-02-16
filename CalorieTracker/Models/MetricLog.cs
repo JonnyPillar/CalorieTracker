@@ -14,9 +14,9 @@ namespace CalorieTracker.Models
     
     public partial class MetricLog
     {
-        public string MetricLogID { get; set; }
+        public int MetricLogID { get; set; }
         public Nullable<int> UserID { get; set; }
-        public string MetricID { get; set; }
+        public Nullable<int> MetricID { get; set; }
         public decimal Value { get; set; }
         public System.DateTime CreationTimestamp { get; set; }
     

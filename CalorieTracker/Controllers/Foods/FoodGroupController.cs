@@ -7,7 +7,7 @@ namespace CalorieTracker.Controllers.Foods
 {
     public class FoodGroupController : Controller
     {
-        private readonly CTDBContainer db = new CTDBContainer();
+        private readonly CalorieTrackerEntities db = new CalorieTrackerEntities();
 
         // GET: /FoodGroup/
         public ActionResult Index()

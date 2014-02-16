@@ -1,4 +1,5 @@
-﻿.redButton a {
+﻿
+.redButton a {
     background: #ff7878;
     margin: 25px 0 20px;
     color: #ffffff;
@@ -15,11 +16,12 @@
     word-wrap: break-word;
     font-weight: bold;
 }
-.redButton a:hover,
-.redButton a:focus {
-  color: #ffffff;
-  background-color: #EB5252;
-}
+
+    .redButton a:hover,
+    .redButton a:focus {
+        color: #ffffff;
+        background-color: #EB5252;
+    }
 
 /*
     Login Panel
@@ -44,16 +46,17 @@
 /*
     Dashboard Information    
 */
-.dashboardUserPanel ul{
+.dashboardUserPanel ul {
     text-align: left;
     margin: 0;
     padding: 0;
 }
-.dashboardUserPanel ul li{
-    margin: 0;
-    padding: 0;
-    list-style: none;
-}
+
+    .dashboardUserPanel ul li {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+    }
 /*
     End of Dashboard
 */
@@ -64,39 +67,54 @@
     padding-top: 40px;
 }
 
-.logPanel .pricing-option { padding-bottom: 40px; }
+    .logPanel .pricing-option {
+        padding-bottom: 40px;
+    }
 
-.logPanel .pricing-option .pricing-top {
-    -moz-box-sizing: border-box;
-    -webkit-box-sizing: border-box;
-    background: #fff;
-    box-sizing: border-box;
-    color: #2d2d2d;
-    font-weight: bold;
-    padding: 40px 20px 40px 20px;
-    position: relative;
-    text-align: center;
-    border: 1px solid #e0e0e0;
-}
+        .logPanel .pricing-option .pricing-top {
+            -moz-box-sizing: border-box;
+            -webkit-box-sizing: border-box;
+            background: #fff;
+            box-sizing: border-box;
+            color: #2d2d2d;
+            font-weight: bold;
+            padding: 40px 20px 40px 20px;
+            position: relative;
+            text-align: center;
+            border: 1px solid #e0e0e0;
+        }
+
 .logPanel {
     margin-bottom: 40px;
 }
-.logPanel .logOption {
-    -moz-box-sizing: border-box;
-    -webkit-box-sizing: border-box;
-    background: #fff;
-    box-sizing: border-box;
-    color: #2d2d2d;
-    font-weight: bold;
-    padding: 40px 20px 40px 20px;
-    position: relative;
-    text-align: center;
-    border: 1px solid #e0e0e0;
-    display: block;
-}
-    .logPanel .logOption p {
-        font-weight: normal;
+
+    .logPanel .logOption {
+        -moz-box-sizing: border-box;
+        -webkit-box-sizing: border-box;
+        background: #fff;
+        box-sizing: border-box;
+        color: #2d2d2d;
+        font-weight: bold;
+        padding: 40px 20px 40px 20px;
+        position: relative;
+        text-align: center;
+        border: 1px solid #e0e0e0;
+        display: block;
     }
+
+        .logPanel .logOption p {
+            font-weight: normal;
+        }
 /*
     End of Log Panel    
+*/
+
+/*
+    Food List    
+*/
+.foodList table {
+    text-align: left;
+}
+/*
+    End of Food List    
 */

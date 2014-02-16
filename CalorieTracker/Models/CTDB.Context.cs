@@ -13,10 +13,10 @@ namespace CalorieTracker.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class CTDBContainer : DbContext
+    public partial class CalorieTrackerEntities : DbContext
     {
-        public CTDBContainer()
-            : base("name=CTDBContainer")
+        public CalorieTrackerEntities()
+            : base("name=CalorieTrackerEntities")
         {
         }
     
@@ -27,13 +27,13 @@ namespace CalorieTracker.Models
     
         public virtual DbSet<Activity> Activities { get; set; }
         public virtual DbSet<ActivityLog> ActivityLogs { get; set; }
-        public virtual DbSet<Food> Foods { get; set; }
         public virtual DbSet<FoodGroup> FoodGroups { get; set; }
         public virtual DbSet<FoodLog> FoodLogs { get; set; }
-        public virtual DbSet<FoodNutientLog> FoodNutientLogs { get; set; }
+        public virtual DbSet<FoodNutritionLogs> FoodNutritionLogs { get; set; }
+        public virtual DbSet<Food> Foods { get; set; }
         public virtual DbSet<MetricLog> MetricLogs { get; set; }
+        public virtual DbSet<Metric> Metrics { get; set; }
         public virtual DbSet<Nutrient> Nutrients { get; set; }
         public virtual DbSet<User> Users { get; set; }
-        public virtual DbSet<Metric> Metrics { get; set; }
     }
 }

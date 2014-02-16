@@ -10,7 +10,7 @@ namespace CalorieTracker.Controllers.Log
 {
     public class ActivityLogController : Controller
     {
-        private readonly CTDBContainer db = new CTDBContainer();
+        private readonly CalorieTrackerEntities db = new CalorieTrackerEntities();
 
         // GET: /ActivityLog/
         public ActionResult Index()
@@ -59,7 +59,6 @@ namespace CalorieTracker.Controllers.Log
         {
             if (ModelState.IsValid)
             {
-                activitylog.ActivityLogID = Guid.NewGuid().ToString();
                 db.ActivityLogs.Add(activitylog);
                 db.SaveChanges();
                 return RedirectToAction("Index");

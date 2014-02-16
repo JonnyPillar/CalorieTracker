@@ -9,7 +9,7 @@ namespace CalorieTracker.Controllers.Users
 {
     public class LoginController : Controller
     {
-        private readonly CTDBContainer db = new CTDBContainer();
+        private readonly CalorieTrackerEntities db = new CalorieTrackerEntities();
         //
         // GET: /Login/
 
@@ -36,7 +36,7 @@ namespace CalorieTracker.Controllers.Users
             if (SecurityUtil.AuthenticUser(User)) return RedirectToAction("Index", "Dashboard");
             if (ModelState.IsValid)
             {
-                User existingUser = db.Users.First(user => user.UserID == loginModel.UserID);
+                User existingUser = db.Users.FirstOrDefault(user => user.UserID == loginModel.UserID);
                 if (existingUser != null)
                 {
                     if (SecurityUtil.IsPasswordValid(existingUser, loginModel.Password))

@@ -7,7 +7,7 @@ namespace CalorieTracker.Controllers.Users
 {
     public class AccountController : Controller
     {
-        private readonly CTDBContainer db = new CTDBContainer();
+        private readonly CalorieTrackerEntities db = new CalorieTrackerEntities();
 
         // GET: /Account/
         public ActionResult Index()

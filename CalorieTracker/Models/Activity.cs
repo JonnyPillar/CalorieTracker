@@ -19,7 +19,7 @@ namespace CalorieTracker.Models
             this.ActivityLogs = new HashSet<ActivityLog>();
         }
     
-        public string ActivityID { get; set; }
+        public int ActivityID { get; set; }
         public string Name { get; set; }
         public decimal CalorieBurnRate { get; set; }
         public string ImageUrl { get; set; }
