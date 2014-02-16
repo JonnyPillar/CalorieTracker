@@ -18,7 +18,7 @@ namespace CalorieTracker.Controllers.Metrics
         }
 
         // GET: /Metric/Details/5
-        public ActionResult Details(string id)
+        public ActionResult Details(int? id)
         {
             if (id == null)
             {
@@ -54,7 +54,7 @@ namespace CalorieTracker.Controllers.Metrics
         }
 
         // GET: /Metric/Edit/5
-        public ActionResult Edit(string id)
+        public ActionResult Edit(int? id)
         {
             if (id == null)
             {
@@ -83,7 +83,7 @@ namespace CalorieTracker.Controllers.Metrics
         }
 
         // GET: /Metric/Delete/5
-        public ActionResult Delete(string id)
+        public ActionResult Delete(int? id)
         {
             if (id == null)
             {
@@ -100,7 +100,7 @@ namespace CalorieTracker.Controllers.Metrics
         // POST: /Metric/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(string id)
+        public ActionResult DeleteConfirmed(int? id)
         {
             Metric metric = db.Metrics.Find(id);
             db.Metrics.Remove(metric);

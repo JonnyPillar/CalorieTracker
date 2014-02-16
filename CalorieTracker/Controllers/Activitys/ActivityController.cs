@@ -3,6 +3,7 @@ using System.Data.Entity;
 using System.Linq;
 using System.Web.Mvc;
 using CalorieTracker.Models;
+using PagedList;
 
 namespace CalorieTracker.Controllers.Activitys
 {
@@ -11,14 +12,42 @@ namespace CalorieTracker.Controllers.Activitys
         private readonly CalorieTrackerEntities db = new CalorieTrackerEntities();
 
         // GET: /Activity/
-        public ActionResult Index()
+        public ActionResult Index(string sortOrder, string currentFilter, string searchString, int? page)
         {
             if (!User.Identity.IsAuthenticated) return RedirectToAction("Index", "Account");
-            return View(db.Activities.ToList());
+            ViewBag.CurrentSort = sortOrder;
+            ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "Name_desc" : "";
+
+            if (searchString != null)  page = 1;
+            else searchString = currentFilter;
+
+            ViewBag.CurrentFilter = searchString;
+
+            IQueryable<Activity> activities = from a in db.Activities select a;
+
+            if (!string.IsNullOrEmpty(searchString))
+            {
+                activities = activities.Where(
+                    a =>
+                        a.Name.ToUpper().Contains(searchString.ToUpper()));
+            }
+
+            if (string.IsNullOrEmpty(sortOrder))
+            {
+                activities = activities.OrderBy(a => a.Name);
+            }
+            else if (sortOrder.Equals("Name_desc"))
+            {
+                activities = activities.OrderByDescending(a => a.Name);
+            }
+
+            int pageSize = 20;
+            int pageNumber = (page ?? 1);
+            return View(activities.ToPagedList(pageNumber, pageSize));
         }
 
         // GET: /Activity/Details/5
-        public ActionResult Details(string id)
+        public ActionResult Details(int? id)
         {
             if (id == null)
             {
@@ -54,7 +83,7 @@ namespace CalorieTracker.Controllers.Activitys
         }
 
         // GET: /Activity/Edit/5
-        public ActionResult Edit(string id)
+        public ActionResult Edit(int? id)
         {
             if (id == null)
             {
@@ -83,7 +112,7 @@ namespace CalorieTracker.Controllers.Activitys
         }
 
         // GET: /Activity/Delete/5
-        public ActionResult Delete(string id)
+        public ActionResult Delete(int? id)
         {
             if (id == null)
             {
@@ -100,7 +129,7 @@ namespace CalorieTracker.Controllers.Activitys
         // POST: /Activity/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(string id)
+        public ActionResult DeleteConfirmed(int? id)
         {
             Activity activity = db.Activities.Find(id);
             db.Activities.Remove(activity);

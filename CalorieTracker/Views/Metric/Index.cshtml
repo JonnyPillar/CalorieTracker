@@ -4,36 +4,46 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<div id="blue">
+    <div class="centered">
+        <h2>All Foods</h2>
+        <p>Have A Look Through All The Foods On Record</p>
+    </div>
+</div>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Name)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Type)
-        </th>
-        <th></th>
-    </tr>
+<div class="foodList container">
+    <div class="row centered">
+        <div class="redButton col-xs-6 col-xs-offset-3 col-sm-2 col-sm-offset-5">
+            <p>@Html.ActionLink("Create New", "Create")</p>
+        </div>
+        <table class="table">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Name)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Type)
+                </th>
+                <th></th>
+            </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Type)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.MetricID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.MetricID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.MetricID })
-        </td>
-    </tr>
-}
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Type)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", new { id = item.MetricID }) |
+                        @Html.ActionLink("Details", "Details", new { id = item.MetricID }) |
+                        @Html.ActionLink("Delete", "Delete", new { id = item.MetricID })
+                    </td>
+                </tr>
+            }
 
-</table>
+        </table>
+    </div>
+</div>

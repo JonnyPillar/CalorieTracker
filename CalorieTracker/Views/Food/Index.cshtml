@@ -2,6 +2,7 @@
 @using PagedList.Mvc
 @model PagedList.IPagedList<CalorieTracker.Models.Food>
 
+
 @{
     ViewBag.Title = "Index";
 }
@@ -13,14 +14,14 @@
     </div>
 </div>
 
-<div class="foodList container ">
+<div class="foodList container">
     <div class="row centered">
         <div class="redButton col-xs-6 col-xs-offset-3 col-sm-2 col-sm-offset-5">
             <p>@Html.ActionLink("Create New", "Create")</p>
         </div>
         <div style="clear: both; height:1px;"></div>
         <div class="row centered">
-            @using (Html.BeginForm("Index", "Food", FormMethod.Get))
+            @using (Html.BeginForm("Index", "Activity", FormMethod.Get))
             {
                 <p>
                     Find by name: @Html.TextBox("SearchString", ViewBag.CurrentFilter as string)
@@ -68,14 +69,6 @@
 
         @Html.PagedListPager(Model, page => Url.Action("Index",
     new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
-
-
-
-
-
-
-
-
     </div>
 </div>
 
