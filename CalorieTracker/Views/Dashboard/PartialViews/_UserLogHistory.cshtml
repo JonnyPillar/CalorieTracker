@@ -5,8 +5,9 @@
     <div class="reverseShelf">
         @if (@Model.UserFoodLogs.Count == 0)
         {
-            <span></span>
-            @Html.ActionLink("Please Your First Log", "Index", "Log")
+            <div class="redButton">
+                @Html.ActionLink("Please Your First Log", "Index", "Log")
+            </div>
         }
         else
         {
