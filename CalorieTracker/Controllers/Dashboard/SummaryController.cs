@@ -1,4 +1,7 @@
-﻿using System.Web.Mvc;
+﻿using System.Linq;
+using System.Web.Mvc;
+using CalorieTracker.Models;
+using CalorieTracker.Utils.Weka.ARFF;
 
 namespace CalorieTracker.Controllers.Dashboard
 {
@@ -13,6 +16,9 @@ namespace CalorieTracker.Controllers.Dashboard
         [HttpGet]
         public ActionResult Index()
         {
+            var db = new CalorieTrackerEntities();
+            var arffGenerator = new ARFFGenerator("User Data", db.Users.ToList());
+            arffGenerator.GenerateFile();
             return View();
         }
 

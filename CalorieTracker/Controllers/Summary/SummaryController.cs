@@ -1,8 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using System.Linq;
 using System.Web.Mvc;
+using CalorieTracker.Models;
+using CalorieTracker.Utils.Weka.ARFF;
 
 namespace CalorieTracker.Controllers.Summary
 {
@@ -12,6 +11,7 @@ namespace CalorieTracker.Controllers.Summary
         // GET: /Summary/
         public ActionResult Index()
         {
+            
             return View();
         }
 
