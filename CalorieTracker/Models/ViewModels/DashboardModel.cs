@@ -1,26 +1,20 @@
-﻿namespace CalorieTracker.Models.ViewModels
+﻿using System.Collections.Generic;
+
+namespace CalorieTracker.Models.ViewModels
 {
     public class DashboardModel
     {
-        private bool _isNewUser;
-        private User _user;
-
-        public DashboardModel(bool isNewUser, User dashboardUser)
+        public DashboardModel(bool isNewUser, User dashboardUser, List<UserNutrientRDAModel> userNutrientRDAList)
         {
-            _isNewUser = isNewUser;
-            _user = dashboardUser;
+            IsNewUser = isNewUser;
+            DashboardUser = dashboardUser;
+            UserNutrientRDAList = userNutrientRDAList;
         }
 
-        public User DashboardUser
-        {
-            get { return _user; }
-            set { _user = value; }
-        }
+        public User DashboardUser { get; set; }
 
-        public bool IsNewUser
-        {
-            get { return _isNewUser; }
-            set { _isNewUser = value; }
-        }
+        public List<UserNutrientRDAModel> UserNutrientRDAList { get; set; }
+
+        public bool IsNewUser { get; set; }
     }
 }
