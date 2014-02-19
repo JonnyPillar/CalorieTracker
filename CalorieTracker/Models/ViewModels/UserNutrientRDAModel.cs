@@ -1,18 +1,32 @@
-﻿namespace CalorieTracker.Models.ViewModels
+﻿using CalorieTracker.Utils.RDA;
+
+namespace CalorieTracker.Models.ViewModels
 {
     public class UserNutrientRDAModel
     {
-        public UserNutrientRDAModel(Nutrient nutrient, decimal nutrientRDAValue, decimal nutrientRDAPercentage)
+        public UserNutrientRDAModel(RDAUtil rdaUtil)
         {
-            UserNutrient1 = nutrient;
-            NutrientRDAValue1 = nutrientRDAValue;
-            NutrientRDAPercentage = nutrientRDAPercentage;
+            UserNutrientRDA = rdaUtil.UserNutrientRDA;
+            MaxNutrientRDAValue = rdaUtil.MaxRDAValue;
+            UserNutrientRDAValue = UserNutrientRDAValue;
+            UserNutrientRDAPercentage = UserNutrientRDAPercentage;
         }
 
-        public Nutrient UserNutrient1 { get; set; }
+        public UserNutrientRDAModel(NutrientRDA nutrientRDA, decimal maxNutrientRDAValue, decimal userNutrientRDAValue,
+            decimal userNutrientRDAPercentage)
+        {
+            UserNutrientRDA = nutrientRDA;
+            MaxNutrientRDAValue = maxNutrientRDAValue;
+            UserNutrientRDAValue = userNutrientRDAValue;
+            UserNutrientRDAPercentage = userNutrientRDAPercentage;
+        }
 
-        public decimal NutrientRDAValue1 { get; set; }
+        public NutrientRDA UserNutrientRDA { get; set; }
 
-        public decimal NutrientRDAPercentage { get; set; }
+        public decimal MaxNutrientRDAValue { get; set; }
+
+        public decimal UserNutrientRDAValue { get; set; }
+
+        public decimal UserNutrientRDAPercentage { get; set; }
     }
 }

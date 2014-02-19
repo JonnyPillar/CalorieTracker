@@ -37,3 +37,11 @@
         </div>
     </div>
 </div>
+<div class="container">
+    <div class="row centered">
+        @foreach (var item in @Model.UserNutrientRDAList)
+        {
+            @Html.Partial("PartialViews/_NutrientRDACard", item)
+        }
+    </div>
+</div>

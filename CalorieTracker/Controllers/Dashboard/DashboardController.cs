@@ -1,9 +1,13 @@
-﻿using System.Linq;
+﻿using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
 using System.Web.Mvc;
 using System.Web.Security;
 using CalorieTracker.Models;
 using CalorieTracker.Models.ViewModels;
 using CalorieTracker.Utils.Account;
+using CalorieTracker.Utils.RDA;
 
 namespace CalorieTracker.Controllers.Dashboard
 {
@@ -30,7 +34,20 @@ namespace CalorieTracker.Controllers.Dashboard
                 FormsAuthentication.SignOut();
                 return RedirectToAction("Index", "Home");
             }
-            var dashboardModel = new DashboardModel(!string.IsNullOrEmpty(id), dashboardUser);
+
+            List<Nutrient> nutrientEnumerable = db.Nutrients.ToList();
+
+            List<UserNutrientRDAModel> userNutrientRDAModels = new List<UserNutrientRDAModel>();
+            
+
+            foreach (var nutrient in nutrientEnumerable)
+            {
+                RDAUtil rdaUtil = new RDAUtil(dashboardUser, nutrient, new TimeSpan(7));
+                userNutrientRDAModels.Add(new UserNutrientRDAModel(rdaUtil));
+            }
+
+
+            var dashboardModel = new DashboardModel(!string.IsNullOrEmpty(id), dashboardUser, userNutrientRDAModels);
             return View(dashboardModel);
         }
     }

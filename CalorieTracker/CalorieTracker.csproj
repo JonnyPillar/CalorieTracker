@@ -157,6 +157,7 @@
     <Compile Include="Controllers\Log\LogController.cs" />
     <Compile Include="Controllers\Log\MetricLogController.cs" />
     <Compile Include="Controllers\Metrics\MetricController.cs" />
+    <Compile Include="Controllers\Nutrients\NutrientRDAController.cs" />
     <Compile Include="Controllers\Users\AccountController.cs" />
     <Compile Include="Controllers\Users\LoginController.cs" />
     <Compile Include="Controllers\Users\RegisterController.cs" />
@@ -235,6 +236,7 @@
     <Compile Include="Models\ViewModels\HistoryModel.cs" />
     <Compile Include="Models\ViewModels\LoginModel.cs" />
     <Compile Include="Models\ViewModels\RegisterModel.cs" />
+    <Compile Include="Models\ViewModels\UserNutrientRDAModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utils\Account\IdentityUtil.cs" />
     <Compile Include="Utils\Account\PasswordHasher.cs" />
@@ -244,6 +246,7 @@
     <Compile Include="Utils\History\HistoryMetricLog.cs" />
     <Compile Include="Utils\History\IHistoryItem.cs" />
     <Compile Include="Utils\HtmlHelpers\HtmlHelpers.cs" />
+    <Compile Include="Utils\RDA\RDAUtil.cs" />
     <Compile Include="Utils\Weka\Algorithms\IAlgorithm.cs" />
     <Compile Include="Utils\Weka\Algorithms\Regression.cs" />
     <Compile Include="Utils\Weka\ARFF\ARFFGenerator.cs" />
@@ -397,6 +400,12 @@
     <Content Include="Views\MetricLog\Index.cshtml" />
     <Content Include="Views\Shared\_Navigation.cshtml" />
     <Content Include="Views\Shared\_Footer.cshtml" />
+    <Content Include="Views\Dashboard\PartialViews\_NutrientRDACard.cshtml" />
+    <Content Include="Views\NutrientRDA\Create.cshtml" />
+    <Content Include="Views\NutrientRDA\Delete.cshtml" />
+    <Content Include="Views\NutrientRDA\Details.cshtml" />
+    <Content Include="Views\NutrientRDA\Edit.cshtml" />
+    <Content Include="Views\NutrientRDA\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
