@@ -24,6 +24,8 @@
         <AssociationConnector Association="CalorieTrackerModel.fk_food_nutrient_nutrient_id" ManuallyRouted="false" />
         <AssociationConnector Association="CalorieTrackerModel.FK_tbl_metric_id" ManuallyRouted="false" />
         <AssociationConnector Association="CalorieTrackerModel.FK_tbl_user_id" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="CalorieTrackerModel.NutrientRDA" Width="1.5" PointX="6.75" PointY="9" />
+        <AssociationConnector Association="CalorieTrackerModel.FK_tbl_nutrient_rda_tbl_nutrients" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

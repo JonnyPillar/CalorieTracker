@@ -12,21 +12,16 @@ namespace CalorieTracker.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Nutrient
+    public partial class NutrientRDA
     {
-        public Nutrient()
-        {
-            this.FoodNutritionLogs = new HashSet<FoodNutritionLogs>();
-            this.tbl_nutrient_rda = new HashSet<NutrientRDA>();
-        }
-    
+        public int NutrientRdaID { get; set; }
         public int NutrientID { get; set; }
-        public int SourceID { get; set; }
+        public bool Gender { get; set; }
+        public int AgeMax { get; set; }
+        public int AgeMin { get; set; }
+        public decimal Value { get; set; }
         public int UnitType { get; set; }
-        public string Name { get; set; }
-        public int DecimalRounding { get; set; }
     
-        public virtual ICollection<FoodNutritionLogs> FoodNutritionLogs { get; set; }
-        public virtual ICollection<NutrientRDA> tbl_nutrient_rda { get; set; }
+        public virtual Nutrient Nutrient { get; set; }
     }
 }

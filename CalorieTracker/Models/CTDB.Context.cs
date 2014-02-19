@@ -35,5 +35,6 @@ namespace CalorieTracker.Models
         public virtual DbSet<Metric> Metrics { get; set; }
         public virtual DbSet<Nutrient> Nutrients { get; set; }
         public virtual DbSet<User> Users { get; set; }
+        public virtual DbSet<NutrientRDA> NutrientRDAs { get; set; }
     }
 }
