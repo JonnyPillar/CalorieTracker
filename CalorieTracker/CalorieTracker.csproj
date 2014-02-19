@@ -203,6 +203,7 @@
     <Compile Include="Models\MetaData\FoodMetaData.cs" />
     <Compile Include="Models\MetaData\MetricLogMetaData.cs" />
     <Compile Include="Models\MetaData\MetricMetaData.cs" />
+    <Compile Include="Models\MetaData\NutrientRDAMetaData.cs" />
     <Compile Include="Models\MetaData\UserMetaData.cs" />
     <Compile Include="Models\Metric.cs">
       <DependentUpon>CTDB.tt</DependentUpon>
@@ -215,6 +216,9 @@
     <Compile Include="Models\Nutrient.cs">
       <DependentUpon>CTDB.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\NutrientRDA.cs">
+      <DependentUpon>CTDB.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\PartialModels\Activity.cs" />
     <Compile Include="Models\PartialModels\ActivityLog.cs" />
     <Compile Include="Models\PartialModels\Food.cs" />
@@ -222,6 +226,7 @@
     <Compile Include="Models\PartialModels\FoodLog.cs" />
     <Compile Include="Models\PartialModels\MetricLog.cs" />
     <Compile Include="Models\PartialModels\Metric.cs" />
+    <Compile Include="Models\PartialModels\NutrientRDA.cs" />
     <Compile Include="Models\PartialModels\User.cs" />
     <Compile Include="Models\User.cs">
       <DependentUpon>CTDB.tt</DependentUpon>
