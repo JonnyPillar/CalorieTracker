@@ -91,11 +91,11 @@
           <Key>
             <PropertyRef Name="NutrientRDAID" />
           </Key>
-          <Property Name="NutrientRDAID" Type="int" Nullable="false" />
+          <Property Name="NutrientRDAID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="NutrientID" Type="int" Nullable="false" />
           <Property Name="Gender" Type="bit" Nullable="false" />
-          <Property Name="AgeMax" Type="int" Nullable="false" />
           <Property Name="AgeMin" Type="int" Nullable="false" />
+          <Property Name="AgeMax" Type="int" Nullable="false" />
           <Property Name="Value" Type="decimal" Precision="9" Scale="6" Nullable="false" />
           <Property Name="UnitType" Type="int" Nullable="false" />
         </EntityType>

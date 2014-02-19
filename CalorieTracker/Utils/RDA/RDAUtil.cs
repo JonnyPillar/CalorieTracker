@@ -14,6 +14,7 @@ namespace CalorieTracker.Utils.RDA
 
 
         private NutrientRDA _userNutrientRDA;
+        private decimal _maxRDAValue;
         private decimal _userNutrientRDAPercentage;
         private decimal _userNutrientRDAValue;
 
@@ -30,6 +31,11 @@ namespace CalorieTracker.Utils.RDA
         {
             get { return _userNutrientRDAValue; }
             set { _userNutrientRDAValue = value; }
+        }
+        public decimal MaxRDAValue
+        {
+            get { return _maxRDAValue; }
+            set { _maxRDAValue = value; }
         }
 
         public decimal UserNutrientRDAPercentage
@@ -62,7 +68,8 @@ namespace CalorieTracker.Utils.RDA
 
         public decimal GetRDAValueForTimespan()
         {
-            return _userNutrientRDA.Value*_currentTimeSpan.Days;
+            _maxRDAValue = _userNutrientRDA.Value*_currentTimeSpan.Days;
+            return _maxRDAValue;
         }
 
         private void StartCalculation()

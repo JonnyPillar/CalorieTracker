@@ -1,0 +1,63 @@
+﻿@model IEnumerable<CalorieTracker.Models.NutrientRDA>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Gender)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AgeMax)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AgeMin)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Value)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UnitType)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Nutrient.Name)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Gender)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AgeMax)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AgeMin)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Value)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.UnitType)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Nutrient.Name)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.NutrientRdaID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.NutrientRdaID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.NutrientRdaID })
+        </td>
+    </tr>
+}
+
+</table>
