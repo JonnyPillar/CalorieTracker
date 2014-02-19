@@ -8,95 +8,99 @@ namespace CalorieTracker.Utils.RDA
     // ReSharper disable once InconsistentNaming
     public class RDAUtil
     {
-        /// <summary>
-        /// Calculate A Users RDA Value for a Nutrient Over A Period Of Time
-        /// </summary>
-        /// <param name="user">User</param>
-        /// <param name="nutrient">Nutrient</param>
-        /// <param name="currentTimeSpan">Log Timespan</param>
-        /// <returns>The amount the user has consumed in the time period</returns>
-        public static decimal CalculateUserNutrientValue(User user, Nutrient nutrient, TimeSpan currentTimeSpan)
+        private readonly Nutrient _nutrient;
+        private readonly User _user;
+        private TimeSpan _currentTimeSpan;
+
+
+        private NutrientRDA _userNutrientRDA;
+        private decimal _userNutrientRDAPercentage;
+        private decimal _userNutrientRDAValue;
+
+
+        public RDAUtil(User user, Nutrient nutrient, TimeSpan currentTimeSpan)
         {
-            return GetUserNutrientValueCount(user, nutrient, currentTimeSpan);
+            _user = user;
+            _nutrient = nutrient;
+            _currentTimeSpan = currentTimeSpan;
+            StartCalculation();
         }
 
-        /// <summary>
-        /// Calcaulate A Users RDA Percentage for a Nutrient over a period of time
-        /// </summary>
-        /// <param name="user">User</param>
-        /// <param name="nutrient">Nutrient</param>
-        /// <param name="currentTimeSpan">Log Timespan</param>
-        /// <returns>Percentage RDA A User Has Consumed</returns>
-        public static decimal CalculateUserNutrientPercentage(User user, Nutrient nutrient, TimeSpan currentTimeSpan)
+        public decimal UserNutrientRDAValue
         {
-            return GetUserNutrientValueCount(user, nutrient, currentTimeSpan) / GetRDAValueForTimespan(user, nutrient, currentTimeSpan) * 100;
+            get { return _userNutrientRDAValue; }
+            set { _userNutrientRDAValue = value; }
         }
 
-        /// <summary>
-        /// Get The Recommended RDA Value For A Nutrient Over A TimeSpan
-        /// </summary>
-        /// <param name="user"></param>
-        /// <param name="nutrient"></param>
-        /// <param name="currentTimeSpan"></param>
-        /// <returns></returns>
-        public static decimal GetRDAValueForTimespan(User user, Nutrient nutrient, TimeSpan currentTimeSpan)
+        public decimal UserNutrientRDAPercentage
         {
-            NutrientRDA nutrientRDA = GetNutrientRDAForUser(user, nutrient);
-            return nutrientRDA.Value*currentTimeSpan.Days;
+            get { return _userNutrientRDAPercentage; }
+            set { _userNutrientRDAPercentage = value; }
         }
 
-
-        private static decimal GetUserNutrientValueCount(User user, Nutrient nutrient, TimeSpan currentTimeSpan)
+        public NutrientRDA UserNutrientRDA
         {
-            decimal nutrientValueCount = 0;
-            var nutrientRDA = GetNutrientRDAForUser(user, nutrient);
-            if (nutrientRDA != null)
-            {
-                DateTime earliestLogDateTime = DateTime.Now.AddDays(-currentTimeSpan.Days);
-                nutrientValueCount = CalcUserNutrientCount(user, earliestLogDateTime, nutrientRDA,
-                    nutrientValueCount);
-            }
-            return nutrientValueCount;
+            get { return _userNutrientRDA; }
+            set { _userNutrientRDA = value; }
         }
 
-        /// <summary>
-        /// Get Nutrient RDA for A User
-        /// </summary>
-        /// <param name="user">User</param>
-        /// <param name="nutrient">Nutrient</param>
-        /// <returns>Nutrient RDA</returns>
-        public static NutrientRDA GetNutrientRDAForUser(User user, Nutrient nutrient)
+        public TimeSpan CurrentTimeSpan
         {
-            bool userGender = user.Gender; //False Male, True Female
-            int userAge = (DateTime.Now - user.DOB).Days / 365;
+            get { return _currentTimeSpan; }
+            set { _currentTimeSpan = value; }
+        }
+
+        public User User
+        {
+            get { return _user; }
+        }
+
+        public Nutrient Nutrient
+        {
+            get { return _nutrient; }
+        }
+
+        public decimal GetRDAValueForTimespan()
+        {
+            return _userNutrientRDA.Value*_currentTimeSpan.Days;
+        }
+
+        private void StartCalculation()
+        {
+            _userNutrientRDA = GetNutrientRDAForUser();
+            _userNutrientRDAValue = GetUserNutrientValueCount();
+            _userNutrientRDAPercentage = (_userNutrientRDAValue/GetRDAValueForTimespan())*100;
+        }
+
+        private NutrientRDA GetNutrientRDAForUser()
+        {
+            bool userGender = _user.Gender; //False Male, True Female
+            int userAge = (DateTime.Now - _user.DOB).Days/365;
             List<NutrientRDA> nutrientRdaList =
-                nutrient.tbl_nutrient_rda.Where(
+                _nutrient.tbl_nutrient_rda.Where(
                     n => n.Gender == userGender && n.AgeMax >= userAge && n.AgeMin <= userAge).ToList();
             return nutrientRdaList.FirstOrDefault();
         }
 
-        /// <summary>
-        /// Calculate A Users Nutrient Count
-        /// </summary>
-        /// <param name="user">User</param>
-        /// <param name="earliestLogDateTime">Earliest Log Time</param>
-        /// <param name="nutrientRDA">Nutrient RDA</param>
-        /// <param name="nutrientValueCount">Nutrient Value Count</param>
-        /// <returns></returns>
-        private static decimal CalcUserNutrientCount(User user, DateTime earliestLogDateTime, NutrientRDA nutrientRDA,
-            decimal nutrientValueCount)
+        private decimal GetUserNutrientValueCount()
         {
-            List<FoodLog> userFoodLogs =
-                user.UserFoodLogs.Where(fL => fL.CreationTimestamp.CompareTo(earliestLogDateTime) > 0).ToList();
-            //Get all food logs for the user that since before this timespan
-
-            for (int i = 0; i < userFoodLogs.Count(); i++)
+            decimal nutrientValueCount = 0;
+            if (_userNutrientRDA != null)
             {
-                FoodLog foodLog = userFoodLogs.ElementAt(i);
-                FoodNutritionLogs foodNutritionLog =
-                    foodLog.Food.FoodNutritionLogs.FirstOrDefault(
-                        fNL => fNL.NurtientID == nutrientRDA.NutrientID);
-                if (foodNutritionLog != null) nutrientValueCount += foodNutritionLog.Value;
+                DateTime earliestLogDateTime = DateTime.Now.AddDays(-_currentTimeSpan.Days);
+
+                List<FoodLog> userFoodLogs =
+                    _user.UserFoodLogs.Where(fL => fL.CreationTimestamp.CompareTo(earliestLogDateTime) > 0).ToList();
+                //Get all food logs for the user that since before this timespan
+
+                for (int i = 0; i < userFoodLogs.Count(); i++)
+                {
+                    FoodLog foodLog = userFoodLogs.ElementAt(i);
+                    FoodNutritionLogs foodNutritionLog = foodLog.Food.FoodNutritionLogs.FirstOrDefault(
+                        fNL => fNL.NurtientID == _userNutrientRDA.NutrientID);
+                    if (foodNutritionLog != null) nutrientValueCount += foodNutritionLog.Value;
+                }
+                return nutrientValueCount;
             }
             return nutrientValueCount;
         }
