@@ -42,8 +42,10 @@ namespace CalorieTracker.Controllers.Dashboard
 
             foreach (var nutrient in nutrientEnumerable)
             {
-                RDAUtil rdaUtil = new RDAUtil(dashboardUser, nutrient, new TimeSpan(7));
-                userNutrientRDAModels.Add(new UserNutrientRDAModel(rdaUtil));
+                RDAUtil rdaUtil = new RDAUtil(dashboardUser, nutrient, new TimeSpan(30, 00, 00 ,00));
+                UserNutrientRDAModel nutrientRDAModel =  new UserNutrientRDAModel(rdaUtil);
+                if (nutrientRDAModel.UserNutrientRDA != null) userNutrientRDAModels.Add(nutrientRDAModel);
+                
             }
 
 
