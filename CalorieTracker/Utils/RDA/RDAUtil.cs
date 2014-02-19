@@ -75,8 +75,11 @@ namespace CalorieTracker.Utils.RDA
         private void StartCalculation()
         {
             _userNutrientRDA = GetNutrientRDAForUser();
-            _userNutrientRDAValue = GetUserNutrientValueCount();
-            _userNutrientRDAPercentage = (_userNutrientRDAValue/GetRDAValueForTimespan())*100;
+            if (_userNutrientRDA != null)
+            {
+                _userNutrientRDAValue = GetUserNutrientValueCount();
+                _userNutrientRDAPercentage = (_userNutrientRDAValue/GetRDAValueForTimespan())*100;
+            }
         }
 
         private NutrientRDA GetNutrientRDAForUser()
