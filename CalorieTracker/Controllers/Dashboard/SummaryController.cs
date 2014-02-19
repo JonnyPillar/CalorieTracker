@@ -1,6 +1,7 @@
 ﻿using System.Linq;
 using System.Web.Mvc;
 using CalorieTracker.Models;
+using CalorieTracker.Utils.Weka.Algorithms;
 using CalorieTracker.Utils.Weka.ARFF;
 
 namespace CalorieTracker.Controllers.Dashboard
@@ -16,9 +17,17 @@ namespace CalorieTracker.Controllers.Dashboard
         [HttpGet]
         public ActionResult Index()
         {
-            var db = new CalorieTrackerEntities();
-            var arffGenerator = new ARFFGenerator("User Data", db.Users.ToList());
-            arffGenerator.GenerateFile();
+            //var db = new CalorieTrackerEntities();
+            //var arffGenerator = new ARFFGenerator("User Data", db.Users.ToList());
+            //arffGenerator.GenerateFile();
+
+
+            CalorieTracker.Utils.Weka.Algorithms.Regression regression = new Regression();
+            regression.SetArffFile(
+                @"C:\Code\Calorie Tracker\CalorieTracker\CalorieTracker\App_Data\User Data__180214024716.arff");
+            regression.ExecuteProcess();
+            string output = regression.GetResults();
+
             return View();
         }
 
