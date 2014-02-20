@@ -1,0 +1,11 @@
+﻿@model CalorieTracker.Utils.History.IHistoryItem
+           
+<div class="col-xs-11 col-xs-offset-1 historyItemPanel">
+    <div class="col-xs-1 itemImage">
+        <img src="@Model.GetItemImage()" alt="@Model.GetItemType()" />
+    </div>
+    <div class="col-xs-11">
+        <div><b>@Model.GetCreationDate().ToString("hh:mm:ss tt")</b></div>
+        <div>@Model.GetItemInfomation()</div>
+    </div>
+</div>

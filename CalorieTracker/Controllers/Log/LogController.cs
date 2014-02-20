@@ -1,6 +1,8 @@
 ﻿using System.Web.Mvc;
 using CalorieTracker.Models;
 using CalorieTracker.Utils.Account;
+using CalorieTracker.Utils.History;
+using PagedList;
 
 namespace CalorieTracker.Controllers.Log
 {
@@ -16,7 +18,7 @@ namespace CalorieTracker.Controllers.Log
             return View();
         }
 
-        public ActionResult History()
+        public ActionResult History(int? page)
         {
             if (!User.Identity.IsAuthenticated) return RedirectToAction("Index", "Account");
 
@@ -24,7 +26,10 @@ namespace CalorieTracker.Controllers.Log
 
             User user = db.Users.Find(userID);
 
-            return View();
+            HistoryGeneratorUtil historyGenerator = new HistoryGeneratorUtil(user);
+            int pageSize = 20;
+            int pageNumber = (page ?? 1);
+            return View(historyGenerator.Test.ToPagedList(pageNumber, pageSize));
         }
     }
 }

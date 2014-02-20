@@ -154,6 +154,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\Activitys\ActivityController.cs" />
     <Compile Include="Controllers\Log\FoodLogController.cs" />
+    <Compile Include="Controllers\Log\HistoryController.cs" />
     <Compile Include="Controllers\Log\LogController.cs" />
     <Compile Include="Controllers\Log\MetricLogController.cs" />
     <Compile Include="Controllers\Metrics\MetricController.cs" />
@@ -234,6 +235,7 @@
     </Compile>
     <Compile Include="Models\ViewModels\DashboardModel.cs" />
     <Compile Include="Models\ViewModels\HistoryModel.cs" />
+    <Compile Include="Models\ViewModels\HistoryModelItem.cs" />
     <Compile Include="Models\ViewModels\LoginModel.cs" />
     <Compile Include="Models\ViewModels\RegisterModel.cs" />
     <Compile Include="Models\ViewModels\UserNutrientRDAModel.cs" />
@@ -243,6 +245,7 @@
     <Compile Include="Utils\Account\SecurityUtil.cs" />
     <Compile Include="Utils\History\HistoryActivityLog.cs" />
     <Compile Include="Utils\History\HistoryFoodLog.cs" />
+    <Compile Include="Utils\History\HistoryGeneratorUtil.cs" />
     <Compile Include="Utils\History\HistoryMetricLog.cs" />
     <Compile Include="Utils\History\IHistoryItem.cs" />
     <Compile Include="Utils\HtmlHelpers\HtmlHelpers.cs" />
@@ -406,6 +409,9 @@
     <Content Include="Views\NutrientRDA\Details.cshtml" />
     <Content Include="Views\NutrientRDA\Edit.cshtml" />
     <Content Include="Views\NutrientRDA\Index.cshtml" />
+    <Content Include="Views\History\Index.cshtml" />
+    <Content Include="Views\Log\History.cshtml" />
+    <Content Include="Views\Log\Partial\_HistoryItem.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
