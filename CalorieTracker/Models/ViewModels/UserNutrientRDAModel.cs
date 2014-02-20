@@ -1,4 +1,5 @@
-﻿using CalorieTracker.Utils.RDA;
+﻿using System;
+using CalorieTracker.Utils.RDA;
 
 namespace CalorieTracker.Models.ViewModels
 {
@@ -7,9 +8,9 @@ namespace CalorieTracker.Models.ViewModels
         public UserNutrientRDAModel(RDAUtil rdaUtil)
         {
             UserNutrientRDA = rdaUtil.UserNutrientRDA;
-            MaxNutrientRDAValue = rdaUtil.MaxRDAValue;
-            UserNutrientRDAValue = UserNutrientRDAValue;
-            UserNutrientRDAPercentage = UserNutrientRDAPercentage;
+            MaxNutrientRDAValue = Math.Floor(rdaUtil.MaxRDAValue);
+            UserNutrientRDAValue = Math.Floor(rdaUtil.UserNutrientRDAValue);
+            UserNutrientRDAPercentage = Math.Floor(rdaUtil.UserNutrientRDAPercentage);
         }
 
         public UserNutrientRDAModel(NutrientRDA nutrientRDA, decimal maxNutrientRDAValue, decimal userNutrientRDAValue,

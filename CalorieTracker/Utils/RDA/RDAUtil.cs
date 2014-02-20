@@ -110,7 +110,6 @@ namespace CalorieTracker.Utils.RDA
                         fNL => fNL.NurtientID == _userNutrientRDA.NutrientID);
                     if (foodNutritionLog != null) nutrientValueCount += foodNutritionLog.Value;
                 }
-                return nutrientValueCount;
             }
             return nutrientValueCount;
         }

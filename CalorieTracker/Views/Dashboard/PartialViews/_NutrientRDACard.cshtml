@@ -1,24 +1,41 @@
 ﻿@model CalorieTracker.Models.ViewModels.UserNutrientRDAModel
 <!-- First Chart -->
 <div class="col-lg-3">
-    <canvas id="canvas" height="130" width="130"></canvas>
-    <br>
-    @Model.UserNutrientRDAValue
-    <script>
-        var nutrientValue = @(Model.UserNutrientRDAValue) + 0;
-        var doughnutData = [
-            {
-                value:  nutrientValue,
-                color: "#3498db"
-            },
-            {
-                value: 100 - nutrientValue,
-                color: "#ecf0f1"
-            }
-        ];
-        var myDoughnut = new Chart(document.getElementById("canvas").getContext("2d")).Doughnut(doughnutData);
-    </script>
     <p><b>@Model.UserNutrientRDA.Nutrient.Name</b></p>
-    <p><small>Daily RDA = @Model.UserNutrientRDA.Value</small></p>
+    <canvas id="canvas-@Model.UserNutrientRDA.NutrientID" height="130" width="130"></canvas>
+    <br>
+    @Model.UserNutrientRDAValue / @Model.MaxNutrientRDAValue
+    <script>
+        var nutrientValue = @(Model.UserNutrientRDAPercentage) +0;
+        var remainingValue = 100 - nutrientValue;
+        var doughnutData;
+        if (remainingValue >= 0) {
+            doughnutData = [
+                {
+                    value: nutrientValue,
+                    color: "#3498db"
+                },
+                {
+                    value: 100 - nutrientValue,
+                    color: "#f85c37"
+                }];
+        } 
+        else {
+            doughnutData = [
+                {
+                    value: remainingValue * -1,
+                    color: "#1abc9c"
+                },
+                {
+                    value: nutrientValue,
+                    color: "#3498db"
+                }];
+        }
+
+        
+        var myDoughnut = new Chart(document.getElementById("canvas-@Model.UserNutrientRDA.NutrientID").getContext("2d")).Doughnut(doughnutData);
+    </script>
+    
+    <p><small>Recommended Daily RDA = @Math.Floor(Model.UserNutrientRDA.Value)</small></p>
     <p><small>Max RDA For Timespan = @Model.MaxNutrientRDAValue</small></p>
 </div>
