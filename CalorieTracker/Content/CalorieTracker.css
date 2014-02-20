@@ -46,19 +46,80 @@
 /*
     Dashboard Information    
 */
+
+.dashboardUserPanel .dashboardUserInfo {
+    background-color: white;
+    border: 1px solid #ccc;
+    position: relative;
+    height: 100%;
+}
+
+.dashboardUserPanel h3 {
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
 .dashboardUserPanel ul {
     text-align: left;
     margin: 0;
-    padding: 0;
+    padding: 10px 20px;
 }
 
     .dashboardUserPanel ul li {
         margin: 0;
-        padding: 0;
+        padding: 10px 0;
+        list-style: none;
+    }
+    .dashboardUserPanel ul li ul{
+        margin: 0;
+        padding: 10px 0;
+        list-style: none;
+    }
+    .dashboardUserPanel ul li ul li{
+        margin: 0;
+        padding: 10px 0;
         list-style: none;
     }
 /*
     End of Dashboard
+*/
+
+/*
+    Dashboard History    
+*/
+.dashboardHistoryPanel .dashboardUserInfo {
+    background-color: white;
+    border: 1px solid #ccc;
+}
+
+.dashboardHistoryPanel h3 {
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+.dashboardHistoryPanel ul {
+    text-align: left;
+    margin: 0;
+    padding: 10px 20px;
+}
+
+    .dashboardHistoryPanel ul li {
+        margin: 0;
+        padding: 0px 0;
+        list-style: none;
+    }
+    .dashboardHistoryPanel ul li ul{
+        margin: 0;
+        padding: 10px 0;
+        list-style: none;
+    }
+    .dashboardHistoryPanel ul li ul li{
+        margin: 0;
+        padding: 10px 0;
+        list-style: none;
+    }
+/*
+    End of Dashboard History
 */
 /*
     Log Panel    
@@ -138,7 +199,6 @@
         }
 
     .historyItemPanel .itemInfo {
-
     }
 
 /*

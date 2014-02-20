@@ -1,11 +1,15 @@
 ﻿@model CalorieTracker.Models.User
 <div class="dashboardUserPanel">
-    <h3 class="section-title">User Number @Model.UserID</h3>
-    <div class="reverseShelf">
+    <h3 class="section-title">User Information</h3>
+    <div class="dashboardUserInfo ">
         <ul>
-            <li>Number Of Logged Activities: @Model.UserFoodLogs.Count</li>
-            <li>Number Of Logged Activities: @Model.UserActivityLogs.Count</li>
-            <li>Number Of Logged Metrics: @Model.UserMetricLogs.Count</li>
+            <li><b>User ID:</b> @Model.UserID</li>
+            <li><b>User Gender:</b> @Model.Gender</li>
+            <li><b>User DOB:</b> @Model.DOB.ToString("dd/mm/yyyy")</li>
+            <li><b>User Signup Date:</b> @Model.CreationTimestamp.ToString("dd/mm/yyyy")</li>
+            <li><b>Number Of Logged Activities:</b> @Model.UserFoodLogs.Count</li>
+            <li><b>Number Of Logged Activities:</b> @Model.UserActivityLogs.Count</li>
+            <li><b>Number Of Logged Metrics:</b> @Model.UserMetricLogs.Count</li>
         </ul>
     </div>
 </div>

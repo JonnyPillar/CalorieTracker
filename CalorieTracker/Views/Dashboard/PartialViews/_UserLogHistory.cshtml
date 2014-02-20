@@ -1,8 +1,8 @@
 ﻿@model CalorieTracker.Models.User
 
-<div class="dashboardUserPanel">
+<div class="dashboardHistoryPanel">
     <h3 class="section-title">Recent History</h3>
-    <div class="reverseShelf">
+    <div class="dashboardUserInfo">
         @if (@Model.UserFoodLogs.Count == 0)
         {
             <div class="redButton">
@@ -11,28 +11,24 @@
         }
         else
         {
-            <ul>
-                @for (int i = 0; i < @Model.UserFoodLogs.Count; i++)
-                {
+            for (int i = 0; i < @Model.UserFoodLogs.Count; i++)
+            {
+                <ul>
                     <li>
-                        <ul>
-                            <li>
-                                <b>Date: @Model.UserFoodLogs.ElementAt(i).CreationTimestamp.ToString("dd:MM:yyyy hh:mm")</b>
-                            </li>
-                            <li>
-                                Name: @Model.UserFoodLogs.ElementAt(i).Food.Name
-                            </li>
-                            <li>
-                                Amount: @Model.UserFoodLogs.ElementAt(i).Quantity
-                            </li>
-                        </ul>
+                        <b>Date: @Model.UserFoodLogs.ElementAt(i).CreationTimestamp.ToString("dd:MM:yyyy hh:mm")</b>
                     </li>
-                    if (i == 5)
-                    {
-                        break;
-                    }
+                    <li>
+                        Name: @Model.UserFoodLogs.ElementAt(i).Food.Name
+                    </li>
+                    <li>
+                        Amount: @Model.UserFoodLogs.ElementAt(i).Quantity
+                    </li>
+                </ul>
+                if (i == 3)
+                {
+                    break;
                 }
-            </ul>
+            }
         }
     </div>
 </div>
