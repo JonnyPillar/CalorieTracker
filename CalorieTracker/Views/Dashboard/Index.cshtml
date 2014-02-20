@@ -39,9 +39,18 @@
 </div>
 <div class="container">
     <div class="row centered">
-        @foreach (var item in @Model.UserNutrientRDAList)
-        {
-            @Html.Partial("PartialViews/_NutrientRDACard", item)
-        }
+        <h2>Your Nutrition</h2>
+        <div class="redButton col-sm-8 col-sm-offset-2">
+            <div class="col-xs-3"> @Html.ActionLink("Today", "Index", new { timeSpan = 1 }, new { @class = "redButton" })</div>
+            <div class="col-xs-3">@Html.ActionLink("Last Week", "Index", new { timeSpan = 7 })</div>
+            <div class="col-xs-3">@Html.ActionLink("Last Month", "Index", new { timeSpan = 30 })</div>
+            <div class="col-xs-3">@Html.ActionLink("Last Year", "Index", new { timeSpan = 365 })</div>
+        </div>
+        <div style="height:1px; clear: both;"></div>
+        <hr/>
+        <div class="row" >
+            <p>Nutrient Levels Over The Last @Model.NutritionTimespan Days</p>
+        </div>
+        @Html.Partial("PartialViews/_UserNutrition", Model.UserNutrientRDAList)
     </div>
 </div>

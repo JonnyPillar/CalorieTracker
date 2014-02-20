@@ -29,5 +29,6 @@ namespace CalorieTracker.Models.ViewModels
         public decimal UserNutrientRDAValue { get; set; }
 
         public decimal UserNutrientRDAPercentage { get; set; }
+
     }
 }

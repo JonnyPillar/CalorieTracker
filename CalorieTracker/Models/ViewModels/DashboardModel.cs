@@ -16,5 +16,7 @@ namespace CalorieTracker.Models.ViewModels
         public List<UserNutrientRDAModel> UserNutrientRDAList { get; set; }
 
         public bool IsNewUser { get; set; }
+
+        public decimal NutritionTimespan { get; set; }
     }
 }

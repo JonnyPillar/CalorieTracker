@@ -22,7 +22,7 @@ namespace CalorieTracker.Controllers.Dashboard
         /// </summary>
         /// <returns>Dashboard View</returns>
         [HttpGet]
-        public ActionResult Index(string id)
+        public ActionResult Index(string id, int? timeSpan)
         {
             //Check Logged In
             if (!User.Identity.IsAuthenticated) return RedirectToAction("Index", "Account");
@@ -39,10 +39,18 @@ namespace CalorieTracker.Controllers.Dashboard
 
             List<UserNutrientRDAModel> userNutrientRDAModels = new List<UserNutrientRDAModel>();
             
+            int timespanInt = 0;
+            if (timeSpan != null)
+            {
+                timespanInt = timeSpan.GetValueOrDefault();
+            }
+            else timespanInt = 30;
 
+            
             foreach (var nutrient in nutrientEnumerable)
             {
-                RDAUtil rdaUtil = new RDAUtil(dashboardUser, nutrient, new TimeSpan(30, 00, 00 ,00));
+                RDAUtil rdaUtil = null;
+                rdaUtil = new RDAUtil(dashboardUser, nutrient, new TimeSpan(timespanInt, 00, 00 ,00));
                 UserNutrientRDAModel nutrientRDAModel =  new UserNutrientRDAModel(rdaUtil);
                 if (nutrientRDAModel.UserNutrientRDA != null)
                 {
@@ -50,9 +58,9 @@ namespace CalorieTracker.Controllers.Dashboard
                 }
                 
             }
-
-
+          
             var dashboardModel = new DashboardModel(!string.IsNullOrEmpty(id), dashboardUser, userNutrientRDAModels);
+            dashboardModel.NutritionTimespan = timespanInt;
             return View(dashboardModel);
         }
     }

@@ -1,10 +1,10 @@
 ﻿@model CalorieTracker.Models.ViewModels.UserNutrientRDAModel
-<!-- First Chart -->
-<div class="col-lg-3">
+<!-- Chart -->
+
     <p><b>@Model.UserNutrientRDA.Nutrient.Name</b></p>
     <canvas id="canvas-@Model.UserNutrientRDA.NutrientID" height="130" width="130"></canvas>
     <br>
-    @Model.UserNutrientRDAValue / @Model.MaxNutrientRDAValue
+    @Model.UserNutrientRDAValue g / @Model.MaxNutrientRDAValue g
     <script>
         var nutrientValue = @(Model.UserNutrientRDAPercentage) +0;
         var remainingValue = 100 - nutrientValue;
@@ -36,6 +36,4 @@
         var myDoughnut = new Chart(document.getElementById("canvas-@Model.UserNutrientRDA.NutrientID").getContext("2d")).Doughnut(doughnutData);
     </script>
     
-    <p><small>Recommended Daily RDA = @Math.Floor(Model.UserNutrientRDA.Value)</small></p>
-    <p><small>Max RDA For Timespan = @Model.MaxNutrientRDAValue</small></p>
-</div>
+    <p><small>Recommended Daily RDA = @Math.Floor(Model.UserNutrientRDA.Value) g</small></p>
