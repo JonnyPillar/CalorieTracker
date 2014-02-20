@@ -90,6 +90,7 @@
 .dashboardHistoryPanel .dashboardUserInfo {
     background-color: white;
     border: 1px solid #ccc;
+    min-height: 316px;
 }
 
 .dashboardHistoryPanel h3 {

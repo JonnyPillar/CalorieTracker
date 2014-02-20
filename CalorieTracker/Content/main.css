@@ -172,10 +172,10 @@ hr {
 #dg {
     background: #e0e0e0;
     padding-bottom: 35px;
-    padding-top: 35px;
+    padding-top: 0px;
     text-align: center;
 }
-
+#dg h2 { margin-bottom: 20px; }
 #dg h4 { font-weight: 700; }
 
 /* Light Grey */

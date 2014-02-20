@@ -5,7 +5,7 @@
     <div class="dashboardUserInfo">
         @if (@Model.UserFoodLogs.Count == 0)
         {
-            <div class="redButton">
+            <div class="redButton col-sm-6 col-sm-offset-3">
                 @Html.ActionLink("Please Your First Log", "Index", "Log")
             </div>
         }
