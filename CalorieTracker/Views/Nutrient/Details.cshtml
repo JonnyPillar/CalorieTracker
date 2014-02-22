@@ -13,30 +13,17 @@
 </div>
 <div class="container">
     <div class="row">
-        <canvas id="@Model.ChartName" width="400" height="400"></canvas>
-
-
+        <div class="col-xs-12">
+            <canvas id="@Model.ChartName" height="300px" width="500px"></canvas>
+        </div>
         <script type="text/javascript">
-
-            alert("Hello");
             var ctx = document.getElementById("@Model.ChartName").getContext("2d");
-
             var data = {
                 @Html.Raw(Model.NutrientRDAChartUtil.GetDataString())
             };
-
-            @*var data = {
-                    @Model.NutrientRDAChartUtil.GetDataString()
-            };*@
-
             var options = "";
-
-
             var myNewChart = new Chart(ctx).Line(data, options);
-
-
         </script>
-
     </div>
     <div class="row centered">
         <div class="loginPanel">
