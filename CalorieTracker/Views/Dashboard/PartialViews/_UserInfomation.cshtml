@@ -11,5 +11,9 @@
             <li><b>Number Of Logged Activities:</b> @Model.UserActivityLogs.Count</li>
             <li><b>Number Of Logged Metrics:</b> @Model.UserMetricLogs.Count</li>
         </ul>
+        <div class="redButton col-sm-4 col-sm-offset-4">
+            @Html.ActionLink("Update Info", "Edit", "Account")
+        </div>
+        <div style="clear:both; height: 1px;"></div>
     </div>
 </div>

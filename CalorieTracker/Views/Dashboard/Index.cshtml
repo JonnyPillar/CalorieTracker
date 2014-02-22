@@ -19,7 +19,7 @@
             <p>@Html.ActionLink("Add A New Log", "Index", "Log")</p>
         </div>
         <div class="redButton col-xs-12 col-sm-2">
-            <p>@Html.ActionLink("View My History", "Index", "History")</p>
+            <p>@Html.ActionLink("View My History", "History", "Log")</p>
         </div>
     </div>
 </div>
@@ -43,17 +43,19 @@
 <div class="container">
     <div class="row centered">
         <h2>Your Nutrition</h2>
+        
+        
+        <div class="row" >
+            <p>Your Nutrient Levels Over The Last @Model.NutritionTimespan Days</p>
+        </div>
+        @Html.Partial("PartialViews/_UserNutrition", Model.UserNutrientRDAList)
+        <div style="height:1px; clear: both;"></div>
+        <hr />
         <div class="redButton col-sm-8 col-sm-offset-2">
             <div class="col-xs-3"> @Html.ActionLink("Today", "Index", new { timeSpan = 1 }, new { @class = "redButton" })</div>
             <div class="col-xs-3">@Html.ActionLink("Last Week", "Index", new { timeSpan = 7 })</div>
             <div class="col-xs-3">@Html.ActionLink("Last Month", "Index", new { timeSpan = 30 })</div>
             <div class="col-xs-3">@Html.ActionLink("Last Year", "Index", new { timeSpan = 365 })</div>
         </div>
-        <div style="height:1px; clear: both;"></div>
-        <hr/>
-        <div class="row" >
-            <p>Your Nutrient Levels Over The Last @Model.NutritionTimespan Days</p>
-        </div>
-        @Html.Partial("PartialViews/_UserNutrition", Model.UserNutrientRDAList)
     </div>
 </div>

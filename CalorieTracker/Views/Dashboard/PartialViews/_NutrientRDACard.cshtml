@@ -36,4 +36,5 @@
         var myDoughnut = new Chart(document.getElementById("canvas-@Model.UserNutrientRDA.NutrientID").getContext("2d")).Doughnut(doughnutData);
     </script>
     
-    <p><small>Recommended Daily RDA = @Math.Floor(Model.UserNutrientRDA.Value) g</small></p>
+<p><small>Recommended Daily RDA = @Math.Floor(Model.UserNutrientRDA.Value) g</small></p>
+@Html.ActionLink("View Info", "Details", "Nutrient", new { id =  Model.UserNutrientRDA.NutrientID }, null)

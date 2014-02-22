@@ -46,7 +46,11 @@ namespace CalorieTracker.Controllers.Users
         {
             if (id == null)
             {
-                return RedirectToAction("Index", "Account");
+                id = IdentityUtil.GetUserIDFromCookie(User);
+                if (id == -1)
+                {
+                    return RedirectToAction("Index", "Account");
+                }
             }
             User user = db.Users.Find(id);
             if (user == null)

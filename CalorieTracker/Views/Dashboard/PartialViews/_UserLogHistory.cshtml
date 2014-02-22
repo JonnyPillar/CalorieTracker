@@ -24,11 +24,15 @@
                         Amount: @Model.UserFoodLogs.ElementAt(i).Quantity
                     </li>
                 </ul>
-                if (i == 3)
+                if (i == 2)
                 {
                     break;
                 }
             }
         }
+        <div class="redButton col-sm-4 col-sm-offset-4">
+            @Html.ActionLink("Update Info", "Edit", "Account")
+        </div>
+        <div style="clear:both; height: 1px;"></div>
     </div>
 </div>
