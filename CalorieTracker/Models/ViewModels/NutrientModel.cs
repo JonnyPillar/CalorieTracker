@@ -1,13 +1,21 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using System.Collections.Generic;
+using CalorieTracker.Utils.Chart;
 
 namespace CalorieTracker.Models.ViewModels
 {
     public class NutrientModel
     {
-        private Nutrient _nutrient;
-        //private List<> 
+        public NutrientModel(Nutrient nutrient, ChartUtil nutrientRDADataList)
+        {
+            ChartName = "_" + nutrient.Name + "Chart";
+            Nutrient = nutrient;
+            NutrientRDAChartUtil = nutrientRDADataList;
+        }
+
+        public string ChartName { get; set; }
+
+        public Nutrient Nutrient { get; set; }
+
+        public ChartUtil NutrientRDAChartUtil { get; set; }
     }
 }

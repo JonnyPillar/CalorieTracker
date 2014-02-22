@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
@@ -34,11 +33,9 @@ namespace CalorieTracker.Controllers.Dashboard
                 FormsAuthentication.SignOut();
                 return RedirectToAction("Index", "Home");
             }
+            List<Nutrient> nutrientEnumerable = db.Nutrients.ToList(); //Get List of all nutrients
+            var userNutrientRDAModels = new List<UserNutrientRDAModel>(); //List of all the Nutrients RDA's
 
-            List<Nutrient> nutrientEnumerable = db.Nutrients.ToList();
-
-            List<UserNutrientRDAModel> userNutrientRDAModels = new List<UserNutrientRDAModel>();
-            
             int timespanInt = 0;
             if (timeSpan != null)
             {
@@ -46,21 +43,20 @@ namespace CalorieTracker.Controllers.Dashboard
             }
             else timespanInt = 30;
 
-            
-            foreach (var nutrient in nutrientEnumerable)
+            foreach (Nutrient nutrient in nutrientEnumerable)
             {
                 RDAUtil rdaUtil = null;
-                rdaUtil = new RDAUtil(dashboardUser, nutrient, new TimeSpan(timespanInt, 00, 00 ,00));
-                UserNutrientRDAModel nutrientRDAModel =  new UserNutrientRDAModel(rdaUtil);
+                rdaUtil = new RDAUtil(dashboardUser, nutrient, new TimeSpan(timespanInt, 00, 00, 00));
+                var nutrientRDAModel = new UserNutrientRDAModel(rdaUtil);
                 if (nutrientRDAModel.UserNutrientRDA != null)
                 {
                     userNutrientRDAModels.Add(nutrientRDAModel);
                 }
-                
             }
-          
+
             var dashboardModel = new DashboardModel(!string.IsNullOrEmpty(id), dashboardUser, userNutrientRDAModels);
             dashboardModel.NutritionTimespan = timespanInt;
+
             return View(dashboardModel);
         }
     }

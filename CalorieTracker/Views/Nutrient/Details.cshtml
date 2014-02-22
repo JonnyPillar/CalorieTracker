@@ -1,50 +1,83 @@
-﻿@model CalorieTracker.Models.Nutrient
+﻿@model CalorieTracker.Models.ViewModels.NutrientModel
 
 @{
     ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
 
-<div>
-    <h4>Nutrient</h4>
-	<hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.SourceID)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.SourceID)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.UnitType)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.UnitType)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Name)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Name)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.DecimalRounding)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.DecimalRounding)
-        </dd>
-
-    </dl>
+<div id="blue">
+    <div class="centered">
+        <h2>@Html.DisplayFor(model => model.Nutrient.Name)</h2>
+        <p>-</p>
+    </div>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.NutrientID }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+<div class="container">
+    <div class="row">
+        <canvas id="@Model.ChartName" width="400" height="400"></canvas>
+
+
+        <script type="text/javascript">
+
+            alert("Hello");
+            var ctx = document.getElementById("@Model.ChartName").getContext("2d");
+
+            var data = {
+                @Html.Raw(Model.NutrientRDAChartUtil.GetDataString())
+            };
+
+            @*var data = {
+                    @Model.NutrientRDAChartUtil.GetDataString()
+            };*@
+
+            var options = "";
+
+
+            var myNewChart = new Chart(ctx).Line(data, options);
+
+
+        </script>
+
+    </div>
+    <div class="row centered">
+        <div class="loginPanel">
+            <dl class="dl-horizontal">
+                <dt>
+                    @Html.DisplayNameFor(model => model.Nutrient.SourceID)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Nutrient.SourceID)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Nutrient.UnitType)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Nutrient.UnitType)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Nutrient.Name)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Nutrient.Name)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Nutrient.DecimalRounding)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Nutrient.DecimalRounding)
+                </dd>
+
+            </dl>
+        </div>
+        <p>
+            @Html.ActionLink("Edit", "Edit", new { id = Model.Nutrient.NutrientID }) |
+            @Html.ActionLink("Back to List", "Index")
+        </p>
+    </div>
+</div>

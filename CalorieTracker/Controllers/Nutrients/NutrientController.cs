@@ -3,7 +3,9 @@ using System.Linq;
 using System.Net;
 using System.Web.Mvc;
 using CalorieTracker.Models;
+using CalorieTracker.Models.ViewModels;
 using CalorieTracker.Utils.Account;
+using CalorieTracker.Utils.Chart;
 
 namespace CalorieTracker.Controllers.Nutrients
 {
@@ -20,6 +22,12 @@ namespace CalorieTracker.Controllers.Nutrients
         // GET: /Nutrient/Details/5
         public ActionResult Details(int? id)
         {
+            /*
+             * Show week by week / Day by Day nutrition level on a graph
+             * 
+             * 
+             */
+
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -34,7 +42,12 @@ namespace CalorieTracker.Controllers.Nutrients
                 int userID = IdentityUtil.GetUserIDFromCookie(User);
                 User user = db.Users.Find(userID);
             }
-            return View(nutrient);
+
+            var chartUtil = new ChartUtil("'January', \"February\", \"March\", \"April\", \"May\", \"June\", \"July\"");
+            chartUtil.AddDataSet(new ChartDataSet("10,20,30,40,50,60,70"));
+
+            var nutrientModel = new NutrientModel(nutrient, chartUtil);
+            return View(nutrientModel);
         }
 
         // GET: /Nutrient/Create

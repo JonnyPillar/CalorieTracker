@@ -245,6 +245,8 @@
     <Compile Include="Utils\Account\IdentityUtil.cs" />
     <Compile Include="Utils\Account\PasswordHasher.cs" />
     <Compile Include="Utils\Account\SecurityUtil.cs" />
+    <Compile Include="Utils\Chart\ChartDataSet.cs" />
+    <Compile Include="Utils\Chart\ChartUtil.cs" />
     <Compile Include="Utils\History\HistoryActivityLog.cs" />
     <Compile Include="Utils\History\HistoryFoodLog.cs" />
     <Compile Include="Utils\History\HistoryGeneratorUtil.cs" />
