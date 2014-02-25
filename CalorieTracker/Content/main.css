@@ -8,9 +8,61 @@
  */
 
 /* FONTS */
-@import url(http://fonts.googleapis.com/css?family=Lato:300,400,700,900);
+@font-face {
+    font-family: 'Lato';
+    font-style: normal;
+    font-weight: 300;
+    src: local('Lato Light'), local('Lato-Light'), url(http://themes.googleusercontent.com/static/fonts/lato/v7/kcf5uOXucLcbFOydGU24WALUuEpTyoUstqEm5AMlJo4.woff) format('woff');
+}
 
-@import url(http://fonts.googleapis.com/css?family=Raleway:400,300,700,900);
+@font-face {
+    font-family: 'Lato';
+    font-style: normal;
+    font-weight: 400;
+    src: local('Lato Regular'), local('Lato-Regular'), url(http://themes.googleusercontent.com/static/fonts/lato/v7/qIIYRU-oROkIk8vfvxw6QvesZW2xOQ-xsNqO47m55DA.woff) format('woff');
+}
+
+@font-face {
+    font-family: 'Lato';
+    font-style: normal;
+    font-weight: 700;
+    src: local('Lato Bold'), local('Lato-Bold'), url(http://themes.googleusercontent.com/static/fonts/lato/v7/qdgUG4U09HnJwhYI-uK18wLUuEpTyoUstqEm5AMlJo4.woff) format('woff');
+}
+
+@font-face {
+    font-family: 'Lato';
+    font-style: normal;
+    font-weight: 900;
+    src: local('Lato Black'), local('Lato-Black'), url(http://themes.googleusercontent.com/static/fonts/lato/v7/G2uphNnNqGFMHLRsO_72ngLUuEpTyoUstqEm5AMlJo4.woff) format('woff');
+}
+
+@font-face {
+    font-family: 'Raleway';
+    font-style: normal;
+    font-weight: 300;
+    src: local('Raleway Light'), local('Raleway-Light'), url(http://themes.googleusercontent.com/static/fonts/raleway/v7/-_Ctzj9b56b8RgXW8FArib3hpw3pgy2gAi-Ip7WPMi0.woff) format('woff');
+}
+
+@font-face {
+    font-family: 'Raleway';
+    font-style: normal;
+    font-weight: 400;
+    src: local('Raleway'), url(http://themes.googleusercontent.com/static/fonts/raleway/v7/cIFypx4yrWPDz3zOxk7hIQLUuEpTyoUstqEm5AMlJo4.woff) format('woff');
+}
+
+@font-face {
+    font-family: 'Raleway';
+    font-style: normal;
+    font-weight: 700;
+    src: local('Raleway Bold'), local('Raleway-Bold'), url(http://themes.googleusercontent.com/static/fonts/raleway/v7/JbtMzqLaYbbbCL9X6EvaI73hpw3pgy2gAi-Ip7WPMi0.woff) format('woff');
+}
+
+@font-face {
+    font-family: 'Raleway';
+    font-style: normal;
+    font-weight: 900;
+    src: local('Raleway Heavy'), local('Raleway-Heavy'), url(http://themes.googleusercontent.com/static/fonts/raleway/v7/PKCRbVvRfd5n7BTjtGiFZL3hpw3pgy2gAi-Ip7WPMi0.woff) format('woff');
+}
 
 /* OVERALL ASPECT */
 
@@ -86,8 +138,7 @@ hr {
     font-size: 14px;
     font-weight: 800;
     padding-bottom: 15px;
-    padding-top: 15px;
-    
+    padding-top: 15px;    
 }
 
 .navbar-inverse {
@@ -175,7 +226,9 @@ hr {
     padding-top: 0px;
     text-align: center;
 }
+
 #dg h2 { margin-bottom: 20px; }
+
 #dg h4 { font-weight: 700; }
 
 /* Light Grey */
