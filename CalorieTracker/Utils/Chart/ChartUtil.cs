@@ -1,13 +1,13 @@
 ﻿using System.Collections.Generic;
-using System.Drawing;
 using System.Text;
-using System.Web;
 
 namespace CalorieTracker.Utils.Chart
 {
     public class ChartUtil
     {
         private readonly string _chartLabels;
+        private decimal _maxChartValue;
+        private decimal _minChartValue;
 
         public ChartUtil(string chartLabels)
         {
@@ -15,11 +15,29 @@ namespace CalorieTracker.Utils.Chart
             ChartDataSets = new List<ChartDataSet>();
         }
 
+        public decimal MinChartValue
+        {
+            get { return _minChartValue; }
+            set { _minChartValue = value; }
+        }
+
+        public decimal MaxChartValue
+        {
+            get { return _maxChartValue; }
+            set { _maxChartValue = value; }
+        }
+
         public List<ChartDataSet> ChartDataSets { get; set; }
 
         public void AddDataSet(ChartDataSet chartDataSet)
         {
             ChartDataSets.Add(chartDataSet);
+        }
+
+        public void SetChartMinMaxValues(decimal max, decimal min)
+        {
+            _maxChartValue = max;
+            _minChartValue = min;
         }
 
         public string GetDataString()

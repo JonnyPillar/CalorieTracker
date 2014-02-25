@@ -15,9 +15,9 @@ namespace CalorieTracker.Utils.Chart
         public ChartDataSet(string data)
         {
             Data = data;
-            FillColor = "rgba(220,220,220,0.5)";
-            StrokeColor = "rgba(220,220,220,1)";
-            PointColor = "rgba(220,220,220,1)";
+            FillColor = "rgba(20,220,220,0.5)";
+            StrokeColor = "rgba(20,220,220,1)";
+            PointColor = "rgba(20,220,220,1)";
             PointStrokeColor = "#fff";
         }
 
@@ -34,10 +34,10 @@ namespace CalorieTracker.Utils.Chart
         public string GetOutputString()
         {
             StringBuilder stringBuilder = new StringBuilder();
-            stringBuilder.AppendFormat("fillColor: '{0}',\r\n", FillColor);
-            stringBuilder.AppendFormat("strokeColor: '{0}',\r\n", StrokeColor);
-            stringBuilder.AppendFormat("pointColor: '{0}',\r\n", PointColor);
-            stringBuilder.AppendFormat("pointStrokeColor: '{0}',\r\n", PointStrokeColor);
+            stringBuilder.AppendFormat("fillColor: \"{0}\",\r\n", FillColor);
+            stringBuilder.AppendFormat("strokeColor: \"{0}\",\r\n", StrokeColor);
+            stringBuilder.AppendFormat("pointColor: \"{0}\",\r\n", PointColor);
+            stringBuilder.AppendFormat("pointStrokeColor: \"{0}\",\r\n", PointStrokeColor);
             stringBuilder.AppendFormat("data: [{0}]", Data);
             return stringBuilder.ToString();
         }

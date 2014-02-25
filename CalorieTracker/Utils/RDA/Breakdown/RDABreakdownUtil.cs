@@ -8,10 +8,15 @@ namespace CalorieTracker.Utils.RDA.Breakdown
     public class RDABreakdownUtil
     {
         private readonly Nutrient _nutrient;
+        private NutrientRDA _nutrientRDA;
         private readonly Dictionary<int, RDABreakdownItem> _rdaBreakdownItems;
         private readonly User _user;
         private TimeSpan _groupingTimeSpan;
         private TimeSpan _lengthOfTimeTimeSpan;
+        private decimal _minValue;
+        private decimal _maxValue;
+
+        
 
         private NutrientRDA _userNutrientRDA;
 
@@ -23,11 +28,29 @@ namespace CalorieTracker.Utils.RDA.Breakdown
             _lengthOfTimeTimeSpan = lengthOfTimeTimeSpan;
             _groupingTimeSpan = groupingTimeSpan;
             _rdaBreakdownItems = new Dictionary<int, RDABreakdownItem>();
+            _minValue = 0;
+            _maxValue = 0;
+            StartCalculation();
         }
 
         public Dictionary<int, RDABreakdownItem> RDABreakdownItems
         {
             get { return _rdaBreakdownItems; }
+        }
+
+        public NutrientRDA NutrientRDAObject
+        {
+            get { return _nutrientRDA; }
+        }
+
+        public decimal MinValue
+        {
+            get { return _minValue; }
+        }
+
+        public decimal MaxValue
+        {
+            get { return _maxValue; }
         }
 
         private void GenerateRDABreakdown()
@@ -39,6 +62,7 @@ namespace CalorieTracker.Utils.RDA.Breakdown
             _userNutrientRDA = GetNutrientRDAForUser();
             if (_userNutrientRDA != null)
             {
+                ProcessNutrientValues();
             }
         }
 
@@ -54,7 +78,8 @@ namespace CalorieTracker.Utils.RDA.Breakdown
             List<NutrientRDA> nutrientRdaList =
                 _nutrient.tbl_nutrient_rda.Where(
                     n => n.Gender == userGender && n.AgeMax >= userAge && n.AgeMin <= userAge).ToList();
-            return nutrientRdaList.FirstOrDefault();
+            _nutrientRDA = nutrientRdaList.FirstOrDefault();
+            return _nutrientRDA;
         }
 
         private void ProcessNutrientValues()
@@ -71,7 +96,7 @@ namespace CalorieTracker.Utils.RDA.Breakdown
                     List<FoodLog> foodList =
                         _user.UserFoodLogs.Where(
                             fl =>
-                                fl.CreationTimestamp.CompareTo(floorDate) > 0 &&
+                                fl.CreationTimestamp.CompareTo(floorDate) >= 0 &&
                                 fl.CreationTimestamp.CompareTo(ceilingDate) <= 0).ToList();
                     decimal periodNutrientValue = 0;
                     if (foodList.Count > 0)
@@ -82,7 +107,10 @@ namespace CalorieTracker.Utils.RDA.Breakdown
                             FoodNutritionLogs foodNutritionLog = foodLog.Food.FoodNutritionLogs.FirstOrDefault(
                                 fNL => fNL.NurtientID == _userNutrientRDA.NutrientID);
 
-                            if (foodNutritionLog != null) periodNutrientValue = foodNutritionLog.Value;
+                            if (foodNutritionLog != null)
+                            {
+                                periodNutrientValue += foodNutritionLog.Value;
+                            }
                         }
                     }
                     if (_rdaBreakdownItems.ContainsKey(i))
@@ -92,6 +120,16 @@ namespace CalorieTracker.Utils.RDA.Breakdown
                     else
                     {
                         _rdaBreakdownItems.Add(i, new RDABreakdownItem(i, periodNutrientValue));
+                    }
+                    if (i == 0)
+                    {
+                        _minValue = _rdaBreakdownItems[i].ItemValue;
+                        _maxValue = _rdaBreakdownItems[i].ItemValue;
+                    }
+                    else
+                    {
+                        if (_rdaBreakdownItems[i].ItemValue > _maxValue) _maxValue = Math.Ceiling(_rdaBreakdownItems[i].ItemValue);
+                        if (_rdaBreakdownItems[i].ItemValue < _minValue) _minValue = _rdaBreakdownItems[i].ItemValue;
                     }
                 }
             }

@@ -1,11 +1,15 @@
-﻿using System.Data.Entity;
+﻿using System;
+using System.Data.Entity;
 using System.Linq;
 using System.Net;
+using System.Text;
+using System.Web.Helpers;
 using System.Web.Mvc;
 using CalorieTracker.Models;
 using CalorieTracker.Models.ViewModels;
 using CalorieTracker.Utils.Account;
 using CalorieTracker.Utils.Chart;
+using CalorieTracker.Utils.RDA.Breakdown;
 
 namespace CalorieTracker.Controllers.Nutrients
 {
@@ -37,15 +41,46 @@ namespace CalorieTracker.Controllers.Nutrients
             {
                 return HttpNotFound();
             }
+            ChartUtil chartUtil = null;
             if (User.Identity.IsAuthenticated)
             {
                 int userID = IdentityUtil.GetUserIDFromCookie(User);
                 User user = db.Users.Find(userID);
+                RDABreakdownUtil breakdownUtil = new RDABreakdownUtil(nutrient, user, new TimeSpan(30,0,0,0), new TimeSpan(7,0,0,0));
+
+                decimal nutrientBaseLevel = breakdownUtil.NutrientRDAObject.Value;
+
+                decimal maxChartValue = 0;
+                decimal minChartValue = 0;
+
+                if (nutrientBaseLevel > breakdownUtil.MaxValue) maxChartValue = nutrientBaseLevel;
+                else maxChartValue = breakdownUtil.MinValue;
+
+                if (nutrientBaseLevel < breakdownUtil.MinValue) minChartValue = nutrientBaseLevel;
+                else minChartValue = breakdownUtil.MinValue;
+
+
+                StringBuilder labelString = new StringBuilder();
+                StringBuilder dataString = new StringBuilder();
+                StringBuilder nutrientBaseString = new StringBuilder();
+                for (int i = 0; i < breakdownUtil.RDABreakdownItems.Count; i++)
+                {
+                    labelString.AppendFormat("\"{0}qw\"", breakdownUtil.RDABreakdownItems[i].ItemID);
+                    dataString.Append(breakdownUtil.RDABreakdownItems[i].ItemValue);
+                    nutrientBaseString.AppendFormat(nutrientBaseLevel.ToString());
+
+                    if (i != breakdownUtil.RDABreakdownItems.Count - 1)
+                    {
+                        labelString.Append(",");
+                        dataString.Append(",");
+                        nutrientBaseString.Append(",");
+                    }
+                }
+                chartUtil = new ChartUtil(labelString.ToString());
+                chartUtil.AddDataSet(new ChartDataSet(dataString.ToString()));//User RDA Data
+                chartUtil.AddDataSet(new ChartDataSet(nutrientBaseString.ToString()));//Nutrient RDA Data
+                chartUtil.SetChartMinMaxValues(maxChartValue, minChartValue);
             }
-
-            var chartUtil = new ChartUtil("'January', \"February\", \"March\", \"April\", \"May\", \"June\", \"July\"");
-            chartUtil.AddDataSet(new ChartDataSet("10,20,30,40,50,60,70"));
-
             var nutrientModel = new NutrientModel(nutrient, chartUtil);
             return View(nutrientModel);
         }

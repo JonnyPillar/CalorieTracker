@@ -187,6 +187,8 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>CTDB.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Models\Enum\Gender.cs" />
+    <Compile Include="Models\Enum\NutritionType.cs" />
     <Compile Include="Models\Food.cs">
       <DependentUpon>CTDB.tt</DependentUpon>
     </Compile>
@@ -253,6 +255,8 @@
     <Compile Include="Utils\History\HistoryMetricLog.cs" />
     <Compile Include="Utils\History\IHistoryItem.cs" />
     <Compile Include="Utils\HtmlHelpers\HtmlHelpers.cs" />
+    <Compile Include="Utils\RDA\Breakdown\RDABreakdownItem.cs" />
+    <Compile Include="Utils\RDA\Breakdown\RDABreakdownUtil.cs" />
     <Compile Include="Utils\RDA\RDAUtil.cs" />
     <Compile Include="Utils\Weka\Algorithms\IAlgorithm.cs" />
     <Compile Include="Utils\Weka\Algorithms\Regression.cs" />
