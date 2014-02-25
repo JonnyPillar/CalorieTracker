@@ -73,23 +73,12 @@ namespace CalorieTracker.Utils.RDA
 
         private void StartCalculation()
         {
-            _userNutrientRDA = GetNutrientRDAForUser();
+            _userNutrientRDA = NutrientRDAUtil.GetNutrientRDAForUser(_user, _nutrient);
             if (_userNutrientRDA != null)
             {
                 _userNutrientRDAValue = GetUserNutrientValueCount();
                 _userNutrientRDAPercentage = (_userNutrientRDAValue/GetRDAValueForTimespan())*100;
             }
-        }
-
-        private NutrientRDA GetNutrientRDAForUser()
-        {
-            bool userGender = _user.Gender; //False Male, True Female
-            int userAge = (DateTime.Now - _user.DOB).Days/365;
-
-            List<NutrientRDA> nutrientRdaList =
-                _nutrient.tbl_nutrient_rda.Where(
-                    n => n.Gender == userGender && n.AgeMax >= userAge && n.AgeMin <= userAge).ToList();
-            return nutrientRdaList.FirstOrDefault();
         }
 
         private decimal GetUserNutrientValueCount()

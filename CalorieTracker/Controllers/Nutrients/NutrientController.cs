@@ -3,7 +3,6 @@ using System.Data.Entity;
 using System.Linq;
 using System.Net;
 using System.Text;
-using System.Web.Helpers;
 using System.Web.Mvc;
 using CalorieTracker.Models;
 using CalorieTracker.Models.ViewModels;
@@ -26,12 +25,6 @@ namespace CalorieTracker.Controllers.Nutrients
         // GET: /Nutrient/Details/5
         public ActionResult Details(int? id)
         {
-            /*
-             * Show week by week / Day by Day nutrition level on a graph
-             * 
-             * 
-             */
-
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -46,26 +39,23 @@ namespace CalorieTracker.Controllers.Nutrients
             {
                 int userID = IdentityUtil.GetUserIDFromCookie(User);
                 User user = db.Users.Find(userID);
-                RDABreakdownUtil breakdownUtil = new RDABreakdownUtil(nutrient, user, new TimeSpan(30,0,0,0), new TimeSpan(7,0,0,0));
+                var breakdownUtil = new RDABreakdownUtil(nutrient, user, new TimeSpan(30, 0, 0, 0),
+                    new TimeSpan(1, 0, 0, 0));
 
                 decimal nutrientBaseLevel = breakdownUtil.NutrientRDAObject.Value;
 
-                decimal maxChartValue = 0;
-                decimal minChartValue = 0;
+                decimal maxChartValue = breakdownUtil.MaxValue;
+                decimal minChartValue = breakdownUtil.MinValue;
 
-                if (nutrientBaseLevel > breakdownUtil.MaxValue) maxChartValue = nutrientBaseLevel;
-                else maxChartValue = breakdownUtil.MinValue;
+                if (nutrientBaseLevel > maxChartValue) maxChartValue = nutrientBaseLevel;
+                if (nutrientBaseLevel < minChartValue) minChartValue = nutrientBaseLevel;
 
-                if (nutrientBaseLevel < breakdownUtil.MinValue) minChartValue = nutrientBaseLevel;
-                else minChartValue = breakdownUtil.MinValue;
-
-
-                StringBuilder labelString = new StringBuilder();
-                StringBuilder dataString = new StringBuilder();
-                StringBuilder nutrientBaseString = new StringBuilder();
+                var labelString = new StringBuilder();
+                var dataString = new StringBuilder();
+                var nutrientBaseString = new StringBuilder();
                 for (int i = 0; i < breakdownUtil.RDABreakdownItems.Count; i++)
                 {
-                    labelString.AppendFormat("\"{0}qw\"", breakdownUtil.RDABreakdownItems[i].ItemID);
+                    labelString.AppendFormat("\"Day {0}\"", breakdownUtil.RDABreakdownItems[i].ItemID);
                     dataString.Append(breakdownUtil.RDABreakdownItems[i].ItemValue);
                     nutrientBaseString.AppendFormat(nutrientBaseLevel.ToString());
 
@@ -77,8 +67,13 @@ namespace CalorieTracker.Controllers.Nutrients
                     }
                 }
                 chartUtil = new ChartUtil(labelString.ToString());
-                chartUtil.AddDataSet(new ChartDataSet(dataString.ToString()));//User RDA Data
-                chartUtil.AddDataSet(new ChartDataSet(nutrientBaseString.ToString()));//Nutrient RDA Data
+                chartUtil.AddDataSet(new ChartDataSet(dataString.ToString())); //User RDA Data
+
+                var nutrientBaseDataSet = new ChartDataSet(nutrientBaseString.ToString());
+                nutrientBaseDataSet.FillColor = "rgba(255, 0, 0, 0.5)";
+                nutrientBaseDataSet.StrokeColor = "rgba(255, 0, 0, 1)";
+                nutrientBaseDataSet.PointColor = "rgba(255, 0, 0, 1)";
+                chartUtil.AddDataSet(nutrientBaseDataSet); //Nutrient RDA Data
                 chartUtil.SetChartMinMaxValues(maxChartValue, minChartValue);
             }
             var nutrientModel = new NutrientModel(nutrient, chartUtil);
