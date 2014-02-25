@@ -43,12 +43,27 @@
 <div class="container">
     <div class="row centered">
         <h2>Your Nutrition</h2>
-        
-        
-        <div class="row" >
+
+
+        <div class="row">
             <p>Your Nutrient Levels Over The Last @Model.NutritionTimespan Days</p>
         </div>
-        @Html.Partial("PartialViews/_UserNutrition", Model.UserNutrientRDAList)
+        @*@Html.Partial("PartialViews/_UserNutrition", Model.UserNutrientRDAList)*@
+        <script type="text/javascript">
+            $(document).ready(function () {
+                loadNutrientInfo(30);
+            });
+            
+            function loadNutrientInfo(timespan) {
+                var $detailDiv = $('#detailsDiv'),
+                    url = '@Url.Action("GetUserRDAChart", "Dashboard")/' + timespan;
+                $.get(url, function (data) {
+                    $detailDiv.replaceWith(data);
+                });
+            }
+        </script>
+        <div id="detailsDiv">
+        </div>
         <div style="height:1px; clear: both;"></div>
         <hr />
         <div class="redButton col-sm-8 col-sm-offset-2">

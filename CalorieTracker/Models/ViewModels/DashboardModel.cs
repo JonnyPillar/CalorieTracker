@@ -4,16 +4,16 @@ namespace CalorieTracker.Models.ViewModels
 {
     public class DashboardModel
     {
-        public DashboardModel(bool isNewUser, User dashboardUser, List<UserNutrientRDAModel> userNutrientRDAList)
+        public DashboardModel(bool isNewUser, User dashboardUser)
         {
             IsNewUser = isNewUser;
             DashboardUser = dashboardUser;
-            UserNutrientRDAList = userNutrientRDAList;
+            //UserNutrientRDAList = userNutrientRDAList;
         }
 
         public User DashboardUser { get; set; }
 
-        public List<UserNutrientRDAModel> UserNutrientRDAList { get; set; }
+        //public List<UserNutrientRDAModel> UserNutrientRDAList { get; set; }
 
         public bool IsNewUser { get; set; }
 
