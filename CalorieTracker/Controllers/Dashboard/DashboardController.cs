@@ -33,8 +33,11 @@ namespace CalorieTracker.Controllers.Dashboard
                 FormsAuthentication.SignOut();
                 return RedirectToAction("Index", "Home");
             }
+<<<<<<< HEAD
             List<Nutrient> nutrientEnumerable = db.Nutrients.ToList(); //Get List of all nutrients
             var rdaList = new List<NutrientRDA>();
+=======
+>>>>>>> b5d70df00a32dfe3b1e1300e323d364f084db9c8
 
             int timespanInt = 0;
             if (timeSpan != null)
@@ -55,6 +58,23 @@ namespace CalorieTracker.Controllers.Dashboard
             int timespanInt = 30;
             if (id != null) timespanInt = id.GetValueOrDefault();
 
+<<<<<<< HEAD
+=======
+            
+            var dashboardModel = new DashboardModel(!string.IsNullOrEmpty(id), dashboardUser);
+            dashboardModel.NutritionTimespan = timespanInt;
+
+            return View(dashboardModel);
+        }
+
+        
+        public ActionResult GetUserRDAChart(int? timespan)
+        {
+            var userNutrientRDAModels = new List<UserNutrientRDAModel>();
+            int timespanInt = 30;
+            if (timespan != null) timespanInt = timespan.GetValueOrDefault();
+
+>>>>>>> b5d70df00a32dfe3b1e1300e323d364f084db9c8
             int userID = IdentityUtil.GetUserIDFromCookie(User);
             if (userID != -1)
             {
@@ -62,7 +82,11 @@ namespace CalorieTracker.Controllers.Dashboard
                 if (user != null)
                 {
                     List<Nutrient> nutrientEnumerable = db.Nutrients.ToList(); //Get List of all nutrients
+<<<<<<< HEAD
                     //List of all the Nutrients RDA's
+=======
+                     //List of all the Nutrients RDA's
+>>>>>>> b5d70df00a32dfe3b1e1300e323d364f084db9c8
                     foreach (Nutrient nutrient in nutrientEnumerable)
                     {
                         RDAUtil rdaUtil = null;

@@ -51,17 +51,26 @@
         @*@Html.Partial("PartialViews/_UserNutrition", Model.UserNutrientRDAList)*@
         <script type="text/javascript">
             $(document).ready(function () {
+<<<<<<< HEAD
                 loadNutrientInfo('@Model.NutritionTimespan');
             });
             
             function loadNutrientInfo(timespan) {
                 var $detailDiv = $('#nutritionDataPanel'),
+=======
+                loadNutrientInfo(30);
+            });
+            
+            function loadNutrientInfo(timespan) {
+                var $detailDiv = $('#detailsDiv'),
+>>>>>>> b5d70df00a32dfe3b1e1300e323d364f084db9c8
                     url = '@Url.Action("GetUserRDAChart", "Dashboard")/' + timespan;
                 $.get(url, function (data) {
                     $detailDiv.replaceWith(data);
                 });
             }
         </script>
+<<<<<<< HEAD
         <div id="nutritionDataPanel">
             <div class="row centered">
                 <div class="col-sm-6 col-sm-offset-3">
@@ -70,6 +79,9 @@
                 </div>
             </div>
             
+=======
+        <div id="detailsDiv">
+>>>>>>> b5d70df00a32dfe3b1e1300e323d364f084db9c8
         </div>
         <div style="height:1px; clear: both;"></div>
         <hr />
