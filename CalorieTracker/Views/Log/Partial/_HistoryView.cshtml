@@ -1,0 +1,20 @@
+﻿@using PagedList.Mvc
+@model PagedList.IPagedList<KeyValuePair<DateTime, List<CalorieTracker.Utils.History.IHistoryItem>>>
+<div class="logPanel userHistoryPanel row">
+    <div class="col-xs-12 col-sm-10 col-sm-offset-1">
+        @foreach (var dateTime in @Model)
+        {
+            <h4>@dateTime.Key.ToString("dd/MM/yyyy")</h4>
+
+            foreach (var item in dateTime.Value)
+            {
+                @Html.Partial("Partial/_HistoryItem", item)
+            }
+        }
+    </div>
+    <br />
+    Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+
+    @Html.PagedListPager(Model, page => Url.Action("History",
+    new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
+</div>

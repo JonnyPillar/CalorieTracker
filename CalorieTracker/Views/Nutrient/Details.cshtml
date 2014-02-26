@@ -1,20 +1,17 @@
 ﻿@model CalorieTracker.Models.ViewModels.NutrientModel
-
 @{
     ViewBag.Title = "Details";
 }
-
-
 <div id="blue">
     <div class="centered">
         <h2>@Html.DisplayFor(model => model.Nutrient.Name)</h2>
-        <p>-</p>
+        <p>Your History For This Nutrient</p>
     </div>
 </div>
 <div class="container">
     <div class="row">
-        <div class="col-xs-12">
-            <canvas class="canvas" id="@Model.ChartName" width="500px" height="300px"></canvas>
+        <div class="col-xs-12 centered">
+            <canvas class="" id="@Model.ChartName" width="500px" height="300px"></canvas>
         </div>
         <script type="text/javascript">
             $(document).ready(function () {
@@ -23,8 +20,9 @@
                     @Html.Raw(Model.NutrientRDAChartUtil.GetDataString())
                 };
 
-                var options = "";
-
+                var options = {
+                    scaleStartValue: 0
+                };
                 @if (Model.NutrientRDAChartUtil.MaxChartValue == Model.NutrientRDAChartUtil.MinChartValue) {
                     
                     @:options = {

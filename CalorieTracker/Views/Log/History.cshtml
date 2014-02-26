@@ -1,6 +1,4 @@
-﻿@using PagedList.Mvc
-@model PagedList.IPagedList<KeyValuePair<DateTime, List<CalorieTracker.Utils.History.IHistoryItem>>>
-@{
+﻿@{
     ViewBag.Title = "History";
 }
 <div id="blue">
@@ -12,23 +10,58 @@
 
 <div class="row">
     <div class="container">
-        <div class="logPanel row">
-            <div class="col-xs-12 col-sm-10 col-sm-offset-1">
-                @foreach (var dateTime in @Model)
-                {
-                    <h4>@dateTime.Key.ToString("dd/MM/yyyy")</h4>
+        <script type="text/javascript">
+            $(document).ready(function () {
+                loadNutrientInfo(undefined, "");
+            });
 
-                    foreach (var item in dateTime.Value)
-                    {
-                        @Html.Partial("Partial/_HistoryItem", item)
-                    }
-                }
+
+            function loadNutrientInfo(pageNumber, message) {
+                toggleLoadingPanel(message);
+                alert(pageNumber);
+                var $detailDiv = $('#historyDataPanel'),
+                    url = '@Url.Action("GetUserHistory", "Log")/' + pageNumber;
+                alert(url);
+                $.get(url, function (data) {
+                    alert(data);
+                    $detailDiv.html(data);
+                    toggleLoadingPanel();
+                    setUpPagnationEvent();
+                });
+
+            }
+
+            function setUpPagnationEvent() {
+                $(".userHistoryPanel .pagination li a").unbind();
+                $(".userHistoryPanel .pagination li a").click(function (event) {
+                    event.preventDefault();
+                    loadPagedPage(this);
+                });
+            }
+
+            function loadPagedPage(item) {
+                var pageNumber = $(item).text();
+                loadNutrientInfo(pageNumber, "Loading Page " + pageNumber);
+            }
+            
+            function toggleLoadingPanel(message) {
+                if (message != "") $("#loadingPanel h2").text(message);
+                else $("#loadingPanel h2").text("Loading Your History...");
+                $("#loadingPanel").toggle();
+                $('html, body').animate({
+                    scrollTop: $("html").offset().top
+                }, 200);
+            }
+        </script>
+        <div>
+            <div class="row centered">
+                <div id="loadingPanel" class="col-sm-6 col-sm-offset-3" hidden="hidden">
+                    <h2></h2>
+                    <img src="~/Content/img/ajax-loader.gif" alt="Loading Please Wait" />
+                </div>
             </div>
-            <br />
-            Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
-
-            @Html.PagedListPager(Model, page => Url.Action("History",
-    new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
+            <div id="historyDataPanel">
+            </div>
         </div>
     </div>
 </div>
