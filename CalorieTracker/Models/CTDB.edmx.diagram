@@ -5,16 +5,16 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="a9b657ca643040a385d6a3c945cd1c35" Name="Diagram1">
-        <EntityTypeShape EntityType="CalorieTrackerModel.Activity" Width="1.5" PointX="0.75" PointY="9.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="CalorieTrackerModel.ActivityLog" Width="1.5" PointX="3" PointY="4.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="CalorieTrackerModel.FoodGroup" Width="1.5" PointX="1.5" PointY="13.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="CalorieTrackerModel.FoodLog" Width="1.5" PointX="6" PointY="5" IsExpanded="true" />
-        <EntityTypeShape EntityType="CalorieTrackerModel.FoodNutritionLogs" Width="1.5" PointX="6" PointY="13.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="CalorieTrackerModel.Food" Width="1.5" PointX="3.75" PointY="12.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="CalorieTrackerModel.Activity" Width="1.5" PointX="7" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="CalorieTrackerModel.ActivityLog" Width="1.5" PointX="5" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="CalorieTrackerModel.FoodGroup" Width="1.5" PointX="9" PointY="2" IsExpanded="true" />
+        <EntityTypeShape EntityType="CalorieTrackerModel.FoodLog" Width="1.5" PointX="5" PointY="4.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="CalorieTrackerModel.FoodNutritionLogs" Width="1.5" PointX="9" PointY="4" IsExpanded="true" />
+        <EntityTypeShape EntityType="CalorieTrackerModel.Food" Width="1.5" PointX="7" PointY="3.125" IsExpanded="true" />
         <EntityTypeShape EntityType="CalorieTrackerModel.MetricLog" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
-        <EntityTypeShape EntityType="CalorieTrackerModel.Metric" Width="1.5" PointX="0.75" PointY="1.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="CalorieTrackerModel.Nutrient" Width="1.5" PointX="3.75" PointY="9.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="CalorieTrackerModel.User" Width="1.5" PointX="0.75" PointY="4.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="CalorieTrackerModel.Metric" Width="1.5" PointX="1" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="CalorieTrackerModel.Nutrient" Width="1.5" PointX="11" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="CalorieTrackerModel.User" Width="1.5" PointX="3" PointY="3.75" IsExpanded="true" />
         <AssociationConnector Association="CalorieTrackerModel.FK_activity_id" ManuallyRouted="false" />
         <AssociationConnector Association="CalorieTrackerModel.FK_activity_user_id" ManuallyRouted="false" />
         <AssociationConnector Association="CalorieTrackerModel.fk_food_group_id1" ManuallyRouted="false" />
@@ -24,7 +24,7 @@
         <AssociationConnector Association="CalorieTrackerModel.fk_food_nutrient_nutrient_id" ManuallyRouted="false" />
         <AssociationConnector Association="CalorieTrackerModel.FK_tbl_metric_id" ManuallyRouted="false" />
         <AssociationConnector Association="CalorieTrackerModel.FK_tbl_user_id" ManuallyRouted="false" />
-        <EntityTypeShape EntityType="CalorieTrackerModel.NutrientRDA" Width="1.5" PointX="6.75" PointY="9" />
+        <EntityTypeShape EntityType="CalorieTrackerModel.NutrientRDA" Width="1.5" PointX="11.125" PointY="0.625" />
         <AssociationConnector Association="CalorieTrackerModel.FK_tbl_nutrient_rda_tbl_nutrients" />
       </Diagram>
     </edmx:Diagrams>

@@ -1,5 +1,5 @@
 ﻿
-.redButton a {
+.redButton a, .redButton input[type="submit"] {
     background: #ff7878;
     margin: 25px 0 20px;
     color: #ffffff;
@@ -17,8 +17,8 @@
     font-weight: bold;
 }
 
-    .redButton a:hover,
-    .redButton a:focus {
+    .redButton a:hover, .redButton input[type="submit"]:hover,
+    .redButton a:focus, .redButton input[type="submit"]:focus {
         color: #ffffff;
         background-color: #EB5252;
     }
@@ -209,3 +209,24 @@
 .canvas {
     margin: 0 auto;
 }
+
+/*
+    Home Page    
+*/
+
+.searchBar input[type="submit"] {
+    float: right;
+    border: 0;
+}
+
+.searchBar .textBox {
+    margin: 25px 0 20px;
+    color: #000;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    line-height: 20px;
+    border: 0;
+}
+/*
+    End Of Home Page    
+*/

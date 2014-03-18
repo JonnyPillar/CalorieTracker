@@ -3,6 +3,7 @@ using System.Data.Entity;
 using System.Linq;
 using System.Web.Mvc;
 using CalorieTracker.Models;
+using ikvm.extensions;
 using PagedList;
 
 namespace CalorieTracker.Controllers.Foods
@@ -22,6 +23,7 @@ namespace CalorieTracker.Controllers.Foods
             if (searchString != null)
             {
                 page = 1;
+                searchString = searchString.trim();
             }
             else
             {
@@ -94,8 +96,6 @@ namespace CalorieTracker.Controllers.Foods
         }
 
         // POST: /Food/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create(
@@ -129,8 +129,6 @@ namespace CalorieTracker.Controllers.Foods
         }
 
         // POST: /Food/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit(
