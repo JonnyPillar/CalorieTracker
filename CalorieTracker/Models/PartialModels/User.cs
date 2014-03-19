@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using CalorieTracker.Models.Enum;
 using CalorieTracker.Models.MetaData;
 using CalorieTracker.Models.ViewModels;
 using CTDataGenerator.Utils;
@@ -10,6 +11,12 @@ namespace CalorieTracker.Models
     [MetadataType(typeof (UserMetaData))]
     public partial class User
     {
+        public Gender GenderEnum
+        {
+            get { return (Gender) Convert.ToInt32(Gender); }
+            set { Gender = Convert.ToBoolean(value); }
+        }
+
         public User(RegisterModel registerModel)
         {
             DOB = registerModel.DateOfBirth;

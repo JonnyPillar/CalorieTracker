@@ -2,9 +2,11 @@
 using System.Data.Entity;
 using System.Linq;
 using System.Web.Mvc;
+using System.Web.UI.WebControls.WebParts;
 using CalorieTracker.Models;
 using ikvm.extensions;
 using PagedList;
+using weka.classifiers.bayes.net.search;
 
 namespace CalorieTracker.Controllers.Foods
 {
@@ -73,6 +75,42 @@ namespace CalorieTracker.Controllers.Foods
             return View(foods.ToPagedList(pageNumber, pageSize));
         }
 
+        /// <summary>
+        /// Search Food Partial
+        /// Used On FoodLog Page
+        /// </summary>
+        /// <param name="id">searchString</param>
+        /// <param name="message">pageNumber</param>
+        /// <returns></returns>
+        [HttpGet]
+        public ActionResult SearchFood(string id, int? message)
+        {
+            string searchString = id;
+            int? page = message;
+
+            if (searchString != null)
+            {
+                if(page == null) page = 1;
+                searchString = searchString.trim();
+            }
+
+            IQueryable<Food> foods = db.Foods.Include(f => f.FoodGroup);
+
+            if (!string.IsNullOrEmpty(searchString))
+            {
+                foods = foods.Where(
+                    f =>
+                        f.Name.ToUpper().Contains(searchString.ToUpper()) ||
+                        f.Description.ToUpper().Contains(searchString.ToUpper()) ||
+                        f.ManufactureName.ToUpper().Contains(searchString.ToUpper()));
+            }
+            foods = foods.OrderBy(f => f.Name);
+
+            int pageSize = 10;
+            int pageNumber = (page ?? 1);
+            return PartialView("_SearchFood", foods.ToPagedList(pageNumber, pageSize));
+        }
+
         // GET: /Food/Details/5
         public ActionResult Details(int? id)
         {
@@ -91,7 +129,8 @@ namespace CalorieTracker.Controllers.Foods
         // GET: /Food/Create
         public ActionResult Create()
         {
-            ViewBag.GroupID = new SelectList(db.FoodGroups, "FoodGroupID", "Name");
+            if (!User.Identity.IsAuthenticated) return RedirectToAction("Index", "Login");
+            ViewBag.GroupID = new SelectList(db.FoodGroups.OrderBy(item => item.Name), "FoodGroupID", "Name");
             return View();
         }
 
@@ -115,6 +154,7 @@ namespace CalorieTracker.Controllers.Foods
         // GET: /Food/Edit/5
         public ActionResult Edit(int? id)
         {
+            if (!User.Identity.IsAuthenticated) return RedirectToAction("Index", "Login");
             if (id == null)
             {
                 return RedirectToAction("Index");
@@ -147,6 +187,7 @@ namespace CalorieTracker.Controllers.Foods
         // GET: /Food/Delete/5
         public ActionResult Delete(int? id)
         {
+            if (!User.Identity.IsAuthenticated) return RedirectToAction("Index", "Login");
             if (id == null)
             {
                 return RedirectToAction("Index");

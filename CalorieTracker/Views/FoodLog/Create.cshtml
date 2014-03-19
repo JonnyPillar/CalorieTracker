@@ -13,7 +13,93 @@
 
 <div class="container">
     <div class="row centered">
-        <div class="loginPanel">
+        <div class="loginPanel  col-xs-12 col-sm-8 col-sm-offset-2">
+            <script type="text/javascript">
+
+                $(document).ready(function () {
+                    loadFoodInfo(undefined, "" , "");
+                });
+
+                function loadFoodInfo(pageNumber, searchString, loadingMessage) {
+                    if (searchString != "") {
+                        toggleLoadingPanel(loadingMessage);
+                        var $detailDiv = $('#foodSearchPanel'),
+                            url = '@Url.Action("SearchFood", "Food")/' + searchString + '/' + pageNumber;
+                        $.get(url, function (data) {
+                            toggleLoadingPanel();
+                            $detailDiv.html(data);
+                            setUpPagnationEvent();
+                            selectToggle();
+                        });
+                    }
+                    setUpPagnationEvent();
+                    setupSearchButton();
+                    selectToggle();
+                }
+
+                function setUpPagnationEvent() {
+                    $("#foodSearchPanel .pagination li a").unbind();
+                    $("#foodSearchPanel .pagination li a").click(function (event) {
+                        event.preventDefault();
+                        loadPagedPage(this);
+                    });
+                }
+                
+                function setupSearchButton() {
+                    $("#foodSearchButton").unbind();
+                    $("#foodSearchButton").click(function (event) {
+                        event.preventDefault();
+                        loadSearchPage();
+                    });
+                }
+                
+                function loadPagedPage(item) {
+                    var searchText = $("#foodSearchTextBox").val();
+                    var pageNumber = $(item).text();
+                    loadFoodInfo(pageNumber, searchText, "Loading Page " + pageNumber);
+                }
+
+                function loadSearchPage() {
+                    var searchText = $("#foodSearchTextBox").val();
+                    loadFoodInfo("", searchText, "Loading Search " + searchText);
+                }
+
+                function toggleLoadingPanel(message) {
+                    if (message != "") $("#loadingPanel h2").text(message);
+                    else $("#loadingPanel h2").text("Loading Search Results...");
+                    $("#loadingPanel").toggle();
+                    $('html, body').animate({
+                        scrollTop: $("html").offset().top
+                    }, 200);
+                }
+                
+                function selectToggle() {
+                    $(".searchTable .selectable").unbind();
+                    $(".searchTable .selectable").click(function (event) {
+                        event.preventDefault();
+                        var item = $(this);
+                        var id = item.attr("title");
+                        var name = item.attr("name");
+                        $("#FoodID").append("<option value='" + id + "'>" + name + "</option>");
+                        $("#foodSearchPanel").toggle('slow');
+                    });
+                }
+                
+
+            </script>
+            <div class="row centered  searchBar col-xs-12 col-sm-8 col-sm-offset-2 redButton">
+                <a href="" id="foodSearchButton" class="col-sm-3">Search</a>
+                <input type="text" id="foodSearchTextBox" class="textBox col-sm-9" />
+            </div>
+            <div id="loadingPanel" class="col-sm-6 col-sm-offset-3" hidden="hidden">
+                <h2></h2>
+                <img src="~/Content/img/ajax-loader.gif" alt="Loading Please Wait" />
+            </div>
+            <div style="height: 1px; clear: both;"></div>
+            <div id="foodSearchPanel" class="col-sm-12">
+            </div>
+            <div style="height: 1px; clear: both;"></div>
+
             @using (Html.BeginForm())
             {
                 @Html.AntiForgeryToken()

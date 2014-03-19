@@ -18,12 +18,9 @@
 
             function loadNutrientInfo(pageNumber, message) {
                 toggleLoadingPanel(message);
-                alert(pageNumber);
                 var $detailDiv = $('#historyDataPanel'),
                     url = '@Url.Action("GetUserHistory", "Log")/' + pageNumber;
-                alert(url);
                 $.get(url, function (data) {
-                    alert(data);
                     $detailDiv.html(data);
                     toggleLoadingPanel();
                     setUpPagnationEvent();

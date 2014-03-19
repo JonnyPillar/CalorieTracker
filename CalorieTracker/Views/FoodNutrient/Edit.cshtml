@@ -1,0 +1,53 @@
+﻿@model CalorieTracker.Models.FoodNutritionLogs
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <h4>FoodNutritionLogs</h4>
+        <hr />
+        @Html.ValidationSummary(true)
+        @Html.HiddenFor(model => model.NurtientLogID)
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.FoodID, "FoodID", new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("FoodID", String.Empty)
+                @Html.ValidationMessageFor(model => model.FoodID)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.NurtientID, "NurtientID", new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("NurtientID", String.Empty)
+                @Html.ValidationMessageFor(model => model.NurtientID)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Value, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Value)
+                @Html.ValidationMessageFor(model => model.Value)
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>

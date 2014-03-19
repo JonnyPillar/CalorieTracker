@@ -22,7 +22,6 @@ namespace CalorieTracker.Models.MetaData
         [Required]
         public string Description { get; set; }
 
-        [Required]
         [Display(Name = "Manufacturer Name")]
         public string ManufactureName { get; set; }
     }

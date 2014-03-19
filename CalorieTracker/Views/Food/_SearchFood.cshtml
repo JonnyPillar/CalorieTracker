@@ -1,0 +1,45 @@
+﻿@using CalorieTracker.Models
+@using PagedList.Mvc
+@model PagedList.IPagedList<CalorieTracker.Models.Food>
+
+<table class="table searchTable">
+    <tr>
+        <th>
+            @Html.ActionLink("Name", "Index", new {sortOrder = ViewBag.NameSortParm})
+        </th>
+        <th>
+            @Html.ActionLink("Description", "Index", new {sortOrder = ViewBag.DescSortParm})
+        </th>
+        <th>
+            @Html.ActionLink("Food Group", "Index", new {sortOrder = ViewBag.FoodGroupSortParm})
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (Food item in Model)
+    {
+        <tr>
+            <td>
+                @Html.ActionLink(Html.DisplayFor(modelItem => item.Name).ToHtmlString(), "Details", new {id = item.FoodID})
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FoodGroup.Name)
+            </td>
+            <td class="select">
+                @if (User.Identity.IsAuthenticated)
+                {
+                    <a href="#" class="selectable" name="@item.Name" title="@item.FoodID">Select</a>
+                }
+            </td>
+        </tr>
+    }
+
+</table>
+<br />
+Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+
+@Html.PagedListPager(Model, page => Url.Action("SearchFood", "Food",
+    new {page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter}))

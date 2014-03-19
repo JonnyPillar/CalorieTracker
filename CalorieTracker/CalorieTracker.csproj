@@ -145,6 +145,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\Foods\FoodNutrientController.cs" />
     <Compile Include="Controllers\Log\ActivityLogController.cs" />
     <Compile Include="Controllers\Dashboard\DashboardController.cs" />
     <Compile Include="Controllers\Dashboard\ReviewController.cs" />
@@ -187,6 +188,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>CTDB.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Models\Enum\FoodSize.cs" />
     <Compile Include="Models\Enum\Gender.cs" />
     <Compile Include="Models\Enum\NutritionType.cs" />
     <Compile Include="Models\Food.cs">
@@ -428,8 +430,13 @@
     <Content Include="Views\Nutrient\Details.cshtml" />
     <Content Include="Views\Nutrient\Edit.cshtml" />
     <Content Include="Views\Nutrient\Index.cshtml" />
-    <Content Include="Views\Dashboard\PartialViews\_Tst.cshtml" />
     <Content Include="Views\Log\Partial\_HistoryView.cshtml" />
+    <Content Include="Views\FoodNutrient\Create.cshtml" />
+    <Content Include="Views\FoodNutrient\Delete.cshtml" />
+    <Content Include="Views\FoodNutrient\Details.cshtml" />
+    <Content Include="Views\FoodNutrient\Edit.cshtml" />
+    <Content Include="Views\FoodNutrient\Index.cshtml" />
+    <Content Include="Views\Food\_SearchFood.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

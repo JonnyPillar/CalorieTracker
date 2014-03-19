@@ -15,6 +15,7 @@
     transition: color 0.1s ease-in, background 0.1s ease-in;
     word-wrap: break-word;
     font-weight: bold;
+    border: 0;
 }
 
     .redButton a:hover, .redButton input[type="submit"]:hover,
@@ -230,3 +231,7 @@
 /*
     End Of Home Page    
 */
+
+.nutrientInfo tr td:first-child {
+    text-align: left;
+}

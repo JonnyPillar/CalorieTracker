@@ -4,7 +4,7 @@
 
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Food";
 }
 
 <div id="blue">
@@ -17,18 +17,24 @@
 <div class="foodList container">
     <div class="row centered">
         <div class="redButton col-xs-6 col-xs-offset-3 col-sm-2 col-sm-offset-5">
-            <p>@Html.ActionLink("Create New", "Create")</p>
+            @if (User.Identity.IsAuthenticated)
+            {
+                <p>@Html.ActionLink("Create New", "Create")</p>
+            }
         </div>
         <div style="clear: both; height:1px;"></div>
-        <div class="row centered">
+
+        <div class="row centered searchBar col-xs-12 col-sm-6 col-sm-offset-3 redButton">
             @using (Html.BeginForm("Index", "Food", FormMethod.Get))
             {
                 <p>
-                    Find by name: @Html.TextBox("SearchString", ViewBag.CurrentFilter as string)
-                    <input type="submit" value="Search" />
+                    <input type="submit" value="Search" class="col-sm-3" />
+                    @Html.TextBox("SearchString", ViewBag.CurrentFilter as string, new { placeholder = "Search Food", @class = "textBox col-sm-9" })
+
                 </p>
             }
         </div>
+
 
         <table class="table">
             <tr>
@@ -57,8 +63,12 @@
                         @Html.DisplayFor(modelItem => item.FoodGroup.Name)
                     </td>
                     <td>
-                        @Html.ActionLink("Edit", "Edit", new { id = item.FoodID }) |
-                        @Html.ActionLink("Delete", "Delete", new { id = item.FoodID })
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            @Html.ActionLink("Edit", "Edit", new { id = item.FoodID })
+                            @:|
+                            @Html.ActionLink("Delete", "Delete", new { id = item.FoodID })
+                        }
                     </td>
                 </tr>
             }

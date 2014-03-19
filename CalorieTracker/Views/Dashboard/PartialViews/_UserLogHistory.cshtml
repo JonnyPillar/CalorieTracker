@@ -1,4 +1,5 @@
-﻿@model CalorieTracker.Models.User
+﻿@using Microsoft.Ajax.Utilities
+@model CalorieTracker.Models.User
 
 <div class="dashboardHistoryPanel">
     <h3 class="section-title">Recent History</h3>
@@ -11,23 +12,20 @@
         }
         else
         {
-            for (int i = 0; i < @Model.UserFoodLogs.Count; i++)
+            foreach (var item in @Model.UserFoodLogs.OrderByDescending(item => item.CreationTimestamp).Take(3))
             {
+                
                 <ul>
                     <li>
-                        <b>Date: @Model.UserFoodLogs.ElementAt(i).CreationTimestamp.ToString("dd:MM:yyyy hh:mm")</b>
+                        <b>Date: @item.CreationTimestamp.ToString("dd:MM:yyyy hh:mm")</b>
                     </li>
                     <li>
-                        Name: @Model.UserFoodLogs.ElementAt(i).Food.Name
+                        Name: @item.Food.Name
                     </li>
                     <li>
-                        Amount: @Model.UserFoodLogs.ElementAt(i).Quantity
+                        Amount: @item.Quantity
                     </li>
                 </ul>
-                if (i == 2)
-                {
-                    break;
-                }
             }
         }
         <div class="redButton col-sm-4 col-sm-offset-4">

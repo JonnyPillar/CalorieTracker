@@ -26,13 +26,42 @@
                 </dt>
 
                 <dd>
-                    @Html.DisplayFor(model => model.FoodGroup .Name)
+                    @Html.DisplayFor(model => model.FoodGroup.Name)
                 </dd>
-
             </dl>
+            <div class="col-xs-12 col-sm-6 col-sm-offset-3">
+                <h3>Nutrient Info</h3>
+                <table class="table nutrientInfo">
+                    <tr>
+                        <th>
+                            Name
+                        </th>
+                        <th>
+                            Value
+                        </th>
+                    </tr>
+
+                    @foreach (var nutrient in Model.FoodNutritionLogs.OrderBy(item => item.Nutrient.Name))
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(item => nutrient.Nutrient.Name)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(item => nutrient.Value)
+                            </td>
+                        </tr>
+                    }
+
+                </table>
+            </div>
         </div>
         <p>
-            @Html.ActionLink("Edit", "Edit", new { id = Model.FoodID }) |
+            @if (User.Identity.IsAuthenticated)
+            {
+                @Html.ActionLink("Edit", "Edit", new {id = Model.FoodID}) 
+                @:|
+            }
             @Html.ActionLink("Back to List", "Index")
         </p>
     </div>

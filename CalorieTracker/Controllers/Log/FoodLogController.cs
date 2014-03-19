@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Web.Mvc;
@@ -41,7 +43,7 @@ namespace CalorieTracker.Controllers.Log
         public ActionResult Create()
         {
             if (!User.Identity.IsAuthenticated) return RedirectToAction("Index", "Account");
-            ViewBag.FoodID = new SelectList(db.Foods, "FoodID", "Name");
+            ViewBag.FoodID = new SelectList(new List<Food>(), "FoodID", "Name");
             ViewBag.UserID = new SelectList(db.Users, "UserID", "Name");
             return View();
         }
