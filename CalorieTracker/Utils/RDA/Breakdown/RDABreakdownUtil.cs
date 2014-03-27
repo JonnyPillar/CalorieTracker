@@ -103,7 +103,7 @@ namespace CalorieTracker.Utils.RDA.Breakdown
                     {
                         for (int j = 0; j < foodList.Count; j++)
                         {
-                            FoodLog foodLog = foodList.ElementAt(i);
+                            FoodLog foodLog = foodList.ElementAt(j);
                             FoodNutritionLogs foodNutritionLog = foodLog.Food.FoodNutritionLogs.FirstOrDefault(
                                 fNL => fNL.NurtientID == _userNutrientRDA.NutrientID);
 

@@ -1,0 +1,35 @@
+@RELATION user
+
+@ATTRIBUTE ID numeric
+@ATTRIBUTE Protein numeric
+@ATTRIBUTE Total lipid numeric
+@ATTRIBUTE Carbohydrate numeric
+@ATTRIBUTE Ash numeric
+@ATTRIBUTE Calories numeric
+@ATTRIBUTE Starch numeric
+@ATTRIBUTE Sucrose numeric
+@ATTRIBUTE Glucose numeric
+@ATTRIBUTE Fructose numeric
+@ATTRIBUTE Lactose numeric
+@ATTRIBUTE Maltose numeric
+@ATTRIBUTE Alcohol, ethyl numeric
+@ATTRIBUTE Water numeric
+@ATTRIBUTE Adjusted Protein numeric
+@ATTRIBUTE Caffeine numeric
+@ATTRIBUTE Theobromine numeric
+@ATTRIBUTE Energy numeric
+@ATTRIBUTE Sugars, total numeric
+@ATTRIBUTE Galactose numeric
+@ATTRIBUTE Fibre numeric
+
+@DATA
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+0,24,0,61,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,6
+0,12,0,58,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,11
+0,27,0,133,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3
+0,24,0,6,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1
+0,37,0,150,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,9
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+0,128,0,145,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,17
+0,99,0,241,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,33
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0

@@ -1,0 +1,66 @@
+@RELATION user
+
+@ATTRIBUTE AgeBracket {1,2,3,4,5,6,7,8,9,10,11}
+@ATTRIBUTE Protein numeric
+@ATTRIBUTE Totallipid numeric
+@ATTRIBUTE Carbohydrate numeric
+@ATTRIBUTE Ash numeric
+@ATTRIBUTE Calories numeric
+@ATTRIBUTE Starch numeric
+@ATTRIBUTE Sucrose numeric
+@ATTRIBUTE Glucose numeric
+@ATTRIBUTE Fructose numeric
+@ATTRIBUTE Lactose numeric
+@ATTRIBUTE Maltose numeric
+@ATTRIBUTE Alcoholethyl numeric
+@ATTRIBUTE Water numeric
+@ATTRIBUTE AdjustedProtein numeric
+@ATTRIBUTE Caffeine numeric
+@ATTRIBUTE Theobromine numeric
+@ATTRIBUTE Energy numeric
+@ATTRIBUTE Sugarstotal numeric
+@ATTRIBUTE Galactose numeric
+@ATTRIBUTE Fibre numeric
+
+@DATA
+
+5,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+
+2,3,0,32,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,5
+
+4,12,0,58,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,11
+
+5,22,0,55,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3
+
+5,24,0,6,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1
+
+7,9,0,73,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,8
+
+7,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+
+4,114,0,142,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,17
+
+6,78,0,112,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,16
+
+6,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+
+5,109,0,84,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,21
+
+3,8,0,52,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,5
+
+8,49,0,213,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,9
+
+3,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+
+5,30,0,85,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,14
+
+4,2,0,23,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1
+
+4,13,0,130,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,11
+
+2,72,0,34,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,7
+
+2,24,0,24,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,5
+
+2,39,0,57,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+

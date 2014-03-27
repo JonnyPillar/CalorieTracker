@@ -18,15 +18,15 @@ namespace CalorieTracker.Controllers.Dashboard
         public ActionResult Index()
         {
             //var db = new CalorieTrackerEntities();
-            //var arffGenerator = new ARFFGenerator("User Data", db.Users.ToList());
+            //var arffGenerator = new ARFFGenerator("UserNutrition", db.Users.ToList());
             //arffGenerator.GenerateFile();
 
 
-            CalorieTracker.Utils.Weka.Algorithms.Regression regression = new Regression();
-            regression.SetArffFile(
-                @"C:\Code\Calorie Tracker\CalorieTracker\CalorieTracker\App_Data\User Data__180214024716.arff");
-            regression.ExecuteProcess();
-            string output = regression.GetResults();
+            //CalorieTracker.Utils.Weka.Algorithms.Regression regression = new Regression();
+            //regression.SetArffFile(
+            //    @"C:\Code\Calorie Tracker\CalorieTracker\CalorieTracker\App_Data\User Data__180214024716.arff");
+            //regression.ExecuteProcess();
+            //string output = regression.GetResults();
 
             return View();
         }

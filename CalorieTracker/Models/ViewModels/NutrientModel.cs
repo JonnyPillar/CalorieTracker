@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using CalorieTracker.Utils.Chart;
+﻿using CalorieTracker.Utils.Chart;
 
 namespace CalorieTracker.Models.ViewModels
 {

@@ -33,8 +33,6 @@ namespace CalorieTracker.Controllers.Dashboard
                 FormsAuthentication.SignOut();
                 return RedirectToAction("Index", "Home");
             }
-            List<Nutrient> nutrientEnumerable = db.Nutrients.ToList(); //Get List of all nutrients
-            var rdaList = new List<NutrientRDA>();
 
             int timespanInt = 0;
             if (timeSpan != null)

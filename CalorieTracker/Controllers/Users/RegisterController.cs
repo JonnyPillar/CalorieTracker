@@ -42,7 +42,6 @@ namespace CalorieTracker.Controllers.Users
                 //Password Valid
                 FormsAuthentication.SetAuthCookie(user.UserID.ToString(), true);
                 return RedirectToAction("Index", "Dashboard", new {id = user.UserID});
-                    //TODO Updatedashboard to react to this id being passed
             }
             return View(registerModel);
         }

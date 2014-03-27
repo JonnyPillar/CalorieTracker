@@ -20,7 +20,7 @@ namespace CalorieTracker.Controllers.Log
 
         public ActionResult History()
         {
-            if (!User.Identity.IsAuthenticated) return RedirectToAction("Index", "Account"); 
+            if (!User.Identity.IsAuthenticated) return RedirectToAction("Index", "Account");
             return View();
         }
 
@@ -28,13 +28,10 @@ namespace CalorieTracker.Controllers.Log
         public ActionResult GetUserHistory(int? id)
         {
             int userID = IdentityUtil.GetUserIDFromCookie(User);
-
             User user = db.Users.Find(userID);
-
-            HistoryGeneratorUtil historyGenerator = new HistoryGeneratorUtil(user);
+            var historyGenerator = new HistoryGeneratorUtil(user);
             int pageSize = 20;
             int pageNumber = (id ?? 1);
-
             return PartialView("Partial/_HistoryView", historyGenerator.Test.ToPagedList(pageNumber, pageSize));
         }
     }

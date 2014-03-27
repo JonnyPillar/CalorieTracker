@@ -11,12 +11,6 @@ namespace CalorieTracker.Models
     [MetadataType(typeof (UserMetaData))]
     public partial class User
     {
-        public Gender GenderEnum
-        {
-            get { return (Gender) Convert.ToInt32(Gender); }
-            set { Gender = Convert.ToBoolean(value); }
-        }
-
         public User(RegisterModel registerModel)
         {
             DOB = registerModel.DateOfBirth;
@@ -32,6 +26,12 @@ namespace CalorieTracker.Models
             UserActivityLogs = new HashSet<ActivityLog>();
             UserFoodLogs = new HashSet<FoodLog>();
             UserMetricLogs = new HashSet<MetricLog>();
+        }
+
+        public Gender GenderEnum
+        {
+            get { return (Gender) Convert.ToInt32(Gender); }
+            set { Gender = Convert.ToBoolean(value); }
         }
     }
 }

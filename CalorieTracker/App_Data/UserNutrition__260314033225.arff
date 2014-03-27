@@ -1,0 +1,23 @@
+@RELATION user
+
+@ATTRIBUTE AgeBracket {1,2,3,4,5,6,7,8,9,10,11}
+@ATTRIBUTE Protein numeric
+@ATTRIBUTE Totallipid numeric
+@ATTRIBUTE Carbohydrate numeric
+@ATTRIBUTE Ash numeric
+@ATTRIBUTE Calories numeric
+@ATTRIBUTE Starch numeric
+@ATTRIBUTE Sucrose numeric
+@ATTRIBUTE Glucose numeric
+@ATTRIBUTE Fructose numeric
+@ATTRIBUTE Lactose numeric
+@ATTRIBUTE Maltose numeric
+@ATTRIBUTE Alcoholethyl numeric
+@ATTRIBUTE Water numeric
+@ATTRIBUTE AdjustedProtein numeric
+@ATTRIBUTE Caffeine numeric
+@ATTRIBUTE Theobromine numeric
+@ATTRIBUTE Energy numeric
+@ATTRIBUTE Sugarstotal numeric
+@ATTRIBUTE Galactose numeric
+@ATTRIBUTE Fibre numeric

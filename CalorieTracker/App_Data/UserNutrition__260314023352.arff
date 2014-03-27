@@ -1,0 +1,165 @@
+@RELATION user
+
+@ATTRIBUTE ID numeric
+@ATTRIBUTE Protein numeric
+@ATTRIBUTE Total lipid numeric
+@ATTRIBUTE Carbohydrate numeric
+@ATTRIBUTE Ash numeric
+@ATTRIBUTE Calories numeric
+@ATTRIBUTE Starch numeric
+@ATTRIBUTE Sucrose numeric
+@ATTRIBUTE Glucose numeric
+@ATTRIBUTE Fructose numeric
+@ATTRIBUTE Lactose numeric
+@ATTRIBUTE Maltose numeric
+@ATTRIBUTE Alcohol, ethyl numeric
+@ATTRIBUTE Water numeric
+@ATTRIBUTE Adjusted Protein numeric
+@ATTRIBUTE Caffeine numeric
+@ATTRIBUTE Theobromine numeric
+@ATTRIBUTE Energy numeric
+@ATTRIBUTE Sugars, total numeric
+@ATTRIBUTE Galactose numeric
+@ATTRIBUTE Fibre numeric
+@ATTRIBUTE Calcium, Ca numeric
+@ATTRIBUTE Iron, Fe numeric
+@ATTRIBUTE Magnesium, Mg numeric
+@ATTRIBUTE Phosphorus, P numeric
+@ATTRIBUTE Potassium, K numeric
+@ATTRIBUTE Sodium, Na numeric
+@ATTRIBUTE Zinc, Zn numeric
+@ATTRIBUTE Copper, Cu numeric
+@ATTRIBUTE Fluoride, F numeric
+@ATTRIBUTE Manganese, Mn numeric
+@ATTRIBUTE Selenium, Se numeric
+@ATTRIBUTE Vitamin A, IU numeric
+@ATTRIBUTE Retinol numeric
+@ATTRIBUTE Vitamin A, RAE numeric
+@ATTRIBUTE Carotene, beta numeric
+@ATTRIBUTE Carotene, alpha numeric
+@ATTRIBUTE Vitamin E (alpha-tocopherol) numeric
+@ATTRIBUTE Vitamin D numeric
+@ATTRIBUTE Vitamin D2 (ergocalciferol) numeric
+@ATTRIBUTE Vitamin D3 (cholecalciferol) numeric
+@ATTRIBUTE Vitamin D (D2 + D3) numeric
+@ATTRIBUTE Cryptoxanthin, beta numeric
+@ATTRIBUTE Lycopene numeric
+@ATTRIBUTE Lutein + zeaxanthin numeric
+@ATTRIBUTE Tocopherol, beta numeric
+@ATTRIBUTE Tocopherol, gamma numeric
+@ATTRIBUTE Tocopherol, delta numeric
+@ATTRIBUTE Tocotrienol, alpha numeric
+@ATTRIBUTE Tocotrienol, beta numeric
+@ATTRIBUTE Tocotrienol, gamma numeric
+@ATTRIBUTE Tocotrienol, delta numeric
+@ATTRIBUTE Vitamin C, total ascorbic acid numeric
+@ATTRIBUTE Thiamin numeric
+@ATTRIBUTE Riboflavin numeric
+@ATTRIBUTE Niacin numeric
+@ATTRIBUTE Pantothenic acid numeric
+@ATTRIBUTE Vitamin B-6 numeric
+@ATTRIBUTE Folate, total numeric
+@ATTRIBUTE Vitamin B-12 numeric
+@ATTRIBUTE Choline, total numeric
+@ATTRIBUTE Menaquinone-4 numeric
+@ATTRIBUTE Dihydrophylloquinone numeric
+@ATTRIBUTE Vitamin K (phylloquinone) numeric
+@ATTRIBUTE Folic acid numeric
+@ATTRIBUTE Folate, food numeric
+@ATTRIBUTE Folate, DFE numeric
+@ATTRIBUTE Betaine numeric
+@ATTRIBUTE Tryptophan numeric
+@ATTRIBUTE Threonine numeric
+@ATTRIBUTE Isoleucine numeric
+@ATTRIBUTE Leucine numeric
+@ATTRIBUTE Lysine numeric
+@ATTRIBUTE Methionine numeric
+@ATTRIBUTE Cystine numeric
+@ATTRIBUTE Phenylalanine numeric
+@ATTRIBUTE Tyrosine numeric
+@ATTRIBUTE Valine numeric
+@ATTRIBUTE Arginine numeric
+@ATTRIBUTE Histidine numeric
+@ATTRIBUTE Alanine numeric
+@ATTRIBUTE Aspartic acid numeric
+@ATTRIBUTE Glutamic acid numeric
+@ATTRIBUTE Glycine numeric
+@ATTRIBUTE Proline numeric
+@ATTRIBUTE Serine numeric
+@ATTRIBUTE Hydroxyproline numeric
+@ATTRIBUTE Vitamin E, added numeric
+@ATTRIBUTE Vitamin B-12, added numeric
+@ATTRIBUTE Cholesterol numeric
+@ATTRIBUTE Fatty acids, total trans numeric
+@ATTRIBUTE Fatty acids, total saturated numeric
+@ATTRIBUTE 4:0 numeric
+@ATTRIBUTE 6:0 numeric
+@ATTRIBUTE 8:0 numeric
+@ATTRIBUTE 10:0 numeric
+@ATTRIBUTE 12:0 numeric
+@ATTRIBUTE 14:0 numeric
+@ATTRIBUTE 16:0 numeric
+@ATTRIBUTE 18:0 numeric
+@ATTRIBUTE 20:0 numeric
+@ATTRIBUTE 18:1 undifferentiated numeric
+@ATTRIBUTE 18:2 undifferentiated numeric
+@ATTRIBUTE 18:3 undifferentiated numeric
+@ATTRIBUTE 20:4 undifferentiated numeric
+@ATTRIBUTE 22:6 n-3 (DHA) numeric
+@ATTRIBUTE 22:0 numeric
+@ATTRIBUTE 14:1 numeric
+@ATTRIBUTE 16:1 undifferentiated numeric
+@ATTRIBUTE 18:4 numeric
+@ATTRIBUTE 20:1 numeric
+@ATTRIBUTE 20:5 n-3 (EPA) numeric
+@ATTRIBUTE 22:1 undifferentiated numeric
+@ATTRIBUTE 22:5 n-3 (DPA) numeric
+@ATTRIBUTE Phytosterols numeric
+@ATTRIBUTE Stigmasterol numeric
+@ATTRIBUTE Campesterol numeric
+@ATTRIBUTE Beta-sitosterol numeric
+@ATTRIBUTE Fatty acids, total monounsaturated numeric
+@ATTRIBUTE Fatty acids, total polyunsaturated numeric
+@ATTRIBUTE 15:0 numeric
+@ATTRIBUTE 17:0 numeric
+@ATTRIBUTE 24:0 numeric
+@ATTRIBUTE 16:1 t numeric
+@ATTRIBUTE 18:1 t numeric
+@ATTRIBUTE 22:1 t numeric
+@ATTRIBUTE 18:2 t not further defined numeric
+@ATTRIBUTE 18:2 i numeric
+@ATTRIBUTE 18:2 t,t numeric
+@ATTRIBUTE 18:2 CLAs numeric
+@ATTRIBUTE 24:1 c numeric
+@ATTRIBUTE 20:2 n-6 c,c numeric
+@ATTRIBUTE 16:1 c numeric
+@ATTRIBUTE 18:1 c numeric
+@ATTRIBUTE 18:2 n-6 c,c numeric
+@ATTRIBUTE 22:1 c numeric
+@ATTRIBUTE 18:3 n-6 c,c,c numeric
+@ATTRIBUTE 17:1 numeric
+@ATTRIBUTE 20:3 undifferentiated numeric
+@ATTRIBUTE Fatty acids, total trans-monoenoic numeric
+@ATTRIBUTE Fatty acids, total trans-polyenoic numeric
+@ATTRIBUTE 13:0 numeric
+@ATTRIBUTE 15:1 numeric
+@ATTRIBUTE 18:3 n-3 c,c,c (ALA) numeric
+@ATTRIBUTE 20:3 n-3 numeric
+@ATTRIBUTE 20:3 n-6 numeric
+@ATTRIBUTE 20:4 n-6 numeric
+@ATTRIBUTE 18:3i numeric
+@ATTRIBUTE 21:5 numeric
+@ATTRIBUTE 22:4 numeric
+@ATTRIBUTE 18:1-11t (18:1t n-7) numeric
+
+@DATA
+1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+3,24,0,61,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,6,56,3,0,0,0,294,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+4,12,0,58,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,11,704,5,0,0,0,481,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+5,27,0,133,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,160,7,0,0,0,2714,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+6,24,0,6,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,39,1,0,0,0,172,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+7,37,0,150,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,9,265,7,0,0,0,3424,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+8,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+9,128,0,145,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,17,590,15,0,0,0,2750,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+10,108,0,322,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,36,776,17,0,0,0,3969,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+11,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0

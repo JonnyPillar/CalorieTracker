@@ -266,6 +266,7 @@
     <Compile Include="Utils\Weka\ARFF\ARFFGenerator.cs" />
     <Compile Include="Utils\Weka\ARFF\Instances\IInstance.cs" />
     <Compile Include="Utils\Weka\ARFF\Instances\WekaUser.cs" />
+    <Compile Include="Utils\Weka\ARFF\Instances\WekaUserNutrition.cs" />
     <Compile Include="Utils\Weka\Weka.cs" />
   </ItemGroup>
   <ItemGroup>
