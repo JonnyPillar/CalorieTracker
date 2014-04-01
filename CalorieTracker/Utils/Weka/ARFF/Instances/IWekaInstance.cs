@@ -1,6 +1,6 @@
 ﻿namespace CalorieTracker.Utils.Weka.ARFF.Instances
 {
-    internal interface IInstance
+    internal interface IWekaInstance
     {
         string GetAttributes();
         string GetInstanceData();

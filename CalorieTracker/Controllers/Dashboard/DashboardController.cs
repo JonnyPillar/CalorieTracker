@@ -46,6 +46,11 @@ namespace CalorieTracker.Controllers.Dashboard
             return View(dashboardModel);
         }
 
+        /// <summary>
+        ///     Ajax Get Method To Retrieve A Users Nutritional Information
+        /// </summary>
+        /// <param name="id">Period of time to base the calculation on</param>
+        /// <returns>Partial View Containing Nutrition Levels</returns>
         [HttpGet]
         public ActionResult GetUserRDAChart(int? id)
         {
@@ -59,8 +64,7 @@ namespace CalorieTracker.Controllers.Dashboard
                 User user = db.Users.Find(userID);
                 if (user != null)
                 {
-                    List<Nutrient> nutrientEnumerable = db.Nutrients.ToList(); //Get List of all nutrients
-                    //List of all the Nutrients RDA's
+                    List<Nutrient> nutrientEnumerable = db.Nutrients.ToList();
                     foreach (Nutrient nutrient in nutrientEnumerable)
                     {
                         RDAUtil rdaUtil = null;

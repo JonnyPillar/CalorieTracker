@@ -4,7 +4,7 @@ using CalorieTracker.Models;
 
 namespace CalorieTracker.Utils.Weka.ARFF.Instances
 {
-    public class WekaUser : IInstance
+    public class WekaUser : IWekaInstance
     {
         private readonly List<User> _userList;
 

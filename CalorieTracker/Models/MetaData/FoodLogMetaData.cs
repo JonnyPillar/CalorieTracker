@@ -12,7 +12,9 @@ namespace CalorieTracker.Models.MetaData
 
         [ScaffoldColumn(false)]
         public int UserID { get; set; }
+
         [Required]
+        [Range(0, 1000)]
         public decimal Quantity { get; set; }
 
         [ScaffoldColumn(false)]

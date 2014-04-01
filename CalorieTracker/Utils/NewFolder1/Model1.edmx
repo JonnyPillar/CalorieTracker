@@ -1,0 +1,467 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="Model1.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2012" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="Model1StoreContainer">
+    <EntitySet Name="Users" EntityType="Model1.Store.Users" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Logs" EntityType="Model1.Store.Logs" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Activities" EntityType="Model1.Store.Activities" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Metrics" EntityType="Model1.Store.Metrics" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Foods" EntityType="Model1.Store.Foods" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="FoodNutrients" EntityType="Model1.Store.FoodNutrients" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Nutrients" EntityType="Model1.Store.Nutrients" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="UserLog" Association="Model1.Store.UserLog">
+      <End Role="User" EntitySet="Users" />
+      <End Role="Log" EntitySet="Logs" />
+    </AssociationSet>
+    <AssociationSet Name="LogActivity" Association="Model1.Store.LogActivity">
+      <End Role="Log" EntitySet="Logs" />
+      <End Role="Activity" EntitySet="Activities" />
+    </AssociationSet>
+    <AssociationSet Name="LogMetric" Association="Model1.Store.LogMetric">
+      <End Role="Log" EntitySet="Logs" />
+      <End Role="Metric" EntitySet="Metrics" />
+    </AssociationSet>
+    <AssociationSet Name="LogFood" Association="Model1.Store.LogFood">
+      <End Role="Log" EntitySet="Logs" />
+      <End Role="Food" EntitySet="Foods" />
+    </AssociationSet>
+    <AssociationSet Name="FoodNutrientFood" Association="Model1.Store.FoodNutrientFood">
+      <End Role="FoodNutrient" EntitySet="FoodNutrients" />
+      <End Role="Food" EntitySet="Foods" />
+    </AssociationSet>
+    <AssociationSet Name="NutrientFoodNutrient" Association="Model1.Store.NutrientFoodNutrient">
+      <End Role="Nutrient" EntitySet="Nutrients" />
+      <End Role="FoodNutrient" EntitySet="FoodNutrients" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Users">
+    <Key>
+      <PropertyRef Name="UserID" />
+    </Key>
+    <Property Name="UserID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="DOB" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Gender" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="PasswordHash" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Admin" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="CreationDateTime" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Logs">
+    <Key>
+      <PropertyRef Name="LogID" />
+    </Key>
+    <Property Name="LogID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserID" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="ActivityID" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="MetricID" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="FoodID" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Quantity" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="CreationDateTIme" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="User_UserID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Activities">
+    <Key>
+      <PropertyRef Name="ActivityID" />
+    </Key>
+    <Property Name="ActivityID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ActivityName" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="CalorieBurnRate" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Log_LogID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Metrics">
+    <Key>
+      <PropertyRef Name="MetricID" />
+    </Key>
+    <Property Name="MetricID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="MetricName" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="MetricType" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Log_LogID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Foods">
+    <Key>
+      <PropertyRef Name="FoodID" />
+    </Key>
+    <Property Name="FoodID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FoodName" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="FoodDescription" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Log_LogID" Type="int" Nullable="false" />
+    <Property Name="FoodNutrient_FoodNutrientID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="FoodNutrients">
+    <Key>
+      <PropertyRef Name="FoodNutrientID" />
+    </Key>
+    <Property Name="FoodNutrientID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FoodID" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="NutrientID" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Value" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Nutrient_NutrientID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Nutrients">
+    <Key>
+      <PropertyRef Name="NutrientID" />
+    </Key>
+    <Property Name="NutrientID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="NutrientName" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="NutrientValueType" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <Association Name="UserLog">
+    <End Role="User" Type="Model1.Store.Users" Multiplicity="1" />
+    <End Role="Log" Type="Model1.Store.Logs" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="UserID" />
+      </Principal>
+      <Dependent Role="Log">
+        <PropertyRef Name="User_UserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="LogActivity">
+    <End Role="Log" Type="Model1.Store.Logs" Multiplicity="1" />
+    <End Role="Activity" Type="Model1.Store.Activities" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Log">
+        <PropertyRef Name="LogID" />
+      </Principal>
+      <Dependent Role="Activity">
+        <PropertyRef Name="Log_LogID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="LogMetric">
+    <End Role="Log" Type="Model1.Store.Logs" Multiplicity="1" />
+    <End Role="Metric" Type="Model1.Store.Metrics" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Log">
+        <PropertyRef Name="LogID" />
+      </Principal>
+      <Dependent Role="Metric">
+        <PropertyRef Name="Log_LogID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="LogFood">
+    <End Role="Log" Type="Model1.Store.Logs" Multiplicity="1" />
+    <End Role="Food" Type="Model1.Store.Foods" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Log">
+        <PropertyRef Name="LogID" />
+      </Principal>
+      <Dependent Role="Food">
+        <PropertyRef Name="Log_LogID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FoodNutrientFood">
+    <End Role="FoodNutrient" Type="Model1.Store.FoodNutrients" Multiplicity="1" />
+    <End Role="Food" Type="Model1.Store.Foods" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="FoodNutrient">
+        <PropertyRef Name="FoodNutrientID" />
+      </Principal>
+      <Dependent Role="Food">
+        <PropertyRef Name="FoodNutrient_FoodNutrientID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="NutrientFoodNutrient">
+    <End Role="Nutrient" Type="Model1.Store.Nutrients" Multiplicity="1" />
+    <End Role="FoodNutrient" Type="Model1.Store.FoodNutrients" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Nutrient">
+        <PropertyRef Name="NutrientID" />
+      </Principal>
+      <Dependent Role="FoodNutrient">
+        <PropertyRef Name="Nutrient_NutrientID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="Model1" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" annotation:UseStrongSpatialTypes="false">
+        <EntityContainer Name="Model1Container" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Users" EntityType="Model1.User" />
+          <EntitySet Name="Logs" EntityType="Model1.Log" />
+          <EntitySet Name="Activities" EntityType="Model1.Activity" />
+          <EntitySet Name="Metrics" EntityType="Model1.Metric" />
+          <EntitySet Name="Foods" EntityType="Model1.Food" />
+          <EntitySet Name="FoodNutrients" EntityType="Model1.FoodNutrient" />
+          <EntitySet Name="Nutrients" EntityType="Model1.Nutrient" />
+          <AssociationSet Name="UserLog" Association="Model1.UserLog">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Log" EntitySet="Logs" />
+          </AssociationSet>
+          <AssociationSet Name="LogActivity" Association="Model1.LogActivity">
+            <End Role="Log" EntitySet="Logs" />
+            <End Role="Activity" EntitySet="Activities" />
+          </AssociationSet>
+          <AssociationSet Name="LogMetric" Association="Model1.LogMetric">
+            <End Role="Log" EntitySet="Logs" />
+            <End Role="Metric" EntitySet="Metrics" />
+          </AssociationSet>
+          <AssociationSet Name="LogFood" Association="Model1.LogFood">
+            <End Role="Log" EntitySet="Logs" />
+            <End Role="Food" EntitySet="Foods" />
+          </AssociationSet>
+          <AssociationSet Name="FoodNutrientFood" Association="Model1.FoodNutrientFood">
+            <End Role="FoodNutrient" EntitySet="FoodNutrients" />
+            <End Role="Food" EntitySet="Foods" />
+          </AssociationSet>
+          <AssociationSet Name="NutrientFoodNutrient" Association="Model1.NutrientFoodNutrient">
+            <End Role="Nutrient" EntitySet="Nutrients" />
+            <End Role="FoodNutrient" EntitySet="FoodNutrients" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="UserID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DOB" Type="String" Nullable="false" />
+          <Property Name="Gender" Type="String" Nullable="false" />
+          <Property Name="PasswordHash" Type="String" Nullable="false" />
+          <Property Name="Admin" Type="String" Nullable="false" />
+          <Property Name="CreationDateTime" Type="String" Nullable="false" />
+          <NavigationProperty Name="Logs" Relationship="Model1.UserLog" FromRole="User" ToRole="Log" />
+        </EntityType>
+        <EntityType Name="Log">
+          <Key>
+            <PropertyRef Name="LogID" />
+          </Key>
+          <Property Name="LogID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserID" Type="String" Nullable="false" />
+          <Property Name="ActivityID" Type="String" Nullable="false" />
+          <Property Name="MetricID" Type="String" Nullable="false" />
+          <Property Name="FoodID" Type="String" Nullable="false" />
+          <Property Name="Quantity" Type="String" Nullable="false" />
+          <Property Name="CreationDateTIme" Type="String" Nullable="false" />
+          <NavigationProperty Name="User" Relationship="Model1.UserLog" FromRole="Log" ToRole="User" />
+          <NavigationProperty Name="Activities" Relationship="Model1.LogActivity" FromRole="Log" ToRole="Activity" />
+          <NavigationProperty Name="Metrics" Relationship="Model1.LogMetric" FromRole="Log" ToRole="Metric" />
+          <NavigationProperty Name="Foods" Relationship="Model1.LogFood" FromRole="Log" ToRole="Food" />
+        </EntityType>
+        <EntityType Name="Activity">
+          <Key>
+            <PropertyRef Name="ActivityID" />
+          </Key>
+          <Property Name="ActivityID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ActivityName" Type="String" Nullable="false" />
+          <Property Name="CalorieBurnRate" Type="String" Nullable="false" />
+          <NavigationProperty Name="Log" Relationship="Model1.LogActivity" FromRole="Activity" ToRole="Log" />
+        </EntityType>
+        <EntityType Name="Metric">
+          <Key>
+            <PropertyRef Name="MetricID" />
+          </Key>
+          <Property Name="MetricID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MetricName" Type="String" Nullable="false" />
+          <Property Name="MetricType" Type="String" Nullable="false" />
+          <NavigationProperty Name="Log" Relationship="Model1.LogMetric" FromRole="Metric" ToRole="Log" />
+        </EntityType>
+        <EntityType Name="Food">
+          <Key>
+            <PropertyRef Name="FoodID" />
+          </Key>
+          <Property Name="FoodID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FoodName" Type="String" Nullable="false" />
+          <Property Name="FoodDescription" Type="String" Nullable="false" />
+          <NavigationProperty Name="Log" Relationship="Model1.LogFood" FromRole="Food" ToRole="Log" />
+          <NavigationProperty Name="FoodNutrient" Relationship="Model1.FoodNutrientFood" FromRole="Food" ToRole="FoodNutrient" />
+        </EntityType>
+        <EntityType Name="FoodNutrient">
+          <Key>
+            <PropertyRef Name="FoodNutrientID" />
+          </Key>
+          <Property Name="FoodNutrientID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FoodID" Type="String" Nullable="false" />
+          <Property Name="NutrientID" Type="String" Nullable="false" />
+          <Property Name="Value" Type="String" Nullable="false" />
+          <NavigationProperty Name="Foods" Relationship="Model1.FoodNutrientFood" FromRole="FoodNutrient" ToRole="Food" />
+          <NavigationProperty Name="Nutrient" Relationship="Model1.NutrientFoodNutrient" FromRole="FoodNutrient" ToRole="Nutrient" />
+        </EntityType>
+        <EntityType Name="Nutrient">
+          <Key>
+            <PropertyRef Name="NutrientID" />
+          </Key>
+          <Property Name="NutrientID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NutrientName" Type="String" Nullable="false" />
+          <Property Name="NutrientValueType" Type="String" Nullable="false" />
+          <NavigationProperty Name="FoodNutrients" Relationship="Model1.NutrientFoodNutrient" FromRole="Nutrient" ToRole="FoodNutrient" />
+        </EntityType>
+        <Association Name="UserLog">
+          <End Type="Model1.User" Role="User" Multiplicity="1" />
+          <End Type="Model1.Log" Role="Log" Multiplicity="*" />
+        </Association>
+        <Association Name="LogActivity">
+          <End Type="Model1.Log" Role="Log" Multiplicity="1" />
+          <End Type="Model1.Activity" Role="Activity" Multiplicity="*" />
+        </Association>
+        <Association Name="LogMetric">
+          <End Type="Model1.Log" Role="Log" Multiplicity="1" />
+          <End Type="Model1.Metric" Role="Metric" Multiplicity="*" />
+        </Association>
+        <Association Name="LogFood">
+          <End Type="Model1.Log" Role="Log" Multiplicity="1" />
+          <End Type="Model1.Food" Role="Food" Multiplicity="*" />
+        </Association>
+        <Association Name="FoodNutrientFood">
+          <End Type="Model1.FoodNutrient" Role="FoodNutrient" Multiplicity="1" />
+          <End Type="Model1.Food" Role="Food" Multiplicity="*" />
+        </Association>
+        <Association Name="NutrientFoodNutrient">
+          <End Type="Model1.Nutrient" Role="Nutrient" Multiplicity="1" />
+          <End Type="Model1.FoodNutrient" Role="FoodNutrient" Multiplicity="*" />
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+    <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="Model1StoreContainer" CdmEntityContainer="Model1Container">
+    <EntitySetMapping Name="Users">
+      <EntityTypeMapping TypeName="IsTypeOf(Model1.User)">
+        <MappingFragment StoreEntitySet="Users">
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+          <ScalarProperty Name="DOB" ColumnName="DOB" />
+          <ScalarProperty Name="Gender" ColumnName="Gender" />
+          <ScalarProperty Name="PasswordHash" ColumnName="PasswordHash" />
+          <ScalarProperty Name="Admin" ColumnName="Admin" />
+          <ScalarProperty Name="CreationDateTime" ColumnName="CreationDateTime" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Logs">
+      <EntityTypeMapping TypeName="IsTypeOf(Model1.Log)">
+        <MappingFragment StoreEntitySet="Logs">
+          <ScalarProperty Name="LogID" ColumnName="LogID" />
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+          <ScalarProperty Name="ActivityID" ColumnName="ActivityID" />
+          <ScalarProperty Name="MetricID" ColumnName="MetricID" />
+          <ScalarProperty Name="FoodID" ColumnName="FoodID" />
+          <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+          <ScalarProperty Name="CreationDateTIme" ColumnName="CreationDateTIme" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Activities">
+      <EntityTypeMapping TypeName="IsTypeOf(Model1.Activity)">
+        <MappingFragment StoreEntitySet="Activities">
+          <ScalarProperty Name="ActivityID" ColumnName="ActivityID" />
+          <ScalarProperty Name="ActivityName" ColumnName="ActivityName" />
+          <ScalarProperty Name="CalorieBurnRate" ColumnName="CalorieBurnRate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Metrics">
+      <EntityTypeMapping TypeName="IsTypeOf(Model1.Metric)">
+        <MappingFragment StoreEntitySet="Metrics">
+          <ScalarProperty Name="MetricID" ColumnName="MetricID" />
+          <ScalarProperty Name="MetricName" ColumnName="MetricName" />
+          <ScalarProperty Name="MetricType" ColumnName="MetricType" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Foods">
+      <EntityTypeMapping TypeName="IsTypeOf(Model1.Food)">
+        <MappingFragment StoreEntitySet="Foods">
+          <ScalarProperty Name="FoodID" ColumnName="FoodID" />
+          <ScalarProperty Name="FoodName" ColumnName="FoodName" />
+          <ScalarProperty Name="FoodDescription" ColumnName="FoodDescription" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="FoodNutrients">
+      <EntityTypeMapping TypeName="IsTypeOf(Model1.FoodNutrient)">
+        <MappingFragment StoreEntitySet="FoodNutrients">
+          <ScalarProperty Name="FoodNutrientID" ColumnName="FoodNutrientID" />
+          <ScalarProperty Name="FoodID" ColumnName="FoodID" />
+          <ScalarProperty Name="NutrientID" ColumnName="NutrientID" />
+          <ScalarProperty Name="Value" ColumnName="Value" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Nutrients">
+      <EntityTypeMapping TypeName="IsTypeOf(Model1.Nutrient)">
+        <MappingFragment StoreEntitySet="Nutrients">
+          <ScalarProperty Name="NutrientID" ColumnName="NutrientID" />
+          <ScalarProperty Name="NutrientName" ColumnName="NutrientName" />
+          <ScalarProperty Name="NutrientValueType" ColumnName="NutrientValueType" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="UserLog" TypeName="Model1.UserLog" StoreEntitySet="Logs">
+      <EndProperty Name="User">
+        <ScalarProperty Name="UserID" ColumnName="User_UserID" />
+      </EndProperty>
+      <EndProperty Name="Log">
+        <ScalarProperty Name="LogID" ColumnName="LogID" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="LogActivity" TypeName="Model1.LogActivity" StoreEntitySet="Activities">
+      <EndProperty Name="Log">
+        <ScalarProperty Name="LogID" ColumnName="Log_LogID" />
+      </EndProperty>
+      <EndProperty Name="Activity">
+        <ScalarProperty Name="ActivityID" ColumnName="ActivityID" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="LogMetric" TypeName="Model1.LogMetric" StoreEntitySet="Metrics">
+      <EndProperty Name="Log">
+        <ScalarProperty Name="LogID" ColumnName="Log_LogID" />
+      </EndProperty>
+      <EndProperty Name="Metric">
+        <ScalarProperty Name="MetricID" ColumnName="MetricID" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="LogFood" TypeName="Model1.LogFood" StoreEntitySet="Foods">
+      <EndProperty Name="Log">
+        <ScalarProperty Name="LogID" ColumnName="Log_LogID" />
+      </EndProperty>
+      <EndProperty Name="Food">
+        <ScalarProperty Name="FoodID" ColumnName="FoodID" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="FoodNutrientFood" TypeName="Model1.FoodNutrientFood" StoreEntitySet="Foods">
+      <EndProperty Name="FoodNutrient">
+        <ScalarProperty Name="FoodNutrientID" ColumnName="FoodNutrient_FoodNutrientID" />
+      </EndProperty>
+      <EndProperty Name="Food">
+        <ScalarProperty Name="FoodID" ColumnName="FoodID" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="NutrientFoodNutrient" TypeName="Model1.NutrientFoodNutrient" StoreEntitySet="FoodNutrients">
+      <EndProperty Name="Nutrient">
+        <ScalarProperty Name="NutrientID" ColumnName="Nutrient_NutrientID" />
+      </EndProperty>
+      <EndProperty Name="FoodNutrient">
+        <ScalarProperty Name="FoodNutrientID" ColumnName="FoodNutrientID" />
+      </EndProperty>
+    </AssociationSetMapping>
+  </EntityContainerMapping>
+</Mapping></edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <edmx:Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </edmx:Connection>
+    <edmx:Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+        <DesignerProperty Name="UseLegacyProvider" Value="False" />
+      </DesignerInfoPropertySet>
+    </edmx:Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

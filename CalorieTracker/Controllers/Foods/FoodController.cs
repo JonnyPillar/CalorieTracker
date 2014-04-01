@@ -37,25 +37,25 @@ namespace CalorieTracker.Controllers.Foods
             }
             else searchString = currentFilter;
             ViewBag.CurrentFilter = searchString;
-            IQueryable<Food> foods = db.Foods.Include(f => f.FoodGroup);
+            IQueryable<Food> foodsCollection = db.Foods.Include(f => f.FoodGroup);
             if (!string.IsNullOrEmpty(searchString))
             {
-                foods = foods.Where(
+                foodsCollection = foodsCollection.Where(
                     f =>
                         f.Name.ToUpper().Contains(searchString.ToUpper()) ||
                         f.Description.ToUpper().Contains(searchString.ToUpper()) ||
                         f.ManufactureName.ToUpper().Contains(searchString.ToUpper()));
             }
-            if (string.IsNullOrEmpty(sortOrder)) foods = foods.OrderBy(f => f.Name);
-            else if (sortOrder.Equals("Name_desc")) foods = foods.OrderByDescending(f => f.Name);
-            else if (sortOrder.Equals("Description")) foods = foods.OrderBy(f => f.Description);
-            else if (sortOrder.Equals("Description_desc")) foods = foods.OrderByDescending(f => f.Description);
-            else if (sortOrder.Equals("FoodGroup")) foods = foods.OrderBy(f => f.FoodGroup.Name);
-            else if (sortOrder.Equals("FoodGroup_desc")) foods = foods.OrderByDescending(f => f.FoodGroup.Name);
+            if (string.IsNullOrEmpty(sortOrder)) foodsCollection = foodsCollection.OrderBy(f => f.Name);
+            else if (sortOrder.Equals("Name_desc")) foodsCollection = foodsCollection.OrderByDescending(f => f.Name);
+            else if (sortOrder.Equals("Description")) foodsCollection = foodsCollection.OrderBy(f => f.Description);
+            else if (sortOrder.Equals("Description_desc")) foodsCollection = foodsCollection.OrderByDescending(f => f.Description);
+            else if (sortOrder.Equals("FoodGroup")) foodsCollection = foodsCollection.OrderBy(f => f.FoodGroup.Name);
+            else if (sortOrder.Equals("FoodGroup_desc")) foodsCollection = foodsCollection.OrderByDescending(f => f.FoodGroup.Name);
 
             int pageSize = 20;
             int pageNumber = (page ?? 1);
-            return View(foods.ToPagedList(pageNumber, pageSize));
+            return View(foodsCollection.ToPagedList(pageNumber, pageSize));
         }
 
         /// <summary>

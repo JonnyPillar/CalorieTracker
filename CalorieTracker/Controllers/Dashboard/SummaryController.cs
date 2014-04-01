@@ -17,9 +17,9 @@ namespace CalorieTracker.Controllers.Dashboard
         [HttpGet]
         public ActionResult Index()
         {
-            //var db = new CalorieTrackerEntities();
-            //var arffGenerator = new ARFFGenerator("UserNutrition", db.Users.ToList());
-            //arffGenerator.GenerateFile();
+            var db = new CalorieTrackerEntities();
+            var arffGenerator = new ARFFGenerator("UserNutrition", db.Users.ToList());
+            arffGenerator.GenerateFile();
 
 
             //CalorieTracker.Utils.Weka.Algorithms.Regression regression = new Regression();

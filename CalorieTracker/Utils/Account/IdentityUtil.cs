@@ -18,8 +18,9 @@ namespace CalorieTracker.Utils.Account
                 {
                     return Convert.ToInt32(user.Identity.Name);
                 }
-                catch (Exception)
+                catch
                 {
+                    return -1;
                 }
             }
             return -1;

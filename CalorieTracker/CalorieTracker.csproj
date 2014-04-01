@@ -264,7 +264,7 @@
     <Compile Include="Utils\Weka\Algorithms\IAlgorithm.cs" />
     <Compile Include="Utils\Weka\Algorithms\Regression.cs" />
     <Compile Include="Utils\Weka\ARFF\ARFFGenerator.cs" />
-    <Compile Include="Utils\Weka\ARFF\Instances\IInstance.cs" />
+    <Compile Include="Utils\Weka\ARFF\Instances\IWekaInstance.cs" />
     <Compile Include="Utils\Weka\ARFF\Instances\WekaUser.cs" />
     <Compile Include="Utils\Weka\ARFF\Instances\WekaUserNutrition.cs" />
     <Compile Include="Utils\Weka\Weka.cs" />
